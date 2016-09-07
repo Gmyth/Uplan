@@ -23,6 +23,7 @@
     <favorites_list name="Uflow" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Gruntfile.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tools/Gruntfile.js">
@@ -39,6 +40,14 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+=======
+    <leaf>
+      <file leaf-file-name="Gruntfile.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tools/Gruntfile.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
+>>>>>>> Gmyth
               <folding />
             </state>
           </provider>
@@ -51,6 +60,12 @@
               <caret line="12269" column="16" selection-start-line="12269" selection-start-column="16" selection-end-line="12269" selection-end-column="16" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+<<<<<<< HEAD
+=======
+                <marker date="1472898317059" expanded="true" signature="36618:36689" ph="..." />
+                <marker date="1472898317059" expanded="true" signature="36703:36727" ph="..." />
+                <marker date="1472898317059" expanded="true" signature="453712:453718" ph="..." />
+>>>>>>> Gmyth
               </folding>
             </state>
           </provider>
@@ -61,7 +76,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190710">
               <caret line="12717" column="29" selection-start-line="12717" selection-start-column="18" selection-end-line="12717" selection-end-column="29" />
+<<<<<<< HEAD
               <folding />
+=======
+              <folding>
+                <marker date="1472897284135" expanded="true" signature="29549:29620" ph="..." />
+                <marker date="1472897284135" expanded="true" signature="29634:29658" ph="..." />
+                <marker date="1472897284135" expanded="true" signature="393166:393172" ph="..." />
+              </folding>
+>>>>>>> Gmyth
             </state>
           </provider>
         </entry>
@@ -79,8 +102,13 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dest/index.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="19">
               <caret line="39" column="50" selection-start-line="39" selection-start-column="50" selection-end-line="39" selection-end-column="50" />
+=======
+            <state relative-caret-position="114">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+>>>>>>> Gmyth
               <folding />
             </state>
           </provider>
@@ -101,7 +129,14 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
               <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+<<<<<<< HEAD
               <folding />
+=======
+              <folding>
+                <marker date="1472897284000" expanded="true" signature="516:664" ph="{...}" />
+                <marker date="1472897284000" expanded="true" signature="516:829" ph="{...}" />
+              </folding>
+>>>>>>> Gmyth
             </state>
           </provider>
         </entry>
@@ -146,11 +181,15 @@
         <option value="$PROJECT_DIR$/dest/js/widget/flat-ui.js" />
         <option value="$PROJECT_DIR$/src/js/page/controller/module.js" />
         <option value="$PROJECT_DIR$/src/css/button_less.css" />
-        <option value="$PROJECT_DIR$/dest/index.html" />
         <option value="$PROJECT_DIR$/dest/css/css/src/demo.less" />
         <option value="$PROJECT_DIR$/src/html/index/index.html" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/tools/Gruntfile.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+=======
+        <option value="$PROJECT_DIR$/dest/index.html" />
+        <option value="$PROJECT_DIR$/tools/Gruntfile.js" />
+>>>>>>> Gmyth
       </list>
     </option>
   </component>
@@ -307,16 +346,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1472888102484</updated>
+<<<<<<< HEAD
       <workItem from="1472888104148" duration="7636000" />
       <workItem from="1472900006346" duration="2000" />
       <workItem from="1472953710917" duration="222000" />
       <workItem from="1472954130712" duration="2998000" />
       <workItem from="1473259520441" duration="28000" />
+=======
+      <workItem from="1472888104148" duration="8887000" />
+>>>>>>> Gmyth
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="10886000" />
+=======
+    <option name="totallyTimeSpent" value="8887000" />
+>>>>>>> Gmyth
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -328,10 +375,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37807783" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+=======
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18545838" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+>>>>>>> Gmyth
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -627,6 +681,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+<<<<<<< HEAD
+=======
+          <folding />
+>>>>>>> Gmyth
         </state>
       </provider>
     </entry>
@@ -666,6 +724,12 @@
           <caret line="12269" column="16" selection-start-line="12269" selection-start-column="16" selection-end-line="12269" selection-end-column="16" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+<<<<<<< HEAD
+=======
+            <marker date="1472898317059" expanded="true" signature="36618:36689" ph="..." />
+            <marker date="1472898317059" expanded="true" signature="36703:36727" ph="..." />
+            <marker date="1472898317059" expanded="true" signature="453712:453718" ph="..." />
+>>>>>>> Gmyth
           </folding>
         </state>
       </provider>
@@ -675,7 +739,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190710">
           <caret line="12717" column="29" selection-start-line="12717" selection-start-column="18" selection-end-line="12717" selection-end-column="29" />
+<<<<<<< HEAD
           <folding />
+=======
+          <folding>
+            <marker date="1472897284135" expanded="true" signature="29549:29620" ph="..." />
+            <marker date="1472897284135" expanded="true" signature="29634:29658" ph="..." />
+            <marker date="1472897284135" expanded="true" signature="393166:393172" ph="..." />
+          </folding>
+>>>>>>> Gmyth
         </state>
       </provider>
     </entry>
@@ -683,7 +755,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+<<<<<<< HEAD
           <folding />
+=======
+          <folding>
+            <marker date="1472897284000" expanded="true" signature="516:664" ph="{...}" />
+            <marker date="1472897284000" expanded="true" signature="516:829" ph="{...}" />
+          </folding>
+>>>>>>> Gmyth
         </state>
       </provider>
     </entry>
@@ -735,8 +814,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dest/index.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="19">
           <caret line="39" column="50" selection-start-line="39" selection-start-column="50" selection-end-line="39" selection-end-column="50" />
+=======
+        <state relative-caret-position="114">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
+>>>>>>> Gmyth
           <folding />
         </state>
       </provider>
