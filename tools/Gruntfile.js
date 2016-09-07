@@ -62,7 +62,8 @@ module.exports = function(grunt){
 		watch:{
 			files:[
 				'../src/js/lib/~.js','../src/js/util/~.js','../src/js/widget/~.js',
-                '../src/js/net/~.js','../src/js/page/~.js','../src/js/~.tpl','../src/html/index/index.html'
+                '../src/js/net/~.js','../src/js/page/~.js','../src/js/~.tpl','../src/html/index/index.html',
+				'../src/css/css/~.css','../src/css/~.css'
             ],
 			tasks:['transport','copy:tpl','concat',"copy:css","copy:img","copy:html","copy:seajs"]
 		},
