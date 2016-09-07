@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 tools/node_modules/
 .idea/
+=======
+.idea/
+tools/node_module/
+>>>>>>> master
