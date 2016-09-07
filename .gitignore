@@ -1,8 +1,10 @@
-.idea/*
-tools/node_module/*
+.idea/
+tools/node_module/
 
 src/.DS_Store
 
 src/js/.DS_Store
 
 tools/.DS_Store
+
+.DS_Store
