@@ -1,0 +1,23 @@
+.main_container {
+    width:70%;
+    /*hight:80%;*/
+    float: left;
+    background-color: #eff0f2;
+    border-radius: 6px;
+    margin-left: 1em;
+    min-width: 620px;
+}
+.weekly_schedule {
+    border-radius: 6px;
+    text-align: center;
+    min-width: 600px;
+}
+.weekly_schedule th{
+    text-align: center;
+}
+.SSSWEEKLYBACKGROUND{
+    background-color: #cce6e1;
+}
+html, body{
+    height: 100%;
+}
