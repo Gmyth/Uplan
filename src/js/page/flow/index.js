@@ -4,14 +4,27 @@
  * */
 define(function(require, exports, module){
     var $ = require('lib/jquery')
+    var config = require('page/flow/config').data;
     var tpl = require('util/tpl')
+    var timeparser = require('util/timeparser')
+    var timeStart;
+    var timeEnd;
     var tmpl = {
         main:FLOW.MAIN,
     }
+    /*config set*/
+    var timeStart=8;
+    var timeEnd=21;
     exports.init = function(){
         $('.main_container').html(tpl.get(tmpl.main));
         _bindEvent();
     };
+    var FillFlow = function(){
+        /*from 8:00 to 21:00*/
+        for(var i =timeStart; i < timeEnd-timeStart;i++){
+            
+        }
+    }
     /*the combination of needed action function*/
     var actionList={
     };
