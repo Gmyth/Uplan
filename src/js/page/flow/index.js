@@ -17,6 +17,9 @@ define(function(require, exports, module){
     var timeEnd=21;
     exports.init = function(){
         $('.main_container').html(tpl.get(tmpl.main));
+         var container_height = $('.main_container').height();
+         $('.main_body').height(container_height-60);
+         $('.main_body').css("max-height",container_height-60);
         _bindEvent();
     };
     var FillFlow = function(){
@@ -40,5 +43,10 @@ define(function(require, exports, module){
                 if ($.isFunction(action)) action(tar);
             }
         })
+        $(window).resize(function() {
+            var container_height = $('.main_container').height();
+            $('.main_body').height(container_height-60);
+            $('.main_body').css("max-height",container_height-60);
+        });
     };
 });

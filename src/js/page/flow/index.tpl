@@ -1,17 +1,24 @@
 <template name="FLOW.MAIN">
-    <table  class= "weekly_schedule table-bordered table-hover" cellspacing="0" cellpadding="2" width="100%" height="60%"  id="WEEKLY_SCHED_HTMLAREA">
+    <div class="main_header">
+    <table class= "weekly_schedule_header table-hover" cellspacing="0" cellpadding="2" width="100%" >
+        <colgroup span="1" width="9%" align="center" valign="middle"></colgroup>
+        <colgroup span="7" width="13%" align="center" valign="middle"></colgroup>
+        <thead>
+        <th>Time</th>
+        <th>Monday<br>Sep 5</th>
+        <th>Tuesday<br>Sep 6</th>
+        <th>Wednesday<br>Sep 7</th>
+        <th>Thursday<br>Sep 8</th>
+        <th>Friday<br>Sep 9</th>
+        <th>Saturday<br>Sep 10</th>
+        <th>Sunday<br>Sep 11</th>
+        </thead>
+    </table>
+    </div>
+    <div class="main_body">
+    <table  class= "weekly_schedule table-bordered table-hover" cellspacing="0" cellpadding="2" width="100%"  id="WEEKLY_SCHED_HTMLAREA">
             <colgroup span="1" width="9%" align="center" valign="middle"></colgroup>
             <colgroup span="7" width="13%" align="center" valign="middle"></colgroup>
-             <thead>
-             <th>Time</th>
-             <th>Monday<br>Sep 5</th>
-             <th>Tuesday<br>Sep 6</th>
-             <th>Wednesday<br>Sep 7</th>
-             <th>Thursday<br>Sep 8</th>
-             <th>Friday<br>Sep 9</th>
-             <th>Saturday<br>Sep 10</th>
-             <th>Sunday<br>Sep 11</th>
-             </thead>
             <tbody id="flow_body">
             <tr>
                 <td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">08:00</span></td>
