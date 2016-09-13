@@ -1,7 +1,7 @@
 {
-  "name": "qcconsole_web",
+  "name": "schecdule_web",
   "version": "1.0.0",
-  "description": "qcloud console",
+  "description": "Uflow",
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-uglify": "~0.1.2",
