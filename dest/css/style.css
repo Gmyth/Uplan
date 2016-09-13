@@ -1,0 +1,60 @@
+.main_container {
+    width:61.8%;
+    float: left;
+    border-radius: 6px;
+    margin-left: 1%;
+    min-width: 620px;
+}
+.sub_box{
+    margin-left: 63.8%;
+    width:35.2%;
+}
+.search_box{
+    width: 100%;
+    background-color: #384c61;
+}
+.result_box{
+    margin-top: 2%;
+    width: 100%;
+    background-color: #384c61;
+}
+
+.main_body{
+    overflow-y: auto;
+    background-color: #eff0f2;
+    min-width: 620px;
+}
+.main_header{
+    height: 60px;
+    background-color: #eff0f2;
+    min-width: 620px;
+}
+.weekly_schedule_header{
+    font-size: 10px;
+    text-align: center;
+    min-width: 600px;
+}
+.weekly_schedule_header th{
+    font-size: 18px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #384c61;
+}
+.weekly_schedule {
+    font-size: 10px;
+    text-align: center;
+    min-width: 600px;
+
+}
+.main_container, .table-responsive, .table-bordered  {
+    height: 100%;
+}
+.weekly_schedule th{
+    text-align: center;
+}
+.SSSWEEKLYBACKGROUND{
+    background-color: #cce6e1;
+}
+html, body{
+    height: 100%;
+}

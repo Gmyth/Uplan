@@ -1,7 +1,7 @@
 module.exports = function(grunt){
 	grunt.initConfig({
-		//pkg:grunt.file.readJSON('package.json'),
-		transport:{   //将文件格式转换
+		pkg:grunt.file.readJSON('package.json'),
+		transport:{  
 			options: {
 				paths: ['../src/js'],
 				debug: false

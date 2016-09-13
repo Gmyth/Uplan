@@ -37,15 +37,85 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
 });
 
 /**
- * Created by gmyth on 16/9/7.
+ * Created by gmyth on 16/9/9.
  */
-define("page/flow/index", [ "lib/jquery", "util/tpl" ], function(require, exports, module) {
-    var $ = require("lib/jquery");
-    var tpl = require("util/tpl");
-    var tmpl = {
-        main: '    <p class="text-muted">        Hi,HaoyuGuo    </p>'
+/*inpt data temporarily to check the functionality */
+define("page/flow/config", [], function(require, exports, module) {
+    exports.data = {
+        Course: [ {
+            "class": "<<< >>>",
+            course: "CSE 331",
+            title: "Intro To Algorihms",
+            section: "000",
+            type: "LEC",
+            days: "M W F",
+            time: "1:00PM - 1:50PM",
+            room: "KNOX 110",
+            Location: "North Campus",
+            Instructor: "Rudra Atri",
+            Status: "OPEN"
+        }, {
+            "class": "11748",
+            course: "CSE 331LR",
+            title: "Intro To Algorihms",
+            section: "000",
+            type: "R1",
+            days: "M",
+            time: "9:00AM - 9:50AM",
+            room: "Hoch 139",
+            Location: "North Campus",
+            Instructor: "Staff",
+            Status: "OPEN"
+        } ]
     };
+});
+
+/**
+ * Created by gmyth on 16/9/7.
+ * this part is created for the implement of the Schedule module
+ * */
+define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var config = require("page/flow/config").data;
+    var tpl = require("util/tpl");
+    var timeparser = require("util/timeparser");
+    var timeStart;
+    var timeEnd;
+    var tmpl = {
+        main: '    <div class="main_header">    <table class= "weekly_schedule_header table-hover" cellspacing="0" cellpadding="2" width="100%" >        <colgroup span="1" width="9%" align="center" valign="middle"></colgroup>        <colgroup span="7" width="13%" align="center" valign="middle"></colgroup>        <thead>        <th>Time</th>        <th>Monday<br>Sep 5</th>        <th>Tuesday<br>Sep 6</th>        <th>Wednesday<br>Sep 7</th>        <th>Thursday<br>Sep 8</th>        <th>Friday<br>Sep 9</th>        <th>Saturday<br>Sep 10</th>        <th>Sunday<br>Sep 11</th>        </thead>    </table>    </div>    <div class="main_body">    <table  class= "weekly_schedule table-bordered table-hover" cellspacing="0" cellpadding="2" width="100%"  id="WEEKLY_SCHED_HTMLAREA">            <colgroup span="1" width="9%" align="center" valign="middle"></colgroup>            <colgroup span="7" width="13%" align="center" valign="middle"></colgroup>            <tbody id="flow_body">            <tr>                <td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">08:00</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLY">CSE  442LR - B2<br>Recitation<br>08:00 - 08:50<br>Cooke Hall 127A</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td></tr><tr><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>            </tr>            <tr>                <td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">09:00</span></td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLY">CSE  331LR - R3<br>Recitation<br>09:00 - 09:50<br>Norton Hall 209</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td></tr><tr><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>            </tr>            <tr>                <td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">10:00</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLY">CSE  442LR - B<br>Lecture<br>10:00 - 10:50<br>O\'Brian Hall 109</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLY">CSE  442LR - B<br>Lecture<br>10:00 - 10:50<br>O\'Brian Hall 109</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td>            </tr>            <tr>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td></tr>            <tr>                <td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">11:00</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td></tr><tr><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td></tr><tr><td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">12:00</span></td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLY">CSE  321LR - 000<br>Lecture<br>12:00 - 12:50<br>Hochstetter Hall 114</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLY">CSE  321LR - 000<br>Lecture<br>12:00 - 12:50<br>Hochstetter Hall 114</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td></tr><tr><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td></tr><tr><td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">13:00</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLY">CSE  331LR - 000<br>Lecture<br>13:00 - 13:50<br>Knox Lecture Hall 110</span></td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLY">CSE  331LR - 000<br>Lecture<br>13:00 - 13:50<br>Knox Lecture Hall 110</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td></tr>            <tr>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>            </tr>            <tr><td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">14:00</span></td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td>            </tr>            <tr><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td></tr><tr><td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">15:00</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLY">JPN  101LEC - E<br>Lecture<br>15:00 - 15:50<br>Baldy Hall 107</span></td>                <td class="SSSWEEKLYBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLY">JPN  101LEC - E<br>Lecture<br>15:00 - 15:50<br>Baldy Hall 107</span></td>                <td class="SSSWEEKLYBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLY">JPN  101LEC - E<br>Lecture<br>15:00 - 15:50<br>Baldy Hall 107</span></td>                <td class="SSSWEEKLYBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLY">JPN  101LEC - E<br>Lecture<br>15:00 - 15:50<br>Baldy Hall 107</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td></tr><tr><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td></tr><tr><td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">16:00</span></td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td></tr><tr><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td></tr><tr><td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">17:00</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td></tr><tr><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td></tr>            <tr>                <td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">18:00</span></td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td></tr><tr><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td></tr>            <tr>                <td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">19:00</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td></tr><tr><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td></tr><tr><td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">20:00</span></td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td></tr><tr><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td></tr><tr><td class="SSSWEEKLYTIMEBACKGROUND" rowspan="2"><span class="SSSTEXTWEEKLYTIME">21:00</span></td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td><td class="SSSWEEKLYLTLINE">&nbsp;</td>                <td class="SSSWEEKLYLTLINE">&nbsp;</td></tr><tr><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>                <td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td><td class="PSLEVEL3GRID">&nbsp;</td>            </tr>            </tbody>    </table>    </div>    <!-- End HTML Area -->'
+    };
+    /*config set*/
+    var timeStart = 8;
+    var timeEnd = 21;
     exports.init = function() {
         $(".main_container").html(tpl.get(tmpl.main));
+        var container_height = $(".main_container").height();
+        $(".main_body").height(container_height - 60);
+        $(".main_body").css("max-height", container_height - 60);
+        _bindEvent();
+    };
+    var FillFlow = function() {
+        /*from 8:00 to 21:00*/
+        for (var i = timeStart; i < timeEnd - timeStart; i++) {}
+    };
+    /*the combination of needed action function*/
+    var actionList = {};
+    /*bind the button input control event*/
+    var _bindEvent = function() {
+        $main = $(".main_container");
+        $main.off();
+        $main.on("click", "[data-action]", function() {
+            if ($(this).attr("disabled") != "disabled") {
+                var actionName = $(this).data("action");
+                var action = actionList[actionName];
+                var tar = this;
+                if ($.isFunction(action)) action(tar);
+            }
+        });
+        $(window).resize(function() {
+            var container_height = $(".main_container").height();
+            $(".main_body").height(container_height - 60);
+            $(".main_body").css("max-height", container_height - 60);
+        });
     };
 });
