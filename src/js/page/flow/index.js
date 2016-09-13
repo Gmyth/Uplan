@@ -30,6 +30,9 @@ define(function(require, exports, module){
     }
     /*the combination of needed action function*/
     var actionList={
+        "start":function(tar){
+            
+        }
     };
     /*bind the button input control event*/
     var _bindEvent = function(){
@@ -47,6 +50,7 @@ define(function(require, exports, module){
             var container_height = $('.main_container').height();
             $('.main_body').height(container_height-60);
             $('.main_body').css("max-height",container_height-60);
+            
         });
     };
 });
