@@ -49,4 +49,12 @@ define(function(require, exports, module){
             $('.main_body').css("max-height",container_height-60);
         });
     };
+
+    var tmpl = {
+        main:SEARCH.MAIN,
+    }
+    exports.init = function(){
+        $('.search_area').html(tpl.get(tmpl.main));
+        _bindEvent();
+    };
 });
