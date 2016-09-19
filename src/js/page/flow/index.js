@@ -22,6 +22,10 @@ define(function(require, exports, module){
          $('.main_body').css("max-height",container_height-60);
         _bindEvent();
     };
+    var windowHeight =  function() {
+        var de = document.documentElement;
+        return self.innerHeight||(de && de.clientHeight)||document.body.clientHeight;
+    }
     var FillFlow = function(){
         /*from 8:00 to 21:00*/
         for(var i =timeStart; i < timeEnd-timeStart;i++){
@@ -30,6 +34,9 @@ define(function(require, exports, module){
     }
     /*the combination of needed action function*/
     var actionList={
+        "start":function(tar){
+            
+        }
     };
     /*bind the button input control event*/
     var _bindEvent = function(){
@@ -43,10 +50,5 @@ define(function(require, exports, module){
                 if ($.isFunction(action)) action(tar);
             }
         })
-        $(window).resize(function() {
-            var container_height = $('.main_container').height();
-            $('.main_body').height(container_height-60);
-            $('.main_body').css("max-height",container_height-60);
-        });
     };
 });
