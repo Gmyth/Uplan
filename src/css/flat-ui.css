@@ -350,7 +350,7 @@
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 18px;
-  line-height: 1.72222;
+  line-height: 1.52222;/*1.722222*/
   color: #34495e;
   background-color: #ffffff;
 }

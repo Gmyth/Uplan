@@ -13,13 +13,20 @@ define(function(require, exports, module){
         return hash.substring(1,hash.length);
     }
 
-    //初始化方法，每个都需要
+    //init function to start load js
     exports.init = function( username,namespace ){
-        //curTab = getTabFromHash();
-        curUser   = username;
-        curNs     = namespace||"";
-        var target    = tabMap[ curTab ];
-        require.async( target , function( index ){
+        // for the tab part may need in future
+        // curTab = getTabFromHash();
+        // curUser   = username;
+        // curNs     = namespace||"";
+        // var target    = tabMap[ curTab ];
+        // require.async( target , function( index ){
+        //     index.init();
+        // });
+        require.async( tabMap["flow"] , function( index ){
+            index.init();
+        });
+        require.async( tabMap["sublist"] , function( index ){
             index.init();
         });
     };
