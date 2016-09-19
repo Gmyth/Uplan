@@ -1,0 +1,1 @@
+Please open index.html with Chrome. IE didn't support some feature of our web. we will fix this ASAP!

@@ -14,7 +14,9 @@
     <link rel="stylesheet" type="text/css" href="css/flat-ui.css" >
     <link rel="stylesheet" type="text/css" href="css/style.css" >
     <link rel="shortcut icon" href="img/favicon.ico">
-    <title>UFlow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.7" />
+
+    <title>UPlan</title>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
     <script src="./js/vendor/html5shiv.js"></script>
@@ -22,14 +24,13 @@
     <![endif]-->
 </head>
 <body style="height: 100%;">
-<div class="row demo-row">
-    <div class="col-xs-12">
+<div class=" demo-row" style="width: 100%;" >
         <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
-                <a class="navbar-brand" href="#">UFlow</a>
+                <a class="navbar-brand" href="#">UPlan</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
                 <ul class="nav navbar-nav navbar-left">
@@ -59,12 +60,18 @@
                 </form>
             </div><!-- /.navbar-collapse -->
         </nav><!-- /navbar -->
-    </div>
 </div>
-<div class="main_container" style="height: 88%;position: fixed;"></div>
-<div class="sub_box" style="height: 88%;position: fixed;">
+<div class="main_container" style="height: 85%;"></div>
+<div class="sub_box" style="height: 85%;">
     <div class="search_box" style="height: 29%;"></div>
-    <div class="result_box" style="height: 70%;"></div>
+    <div class="result_box" style="height: 70%;">
+        <p class="Uheader">
+            <span class="fui-list-numbered" style="color:#1abc9c;position: relative;top: 1px;"></span>
+            &nbsp;Course List &nbsp;
+        </p>
+        <div class="sub_list" style="height: 94%;">
+        </div>
+    </div>
 </div>
 </body>
 <script src="./js/sea.js"></script>
