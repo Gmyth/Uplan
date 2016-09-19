@@ -69,12 +69,21 @@
     background-color: #27ae60;
 }
 .sublist_main{
-  margin-top: 5px;
   margin-left: 1%;
-  padding-top: 5px;
   color: #ffffff;
   width:98%;
   height:98%;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    -webkit-box-shadow: inset 10px 0 6px #ffffff;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+        background: #ffffff;
 }
 .Uheader{
     margin-left: 1%;
@@ -84,12 +93,18 @@
     margin-top: 5px;
     margin-bottom: 2px;
 }
-.tag_open{
-    padding: 2px;
+.del_course_span{
+    color:#FFFFFF;
+}
+.del_course_span:hover{
     color:rgb(56, 76, 97);
 }
-.tag_open:hover{
+.tag_open{
+    padding: 2px;
     color:#FFFFFF;
+}
+.tag_open:hover{
+    color:rgb(56, 76, 97);
 }
 .tag_ready{
     padding: 2px;
@@ -98,10 +113,10 @@
     -ms-transform: rotate(270deg);
     -o-transform: rotate(270deg);
     transform: rotate(270deg);
-    color:rgb(56, 76, 97);
+    color:#FFFFFF;
 }
 .tag_ready:hover{
-    color:#FFFFFF;
+    color:rgb(56, 76, 97);
 }
 @media screen and (max-device-width: 600px) {
 .sub_box {
