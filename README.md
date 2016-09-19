@@ -1,2 +1,2 @@
-# UFlow
+# UPlan
 CSE442 FALL 2016
