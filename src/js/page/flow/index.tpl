@@ -171,6 +171,19 @@
                 </label>
             </div></td>
         </tr>
+        <tr>
+            <td><p>Meeting Start Time</p></td>
+                        <td><select class="form-control select select-primary select-block mbl">
+                              <optgroup label="Meeting Start Time">
+                                <option value="0">be</option>
+                                <option value="1">greater than or equal to</option>
+                                <option value="2">is exactly</option>
+                                <option value="3">less than or equal to</option>
+                              </optgroup>
+                            </select></td>
+                        <td><input type="text" class="form-control input-sm" placeholder="Enter something" /></td>
+                    </tr>
+        </tr>
     </tbody>
     </table>
 </template>
