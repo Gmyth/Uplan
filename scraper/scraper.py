@@ -1,14 +1,16 @@
 # -*- coding:utf-8*-
+
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 import time
 import requests
 from lxml import etree
 import pandas as pd
 import re
-time1=time.time()
 import bs4
+reload(sys)
+sys.setdefaultencoding('utf-8')
+time1=time.time()
+
 
 
 
