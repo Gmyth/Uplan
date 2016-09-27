@@ -49,7 +49,7 @@ status = []
 
 #################################################analyse each line##########################
 for i in range(0,len(url_list)):
-    print "scraping"+str(i)+'th page'
+    print "scraping "+str(i)+'th page'
     # time.sleep(3)
     html2=session.get(url_list[i],headers=head).content
     selector=etree.HTML(html2)
