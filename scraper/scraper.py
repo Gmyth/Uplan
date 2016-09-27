@@ -1,5 +1,7 @@
 # -*- coding:utf-8*-
-
+# use etree in lxml(http://lxml.de/) and bs4(https://www.crummy.com/software/BeautifulSoup/) to analyse html and get course information.
+# use pandas(http://pandas.pydata.org/) to make the Dataframe.
+# use pymongo to put Data into Mongodb.
 import sys
 import time
 import requests
@@ -7,6 +9,7 @@ from lxml import etree
 import pandas as pd
 import re
 import bs4
+from pymongo import MongoClient
 reload(sys)
 sys.setdefaultencoding('utf-8')
 time1=time.time()
@@ -44,7 +47,7 @@ instructors = []
 status = []
 
 
-#################################################analyse each string##########################
+#################################################analyse each line##########################
 for i in range(0,len(url_list)):
     print "scraping"+str(i)+'th page'
     # time.sleep(3)
@@ -165,10 +168,7 @@ df=pd.DataFrame({"Class":Class,"Course":Course,"Title":Title,"Section":Section,"
 
 
 print df
-# ##########################put it into mongodb######################
-
-###########################by pymongo libirary
-from pymongo import MongoClient
+# ##########################put it into mongodb by pymongo libirary######################
 con=MongoClient()
 db = con.Class
 post=db.Classdata
