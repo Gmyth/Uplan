@@ -1,0 +1,127 @@
+.main_container {
+    width:61.8%;
+    float: left;
+    border-radius: 6px;
+    margin-left: 1%;
+}
+.sub_box{
+    margin-left: 63.8%;
+    width:35.2%;
+}
+.search_box{
+    width: 100%;
+    background-color: #384c61;
+}
+.result_box{
+    margin-top: 2%;
+    width: 100%;
+    background-color: #384c61;
+}
+
+.main_body{
+    height: 60px;
+    /*overflow-y: auto;*/
+
+}
+.main_header{
+    background-color: #eff0f2;
+}
+.weekly_schedule_header{
+    font-size: 0.2em;
+    text-align: center;
+}
+.weekly_schedule_header th{
+    font-size: 0.2em;
+    text-align: center;
+    color: #ffffff;
+    background-color: #384c61;
+    word-wrap:break-word
+}
+.weekly_schedule {
+    overflow: auto;
+    background-color: #eff0f2;
+    font-size: 0.2em;
+    text-align: center;
+    word-wrap:break-word
+}
+.main_container, .table-responsive, .table-bordered  {
+    height: 100%;
+}
+.weekly_schedule th{
+    font-size: 0.2em;
+    text-align: center;
+    color: #ffffff;
+    background-color: #384c61;
+    word-wrap:break-word
+}
+.weekly_schedule td{
+    font-size: xx-small;
+    text-align: center;
+    word-wrap:break-word
+}
+.SSSWEEKLYBACKGROUND{
+    background-color: #cce6e1;
+
+}
+.sub_main_tag{
+    padding: 5px;
+    margin: 10px;
+    background-color: #27ae60;
+}
+.sublist_main{
+  margin-top: 5px;
+  margin-left: 1%;
+  padding-top: 5px;
+  color: #ffffff;
+  width:98%;
+  height:98%;
+}
+.Uheader{
+    margin-left: 1%;
+    width:98%;
+    font-size: 18px;
+    color:#FFFFFF;
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+.tag_open{
+    padding: 2px;
+    color:rgb(56, 76, 97);
+}
+.tag_open:hover{
+    color:#FFFFFF;
+}
+.tag_ready{
+    padding: 2px;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+    color:rgb(56, 76, 97);
+}
+.tag_ready:hover{
+    color:#FFFFFF;
+}
+@media screen and (max-device-width: 600px) {
+.sub_box {
+    display: none;
+}
+    .main_container {
+        width: 90%;
+        float: initial;
+        margin: auto;
+    }
+    　　}
+@media screen and (max-device-height: 900px) {
+    body {
+        font-family: "Lato", Helvetica, Arial, sans-serif;
+        font-size: 1px;
+        line-height: 1.22222;/*1.722222*/
+        color: #34495e;
+        background-color: #ffffff;
+    }
+    　　}
+html, body{
+    height: 100%;
+}

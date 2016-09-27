@@ -3,7 +3,6 @@
     float: left;
     border-radius: 6px;
     margin-left: 1%;
-    min-width: 620px;
 }
 .sub_box{
     margin-left: 63.8%;
@@ -41,43 +40,161 @@
 
 
 .main_body{
-    overflow-y: auto;
-    background-color: #eff0f2;
-    min-width: 620px;
+    height: 60px;
+    /*overflow-y: auto;*/
+
 }
 .main_header{
-    height: 60px;
     background-color: #eff0f2;
-    min-width: 620px;
 }
 .weekly_schedule_header{
-    font-size: 10px;
+    font-size: 0.2em;
     text-align: center;
-    min-width: 600px;
 }
 .weekly_schedule_header th{
-    font-size: 18px;
+    font-size: 0.2em;
     text-align: center;
     color: #ffffff;
     background-color: #384c61;
+    word-wrap:break-word
 }
 .weekly_schedule {
-    font-size: 10px;
+    overflow: auto;
+    background-color: #eff0f2;
+    font-size: 0.2em;
     text-align: center;
-    min-width: 600px;
-
+    word-wrap:break-word
 }
 .main_container, .table-responsive, .table-bordered  {
     height: 100%;
 }
 .weekly_schedule th{
+    font-size: 0.2em;
     text-align: center;
+    color: #ffffff;
+    background-color: #384c61;
+    word-wrap:break-word
+}
+.weekly_schedule td{
+    font-size: xx-small;
+    text-align: center;
+    word-wrap:break-word
 }
 .SSSWEEKLYBACKGROUND{
     background-color: #cce6e1;
+
+}
+.sub_main_tag{
+    padding: 5px;
+    margin: 10px;
+    background-color: rgba(60, 199, 135, 0.4);
+    width: 96%;
+    display: inline-block;
+}
+.subtag{
+    margin: 10px 20px;
+    font-size: 0.7em;
+}
+.info_block{
+    margin-bottom: 10px;
+    padding: 3px 0px;
+    background-color: rgba(60, 162, 199, 0.4);
+}
+<<<<<<< HEAD
+
+
+=======
+.checkbox_for_add_course{
+    border-left: 3px solid #eee;
+}
+.checkbox_for_add_course:hover{
+   background-color: rgba(77, 209, 255, 0.4);
+    cursor:pointer;
+}
+.info_block:hover{
+    background-color: rgba(73, 214, 255, 0.4);
+    cursor:pointer;
+}
+.subtagTable th,td{
+    font-size: xx-small;
+    text-align: center;
+}
+.subtagTable th{
+    border: 1px solid #ddd;
+}
+.sublist_main{
+  margin-left: 1%;
+  color: #ffffff;
+  width:98%;
+  height:98%;
+}
+::-webkit-scrollbar {
+    width: 5px;
 }
 
-
+::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    -webkit-box-shadow: inset 10px 0 6px #ffffff;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+        background: #ffffff;
+}
+.Uheader{
+    margin-left: 1%;
+    width:98%;
+    font-size: 18px;
+    color:#FFFFFF;
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+.del_course_span{
+    color:#FFFFFF;
+}
+.del_course_span:hover{
+    color:rgb(56, 76, 97);
+    cursor:pointer;
+}
+.tag_open{
+    padding: 2px;
+    color:#FFFFFF;
+}
+.tag_open:hover{
+    color:rgb(56, 76, 97);
+    cursor:pointer;
+}
+.tag_ready{
+    padding: 2px;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+    color:#FFFFFF;
+}
+.tag_ready:hover{
+    color:rgb(56, 76, 97);
+    cursor:pointer;
+}
+@media screen and (max-device-width: 600px) {
+.sub_box {
+    display: none;
+}
+    .main_container {
+        width: 90%;
+        float: initial;
+        margin: auto;
+    }
+    　　}
+@media screen and (max-device-height: 900px) {
+    body {
+        font-family: "Lato", Helvetica, Arial, sans-serif;
+        font-size: 1px;
+        line-height: 1.22222;/*1.722222*/
+        color: #34495e;
+        background-color: #ffffff;
+    }
+    　　}
+>>>>>>> Gmyth
 html, body{
     height: 100%;
 }
