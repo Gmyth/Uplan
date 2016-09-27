@@ -1,0 +1,47 @@
+.container
+    .row
+        .page-header
+            h1 = title
+            small admin_user Test
+.navbar.navber-deafult.navbar-fixed-bottom
+    .container
+        .navbar-header
+            a.navbar-brand(href="/") admin_user Test
+        p.navbar-text.navbar-right
+            a.navbar-link(href ="#", data-toggle = "modal",data-target = "#signupModal") Sign Up
+            span &nbsp;|&nbsp;
+            a.navbar-link(href ="#", data-toggle = "modal",data-target = "#signinModal") Sign In
+ #signupModal.modal.fade
+     .modal-dialog
+         .modal-content
+             form(method = "POST", action="/user/signup")
+                 .modal-header Sign Up
+                 .modal-body
+                     .form-group
+                         label(for="signupName")
+                         input#signupName.form-control(name="user[name]", type = "text")
+                     .form-group
+                         label(for="signupPassword")
+                         input#signupPassword.form-control(name="user[password]", type = "text")
+                 .modal-footer
+                     button.btn.btn-default(type="button",data-dismiss="modal") Close
+                     button.btn.btn-default(type="submit") Submit
+
+#signinModal.modal.fade
+    .modal-dialog
+        .modal-content
+            form(method = "POST", action="/user/signin")
+                .modal-header Sign In
+                .modal-body
+                    .form-group
+                        label(for="signinName")
+                        input#signinName.form-control(name="user[name]", type = "text")
+                    .form-group
+                        label(for="signinPassword")
+                        input#signinPassword.form-control(name="user[password]", type = "text")
+                    .form-group
+                        label(for="signupemail") email
+                        input#signupemail.form-control(name="user[password]", type="text")
+                .modal-footer
+                    button.btn.btn-default(type="button",data-dismiss="modal") Close
+                    button.btn.btn-default(type="submit") Submit
