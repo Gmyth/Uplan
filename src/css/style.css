@@ -66,7 +66,36 @@
 .sub_main_tag{
     padding: 5px;
     margin: 10px;
-    background-color: #27ae60;
+    background-color: rgba(60, 199, 135, 0.4);
+    width: 96%;
+    display: inline-block;
+}
+.subtag{
+    margin: 10px 20px;
+    font-size: 0.7em;
+}
+.info_block{
+    margin-bottom: 10px;
+    padding: 3px 0px;
+    background-color: rgba(60, 162, 199, 0.4);
+}
+.checkbox_for_add_course{
+    border-left: 3px solid #eee;
+}
+.checkbox_for_add_course:hover{
+   background-color: rgba(77, 209, 255, 0.4);
+    cursor:pointer;
+}
+.info_block:hover{
+    background-color: rgba(73, 214, 255, 0.4);
+    cursor:pointer;
+}
+.subtagTable th,td{
+    font-size: xx-small;
+    text-align: center;
+}
+.subtagTable th{
+    border: 1px solid #ddd;
 }
 .sublist_main{
   margin-left: 1%;
@@ -98,6 +127,7 @@
 }
 .del_course_span:hover{
     color:rgb(56, 76, 97);
+    cursor:pointer;
 }
 .tag_open{
     padding: 2px;
@@ -105,6 +135,7 @@
 }
 .tag_open:hover{
     color:rgb(56, 76, 97);
+    cursor:pointer;
 }
 .tag_ready{
     padding: 2px;
@@ -117,6 +148,7 @@
 }
 .tag_ready:hover{
     color:rgb(56, 76, 97);
+    cursor:pointer;
 }
 @media screen and (max-device-width: 600px) {
 .sub_box {

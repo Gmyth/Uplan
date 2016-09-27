@@ -130,18 +130,54 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
 });
 
 /**
+ * Created by Haoyu Guo on 2016/9/27.
+ */
+/**
+ * Created by gmyth on 16/9/9.
+ */
+/*inpt data temporarily to check the functionality */
+define("page/sublist/config", [], function(require, exports, module) {
+    exports.data = {
+        Course: [ {
+            type: " 000-LEC Univ 15 Wk",
+            classno: "10894",
+            date: "MoWeFr 13:00 - 13:50 ",
+            room: "KNOX 110",
+            instructor: "Rudra Atri",
+            Status: "OPEN"
+        }, {
+            type: " 000-LEC Univ 15 Wk",
+            classno: "10894",
+            date: "MoWeFr 13:00 - 13:50 ",
+            room: "KNOX 110",
+            instructor: "Rudra Atri",
+            Status: "OPEN"
+        }, {
+            type: " 000-LEC Univ 15 Wk",
+            classno: "10894",
+            date: "MoWeFr 13:00 - 13:50 ",
+            room: "KNOX 110",
+            instructor: "Rudra Atri",
+            Status: "OPEN"
+        } ]
+    };
+});
+
+/**
  * Created by gmyth on 16/9/7.
  * this part is created for the implement of the Search list
  * */
-define("page/sublist/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser" ], function(require, exports, module) {
+define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", "util/timeparser" ], function(require, exports, module) {
     var $ = require("lib/jquery");
-    var config = require("page/flow/config").data;
+    var config = require("page/sublist/config").data.Course;
     var tpl = require("util/tpl");
     var timeparser = require("util/timeparser");
     var timeStart;
     var timeEnd;
     var tmpl = {
-        main: '    <div class="sublist_main"  style="overflow-y:scroll;height: 98%;margin-top: 1%;">    <div class=" list-block">        <div class="sub_main_tag">          &nbsp;<a href="#" coursename="CSE 331" class="dropdown-toggle tag_ready" data-action = "drop_down" style="display:inline-block"><b class="caret" style="margin-left: 0px;"></b></a>          &nbsp;CSE  101LLB - Computers: A General Introduction&nbsp;          &nbsp;<a href="#" class="del_course_span" data-action = "del_course_span" style="float:right;position: relative;top: 1px;right: 5px;"><span class="fui-cross"></span></a>        </div>    </div>    </div>    </div>'
+        main: '    <div class="sublist_main"  style="overflow-y:scroll;height: 98%;margin-top: 1%;">    <div class=" list-block">        <div>        <div class="sub_main_tag">          &nbsp;<a href="#" coursename="CSE 331" class="dropdown-toggle tag_ready" data-action = "drop_down" style="display:inline-block"><b class="caret" style="margin-left: 0px;"></b></a>          &nbsp;CSE  101LLB - Computers: A General Introduction&nbsp;          &nbsp;<a href="#" class="del_course_span" data-action = "del_course_span" style="float:right;position: relative;top: 1px;right: 5px;"><span class="fui-cross"></span></a>        </div>        <div class="tag_list">        </div>       </div>        <div>            <div class="sub_main_tag">                &nbsp;<a href="#" coursename="CSE 331" class="dropdown-toggle tag_ready" data-action = "drop_down" style="display:inline-block"><b class="caret" style="margin-left: 0px;"></b></a>                &nbsp;CSE  101LLB - Computers: A General Introduction&nbsp;                &nbsp;<a href="#" class="del_course_span" data-action = "del_course_span" style="float:right;position: relative;top: 1px;right: 5px;"><span class="fui-cross"></span></a>            </div>            <div class="tag_list">            </div>        </div>    </div>    </div>',
+        test: '<b>dada</b>',
+        tag: '    <% for(var i = 0,item ; item = TagList[i]; i++){ %>    <div class="subtag">        <div class="info_block" style="float:left;">            <span class="fui-credit-card" style="padding: 5px;color:#dfce8b;"></span>&nbsp;<%=item.type%>&nbsp;&nbsp;(<%=item.classno%>)&nbsp;            <div style=" border-top: 2px solid #eee;"></div>            <span class="fui-time" style="padding: 5px;color:#efa59d;position: relative;top: 1px;"></span>&nbsp;<%=item.date%>&nbsp;            &nbsp;<span class="fui-location" style="padding: 5px;color:#edad73;position: relative;top: 1px;border-left: 2px solid #eee;"></span>&nbsp;<%=item.room%>&nbsp;            &nbsp;<span class="fui-user" style="padding: 5px;color:#27ae60;position: relative;top: 1px;border-left: 2px solid #eee;"></span>&nbsp;<%=item.instructor%>&nbsp;        </div>        <div style="float: right;background-color: rgba(60, 162, 199, 0.4);" >            <a class="checkbox_for_add_course" data-action="add_course" style="width:60px"><span class="fui-check"></span></a>        </div>    </div>    <%}%>'
     };
     exports.init = function() {
         $(".sub_list").html(tpl.get(tmpl.main));
@@ -151,26 +187,46 @@ define("page/sublist/index", [ "lib/jquery", "page/flow/config", "util/tpl", "ut
         /*from 8:00 to 21:00*/
         for (var i = timeStart; i < timeEnd - timeStart; i++) {}
     };
+    var Resize = function() {
+        var width = $(".subtag").width();
+        $(".info_block").width(width - 60);
+        var checkbox_height = ($(".info_block").height() + 6 - $(".checkbox_for_add_course").height()) / 2;
+        var checkbox_width = (56 - $(".checkbox_for_add_course").width()) / 2;
+        $(".checkbox_for_add_course").each(function(index, element) {
+            $(this).attr("style", "display:block;padding-left:" + checkbox_width + "px;" + "padding-right: " + checkbox_width + "px;" + "padding-top: " + checkbox_height + "px;" + "padding-bottom: " + checkbox_height + "px;");
+        });
+    };
     /*the combination of needed action function*/
     var actionList = {
         drop_down: function(tar) {
+            // $(tar).parent().parent().children().eq(1).html("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            $(tar).closest(".sub_main_tag").parent().find(".tag_list").html(tpl.get(tmpl.tag, {
+                TagList: config
+            }));
             $(tar).parent().html('&nbsp;<a href="#" ' + 'coursename="CSE 331" class="tag_open dropdown-toggle"' + ' data-action = "drop_up" style="display:inline-block">' + '<b class="caret" style="margin-left: 0px;"></b>' + "</a> &nbsp;CSE  101LLB - Computers: A General Introduction&nbsp;" + '&nbsp;<a href="#" class="del_course_span" data-action = "del_course_span" style="float:right;position: relative;top: 1px;right: 5px;"><span class="fui-cross"></span></a>');
+            Resize();
+            // first resize can't get right width of lng block
+            Resize();
         },
         drop_up: function(tar) {
+            $(tar).closest(".sub_main_tag").parent().find(".tag_list").html("");
             $(tar).parent().html('&nbsp;<a href="#" ' + 'coursename="CSE 331" class="tag dropdown-toggle tag_ready"' + ' data-action = "drop_down" style="display:inline-block">' + '<b class="caret" style="margin-left: 0px;"></b>' + "</a> &nbsp;CSE  101LLB - Computers: A General Introduction&nbsp;" + '&nbsp;<a href="#" class="del_course_span" data-action = "del_course_span" style="float:right;position: relative;top: 1px;right: 5px;"><span class="fui-cross"></span></a>');
         }
     };
     /*bind the button input control event*/
     var _bindEvent = function() {
-        $main = $(".sub_list");
-        $main.off();
-        $main.on("click", "[data-action]", function() {
+        $sub_list = $(".sub_list");
+        $sub_list.off();
+        $sub_list.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");
                 var action = actionList[actionName];
                 var tar = this;
                 if ($.isFunction(action)) action(tar);
             }
+        });
+        $(window).resize(function() {
+            Resize();
         });
     };
 });
