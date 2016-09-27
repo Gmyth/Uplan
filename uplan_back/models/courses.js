@@ -23,6 +23,8 @@ var CourseSchema = new Schema({
         unique: true,
         type:String
     }
+},{
+    collection:'cse_courses'
 });
 CourseSchema.statics = {
     fetch: function(cb) {
@@ -39,5 +41,30 @@ CourseSchema.statics = {
 
 
 };
-var Course = mongoose.model('User', UserSchema);
+
+
+
+
+CourseSchema.search = function (req, res, callback) {
+    db.get().collection('cse_courses',function (err,collection) {
+        if(err){
+            return callback(err);
+        }
+        var pattern = new RegExp(req, "i");
+        collection.count({"Course": pattern}, function (err, total) {
+            collection.find(
+                {"Course": pattern}
+            ).sort("Section").toArray(function (err,posts) {
+                if (err){
+                    return callback(err);
+                }
+                callback(err,posts,total);
+            })
+
+        })
+
+    })
+
+};
+var Course = mongoose.model('Course', CourseSchema);
 module.exports = Course;

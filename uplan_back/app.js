@@ -10,7 +10,7 @@ var mongoStore = require('connect-mongo')(session);
 var routes = require('./routes/index');
 var users = require('./routes/users');
 //var apps = require('./app/app');
-
+var courses = require('./routes/courses');
 var app = express();
 var port = process.env.PORT || 3002;
 
@@ -45,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public/')));
 
 app.use('/user', users);
 app.use('/', routes);
+app.use('/courses',courses);
 app.use(session({
     //防止篡改cookie
     secret: 'Myblog',
