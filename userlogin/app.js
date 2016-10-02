@@ -10,6 +10,35 @@ var users = require('./routes/users');
 
 var app = express();
 
+var multer = require('multer');
+var mongoose = require('mongoose');
+
+global.dbHandel = require('./database/dbHandel');
+global.db = mongoose.connect("mongodb://localhost:27017/nodedb");
+
+var session = require('express-session');
+
+var app = express();
+app.use(session({
+  secret: 'secret',
+  cookie:{
+    maxAge: 1000*60*30
+}}));
+
+app.use(function(req,res,next){
+  res.locals.user = req.session.user   /
+  var err = req.session.error;
+  delete req.session.error;
+  res.locals.message = "";
+  if(err){
+    res.locals.message = '<div class="alert alert-danger" style="margin-bottom:20px;color:red;">'+err+'</div>';
+  }
+  next();  //中间件传递
+});
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(multer());
+app.use(cookieParser());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine("html",require("ejs").__express);
