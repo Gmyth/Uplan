@@ -27,7 +27,7 @@ var CourseSchema = new Schema({
     collection:'cse_courses'
 });
 CourseSchema.statics = {
-    fetch: function(cb) {
+    fetch: function(cb) {3
         return this
             .find({})
             .sort('Class')

@@ -22,4 +22,11 @@ router.get('/',function (req,res) {
         res.json(result);
     })
 });
+
+router.get('/search',function (req,res) {
+    var courses = req.body.courses;
+    var newrexcourse = RegExp(courses.Course, "i");
+    var status = courses.status;
+    Course.find({})
+});
 module.exports =router;

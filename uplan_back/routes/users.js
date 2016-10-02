@@ -50,7 +50,7 @@ router.post('/signin', function (req, res) {
     var name = _user.name;
     var password = _user.password;
 
-    User.findOne({name:name},function (err,user) {
+    User.findOne({name:name}).populate('course_taken').exec(function (err,user) {
         if(err){
             console.log(err);
         }
@@ -63,8 +63,10 @@ router.post('/signin', function (req, res) {
                 console.log(err);
             }
             if(isMatch){
+
+                res.json(user);
                  // if get matched password then save in to memory
-                return res.redirect('/');
+
             }
             else{
                 res.end('<h1>Password is not matched</h1>');
@@ -77,7 +79,11 @@ router.post('/signin', function (req, res) {
 
     })
 
+
+
 });
+
+
 
 
 

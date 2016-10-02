@@ -7,7 +7,7 @@
 var mongoose = require('mongoose');
 
 var bcryptjs = require('bcryptjs');
-var BCRYPT_SALT_LEN = 10;
+var BCRYPT_SALT_LEN = 11;
 
 
 var UserSchema = new mongoose.Schema({
@@ -18,6 +18,10 @@ var UserSchema = new mongoose.Schema({
     password: String,
     email: String
     ,
+    course_taken:[{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Course'
+    }],
     role:{
         //0:normal user
         //1:verified
@@ -38,7 +42,7 @@ var UserSchema = new mongoose.Schema({
         }
     }
 
-});
+},{collection:'userinfo'});
 UserSchema.pre('save', function (next) {
     var user = this;
     if (this.isNew){
