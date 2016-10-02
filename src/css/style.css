@@ -10,34 +10,34 @@
     width: 35.2%;
 }
 
-/*.search_box{*/
-/*width: 100%;*/
-/*background-color: #384c61;*/
-/*}*/
-/*.result_box{*/
-/*margin-top: 2%;*/
-/*width: 100%;*/
-/*background-color: #384c61;*/
-/*}*/
+.search_box{
+width: 100%;
+background-color: #384c61;
+}
+.result_box{
+margin-top: 2%;
+width: 100%;
+background-color: #384c61;
+}
 
-/*.search_area {*/
-    /*width: 20%;*/
-    /*float: right;*/
-    /*background-color: #eff0f2;*/
-    /*border-radius: 6px;*/
-    /*margin-right: 1em;*/
-    /*min-width: 500px;*/
-/*}*/
+.search_area {
+    width: 20%;
+    float: right;
+    background-color: #eff0f2;
+    border-radius: 6px;
+    margin-right: 1em;
+    min-width: 500px;
+}
 
-/*.search_class {*/
-    /*border-radius: 6px;*/
-    /*text-align: center;*/
-    /*min-width: 600px;*/
-/*}*/
+.search_class {
+    border-radius: 6px;
+    text-align: center;
+    min-width: 600px;
+}
 
-/*.search_class th {*/
-    /*text-align: center;*/
-/*}*/
+.search_class th {
+    text-align: center;
+}
 
 .main_body {
     height: 60px;
@@ -112,22 +112,7 @@
     background-color: rgba(60, 162, 199, 0.4);
 }
 
-<
-<
-<
-<
-<
-<
-<
-HEAD
 
-=
-=
-=
-=
-=
-=
-=
 .checkbox_for_add_course {
     border-left: 3px solid #eee;
 }
@@ -240,14 +225,7 @@ HEAD
     　　
 }
 
->
->
->
->
->
->
->
-Gmyth
+
 html, body {
     height: 100%;
 }
@@ -275,20 +253,21 @@ html, body {
 .form-group-sm .form-control,
 .form-group-sm .select2-search input[type="text"],
 .select2-search input[type="text"] {
-    height: 30px;
+    height: 2%;
     padding: 5px 5px;
     font-size: 13px;
     line-height: 1.462;
     border-radius: 6px;
-    width: 18%
+    width: 33%;
+    display: inline-block;
 }
 
 .select1 {
     position: relative;
     display: inline-block;
-    vertical-align: top;
+    /*vertical-align: top;*/
     width: auto;
-    height: auto;
+    height: 29px;
 }
 
 .checkbox1 .icons,

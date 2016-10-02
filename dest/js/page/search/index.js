@@ -6,8 +6,6 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     var config = require("page/flow/config").data;
     var tpl = require("util/tpl");
     var timeparser = require("util/timeparser");
-    var timeStart;
-    var timeEnd;
     var tmpl = {
         main: SEARCH.MAIN
     };
@@ -15,19 +13,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     var timeStart = 8;
     var timeEnd = 21;
     exports.init = function() {
-        $(".main_container").html(tpl.get(tmpl.main));
-        var container_height = $(".main_container").height();
-        $(".main_body").height(container_height - 60);
-        $(".main_body").css("max-height", container_height - 60);
-        _bindEvent();
-    };
-    var windowHeight = function() {
-        var de = document.documentElement;
-        return self.innerHeight || de && de.clientHeight || document.body.clientHeight;
-    };
-    var FillFlow = function() {
-        /*from 8:00 to 21:00*/
-        for (var i = timeStart; i < timeEnd - timeStart; i++) {}
+        $(".search_sub_box").html(tpl.get(tmpl.main));
     };
     /*the combination of needed action function*/
     var actionList = {
@@ -35,7 +21,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     };
     /*bind the button input control event*/
     var _bindEvent = function() {
-        $main = $(".main_container");
+        $main = $(".search_sub_box");
         $main.off();
         $main.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
@@ -47,7 +33,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
         });
     };
     exports.init = function() {
-        $(".search_area").html(tpl.get(tmpl.main));
+        $(".search_sub_box").html(tpl.get(tmpl.main));
         _bindEvent();
     };
 });

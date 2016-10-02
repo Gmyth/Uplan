@@ -131,13 +131,6 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
             }
         });
     };
-    var tmpl = {
-        main: SEARCH.MAIN
-    };
-    exports.init = function() {
-        $(".search_area").html(tpl.get(tmpl.main));
-        _bindEvent();
-    };
 });
 
 /**
@@ -148,28 +141,14 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     var config = require("page/flow/config").data;
     var tpl = require("util/tpl");
     var timeparser = require("util/timeparser");
-    var timeStart;
-    var timeEnd;
     var tmpl = {
-        main: '    <ul>        <li>Subject <input type="text" class="form-control input-s" placeholder="Enter here"/></li>        <li>Course Number            &nbsp&nbsp            <select class="form-control select1 select-primary select-block mbl">                <optgroup label="course number">                    <option value="0">contains</option>                    <option value="1">greater than</option>                    <option value="2">is exactly</option>                    <option value="3">less than</option>                </optgroup>            </select>            &nbsp&nbsp            <input type="text" class="form-control input-s" placeholder="Enter here"/>        </li>        <li>Course Career            &nbsp&nbsp            <select class="form-control select1 select-primary select-block mbl">                <optgroup label="course career">                    <option value="0">graduate</option>                    <option value="1">law school</option>                    <option value="2">school of dental medicine</option>                    <option value="3">school of medicine</option>                    <option value="4">school of pharmacy</option>                    <option value="5">undergraduate</option>                </optgroup>            </select>        <li>            <div class="span3">                <label class="checkbox1" for="checkbox1">                    <input type="checkbox" value="" id="checkbox1">                    Show Open Classes Only                </label>            </div>        <li>            <div class="span3">                <label class="checkbox1" for="checkbox2">                    <input type="checkbox" value="" id="checkbox2">                    Open Entry/Exit Classes Only                </label>            </div>        <li>Meeting Start Time            &nbsp&nbsp            <select class="form-control select1 select-primary select-block mbl">                <optgroup label="meeting start time">                    <option value="0">greater than</option>                    <option value="1">is exactly</option>                    <option value="2">less than</option>                </optgroup>            </select>            &nbsp&nbsp            <input type="text" class="form-control input-s" placeholder="Enter here"/>        <li>Meeting End Time            &nbsp&nbsp            <select class="form-control select1 select-primary select-block mbl">                <optgroup label="meeting end time">                    <option value="0">greater than</option>                    <option value="1">is exactly</option>                    <option value="2">less than</option>                </optgroup>            </select>            &nbsp&nbsp            <input type="text" class="form-control input-s" placeholder="Enter here"/>        <li>Course Credits            &nbsp&nbsp            <select class="form-control select1 select-primary select-block mbl">                <optgroup label="course credit">                    <option value="0">greater than</option>                    <option value="1">is exactly</option>                    <option value="2">less than</option>                </optgroup>            </select>            &nbsp&nbsp            <input type="text" class="form-control input-s" placeholder="Enter here"/>    </ul>'
+        main: '    <ul style="list-style-type:none">        <li style="color:white">Subject <input type="text" class="form-control input-s" placeholder="Enter here"/></li>        <li style="color:white">Course Number            &nbsp&nbsp            <select class="form-control select1 select-primary select-block">                <optgroup label="course number">                    <option value="0">contains</option>                    <option value="1">greater than</option>                    <option value="2">is exactly</option>                    <option value="3">less than</option>                </optgroup>            </select>            &nbsp&nbsp            <input type="text" class="form-control input-s" placeholder="Enter here"/>        </li>        <li style="color:white">Course Career            &nbsp&nbsp            <select class="form-control select1 select-primary select-block">                <optgroup label="course career">                    <option value="0">graduate</option>                    <option value="1">law school</option>                    <option value="2">school of dental medicine</option>                    <option value="3">school of medicine</option>                    <option value="4">school of pharmacy</option>                    <option value="5">undergraduate</option>                </optgroup>            </select>        <li style="color:white">            <div class="span">                <label class="checkbox1" for="checkbox1">                    <input type="checkbox" value="" id="checkbox1">                    Show Open Classes Only                </label>            </div>        <li style="color:white">Meeting Start Time            &nbsp&nbsp            <select class="form-control select1 select-primary select-block">                <optgroup label="meeting start time">                    <option value="0">greater than</option>                    <option value="1">is exactly</option>                    <option value="2">less than</option>                </optgroup>            </select>            &nbsp&nbsp            <input type="text" class="form-control input-s" placeholder="Enter here"/>        <li style="color:white">Meeting End Time            &nbsp&nbsp            <select class="form-control select1 select-primary select-block">                <optgroup label="meeting end time">                    <option value="0">greater than</option>                    <option value="1">is exactly</option>                    <option value="2">less than</option>                </optgroup>            </select>            &nbsp&nbsp            <input type="text" class="form-control input-s" placeholder="Enter here"/>        <li style="color:white">Course Credits            &nbsp&nbsp            <select class="form-control select1 select-primary select-block">                <optgroup label="course credit">                    <option value="0">greater than</option>                    <option value="1">is exactly</option>                    <option value="2">less than</option>                </optgroup>            </select>            &nbsp&nbsp            <input type="text" class="form-control input-s" placeholder="Enter here"/>    </ul>'
     };
     /*config set*/
     var timeStart = 8;
     var timeEnd = 21;
     exports.init = function() {
-        $(".main_container").html(tpl.get(tmpl.main));
-        var container_height = $(".main_container").height();
-        $(".main_body").height(container_height - 60);
-        $(".main_body").css("max-height", container_height - 60);
-        _bindEvent();
-    };
-    var windowHeight = function() {
-        var de = document.documentElement;
-        return self.innerHeight || de && de.clientHeight || document.body.clientHeight;
-    };
-    var FillFlow = function() {
-        /*from 8:00 to 21:00*/
-        for (var i = timeStart; i < timeEnd - timeStart; i++) {}
+        $(".search_sub_box").html(tpl.get(tmpl.main));
     };
     /*the combination of needed action function*/
     var actionList = {
@@ -177,7 +156,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     };
     /*bind the button input control event*/
     var _bindEvent = function() {
-        $main = $(".main_container");
+        $main = $(".search_sub_box");
         $main.off();
         $main.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
@@ -189,7 +168,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
         });
     };
     exports.init = function() {
-        $(".search_area").html(tpl.get(tmpl.main));
+        $(".search_sub_box").html(tpl.get(tmpl.main));
         _bindEvent();
     };
 });

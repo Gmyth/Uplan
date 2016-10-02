@@ -1,10 +1,10 @@
 <template name="SEARCH.MAIN">
-    <ul>
-        <li>Subject <input type="text" class="form-control input-s" placeholder="Enter here"/></li>
+    <ul style="list-style-type:none">
+        <li style="color:white">Subject <input type="text" class="form-control input-s" placeholder="Enter here"/></li>
 
-        <li>Course Number
+        <li style="color:white">Course Number
             &nbsp&nbsp
-            <select class="form-control select1 select-primary select-block mbl">
+            <select class="form-control select1 select-primary select-block">
                 <optgroup label="course number">
                     <option value="0">contains</option>
                     <option value="1">greater than</option>
@@ -16,9 +16,9 @@
             <input type="text" class="form-control input-s" placeholder="Enter here"/>
         </li>
 
-        <li>Course Career
+        <li style="color:white">Course Career
             &nbsp&nbsp
-            <select class="form-control select1 select-primary select-block mbl">
+            <select class="form-control select1 select-primary select-block">
                 <optgroup label="course career">
                     <option value="0">graduate</option>
                     <option value="1">law school</option>
@@ -29,24 +29,17 @@
                 </optgroup>
             </select>
 
-        <li>
-            <div class="span3">
+        <li style="color:white">
+            <div class="span">
                 <label class="checkbox1" for="checkbox1">
                     <input type="checkbox" value="" id="checkbox1">
                     Show Open Classes Only
                 </label>
             </div>
-        <li>
-            <div class="span3">
-                <label class="checkbox1" for="checkbox2">
-                    <input type="checkbox" value="" id="checkbox2">
-                    Open Entry/Exit Classes Only
-                </label>
-            </div>
 
-        <li>Meeting Start Time
+        <li style="color:white">Meeting Start Time
             &nbsp&nbsp
-            <select class="form-control select1 select-primary select-block mbl">
+            <select class="form-control select1 select-primary select-block">
                 <optgroup label="meeting start time">
                     <option value="0">greater than</option>
                     <option value="1">is exactly</option>
@@ -56,9 +49,9 @@
             &nbsp&nbsp
             <input type="text" class="form-control input-s" placeholder="Enter here"/>
 
-        <li>Meeting End Time
+        <li style="color:white">Meeting End Time
             &nbsp&nbsp
-            <select class="form-control select1 select-primary select-block mbl">
+            <select class="form-control select1 select-primary select-block">
                 <optgroup label="meeting end time">
                     <option value="0">greater than</option>
                     <option value="1">is exactly</option>
@@ -68,9 +61,9 @@
             &nbsp&nbsp
             <input type="text" class="form-control input-s" placeholder="Enter here"/>
 
-        <li>Course Credits
+        <li style="color:white">Course Credits
             &nbsp&nbsp
-            <select class="form-control select1 select-primary select-block mbl">
+            <select class="form-control select1 select-primary select-block">
                 <optgroup label="course credit">
                     <option value="0">greater than</option>
                     <option value="1">is exactly</option>

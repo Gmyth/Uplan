@@ -47,11 +47,4 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
             }
         });
     };
-    var tmpl = {
-        main: SEARCH.MAIN
-    };
-    exports.init = function() {
-        $(".search_area").html(tpl.get(tmpl.main));
-        _bindEvent();
-    };
 });
