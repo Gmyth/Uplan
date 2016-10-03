@@ -4,7 +4,7 @@ attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
 absent: []
 excused_absences: []
 task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
-  {ubit: <haoyuguo>, progress: finished the course list, the data can read from a config file and init it to webpage.Once the api setted up, we can finish the course list right away},
+  {ubit: <haoyuguo>, progress:hover on the course list ,we can see the time block it need right on the table},
   {ubit: <kaiyukan>, progress: small issue fixed,write a function taht can store users input.},
   {ubit: <enzeqian>, progress: start writing user login page. Almost done.},
   {ubit: <cwang46>, progress: update a method for collections for checking course taken by users},
