@@ -1,6 +1,21 @@
 <template name="SEARCH.MAIN">
+    <head>
+        <script> src = " " </script>
+        <script>
+        function storedata(){
+            var input_subject = $("#txtsubject").val();
+            var input_number = $("#txtnumber").val();
+            var input_starttime = $("#txtstarttime").val();
+            var input_endtime = $("#txtendtime").val();
+            var input_credit = $("#txtcredit").val();
+        }
+        </script>
+    </head>
+
+
+
     <ul style="list-style-type:none">
-        <li style="color:white">Subject <input type="text" class="form-control input-s" placeholder="Enter here"/></li>
+        <li style="color:white">Subject <input type="text" id="#txtsubject" class="form-control input-s" placeholder="Enter here"/></li>
 
         <li style="color:white">Course Number
             &nbsp&nbsp
@@ -13,7 +28,7 @@
                 </optgroup>
             </select>
             &nbsp&nbsp
-            <input type="text" class="form-control input-s" placeholder="Enter here"/>
+            <input type="text" id="#txtnumber" class="form-control input-s" placeholder="Enter here"/>
         </li>
 
         <li style="color:white">Course Career
@@ -47,7 +62,7 @@
                 </optgroup>
             </select>
             &nbsp&nbsp
-            <input type="text" class="form-control input-s" placeholder="Enter here"/>
+            <input type="text" id="#txtstarttime" class="form-control input-s" placeholder="Enter here"/>
 
         <li style="color:white">Meeting End Time
             &nbsp&nbsp
@@ -59,7 +74,7 @@
                 </optgroup>
             </select>
             &nbsp&nbsp
-            <input type="text" class="form-control input-s" placeholder="Enter here"/>
+            <input type="text" id="#txtendtime" class="form-control input-s" placeholder="Enter here"/>
 
         <li style="color:white">Course Credits
             &nbsp&nbsp
@@ -71,6 +86,7 @@
                 </optgroup>
             </select>
             &nbsp&nbsp
-            <input type="text" class="form-control input-s" placeholder="Enter here"/>
+            <input type="text" id="#txtcredit" class="form-control input-s" placeholder="Enter here"/>
+            <input type="button" value="search" onclick="storedata()"/>
     </ul>
 </template>

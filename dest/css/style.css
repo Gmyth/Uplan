@@ -261,8 +261,8 @@ html, body {
     width: 33%;
     display: inline-block;
 }
-
 .select1 {
+
     position: relative;
     display: inline-block;
     /*vertical-align: top;*/
