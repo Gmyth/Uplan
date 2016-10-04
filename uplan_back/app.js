@@ -35,17 +35,17 @@ mongoose.connect('mongodb://localhost/TestDatabase', function (err) {
 app.set('views', path.join(__dirname, 'views/test_pages'));
 app.set('view engine', 'jade');
 
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public/')));
 
-app.use('/user', users);
-app.use('/', routes);
-app.use('/courses',courses);
+
 app.use(session({
     //防止篡改cookie
     secret: 'Myblog',
@@ -59,6 +59,11 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
+app.use('/user', users);
+app.use('/', routes);
+app.use('/courses',courses);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

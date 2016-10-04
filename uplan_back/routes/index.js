@@ -10,11 +10,11 @@ router.get('/', function(req, res, next) {
 
 });
 
-router.get('/signup',function (req,res) {
-  res.render('signup', {title: 'register page'});
-});
-router.get('/signin', function (req, res) {
-  res.render('signin', {title:'login page'});
-});
+// router.get('/signup',function (req,res) {
+//   res.render('signup', {title: 'register page'});
+// });
+// router.get('/signin', function (req, res) {
+//   res.render('signin', {title:'login page'});
+// });
 
 module.exports = router;

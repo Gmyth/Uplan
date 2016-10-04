@@ -13,10 +13,13 @@ var User = require('../models/user.js');
   //  if (err) // ...
   //      console.log('meow');
 //});
-
-router.post('/signup/:name',function(req,res,next){
+router.get('/signup',function (req,res) {
+    res.render('signup', {title: 'register page'});
+});
+router.post('/signup',function(req,res,next){
     var _user = req.body.user;
     var name = _user.name;
+    console.log(name);
     User.findOne({name: _user.name},  function(err, user) {
         if (err) {
             console.log(err)
@@ -31,7 +34,7 @@ router.post('/signup/:name',function(req,res,next){
                 if (err) {
                     console.log(err)
                 }
-                res.redirect(name);
+                //res.redirect(name);
                 res.json(user);
             })
         }
@@ -46,7 +49,9 @@ router.post('/signup/:name',function(req,res,next){
     //})
 
 
-
+router.get('/signin', function (req, res) {
+   res.render('signin', {title:'login page'});
+ });
 router.post('/signin', function (req, res) {
     var _user = req.body.user;
     var name = _user.name;
