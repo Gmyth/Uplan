@@ -13,8 +13,10 @@ var User = require('../models/user.js');
   //  if (err) // ...
   //      console.log('meow');
 //});
-router.post('/signup',function(req,res,next){
+
+router.post('/signup/:name',function(req,res,next){
     var _user = req.body.user;
+    var name = _user.name;
     User.findOne({name: _user.name},  function(err, user) {
         if (err) {
             console.log(err)
@@ -29,7 +31,7 @@ router.post('/signup',function(req,res,next){
                 if (err) {
                     console.log(err)
                 }
-
+                res.redirect(name);
                 res.json(user);
             })
         }
