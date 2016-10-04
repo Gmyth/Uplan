@@ -2,13 +2,14 @@
  * Created by gmyth on 16/9/7.
  * this part is created for the implement of the Search list
  * */
-define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", "util/timeparser" ], function(require, exports, module) {
+define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", "util/timeparser", "page/flow/index", "page/flow/config" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var config = require("page/sublist/config").data.Course;
     var tpl = require("util/tpl");
     var timeparser = require("util/timeparser");
-    var timeStart;
-    var timeEnd;
+    var flow = require("page/flow/index");
+    var timeStart = 8;
+    var timeEnd = 21;
     var tmpl = {
         main: SUBLIST.MAIN,
         test: SUBLIST.TEST,
@@ -17,10 +18,6 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     exports.init = function() {
         $(".sub_list").html(tpl.get(tmpl.main));
         _bindEvent();
-    };
-    var FillFlow = function() {
-        /*from 8:00 to 21:00*/
-        for (var i = timeStart; i < timeEnd - timeStart; i++) {}
     };
     var Resize = function() {
         var width = $(".subtag").width();
@@ -38,6 +35,12 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
             $(tar).closest(".sub_main_tag").parent().find(".tag_list").html(tpl.get(tmpl.tag, {
                 TagList: config
             }));
+            $(".info_block").hover(function() {
+                var item = JSON.parse($(this).attr("courseData"));
+                flow.update(item);
+            }, function() {
+                flow.update();
+            });
             $(tar).parent().html('&nbsp;<a href="#" ' + 'coursename="CSE 331" class="tag_open dropdown-toggle"' + ' data-action = "drop_up" style="display:inline-block">' + '<b class="caret" style="margin-left: 0px;"></b>' + "</a> &nbsp;CSE  101LLB - Computers: A General Introduction&nbsp;" + '&nbsp;<a href="#" class="del_course_span" data-action = "del_course_span" style="float:right;position: relative;top: 1px;right: 5px;"><span class="fui-cross"></span></a>');
             Resize();
             // first resize can't get right width of lng block

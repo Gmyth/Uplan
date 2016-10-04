@@ -7,8 +7,9 @@ define(function(require, exports, module){
     var config = require('page/sublist/config').data.Course;
     var tpl = require('util/tpl')
     var timeparser = require('util/timeparser')
-    var timeStart;
-    var timeEnd;
+    var flow = require('page/flow/index')
+    var timeStart=8;
+    var timeEnd=21;
     var tmpl = {
         main:SUBLIST.MAIN,
         test:SUBLIST.TEST,
@@ -18,11 +19,6 @@ define(function(require, exports, module){
         $('.sub_list').html(tpl.get(tmpl.main));
         _bindEvent();
     };
-    var FillFlow = function(){
-        /*from 8:00 to 21:00*/
-        for(var i =timeStart; i < timeEnd-timeStart;i++){
-        }
-    }
     var Resize = function(){
         var width = $('.subtag').width();
         $('.info_block').width(width-60);
@@ -37,6 +33,13 @@ define(function(require, exports, module){
         "drop_down":function(tar){
             // $(tar).parent().parent().children().eq(1).html("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             $(tar).closest('.sub_main_tag').parent().find('.tag_list').html(tpl.get(tmpl.tag,{"TagList":config}));
+            $(".info_block").hover(function () {
+                    var item = JSON.parse($(this).attr("courseData"));
+                    flow.update(item);
+                }, function () {
+                    flow.update();
+                }
+            )
             $(tar).parent().html('&nbsp;<a href="#" ' +
                 'coursename="CSE 331" class="tag_open dropdown-toggle"' +
                 ' data-action = "drop_up" style="display:inline-block">' +
@@ -70,6 +73,6 @@ define(function(require, exports, module){
         })
         $(window).resize(function() {
             Resize();
-        });
+        })
     };
 });

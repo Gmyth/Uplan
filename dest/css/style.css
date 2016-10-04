@@ -59,9 +59,17 @@
     text-align: center;
     word-wrap:break-word
 }
-.SSSWEEKLYBACKGROUND{
+.weekly_schedule_line_background{
     background-color: #cce6e1;
-
+}
+.weekly_schedule_line_background_hovered{
+    background-color: #f1e0b0;
+}
+.weekly_schedule_line_background_conflict{
+    background-color: #f1bdb8;
+}
+.weekly_schedule_line_background_changed{
+    background-color: #f1447e;
 }
 .sub_main_tag{
     padding: 5px;

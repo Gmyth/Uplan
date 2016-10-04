@@ -10,25 +10,33 @@ define("util/timeparser", [], function(require, exports, module) {
         F: 5,
         S: 6
     };
-    exports.TimeSpan = function(str) {
+    exports.TimeSpan = function(input) {
+        var str = input.replace(/\s/g, "");
         var timepattern = /(\d{1,2}):(\d{2})(AM|PM)/;
         /*regular expression to find correct time format*/
         var StartTime = timepattern.exec(str);
-        var temp = str.substring(str.indexOf("-"), str.length - 1);
+        var temp = str.substring(str.indexOf("-") + 1, str.length);
         var EndTime = timepattern.exec(temp);
-        var StartHour = StartTime.substring(0, StartTime.indexOf(":"));
-        var Startminutes = StartTime.substring(StartTime.indexOf(":") + 1, StartTime.indexOf(":") + 3);
-        var EndHour = EndTime.substring(0, EndTime.indexOf(":"));
-        var Endminutes = EndTime.substring(EndTime.indexOf(":") + 1, EndTime.indexOf(":") + 3);
-        return {
+        var StartHour = StartTime[1];
+        var Startminutes = StartTime[2];
+        var EndHour = EndTime[1];
+        var Endminutes = EndTime[2];
+        var data = {
             start: {
-                hour: isMorning() ? parseInt(StartHour) : parseInt(StartHour) + 12,
+                hour: isMorning(StartTime[0]) ? parseInt(StartHour) : parseInt(StartHour) + 12,
                 minute: parseInt(Startminutes)
             },
             end: {
-                hour: isMorning() ? parseInt(EndHour) : parseInt(EndHour) + 12,
+                hour: isMorning(EndTime[0]) ? parseInt(EndHour) : parseInt(EndHour) + 12,
                 minute: parseInt(Endminutes)
             }
+        };
+        return {
+            start: {
+                hour: isMorning(StartTime[0]) ? parseInt(StartHour) : parseInt(StartHour) + 12,
+                minute: parseInt(Startminutes)
+            },
+            span: SpanCount(data)
         };
     };
     exports.DaySpan = function(str) {
@@ -38,6 +46,22 @@ define("util/timeparser", [], function(require, exports, module) {
             result.push(TimeConfig[temp[i]]);
         }
         return result;
+    };
+    var SpanCount = function(timebag) {
+        var hourspan = timebag.end.hour - timebag.start.hour;
+        var minspan = timebag.end.minute - timebag.start.minute;
+        if (hourspan == 0 && minspan == 50) {
+            return 2;
+        } else if (minspan < 0) {
+            return hourspan * 2 - 1;
+        } else {
+            if (minspan == 30) {
+                return hourspan * 2 + 1;
+            }
+            if (minspan == 0) {
+                return hourspan * 2;
+            }
+        }
     };
     var isMorning = function(time) {
         var timepattern = /(\d{1,2}):(\d{2})(AM)/;
