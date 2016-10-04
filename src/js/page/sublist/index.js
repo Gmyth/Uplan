@@ -23,21 +23,32 @@ define(function(require, exports, module){
     };
     var ShowCourse = function(){
         DataParse(config);
-        $('.list-block').html(tpl.get(tmpl.course,{"CourseList":CourseList,"TagList":[]}));
+        $('.list-block').html(tpl.get(tmpl.course,{"CourseList":CourseList}));
     }
     var DataParse = function(data){
         CourseList=[];
         for (var i = 0; i < data.length;i++){
             var item = data[i];
-            if(!subList.hasOwnProperty(item.Course)){
-               /*onl have this course in database*/
+            if(!subList.hasOwnProperty(item.Course)&&item.Section.length==1){
+               /* does not have this course in database */
                var data = {
                    Course: item.Course,
                    Title: item.Title,
-                   open:false
+                   open:false,
+                   data:[item]
                }
                 subList[item.Course] = {};
                 CourseList.push(data)
+            }
+            else if(item.Section.length==1){
+                /*means not the son,just diff section*/
+                for( var i = 0 ; i< CourseList.length;i++){
+                    var obj = CourseList[i];
+                    if(item.Course==obj.Course){
+                        CourseList[i].data.append(item);
+                        break;
+                    }
+                }
             }
         }
     }
@@ -61,7 +72,7 @@ define(function(require, exports, module){
                     break;
                 }
             }
-            $('.list-block').html(tpl.get(tmpl.course,{"CourseList":CourseList,"TagList":config}));
+            $('.list-block').html(tpl.get(tmpl.course,{"CourseList":CourseList}));
             Resize();
             Resize();
             $(".info_block").hover(function () {
