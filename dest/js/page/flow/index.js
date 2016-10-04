@@ -42,17 +42,19 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
                 var start_index = TimeInfo.start.minute == 30 ? (TimeInfo.start.hour - timeStart) * 2 + 1 : (TimeInfo.start.hour - timeStart) * 2;
                 for (var j = 0; j < TimeInfo.span; j++) {
                     if (j != 0) {
-                        if (typeof tempArr[start_index + j][day_index] == "object") {
+                        if (typeof tempArr[start_index + j][day_index] === "object" && tempArr[start_index + j][day_index] != null) {
                             tempArr[start_index + j][day_index].conflict = true;
                         } else {
                             tempArr[start_index + j][day_index] = false;
                         }
                     } else {
-                        if (typeof tempArr[start_index][day_index] == "object") {
-                            tempArr[start_index][day_index].conflict = true;
-                        } else if (typeof tempArr[start_index][day_index] == "boolean") {
+                        var temp = tempArr[start_index][day_index];
+                        var s = typeof temp;
+                        if (typeof temp === "object" && temp != null) {
+                            temp.conflict = true;
+                        } else if (typeof temp === "boolean") {
                             var cur_index = start_index;
-                            while (typeof tempArr[cur_index][day_index] == "object") {
+                            while (typeof tempArr[cur_index][day_index] != "object" || tempArr[cur_index][day_index] == null) {
                                 cur_index--;
                             }
                             tempArr[cur_index][day_index].conflict = true;

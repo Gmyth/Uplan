@@ -18,7 +18,6 @@
         </table>
     <!-- End HTML Area -->
     </div>
-    <button data-action="start">test</button>
 </template>
 <template name="FLOW.COURSE">
     <%for(var i=0,item;item = CourseList[i];i++){%>
@@ -27,7 +26,7 @@
 
         <%if(typeof item[0] == "object" && item[0]){%>
         <%if(item[0].hasOwnProperty("hover")){%>
-        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[0].span%> ></td>
+        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[0].span%> ><span><%=item[0].Course%>  - <%=item[0].Section%><br><%=item[0].Type%><br><%=item[0].Time%><br><%=item[0].Room%></span></td>
         <%}else{%>
         <%if(item[0].hasOwnProperty("conflict")){%>
         <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[0].span%> ><span><%=item[0].Course%>  - <%=item[0].Section%><br><%=item[0].Type%><br><%=item[0].Time%><br><%=item[0].Room%></span></td>
@@ -40,7 +39,7 @@
 
         <%if(typeof item[1] == "object" && item[1]){%>
         <%if(item[1].hasOwnProperty("hover")){%>
-        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[1].span%> ></td>
+        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[1].span%> ><span><%=item[1].Course%>  - <%=item[1].Section%><br><%=item[1].Type%><br><%=item[1].Time%><br><%=item[1].Room%></span></td>
         <%}else{%>
         <%if(item[1].hasOwnProperty("conflict")){%>
         <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[1].span%> ><span><%=item[1].Course%>  - <%=item[1].Section%><br><%=item[1].Type%><br><%=item[1].Time%><br><%=item[1].Room%></span></td>
@@ -52,7 +51,7 @@
 
         <%if(typeof item[2] == "object" && item[2]){%>
         <%if(item[2].hasOwnProperty("hover")){%>
-        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[2].span%> ></td>
+        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[2].span%> ><span><%=item[2].Course%>  - <%=item[2].Section%><br><%=item[2].Type%><br><%=item[2].Time%><br><%=item[2].Room%></span></td>
         <%}else{%>
         <%if(item[2].hasOwnProperty("conflict")){%>
         <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[2].span%> ><span><%=item[2].Course%>  - <%=item[2].Section%><br><%=item[2].Type%><br><%=item[2].Time%><br><%=item[2].Room%></span></td>
@@ -64,7 +63,7 @@
 
         <%if(typeof item[3] == "object" && item[3]){%>
         <%if(item[3].hasOwnProperty("hover")){%>
-        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[3].span%> ></td>
+        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[3].span%> ><span><%=item[3].Course%>  - <%=item[3].Section%><br><%=item[3].Type%><br><%=item[3].Time%><br><%=item[3].Room%></span></td>
         <%}else{%>
         <%if(item[3].hasOwnProperty("conflict")){%>
         <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[3].span%> ><span><%=item[3].Course%>  - <%=item[3].Section%><br><%=item[3].Type%><br><%=item[3].Time%><br><%=item[3].Room%></span></td>
@@ -76,7 +75,7 @@
 
         <%if(typeof item[4] == "object" && item[4]){%>
         <%if(item[4].hasOwnProperty("hover")){%>
-        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[4].span%> ></td>
+        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[4].span%> ><span><%=item[4].Course%>  - <%=item[4].Section%><br><%=item[4].Type%><br><%=item[4].Time%><br><%=item[4].Room%></span></td>
         <%}else{%>
         <%if(item[4].hasOwnProperty("conflict")){%>
         <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[4].span%> ><span><%=item[4].Course%>  - <%=item[4].Section%><br><%=item[4].Type%><br><%=item[4].Time%><br><%=item[4].Room%></span></td>
@@ -88,7 +87,7 @@
 
         <%if(typeof item[5] == "object" && item[5]){%>
         <%if(item[5].hasOwnProperty("hover")){%>
-        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[5].span%> ></td>
+        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[5].span%> ><span><%=item[5].Course%>  - <%=item[5].Section%><br><%=item[5].Type%><br><%=item[5].Time%><br><%=item[5].Room%></span></td>
         <%}else{%>
         <%if(item[5].hasOwnProperty("conflict")){%>
         <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[5].span%> ><span><%=item[5].Course%>  - <%=item[5].Section%><br><%=item[5].Type%><br><%=item[5].Time%><br><%=item[5].Room%></span></td>
@@ -100,7 +99,7 @@
 
         <%if(typeof item[6] == "object" && item[6]){%>
         <%if(item[6].hasOwnProperty("hover")){%>
-        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[6].span%> ></td>
+        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[6].span%> ><span><%=item[6].Course%>  - <%=item[6].Section%><br><%=item[6].Type%><br><%=item[6].Time%><br><%=item[6].Room%></span></td>
         <%}else{%>
         <%if(item[6].hasOwnProperty("conflict")){%>
         <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[6].span%> ><span><%=item[6].Course%>  - <%=item[6].Section%><br><%=item[6].Type%><br><%=item[6].Time%><br><%=item[6].Room%></span></td>
