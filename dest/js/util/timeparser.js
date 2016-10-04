@@ -17,9 +17,9 @@ define("util/timeparser", [], function(require, exports, module) {
         var StartTime = timepattern.exec(str);
         var temp = str.substring(str.indexOf("-") + 1, str.length);
         var EndTime = timepattern.exec(temp);
-        var StartHour = StartTime[1];
+        var StartHour = StartTime[1] == "12" ? "0" : StartTime[1];
         var Startminutes = StartTime[2];
-        var EndHour = EndTime[1];
+        var EndHour = EndTime[1] == "12" ? "0" : EndTime[1];
         var Endminutes = EndTime[2];
         var data = {
             start: {

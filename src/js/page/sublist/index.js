@@ -10,15 +10,37 @@ define(function(require, exports, module){
     var flow = require('page/flow/index')
     var timeStart=8;
     var timeEnd=21;
+    var CourseList=[];
+    var subList ={};
     var tmpl = {
         main:SUBLIST.MAIN,
-        test:SUBLIST.TEST,
-        tag:SUBLIST.SUBTAG,
+        course:SUBLIST.COURSE,
     }
     exports.init = function(){
         $('.sub_list').html(tpl.get(tmpl.main));
+         ShowCourse();
         _bindEvent();
     };
+    var ShowCourse = function(){
+        DataParse(config);
+        $('.list-block').html(tpl.get(tmpl.course,{"CourseList":CourseList,"TagList":[]}));
+    }
+    var DataParse = function(data){
+        CourseList=[];
+        for (var i = 0; i < data.length;i++){
+            var item = data[i];
+            if(!subList.hasOwnProperty(item.Course)){
+               /*onl have this course in database*/
+               var data = {
+                   Course: item.Course,
+                   Title: item.Title,
+                   open:false
+               }
+                subList[item.Course] = {};
+                CourseList.push(data)
+            }
+        }
+    }
     var Resize = function(){
         var width = $('.subtag').width();
         $('.info_block').width(width-60);
@@ -31,8 +53,17 @@ define(function(require, exports, module){
     /*the combination of needed action function*/
     var actionList={
         "drop_down":function(tar){
-            // $(tar).parent().parent().children().eq(1).html("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            $(tar).closest('.sub_main_tag').parent().find('.tag_list').html(tpl.get(tmpl.tag,{"TagList":config}));
+            var CourseName = $(tar).attr("coursename");
+            for( var i = 0 ; i< CourseList.length;i++){
+                var obj = CourseList[i];
+                if(CourseName==obj.Course){
+                    CourseList[i].open = true;
+                    break;
+                }
+            }
+            $('.list-block').html(tpl.get(tmpl.course,{"CourseList":CourseList,"TagList":config}));
+            Resize();
+            Resize();
             $(".info_block").hover(function () {
                     var item = JSON.parse($(this).attr("courseData"));
                     flow.update(item);
@@ -40,24 +71,18 @@ define(function(require, exports, module){
                     flow.update();
                 }
             )
-            $(tar).parent().html('&nbsp;<a href="#" ' +
-                'coursename="CSE 331" class="tag_open dropdown-toggle"' +
-                ' data-action = "drop_up" style="display:inline-block">' +
-                '<b class="caret" style="margin-left: 0px;"></b>' +
-                '</a> &nbsp;CSE  101LLB - Computers: A General Introduction&nbsp;' +
-                '&nbsp;<a href="#" class="del_course_span" data-action = "del_course_span" style="float:right;position: relative;top: 1px;right: 5px;"><span class="fui-cross"></span></a>');
-            Resize();// first resize can't get right width of lng block
-            Resize();
         },
         "drop_up":function(tar){
-            $(tar).closest('.sub_main_tag').parent().find('.tag_list').html("");
-            $(tar).parent().html('&nbsp;<a href="#" ' +
-                'coursename="CSE 331" class="tag dropdown-toggle tag_ready"' +
-                ' data-action = "drop_down" style="display:inline-block">' +
-                '<b class="caret" style="margin-left: 0px;"></b>' +
-                '</a> &nbsp;CSE  101LLB - Computers: A General Introduction&nbsp;' +
-                '&nbsp;<a href="#" class="del_course_span" data-action = "del_course_span" style="float:right;position: relative;top: 1px;right: 5px;"><span class="fui-cross"></span></a>');
-        },
+            var CourseName = $(tar).attr("coursename");
+            for( var i = 0 ; i< CourseList.length;i++){
+                var obj = CourseList[i];
+                if(CourseName==obj.Course){
+                    CourseList[i].open = false;
+                    break;
+                }
+            }
+            $('.list-block').html(tpl.get(tmpl.course,{"CourseList":CourseList,"TagList":[]}));
+        }
     };
     /*bind the button input control event*/
     var _bindEvent = function(){

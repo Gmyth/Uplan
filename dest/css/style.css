@@ -106,6 +106,7 @@
     border: 1px solid #ddd;
 }
 .sublist_main{
+  overflow-x: hidden;
   margin-left: 1%;
   color: #ffffff;
   width:98%;
