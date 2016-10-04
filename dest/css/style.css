@@ -253,21 +253,36 @@ html, body {
 .form-group-sm .form-control,
 .form-group-sm .select2-search input[type="text"],
 .select2-search input[type="text"] {
-    height: 2%;
+    height: 20px;
     padding: 5px 5px;
     font-size: 13px;
     line-height: 1.462;
     border-radius: 6px;
-    width: 33%;
+    width: 26%;
     display: inline-block;
+}
+
+.form-control1,
+.select2-search1 input[type="text"] {
+    border: 2px solid #bdc3c7;
+    color: #34495e;
+    font-family: "Lato", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.467;
+    /*padding: 8px 12px;*/
+    height: 42px;
+    border-radius: 6px;
+    box-shadow: none;
+    -webkit-transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
+    transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
 }
 .select1 {
 
     position: relative;
     display: inline-block;
-    /*vertical-align: top;*/
+    vertical-align: top;
     width: auto;
-    height: 29px;
+    height: 20px;
 }
 
 .checkbox1 .icons,
@@ -286,11 +301,26 @@ html, body {
 
 @media screen and (max-device-width: 700px) {
     .select1 {
-        position: relative;
-        display: inline-block;
-        vertical-align: top;
-        width: 20px;
-        height: auto;
+         position: relative;
+         display: inline-block;
+         vertical-align: top;
+         width: 20px;
+         height: auto;
+     }
+    .form-control1,
+    .select2-search1 input[type="text"] {
+        border: 2px solid #bdc3c7;
+        color: #34495e;
+        font-family: "Lato", Helvetica, Arial, sans-serif;
+        font-size: 15px;
+        line-height: 1.467;
+        /*padding: 8px 12px;*/
+        height: 42px;
+        width: auto;
+        border-radius: 6px;
+        box-shadow: none;
+        -webkit-transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
+        transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
     }
 }
 
@@ -302,4 +332,32 @@ html, body {
     background-color: #eff0f2;
     border-radius: 6px;
     min-width: 100px;
+}
+
+.btn1-wide1 {
+    min-width: 40px;
+    height: 25px;
+    float: right;
+    margin-top: 3px;
+
+}
+.btn1 {
+    border: none;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 0.8;
+    border-radius: 4px;
+    /*padding: 10px 15px;*/
+    -webkit-font-smoothing: subpixel-antialiased;
+    -webkit-transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
+    transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
+}
+.btn1:hover,
+.btn1:focus {
+    outline: none;
+    color: #ffffff;
+}
+.label1 {
+    font-weight: normal;
+    line-height: 1.3;
 }
