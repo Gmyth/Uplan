@@ -17,7 +17,21 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     };
     /*the combination of needed action function*/
     var actionList = {
-        start: function(tar) {}
+        start: function(tar) {},
+        storedata: function(tar) {
+            var input_subject = $("#txtsubject").val();
+            var input_select_number = $("#selnumber").val();
+            var input_number = $("#txtnumber").val();
+            var input_select_level = $("#sellevel").val();
+            var input_open = $("#checkbox_id1").val();
+            var input_select_start = $("#selstart").val();
+            var input_starttime = $("#txtstarttime").val();
+            var input_select_end = $("#selend").val();
+            var input_endtime = $("#txtendtime").val();
+            var input_select_credit = $("#selcredit").val();
+            var input_credit = $("#txtcredit").val();
+            $("mydata").html(input_subject);
+        }
     };
     /*bind the button input control event*/
     var _bindEvent = function() {
