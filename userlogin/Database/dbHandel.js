@@ -2,18 +2,16 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var models = require("./models");
 
-for(var m in models){
-    mongoose.model(m,new Schema(models[m]));
+for(var m in models){ 
+	mongoose.model(m,new Schema(models[m]));
 }
 
-module.exports = {
-    getModel: function(type){
-        return _getModel(type);
-    }
+module.exports = { 
+	getModel: function(type){ 
+		return _getModel(type);
+	}
 };
 
-var _getModel = function(type){
-    return mongoose.model(type);
-};/**
- * Created by Enze on 10/2/16.
- */
+var _getModel = function(type){ 
+	return mongoose.model(type);
+};
