@@ -1,0 +1,13 @@
+date: October 8, 2016
+meeting_type: group # meeting_type can "group", "ta", or "instructor"
+attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
+absent: []
+excused_absences: []
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <haoyuguo>, progress: },
+  {ubit: <kaiyukan>, progress: },
+  {ubit: <enzeqian>, progress: Finish Userlogin page,commit to feature-userlogin},
+  {ubit: <cwang46>, progress: },
+  ]
+issues: []
+Notes:  |  # Anything covered in the meeting that doesn't fit elsewhere.
