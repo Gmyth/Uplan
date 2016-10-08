@@ -681,18 +681,18 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
             // $('.list-block').html(tpl.get(tmpl.course,{"CourseList":CourseList}));
             // make new a for close dropdown
             var courseinfo = ' &nbsp;<a href="#" coursename=' + course_choose.Course.replace(/\s+/g, "") + ' class="dropdown-toggle tag_open" data-action = "drop_up" style="display:inline-block"><b class="caret" style="margin-left: 0px;"></b></a>' + "&nbsp;" + course_choose.Course + "&nbsp;&nbsp;" + course_choose.Title + "&nbsp;" + '&nbsp;<a href="#" class="del_course_span" data-action = "del_course_span" style="float:right;position: relative;top: 1px;right: 5px;"><span class="fui-cross"></span></a>';
-            $(".info_block").hover(function() {
-                var item = JSON.parse($(this).attr("courseData"));
-                flow.update(item, false);
-            }, function() {
-                flow.update();
-            });
             $(tar).parent().parent().find(".tag_list").html(tpl.get(tmpl.subcourse, {
                 TagList: subList[CourseName]
             }));
             $(tar).parent().html(courseinfo);
             Resize();
             Resize();
+            $(".info_block").hover(function() {
+                var item = JSON.parse($(this).attr("courseData"));
+                flow.update(item, false);
+            }, function() {
+                flow.update();
+            });
         },
         drop_up: function(tar) {
             var CourseName = $(tar).attr("coursename");
