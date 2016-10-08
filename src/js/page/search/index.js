@@ -1,0 +1,61 @@
+/**
+ * Created by kaiyu on 9/26/16.
+ */
+
+define(function(require, exports, module){
+    var $ = require('lib/jquery')
+    var config = require('page/flow/config').data;
+    var tpl = require('util/tpl')
+    var timeparser = require('util/timeparser')
+    var tmpl = {
+        main:SEARCH.MAIN,
+    }
+    /*config set*/
+    var timeStart=8;
+    var timeEnd=21;
+    exports.init = function(){
+        $('.search_sub_box').html(tpl.get(tmpl.main));
+
+    };
+
+
+    /*the combination of needed action function*/
+    var actionList={
+        "start":function(tar){
+
+        },
+        "storedata":function(tar){
+            var input_subject = $("#txtsubject").val();
+            var input_select_number = $("#selnumber").val();
+            var input_number = $("#txtnumber").val();
+            var input_select_level = $("#sellevel").val();
+            var input_open = $("#checkbox1:checked").val();
+            var input_select_start = $("#selstart").val();
+            var input_starttime = $("#txtstarttime").val();
+            var input_select_end = $("#selend").val();
+            var input_endtime = $("#txtendtime").val();
+            var input_select_credit = $("#selcredit").val();
+            var input_credit = $("#txtcredit").val();
+            // $("mydata").html(input_subject);
+        }
+    };
+    /*bind the button input control event*/
+    var _bindEvent = function(){
+        $main = $(".search_sub_box");
+        $main.off();
+        $main.on('click', '[data-action]', function () {
+            if($(this).attr("disabled")!="disabled"){
+                var actionName = $(this).data('action');
+                var action = actionList[actionName];
+                var tar = this;
+                if ($.isFunction(action)) action(tar);
+            }
+        })
+    };
+
+
+    exports.init = function(){
+        $('.search_sub_box').html(tpl.get(tmpl.main));
+        _bindEvent();
+    };
+});
