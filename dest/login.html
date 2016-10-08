@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script>
+        _timePoints = [new Date()];
+    </script>
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="css/flat-ui.css" >
+    <link rel="stylesheet" type="text/css" href="css/style.css" >
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5" />
+
+    <title>login</title>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+    <script src="./js/vendor/html5shiv.js"></script>
+    <script src="./js/vendor/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div id="login">
+
+    <form name="loginform" id="loginform">
+        <p>
+            <label for="user_login">Username or Email<br />
+                <input type="text" name="log" id="user_login" class="input" value="" size="20" /></label>
+        </p>
+        <p>
+            <label for="user_pass">Password<br />
+                <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" /></label>
+        </p>
+        <p class="submit">
+            <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="Log In" />
+        </p>
+    </form>
+
+    <script type="text/javascript">
+        function wp_attempt_focus(){
+            setTimeout( function(){ try{
+                d = document.getElementById('user_login');
+                d.focus();
+                d.select();
+            } catch(e){}
+            }, 200);
+        }
+
+        wp_attempt_focus();
+        if(typeof wpOnload=='function')wpOnload();
+    </script>
+
+</div>
+
+
+<div class="clear"></div>
+</body>
+<script src="./js/sea.js"></script>
+<script src="./js/sea-config.js"></script>
+<script src="./js/lib.js"></script>
+<script src="./js/business.js"></script>
+<script src="./js/page.js"></script>
+<script type="text/javascript">
+    seajs.config({
+        alias : {
+            '$' : 'lib/jquery',
+        }
+    });
+
+    function start () {
+        seajs.use(["lib/jquery","page/controller/module"], function($,index) {
+//            if(Login.init()){
+//                return;
+//            }
+//            Login.fetchUser(function(data){
+//                ns.getUser(Login.user);
+//                index.init(Login.user);
+//                var uPanel=$("#dropdown_user");
+//                if(data && data["LoginName"]){
+//                    uPanel.find("#imgAvatar").attr("src","http://dayu.oa.com/avatars/"+data["LoginName"]+"/profile.jpg");
+//                    uPanel.find("#username").html(data["LoginName"]+"("+data["ChineseName"]+")");
+//                    uPanel.show();
+//                }
+//            });
+//            $("#logout").click(function(){
+//                Login.logout();
+//            });
+            index.init();
+        });
+    }
+    start();
+</script>
+</html>

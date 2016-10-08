@@ -17,10 +17,10 @@ define(function(require, exports, module){
     var timeEnd=21;
     exports.init = function(){
         $('.main_container').html(tpl.get(tmpl.main));
-         var container_height = $('.main_container').height();
-         $('.main_body').height(container_height-60);
-         $('.main_body').css("max-height",container_height-60);
-         // $('#flow_body').html(tpl.get(tmpl.test,{'startTime':timeStart,'CourseList':dataArr}));
+        var container_height = $('.main_container').height();
+        $('.main_body').height(container_height-60);
+        $('.main_body').css("max-height",container_height-60);
+        // $('#flow_body').html(tpl.get(tmpl.test,{'startTime':timeStart,'CourseList':dataArr}));
         FillFlow();/*Data already added in global dadaArr*/
         $('#flow_body').html(tpl.get(tmpl.body,{'startTime':timeStart,'CourseList':dataArr}))
         _bindEvent();
@@ -60,12 +60,12 @@ define(function(require, exports, module){
                     }
                 }
             }
-        $('#flow_body').html(tpl.get(tmpl.body,{"startTime":timeStart,"CourseList":tempArr}));
+            $('#flow_body').html(tpl.get(tmpl.body,{"startTime":timeStart,"CourseList":tempArr}));
         }else{
             if(item) {
                 FillFlow(item);
             }
-        $('#flow_body').html(tpl.get(tmpl.body,{"startTime":timeStart,"CourseList":dataArr}));
+            $('#flow_body').html(tpl.get(tmpl.body,{"startTime":timeStart,"CourseList":dataArr}));
         }
     }
     var windowHeight =  function() {
@@ -132,12 +132,5 @@ define(function(require, exports, module){
             }
         })
     };
-
-    var tmpl = {
-        main:SEARCH.MAIN,
-    }
-    exports.init = function(){
-        $('.search_area').html(tpl.get(tmpl.main));
-        _bindEvent();
-    };
 });
+
