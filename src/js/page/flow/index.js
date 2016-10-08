@@ -132,4 +132,12 @@ define(function(require, exports, module){
             }
         })
     };
+
+    var tmpl = {
+        main:SEARCH.MAIN,
+    }
+    exports.init = function(){
+        $('.search_area').html(tpl.get(tmpl.main));
+        _bindEvent();
+    };
 });
