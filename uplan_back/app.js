@@ -62,7 +62,7 @@ app.use(session({
 
 app.use('/user', users);
 app.use('/', routes);
-app.use('/courses',courses);
+app.use('/get_courses_info',courses);
 
 
 // catch 404 and forward to error handler

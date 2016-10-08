@@ -50,7 +50,7 @@ router.post('/signup',function(req,res,next){
 
 
 router.get('/signin', function (req, res) {
-   res.render('signin', {title:'login page'});
+   res.render('signin/:name', {title:'login page'});
  });
 router.post('/signin', function (req, res) {
     var _user = req.body.user;
