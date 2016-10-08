@@ -25,9 +25,9 @@ define(function(require, exports, module){
         $('#flow_body').html(tpl.get(tmpl.body,{'startTime':timeStart,'CourseList':dataArr}))
         _bindEvent();
     };
-    exports.update = function(item){
-        FillFlow();/*Data already added in global dadaArr*/
-        if(item){
+    exports.update = function(item,ADD){
+        //Just hover or add
+        if(ADD==false){
             var tempArr = JSON.parse(JSON.stringify(dataArr));
             var TimeInfo =timeparser.TimeSpan(item.Time);
             var DayInfo = timeparser.DaySpan(item.Days);
@@ -62,6 +62,9 @@ define(function(require, exports, module){
             }
         $('#flow_body').html(tpl.get(tmpl.body,{"startTime":timeStart,"CourseList":tempArr}));
         }else{
+            if(item) {
+                FillFlow(item);
+            }
         $('#flow_body').html(tpl.get(tmpl.body,{"startTime":timeStart,"CourseList":dataArr}));
         }
     }
@@ -69,7 +72,7 @@ define(function(require, exports, module){
         var de = document.documentElement;
         return self.innerHeight||(de && de.clientHeight)||document.body.clientHeight;
     }
-    var FillFlow = function(){
+    var FillFlow = function(NewC){
         dataArr=[];
         /*from 8:00 to 21:00*/
         for(var i =0; i < (timeEnd-timeStart+1)*2;i++){
@@ -77,6 +80,9 @@ define(function(require, exports, module){
             var tempArr=[]
             tempArr.length = 7;
             dataArr.push(tempArr);
+        }
+        if(NewC){
+            config.push(NewC);
         }
         for(var i=0;i<config.length;i++){
             var item = config[i];
