@@ -159,6 +159,9 @@
     color:rgb(56, 76, 97);
     cursor:pointer;
 }
+.hoverable:hover{
+    cursor:pointer;
+}
 @media screen and (max-device-width: 600px) {
 .sub_box {
     display: none;

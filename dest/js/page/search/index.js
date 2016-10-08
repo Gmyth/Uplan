@@ -1,11 +1,12 @@
 /**
  * Created by kaiyu on 9/26/16.
  */
-define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser" ], function(require, exports, module) {
+define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/search", "util/net" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var config = require("page/flow/config").data;
     var tpl = require("util/tpl");
     var timeparser = require("util/timeparser");
+    var search = require("net/search");
     var tmpl = {
         main: SEARCH.MAIN
     };
@@ -30,6 +31,20 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
             var input_endtime = $("#txtendtime").val();
             var input_select_credit = $("#selcredit").val();
             var input_credit = $("#txtcredit").val();
+            var Obj = {
+                txtsubject: input_subject,
+                txtnumber: input_select_number,
+                selnum: input_number,
+                selllevel: input_select_level,
+                check_box_id1: input_open == undefined ? "0" : "1",
+                txtstarttime: input_starttime,
+                txtendtime: input_endtime
+            };
+            var success = function(json) {
+                var data = json;
+                alert("get!");
+            };
+            search.getCourseList(Obj, success);
         }
     };
     /*bind the button input control event*/

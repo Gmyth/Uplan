@@ -14406,6 +14406,332 @@ $("videojs.util",t.ha);t.ha.mergeOptions=t.ha.Wa;t.addLanguage=t.fd;})();
 })();
 
 /**
+ * cookie存储封装
+ * https://github.com/dcompute/Zepto-Cookie/blob/master/zepto.cookie.js
+ */
+define("util/cookie", [ "lib/jquery" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    module.exports = function(key, value, options) {
+        var days, time, result, decode;
+        // A key and value were given. Set cookie.
+        if (arguments.length > 1 && String(value) !== "[object Object]") {
+            // Enforce object
+            options = $.extend({}, options);
+            if (value === null || value === undefined) options.expires = -1;
+            if (typeof options.expires === "number") {
+                days = options.expires * 24 * 60 * 60 * 1e3;
+                time = options.expires = new Date();
+                time.setTime(time.getTime() + days);
+            }
+            value = String(value);
+            return document.cookie = [ encodeURIComponent(key), "=", options.raw ? value : encodeURIComponent(value), options.expires ? "; expires=" + options.expires.toUTCString() : "", options.path ? "; path=" + options.path : "", options.domain ? "; domain=" + options.domain : "", options.secure ? "; secure" : "" ].join("");
+        }
+        // Key and possibly options given, get cookie
+        options = value || {};
+        decode = options.raw ? function(s) {
+            return s;
+        } : decodeURIComponent;
+        return (result = new RegExp("(?:^|; )" + encodeURIComponent(key) + "=([^;]*)").exec(document.cookie)) ? decode(result[1]) : null;
+    };
+});
+
+/**
+ * Created by gmyth on 16/10/8.
+ */
+/**
+ * Created with JetBrains PhpStorm.
+ * User: layenlin
+ * Date: 13-12-19
+ * Time: 下午7:04
+ * To change this template use File | Settings | File Templates.
+ */
+define("util/net", [ "lib/jquery", "util/security", "util/cookie", "util/uri" ], function(require, exports) {
+    /** @module util/net */
+    var $ = require("lib/jquery");
+    var security = require("util/security");
+    /**
+     * 初始化全局配置
+     * @param {Object} options 参数信息，参考$.ajaxSettings，下面只列出新增的参数
+     * @param {Object<string>} options.plugins 插件信息
+     * @param {boolean} reset 是否重置配置，默认为叠加覆盖
+     */
+    exports.init = function(options, reset) {
+        if (reset) {
+            $.ajaxSettings = options;
+        } else {
+            $.ajaxSettings = $.extend(true, $.ajaxSettings, options);
+        }
+    };
+    /**
+     * ajax
+     * @param {Object} options 参数信息，参考$.ajax，下面只列出新增的参数
+     * @param {Object<string>} options.plugins 插件信息
+     * @return {Object} xhr
+     */
+    exports.ajax = function(options) {
+        var deferred = $.Deferred && $.Deferred();
+        var plugins = $.extend(true, {}, options.plugins, $.ajaxSettings.plugins);
+        if (plugins) {
+            // 初始化context - Begin
+            var context = options.context || $.ajaxSettings.context;
+            // 事件是绑定在context上的，context不能为空，否则会绑到在全局事件上，影响到所有的请求
+            if (!context) {
+                context = options.context = $(window.document.createElement("span"));
+            } else if (!(context instanceof $)) {
+                context = options.context = $(context);
+            }
+            // 初始化context - End
+            // 重建xhr - Begin
+            var pluginXhr;
+            var methodList = [ "abort", "getAllResponseHeaders", "getResponseHeader", "open", "overrideMimeType", "send", "setRequestHeader", "init", "openRequest", "sendAsBinary" ];
+            var requestList = [ "withCredentials" ];
+            var responseList = [ "readyState", "response", "responseText", "responseType", "responseXML", "status", "statusText" ];
+            var eventList = [ "abort", "error", "load", "loadend", "loadstart", "progress", "progress", "timeout", "readystatechange" ];
+            options.xhr = function(xhr) {
+                var proxyXhr = function() {};
+                for (var i = 0, iMax = methodList.length; i < iMax; i++) {
+                    if (typeof xhr[methodList[i]] !== "undefined") {
+                        proxyXhr.prototype[methodList[i]] = function(method) {
+                            return function() {
+                                if (method && method.apply) {
+                                    return method.apply(xhr, Array.prototype.slice.call(arguments, 0));
+                                }
+                            };
+                        }(xhr[methodList[i]]);
+                    }
+                }
+                proxyXhr.prototype.open = function() {
+                    for (var i = 0, iMax = eventList.length; i < iMax; i++) {
+                        (function(event) {
+                            xhr[event] = function() {
+                                if (typeof pluginXhr[event] === "function") {
+                                    for (var j = 0, jMax = responseList.length; j < jMax; j++) {
+                                        try {
+                                            if (typeof xhr[responseList[j]] !== "undefined") {
+                                                pluginXhr[responseList[j]] = xhr[responseList[j]];
+                                            }
+                                        } catch (e) {}
+                                    }
+                                    return pluginXhr[event].apply(pluginXhr, Array.prototype.slice.call(arguments, 0));
+                                }
+                            };
+                        })("on" + eventList[i]);
+                    }
+                    return xhr.open.apply(xhr, Array.prototype.slice.call(arguments, 0));
+                };
+                proxyXhr.prototype.send = function() {
+                    for (var i = 0, iMax = requestList.length; i < iMax; i++) {
+                        if (typeof pluginXhr[requestList[i]] !== "undefined") {
+                            xhr[requestList[i]] = pluginXhr[requestList[i]];
+                        }
+                    }
+                    return xhr.send.apply(xhr, Array.prototype.slice.call(arguments, 0));
+                };
+                pluginXhr = new proxyXhr();
+                if (deferred) deferred.promise(pluginXhr);
+                return function() {
+                    return pluginXhr;
+                };
+            }((options.xhr || $.ajaxSettings.xhr)());
+            // 重建xhr - End
+            // 加载插件 - Begin
+            var nameList = [];
+            for (var name in plugins) {
+                if (plugins.hasOwnProperty(name)) {
+                    nameList.push(name);
+                }
+            }
+            //所有请求默认加上gtk
+            nameList.push("util/security");
+            context.on("ajaxSuccess", function(e, xhr, settings, data) {
+                deferred.resolveWith(this, [ data, "success", xhr ]);
+            });
+            context.on("ajaxError", function(e, xhr, settings, errorOrType) {
+                deferred.rejectWith(this, [ xhr, errorOrType, errorOrType ]);
+            });
+            require.async(nameList, function() {
+                for (var i = 0, iMax = nameList.length, pluginHandlers; i < iMax; i++) {
+                    // 获取事件集合
+                    pluginHandlers = arguments[i]["getPluginHandlers"].call(arguments[i], plugins[nameList[i]]);
+                    for (var eventName in pluginHandlers) {
+                        if (pluginHandlers.hasOwnProperty(eventName)) {
+                            // 注册事件
+                            context.on(eventName, pluginHandlers[eventName]);
+                        }
+                    }
+                }
+                //todo global and jsonp
+                $(context).trigger($.Event("ajaxStart"), [ pluginXhr, options ]);
+                $.ajax(options);
+            });
+            // 加载插件 -End
+            return pluginXhr;
+        } else {
+            return $.ajax(options);
+        }
+    };
+    /**
+     * GET请求获取数据
+     * @param {string} url url
+     * @param {object} data data
+     * @param {function} success 成功回调函数
+     * @param {string} dataType 数据类型
+     * @param {object} options 参数信息，参考$.ajax，下面只列出新增的参数
+     * @param {object<moduleName>} options.plugins 插件信息
+     * @return {object} xhr
+     * @return {xhr}
+     */
+    exports.get = function(url, data, success, dataType, options) {
+        var settings = {};
+        if (typeof data === "function") {
+            settings = {
+                url: url,
+                success: data,
+                dataType: success
+            };
+        } else {
+            settings = {
+                url: url,
+                data: data,
+                success: success,
+                dataType: dataType
+            };
+        }
+        return this.ajax($.extend(true, settings, options));
+    };
+    /**
+     * POST请求获取数据
+     * @param {string} url url
+     * @param {object} data data
+     * @param {function} success 成功回调函数
+     * @param {string} dataType 数据类型
+     * @param {object} options 参数信息，参考$.ajax，下面只列出新增的参数
+     * @param {object<moduleName>} options.plugins 插件信息
+     * @return {object} xhr
+     * @return {xhr}
+     */
+    exports.post = function(url, data, success, dataType, options) {
+        return this.get(url, data, success, dataType, $.extend(true, {
+            type: "POST"
+        }, options));
+    };
+    /**
+     * GET请求获取JSON数据
+     * @param {string} url url
+     * @param {object} data data
+     * @param {function} success 成功回调函数
+     * @param {string} dataType 数据类型
+     * @param {object} options 参数信息，参考$.ajax，下面只列出新增的参数
+     * @param {object<moduleName>} options.plugins 插件信息
+     * @return {object} xhr
+     * @return {xhr}
+     */
+    exports.getJSON = function(url, data, success, options) {
+        return this.get(url, data, success, "json", options);
+    };
+    /**
+     * 请求载入并执行一个 JavaScript 文件
+     * @param {string} src js文件的url
+     * @param {function} [callback] 成功回调函数
+     */
+    exports.getScript = function(url, callback, errCallback, charset) {
+        var script = document.createElement("script");
+        script.async = "async";
+        script.charset = charset || "utf-8";
+        script.src = url;
+        script.onload = callback || function() {};
+        script.onerror = errCallback || function() {};
+        document.getElementsByTagName("head")[0].appendChild(script);
+    };
+    /**
+     *	getCss
+     *	请求并且加载一个css
+     *
+     */
+    exports.getCss = function(url, callback, errCallback) {
+        var script = document.createElement("link");
+        script.async = "async";
+        script.rel = "stylesheet";
+        script.type = "text/css";
+        script.href = url;
+        script.onload = callback || function() {};
+        script.onerror = errCallback || function() {};
+        document.getElementsByTagName("head")[0].appendChild(script);
+    };
+    /**
+     *	getTpl
+     *	请求加载一个html模板
+     *	发送一个xhr请求。 但是这个要求模板文件，和页面文件同域。否则会有问题
+     */
+    exports.getTpl = function(url, callback, errCallback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", url, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                callback && callback(xhr.responseText);
+            } else if (xhr.readyState == 4 && xhr.status != 200) {
+                errCallback && errCallback(xhr.responseText);
+            }
+        };
+        xhr.send();
+        return xhr;
+    };
+    /**
+     * 请求一个url但不理会响应
+     * @param {string} url url
+     */
+    exports.ping = function(url) {
+        var cache = arguments.callee;
+        var name = "ping_" + (cache.priority = (parseInt(cache.priority) || 0) + 1);
+        var ping = window[name] = new Image();
+        ping.src = url;
+        ping.onerror = ping.onload = function() {
+            ping.onerror = ping.onload = null;
+            ping = null;
+            delete window[name];
+        };
+    };
+});
+
+/**
+ * Created with JetBrains PhpStorm.
+ * User: layenlin
+ * Date: 14-3-6
+ * Time: 下午6:36
+ * To change this template use File | Settings | File Templates.
+ */
+define("util/security", [ "util/cookie", "lib/jquery", "util/uri" ], function(require, exports, module) {
+    var cookie = require("util/cookie");
+    uri = require("util/uri");
+    /**	
+	 * @exports business/security
+	 */
+    var _public = exports, _private = {};
+    /**
+	* @return {number} CSRFToken
+	* @example security.getCSRFToken();
+	*/
+    exports.getCSRFToken = function() {
+        var hash = 5381, str = cookie("skey") || "";
+        for (var i = 0, len = str.length; i < len; ++i) {
+            hash += (hash << 5) + str.charCodeAt(i);
+        }
+        return hash & 2147483647;
+    };
+    _public.getPluginHandlers = function(settings) {
+        var that = this;
+        return {
+            ajaxSend: function(event, xhr, options) {
+                var location = uri.parseUrl(options.url);
+                if (!location.hostname || location.hostname.split(".").slice(-2).join(".") == "qq.com") {
+                    options.url = location.href + (location.search.indexOf("?") >= 0 ? "&" : "?") + "g_tk=" + that.getCSRFToken();
+                }
+            }
+        };
+    };
+});
+
+/**
  * Created by gmyth on 16/9/9.
  */
 define("util/timeparser", [], function(require, exports, module) {
@@ -14547,6 +14873,192 @@ define("util/tpl", [], function(require, exports, module) {
                 return that.get(str, data, env);
             }
         };
+    };
+});
+
+/**
+ * Created with JetBrains PhpStorm.
+ * User: layenlin
+ * Date: 13-12-13
+ * Time: 上午10:31
+ * To change this template use File | Settings | File Templates.
+ */
+define("util/uri", [], function(require, exports, module) {
+    /**@module util/uri */
+    /**
+	 * 获取绝对路径
+	 * @param {string} path 相对路径
+	 * @param {string} target 参考路径
+	 * @return {string} 绝对路径
+	 * @example
+	 * getRealPath('./../file.txt', 'http://vip.qq.com/a/b/c?name=value') : http://vip.qq.com/a/b/file.txt
+	 */
+    exports.getRealPath = function(path, target) {
+        var p = 0, arr = [];
+        /* Save the root, if not given */
+        var r = target || window.location.href;
+        /* Avoid input failures */
+        path = (path + "").replace("\\", "/");
+        /* Check if there's a port in path (like 'http://') */
+        if (path.indexOf("://") !== -1) {
+            p = 1;
+        }
+        /* Ok, there's not a port in path, so let's take the root */
+        if (!p) {
+            path = r.substring(0, r.lastIndexOf("/") + 1) + path;
+        }
+        /* Explode the given path into it's parts */
+        arr = path.split("/");
+        /* The path is an array now */
+        path = [];
+        /* Foreach part make a check */
+        for (var k in arr) {
+            /* This is'nt really interesting */
+            if (arr[k] == ".") {
+                continue;
+            }
+            /* This reduces the realpath */
+            if (arr[k] == "..") {
+                /* But only if there more than 3 parts in the path-array.
+				 * The first three parts are for the uri */
+                if (path.length > 3) {
+                    path.pop();
+                }
+            } else {
+                /* But only if the part is not empty or the uri
+				 * (the first three parts ar needed) was not
+				 * saved */
+                if (path.length < 2 || arr[k] !== "") {
+                    path.push(arr[k]);
+                }
+            }
+        }
+        /* Returns the absloute path as a string */
+        return path.join("/");
+    };
+    /**
+	 * 解析url，返回组成部分
+	 * @param {string} url url
+	 * @return {object} 组成部分，参考window.location
+	 * @example
+	 * parseUrl('http://www.qq.com:80/?name=value#hash') : {
+	 *     hash: "#hash",
+	 *     host: "www.qq.com",
+	 *     hostname: "www.qq.com",
+	 *     href: "http://www.qq.com/?name=value#hash",
+	 *     pathname: "/",
+	 *     port: "80",
+	 *     protocol: "http:",
+	 *     search: "?name=value"
+	 * };
+	 */
+    exports.parseUrl = function(url) {
+        if (/^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/.test(url)) {
+            var host = RegExp.$4.split(":");
+            return {
+                protocol: RegExp.$1,
+                host: RegExp.$4,
+                hostname: host[0],
+                port: host[1] || "",
+                pathname: RegExp.$5,
+                search: RegExp.$6,
+                hash: RegExp.$8,
+                href: url
+            };
+        } else {
+            return null;
+        }
+    };
+    /**
+	 * 将query string解析object
+	 * @param {string} queryString url
+	 * @return {object} object
+	 * @example
+	 * parseQueryString('name=value&hash[a]=A&hash[b]=B') : {
+	 *     "name": "value",
+	 *     "hash": {
+	 *         "a": "A",
+	 *         "b": "B"
+	 *     }
+	 * };
+	 */
+    var parseQueryStringCache = {};
+    exports.parseQueryString = function(queryString) {
+        var queryString = String(queryString).replace(/^[\?&#]/, "").replace(/&$/, "");
+        if (parseQueryStringCache[queryString]) {
+            return parseQueryStringCache[queryString];
+        }
+        var strArr = queryString.split("&"), sal = strArr.length, i, j, ct, p, lastObj, obj, lastIter, undef, chr, tmp, key, value, postLeftBracketPos, keys, keysLen, fixStr = function(str) {
+            return decodeURIComponent(str.replace(/\+/g, "%20"));
+        }, array = {};
+        for (i = 0; i < sal; i++) {
+            tmp = strArr[i].split("=");
+            key = fixStr(tmp[0]);
+            value = tmp.length < 2 ? "" : fixStr(tmp[1]);
+            while (key.charAt(0) === " ") {
+                key = key.slice(1);
+            }
+            if (key.indexOf("\0") > -1) {
+                key = key.slice(0, key.indexOf("\0"));
+            }
+            if (key && key.charAt(0) !== "[") {
+                keys = [];
+                postLeftBracketPos = 0;
+                for (j = 0; j < key.length; j++) {
+                    if (key.charAt(j) === "[" && !postLeftBracketPos) {
+                        postLeftBracketPos = j + 1;
+                    } else if (key.charAt(j) === "]") {
+                        if (postLeftBracketPos) {
+                            if (!keys.length) {
+                                keys.push(key.slice(0, postLeftBracketPos - 1));
+                            }
+                            keys.push(key.substr(postLeftBracketPos, j - postLeftBracketPos));
+                            postLeftBracketPos = 0;
+                            if (key.charAt(j + 1) !== "[") {
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (!keys.length) {
+                    keys = [ key ];
+                }
+                for (j = 0; j < keys[0].length; j++) {
+                    chr = keys[0].charAt(j);
+                    if (chr === " " || chr === "." || chr === "[") {
+                        keys[0] = keys[0].substr(0, j) + "_" + keys[0].substr(j + 1);
+                    }
+                    if (chr === "[") {
+                        break;
+                    }
+                }
+                obj = array;
+                for (j = 0, keysLen = keys.length; j < keysLen; j++) {
+                    key = keys[j].replace(/^['"]/, "").replace(/['"]$/, "");
+                    lastIter = j !== keys.length - 1;
+                    lastObj = obj;
+                    if (key !== "" && key !== " " || j === 0) {
+                        if (obj[key] === undef) {
+                            obj[key] = {};
+                        }
+                        obj = obj[key];
+                    } else {
+                        // To insert new dimension
+                        ct = -1;
+                        for (p in obj) {
+                            if (obj.hasOwnProperty(p)) {
+                                if (+p > ct && p.match(/^\d+$/g)) {
+                                    ct = +p;
+                                }
+                            }
+                        }
+                        key = ct + 1;
+                    }
+                }
+                lastObj[key] = value;
+            }
+        }
+        return parseQueryStringCache[queryString] = array;
     };
 });
 

@@ -7,6 +7,7 @@ define(function(require, exports, module){
     var config = require('page/flow/config').data;
     var tpl = require('util/tpl')
     var timeparser = require('util/timeparser')
+    var search = require('net/search')
     var tmpl = {
         main:SEARCH.MAIN,
     }
@@ -36,6 +37,20 @@ define(function(require, exports, module){
             var input_endtime = $("#txtendtime").val();
             var input_select_credit = $("#selcredit").val();
             var input_credit = $("#txtcredit").val();
+            var Obj = {
+                "txtsubject": input_subject,
+                "txtnumber" : input_select_number,
+                "selnum":input_number,
+                "selllevel": input_select_level,
+                "check_box_id1": input_open==undefined?"0":"1",
+                "txtstarttime": input_starttime,
+                "txtendtime": input_endtime
+            }
+            var success = function (json) {
+                var data = json;
+                alert('get!');
+            };
+            search.getCourseList(Obj,success);
             // $("mydata").html(input_subject);
         }
     };
