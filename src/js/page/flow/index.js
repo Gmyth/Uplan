@@ -102,9 +102,6 @@ define(function(require, exports, module){
             }
         }
     }
-    exports.FreshForHover = function(){
-
-    }
     /*the combination of needed action function*/
     var actionList={
         "start":function(tar){

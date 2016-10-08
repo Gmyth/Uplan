@@ -225,7 +225,6 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
             }
         }
     };
-    exports.FreshForHover = function() {};
     /*the combination of needed action function*/
     var actionList = {
         start: function(tar) {
