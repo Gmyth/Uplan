@@ -9,7 +9,7 @@
                 <optgroup label="course number">
                     <option value="0">is exactly</option>
                     <option value="1">greater than</option>
-                    <option value="2">less than</option>
+                    <option value="2">less or equal</option>
                 </optgroup>
             </select>
 
@@ -34,8 +34,8 @@
                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                     <select id="sellevel" class="form-control1 select1 select-primary select-block">
                                         <optgroup label="course career">
-                                            <option value="0">graduate</option>
-                                            <option value="1">undergraduate</option>
+                                            <option value="0">undergraduate</option>
+                                            <option value="1">graduate</option>
                                         </optgroup>
                                     </select>
                                 </li>
