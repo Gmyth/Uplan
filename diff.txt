@@ -1,0 +1,73 @@
+diff --git a/uplan_back/app.js b/uplan_back/app.js
+index 75881b8..2c6aa58 100644
+--- a/uplan_back/app.js
++++ b/uplan_back/app.js
+@@ -12,7 +12,7 @@ var users = require('./routes/users');
+ //var apps = require('./app/app');
+ var courses = require('./routes/courses');
+ var app = express();
+-var port = process.env.PORT || 3002;
++var port = process.env.PORT || 3000;
+ var http =require('http');
+ var cors = require('cors');
+ 
+@@ -145,5 +145,4 @@ if('development' === app.get('env')){
+ 
+ 
+ 
+-app.listen(port);
+-module.exports = app;
++app.listen(port);
+\ No newline at end of file
+diff --git a/uplan_back/dest/js/business.js b/uplan_back/dest/js/business.js
+index 0101656..e66bbd7 100755
+--- a/uplan_back/dest/js/business.js
++++ b/uplan_back/dest/js/business.js
+@@ -18,7 +18,7 @@ define("net/search", [ "lib/jquery" ], function factory(require, exports, module
+          */
+     exports.getCourseList = function(Obj, callback) {
+         //var url  = pub.parseUrl("/application/add ");
+-        var url = "localhost:3002/get_courses_info";
++        var url = "./get_courses_info";
+         var data = {
+             txtsubject: Obj.txtsubject,
+             txtnumber: Obj.txtnumber,
+diff --git a/uplan_back/dest/js/net/search.js b/uplan_back/dest/js/net/search.js
+index 0101656..e66bbd7 100755
+--- a/uplan_back/dest/js/net/search.js
++++ b/uplan_back/dest/js/net/search.js
+@@ -18,7 +18,7 @@ define("net/search", [ "lib/jquery" ], function factory(require, exports, module
+          */
+     exports.getCourseList = function(Obj, callback) {
+         //var url  = pub.parseUrl("/application/add ");
+-        var url = "localhost:3002/get_courses_info";
++        var url = "./get_courses_info";
+         var data = {
+             txtsubject: Obj.txtsubject,
+             txtnumber: Obj.txtnumber,
+diff --git a/uplan_back/dest/js/page.js b/uplan_back/dest/js/page.js
+index d536143..1daca16 100755
+--- a/uplan_back/dest/js/page.js
++++ b/uplan_back/dest/js/page.js
+@@ -301,7 +301,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
+             };
+             $.ajax({
+                 method: "GET",
+-                url: "localhost:3002/get_courses_info",
++                url: "./get_courses_info",
+                 data: Obj
+             }).done(function(data) {
+                 alert("sadaskdaklsj");
+diff --git a/uplan_back/dest/js/page/search/index.js b/uplan_back/dest/js/page/search/index.js
+index f2e3648..93dc6a8 100755
+--- a/uplan_back/dest/js/page/search/index.js
++++ b/uplan_back/dest/js/page/search/index.js
+@@ -42,7 +42,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
+             };
+             $.ajax({
+                 method: "GET",
+-                url: "localhost:3002/get_courses_info",
++                url: "./get_courses_info",
+                 dataType: "jsonp",
+             }).done(function(data) {
+                 alert("sadaskdaklsj");
