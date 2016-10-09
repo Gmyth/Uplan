@@ -301,7 +301,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
             };
             $.ajax({
                 method: "GET",
-                url: "localhost:3002/get_courses_info",
+                url: "./get_courses_info",
                 data: Obj
             }).done(function(data) {
                 alert("sadaskdaklsj");

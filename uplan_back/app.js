@@ -12,7 +12,7 @@ var users = require('./routes/users');
 //var apps = require('./app/app');
 var courses = require('./routes/courses');
 var app = express();
-var port = process.env.PORT || 3002;
+var port = process.env.PORT || 3000;
 var http =require('http');
 var cors = require('cors');
 
@@ -134,7 +134,7 @@ app.use(function(err, req, res, next) {
 // Use native Node promises
 
 
-
+//ssss
 app.use(require('connect-multiparty'));
 if('development' === app.get('env')){
     app.set('showStackEror', true);
@@ -146,4 +146,3 @@ if('development' === app.get('env')){
 
 
 app.listen(port);
-module.exports = app;
