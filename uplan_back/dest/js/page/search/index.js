@@ -39,7 +39,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 check_box_id1: input_open == undefined ? "0" : "1",
                 txtstarttime: input_starttime,
                 txtendtime: input_endtime
-            };
+            };//sadasda
             $.ajax({
                 method: "GET",
                 url: "./get_courses_info",
