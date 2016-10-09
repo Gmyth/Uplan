@@ -13,8 +13,13 @@ var User = require('../models/user.js');
   //  if (err) // ...
   //      console.log('meow');
 //});
+router.get('/signup',function (req,res) {
+    res.render('signup', {title: 'register page'});
+});
 router.post('/signup',function(req,res,next){
     var _user = req.body.user;
+    var name = _user.name;
+    console.log(name);
     User.findOne({name: _user.name},  function(err, user) {
         if (err) {
             console.log(err)
@@ -29,7 +34,7 @@ router.post('/signup',function(req,res,next){
                 if (err) {
                     console.log(err)
                 }
-
+                //res.redirect(name);
                 res.json(user);
             })
         }
@@ -44,13 +49,15 @@ router.post('/signup',function(req,res,next){
     //})
 
 
-
+router.get('/signin', function (req, res) {
+   res.render('signin/:name', {title:'login page'});
+ });
 router.post('/signin', function (req, res) {
     var _user = req.body.user;
     var name = _user.name;
     var password = _user.password;
 
-    User.findOne({name:name},function (err,user) {
+    User.findOne({name:name}).populate('course_taken').exec(function (err,user) {
         if(err){
             console.log(err);
         }
@@ -63,8 +70,10 @@ router.post('/signin', function (req, res) {
                 console.log(err);
             }
             if(isMatch){
+
+                res.json(user);
                  // if get matched password then save in to memory
-                return res.redirect('/');
+
             }
             else{
                 res.end('<h1>Password is not matched</h1>');
@@ -77,7 +86,11 @@ router.post('/signin', function (req, res) {
 
     })
 
+
+
 });
+
+
 
 
 
