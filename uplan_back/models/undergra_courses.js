@@ -5,7 +5,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 var ObjectId = Schema.Types.ObjectId
 
-var CourseSchema = new Schema({
+var undergra_CourseSchema = new Schema({
     status:String,
     Room:String,
     Title:String,
@@ -24,10 +24,10 @@ var CourseSchema = new Schema({
         type:String
     }
 },{
-    collection:'cse_courses'
+    collection:'under_graduate_courses'
 });
-CourseSchema.statics = {
-    fetch: function(cb) {3
+undergra_CourseSchema.statics = {
+    fetch: function(cb) {
         return this
             .find({})
             .sort('Class')
@@ -45,7 +45,7 @@ CourseSchema.statics = {
 
 
 
-CourseSchema.search = function (req, res, callback) {
+undergra_CourseSchema.search = function (req, res, callback) {
     db.get().collection('cse_courses',function (err,collection) {
         if(err){
             return callback(err);
@@ -66,5 +66,10 @@ CourseSchema.search = function (req, res, callback) {
     })
 
 };
-var Course = mongoose.model('Course', CourseSchema);
-module.exports = Course;
+
+
+
+
+var undergra = mongoose.model('under_gra', undergra_CourseSchema);
+
+module.exports = undergra;
