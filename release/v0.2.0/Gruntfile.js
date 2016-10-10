@@ -41,6 +41,7 @@ module.exports = function (grunt) {
             all: ['public/js/*.js', 'test/**/*.js', 'app/**/*.js']
         },
 
+<<<<<<< HEAD
         nodemon:{
             dev:{
                 options:{
@@ -58,6 +59,9 @@ module.exports = function (grunt) {
                 }
             }
         },
+=======
+
+>>>>>>> Dylan
         concurrent:{
             tasks: ['nodemon','watch'],
             options:{
