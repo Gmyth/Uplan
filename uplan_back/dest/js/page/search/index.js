@@ -7,6 +7,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     var tpl = require("util/tpl");
     var timeparser = require("util/timeparser");
     var search = require("net/search");
+    var test = require("widget/page.js");
     var tmpl = {
         main: SEARCH.MAIN
     };
@@ -45,7 +46,8 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 url: "./get_courses_info",
                 dataType: "jsonp",
             }).done(function(data) {
-                alert("sadaskdaklsj");
+                var flow = require('page/sublist/index');
+                flow.ShowCourse(data);
             });
         }
     };
