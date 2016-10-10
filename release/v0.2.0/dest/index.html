@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+<head>
+    <meta charset="utf-8">
+    <script>
+        _timePoints = [new Date()];
+    </script>
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="css/flat-ui.css" >
+    <link rel="stylesheet" type="text/css" href="css/style.css" >
+    <link rel="stylesheet" type="text/css" href="css/style-2.css" >
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5" />
+
+    <title>UPlan</title>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+    <script src="./js/vendor/html5shiv.js"></script>
+    <script src="./js/vendor/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body style="height: 100%;">
+<div class=" demo-row" style="width: 100%;" >
+        <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" href="#">UPlan</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="#fakelink">Menu Item<span class="navbar-unread">1</span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages <b class="caret"></b></a>
+                        <span class="dropdown-arrow"></span>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#fakelink">About Us</a></li>
+                </ul>
+                <form class="navbar-form navbar-right" action="#" role="search">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                            <span class="input-group-btn">
+                      <button type="submit" class="btn"><span class="fui-search"></span></button>
+                    </span>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </nav><!-- /navbar -->
+</div>
+<div class="main_container" style="height: 85%;"></div>
+<div class="sub_box" style="height: 85%;">
+    <!--<div class="search_box" style="height: 29%;">-->
+    <div class="search_box">
+        <p class="Uheader" style="height: 28%;">
+            <span class="fui-search" style="color:#1abc9c;position: relative;top: 1px;"></span>
+            &nbsp;Course Search &nbsp;
+        </p>
+        <div class="search_sub_box"></div>
+        <div style=" border-top: 2px solid #eee;"></div>
+    </div>
+    <div class="result_box" style="height: 71%;">
+        <p class="Uheader">
+            <span class="fui-list-numbered" style="color:#1abc9c;position: relative;top: 1px;"></span>
+            &nbsp;Course List &nbsp;
+        </p>
+        <div style=" border-top: 2px solid #eee;"></div>
+        <div class="sub_list" style="height: 93%;">
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script src="./js/sea.js"></script>
+<script src="./js/sea-config.js"></script>
+<script src="./js/lib.js"></script>
+<script src="./js/business.js"></script>
+<script src="./js/page.js"></script>
+<script type="text/javascript">
+    seajs.config({
+        alias : {
+            '$' : 'lib/jquery',
+        }
+    });
+
+    function start () {
+        seajs.use(["lib/jquery","page/controller/module"], function($,index) {
+//            if(Login.init()){
+//                return;
+//            }
+//            Login.fetchUser(function(data){
+//                ns.getUser(Login.user);
+//                index.init(Login.user);
+//                var uPanel=$("#dropdown_user");
+//                if(data && data["LoginName"]){
+//                    uPanel.find("#imgAvatar").attr("src","http://dayu.oa.com/avatars/"+data["LoginName"]+"/profile.jpg");
+//                    uPanel.find("#username").html(data["LoginName"]+"("+data["ChineseName"]+")");
+//                    uPanel.show();
+//                }
+//            });
+//            $("#logout").click(function(){
+//                Login.logout();
+//            });
+            index.init();
+        });
+    }
+    start();
+</script>
+</html>
