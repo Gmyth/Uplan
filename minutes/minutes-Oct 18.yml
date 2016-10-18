@@ -7,7 +7,7 @@ task_progress: [ # All group members must be included here even if they haven't 
   {ubit: <haoyuguo>, progress: start working on register page, fix a few bugs  for course list. },
   {ubit: <kaiyukan>, progress: start working on login page},
   {ubit: <enzeqian>, progress: start building course searching API, add more spcific search conditions such as "meeting time", "course number greater than" etc.},
-  {ubit: <cwang46>, progress: },
+  {ubit: <cwang46>, progress: start building login API, add oAuth functionallity for gmail, facebook, etc},
   ]
 issues: []
 Notes:  |
