@@ -60,6 +60,16 @@ router.get('/',function (req,res) {
      })
 
     }
+    //  open undergra exact
+    else if(sel_condition == "1" && course_level == "0" && check_open=="1"){
+        under_Course.find({"Course": course , "status" : "Open"},function (err,result) {
+            if(err){
+                console.log(err)
+            }
+            res.json(result);
+        })
+
+    }
     // search exactly gra course
     else if ( sel_condition == "1" && course_level == "1"){
 
