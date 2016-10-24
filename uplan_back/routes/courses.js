@@ -1,5 +1,6 @@
 /**
  * Created by dylanwang on 16/9/27.
+ * Edited by EnzeQian
  */
 var express = require('express');
 var router = express.Router();
@@ -44,6 +45,8 @@ router.get('/',function (req,res) {
     var sel_condition = req.query.selnum;
     var course_level = req.query.selllevel;
     var check_open = req.query.check_box_id1;
+    var start_condition=req.query.selstart;
+    var end_condition=req.query.selend;
     var txt_start_time = req.query.txtstarttime;
     var txt_end_time =req.query.txtendtime;
     var newrexcourse = RegExp(courses_name, "i");
@@ -53,7 +56,11 @@ router.get('/',function (req,res) {
     console.log(req.query);
     if(sel_condition == "1" && course_level == "0"){
         under_Course.find({"Course": course},function (err,result) {
-         if(err){
+        var oo =[];
+        if(txt_start_time!=null && txt_end_time!=null){
+            
+        }
+            if(err){
              console.log(err)
          }
          res.json(result);
@@ -71,7 +78,7 @@ router.get('/',function (req,res) {
 
     }
     // search exactly gra course
-    else if ( sel_condition == "1" && course_level == "1"){
+    /*else if ( sel_condition == "1" && course_level == "1"){
 
         gra_Course.find({"Course": course},function (err,result) {
             if(err){
@@ -79,7 +86,7 @@ router.get('/',function (req,res) {
             }
             res.json(result);
         })
-    }
+    } */
 
     //search less than under
     else if (sel_condition == "2"&& course_level == "0"){
@@ -130,7 +137,7 @@ router.get('/',function (req,res) {
 
 
     //search less than gra
-    else if (sel_condition == "2"&& course_level == "1"){
+    /*else if (sel_condition == "2"&& course_level == "1"){
         gra_Course.find(
             {"Course": newrexcourse},function (err,result) {
                 var oo = [];
@@ -151,7 +158,7 @@ router.get('/',function (req,res) {
             })
 
 
-    }
+    } */
 
     else if (sel_condition == "3"&& course_level == "0"){
         under_Course.find(
@@ -175,7 +182,7 @@ router.get('/',function (req,res) {
 
     }
     //search greater than gra
-    else if (sel_condition == "3"&& course_level == "1"){
+   /* else if (sel_condition == "3"&& course_level == "1"){
 
         gra_Course.find(
             {"Course": newrexcourse},function (err,result) {
@@ -195,7 +202,7 @@ router.get('/',function (req,res) {
                 }
                 res.json(oo);
             })
-    }
+    } */
     //under_Course.find({})
 });
 module.exports =router;
