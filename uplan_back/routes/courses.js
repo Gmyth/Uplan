@@ -7,7 +7,7 @@ var router = express.Router();
 var mongoose =require('mongoose');
 var under_Course = require('../models/undergra_courses');
 var gra_Course = require('../models/gradua_courses');
-
+//edit for testing github
 //router.get('/', function (req, res) {
    //var name =req.body.name;
     //res.render('modules/'+name);
