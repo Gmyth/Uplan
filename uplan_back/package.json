@@ -24,7 +24,6 @@
   },
   "devDependencies": {
     "bcryptjs": "^2.3.0",
-    "cors": "^2.8.1",
     "dyson": "^0.10.0",
     "express-session": "^1.14.1",
     "grunt": "^1.0.1",

@@ -19,11 +19,7 @@ var gra_Course = require('../models/gradua_courses');
 *selnum: 1 is exactly,2 less than, 3 greater than -- string
 *txtnumber: course number
 *selllevel : 0 graduate 1 undergraduate
-<<<<<<< HEAD
 *check_box_id1 : open close
-=======
-*check_box_id1 : open 1 close 0
->>>>>>> Dylan
 *sel_start : time - time stamp format or json
 *txtstarttime 13:00
 * selend
@@ -47,11 +43,7 @@ router.get('/',function (req,res) {
     var course_number =req.query.txtnumber;
     var sel_condition = req.query.selnum;
     var course_level = req.query.selllevel;
-<<<<<<< HEAD
     var check_box_id1 = req.query.check_box_id1;
-=======
-    var check_open = req.query.check_box_id1;
->>>>>>> Dylan
     var txt_start_time = req.query.txtstarttime;
     var txt_end_time =req.query.txtendtime;
     var newrexcourse = RegExp(courses_name, "i");

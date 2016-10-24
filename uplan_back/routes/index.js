@@ -4,11 +4,10 @@ var router = express.Router();
 /* GET home page. */
 
 
-router.get('/', function(request, response) {
-  //var readFile = "/dest/index.html";
-  //var fileContents = fs.readFileSync(readFile);
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+  //res.send("Hello world");
 
-  response.sendFile('index.html');
 });
 
 // router.get('/signup',function (req,res) {
