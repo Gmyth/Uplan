@@ -103,6 +103,32 @@ router.get('/',function (req,res) {
         })
 
     }
+    //less than undergra course open
+    else if (sel_condition == "2"&& course_level == "0" && check_open=="1"){
+        under_Course.find(
+            {"Course": newrexcourse , "status": "Open"},function (err,result) {
+                var oo = [];
+
+                for(var i = 0;i<result.length;i++){
+                    var onlydigit = /\d/;
+                    var excute = onlydigit.exec(result[i].Course);
+                    // console.log(result[i].Course);
+                    if(excute[0] < course_number){
+                        oo.push(result[i]);
+                    }
+                }
+
+                if(err){
+                    console.log(err)
+                }
+                res.json(oo);
+            })
+
+    }
+
+
+
+
     //search less than gra
     else if (sel_condition == "2"&& course_level == "1"){
         gra_Course.find(
