@@ -21,10 +21,16 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     };
     exports.init = function() {
         $(".sub_list").html(tpl.get(tmpl.main));
-        ShowCourse();
+        //ShowCourse1();
         _bindEvent();
     };
-    var ShowCourse = function() {
+    exports.ShowCourse = function(data) {
+        DataParse(data);
+        $(".list-block").html(tpl.get(tmpl.course, {
+            CourseList: CourseList
+        }));
+    };
+    var ShowCourse1 = function() {
         DataParse(config);
         $(".list-block").html(tpl.get(tmpl.course, {
             CourseList: CourseList
@@ -51,7 +57,7 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     var SignIn = function(element) {
         /*check single elemnt*/
         var name = element.Course.replace(/\s+/g, "");
-        if (element.Type == "lEC" || element.Type == "SEM" || element.Type == "TUT") {
+        if (element.Type == "LEC" || element.Type == "SEM" || element.Type == "TUT") {
             subList[name].push(element);
         } else if (element.Type == "LAB" || element.Type == "REC") {
             var Section = element.Section.replace(/[0-9]/g, "");

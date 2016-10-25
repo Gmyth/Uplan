@@ -1,0 +1,13 @@
+date: October 24, 2016
+meeting_type: group # meeting_type can "group", "ta", or "instructor"
+attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
+absent: []
+excused_absences: []
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <haoyuguo>, progress: finished register page, working on transition web page between login and main page },
+  {ubit: <kaiyukan>, progress: still working on the login page almost finished},
+  {ubit: <enzeqian>, progress: already built many search condition APIs, the only problem is that I'm not sure about how to implment the comparation between the times.(like comparing am and pm)},
+  {ubit: <cwang46>, progress: remodified the user data structure with future use. Constructing the use of session when authenrizing the login& singnup},
+  ]
+issues: []
+Notes:  |

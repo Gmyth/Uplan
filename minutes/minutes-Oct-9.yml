@@ -1,0 +1,13 @@
+date: October 9, 2016
+meeting_type: group # meeting_type can "group", "ta", or "instructor"
+attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
+absent: []
+excused_absences: []
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <haoyuguo>, progress: finished Course list fornt end part, write api to connect with back end},
+  {ubit: <kaiyukan>, progress: Add the advanced search button and it can pop up a small window which contains all advance search option.},
+  {ubit: <enzeqian>, progress: Finish Userlogin page,commit to feature-userlogin},
+  {ubit: <cwang46>, progress: Course List back end part finished, basic search function. connect the server with front end web},
+  ]
+issues: [Server connection exist some index and config issue, this is the first priority issue need to solve in the future]
+Notes:  | We have a meeting today before submission of sprint 2. We test our code, record a demo video and upload to Youtube. One day after last meeting, so the progress remains same.  # Anything covered in the meeting that doesn't fit elsewhere.

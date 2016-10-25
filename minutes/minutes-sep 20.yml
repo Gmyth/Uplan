@@ -1,0 +1,16 @@
+date: September 20, 2016
+meeting_type: ta # meeting_type can "group", "ta", or "instructor"
+attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
+absent: []
+excused_absences: []
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <haoyuguo>, progress: the resolution of home page can change resposively,keep watching on this feature. And working on course list part},
+  {ubit: <kaiyukan>, progress: redo the search area cause when i try to merge search area with schedule table. it has some display issue},
+  {ubit: <enzeqian>, progress: got CSE course information by using Free scraping software. got data first for testing, now working on my own scraper code},
+  {ubit: <cwang46>, progress: Set the scripted test data into Mongodb database. Setting the correct collection. now working on the building sample API's},
+  ]
+issues: [ # Post any issues here. Issues that cannot be addressed by the group should especially be included
+  {ubit: <haoyuguo>, issue: the resolution of home page can statisfy with are not reflexible enough<SOLVED>},
+  ]
+Notes:  | # Anything covered in the meeting that doesn't fit elsewhere.
+  

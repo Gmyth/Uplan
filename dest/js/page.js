@@ -7,7 +7,8 @@
 define("page/controller/config", [], function(require, exports, module) {
     exports.map = {
         flow: "page/flow/index",
-        sublist: "page/sublist/index"
+        sublist: "page/sublist/index",
+        search: "page/search/index"
     };
 });
 
@@ -39,6 +40,9 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
             index.init();
         });
         require.async(tabMap["sublist"], function(index) {
+            index.init();
+        });
+        require.async(tabMap["search"], function(index) {
             index.init();
         });
     };
@@ -221,7 +225,6 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
             }
         }
     };
-    exports.FreshForHover = function() {};
     /*the combination of needed action function*/
     var actionList = {
         start: function(tar) {
@@ -251,6 +254,80 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
                 if ($.isFunction(action)) action(tar);
             }
         });
+    };
+});
+
+/**
+ * Created by kaiyu on 9/26/16.
+ */
+define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/search", "util/net", "page/sublist/index", "page/sublist/config", "page/flow/index" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var config = require("page/flow/config").data;
+    var tpl = require("util/tpl");
+    var timeparser = require("util/timeparser");
+    var search = require("net/search");
+    var sublist = require("page/sublist/index");
+    var tmpl = {
+        main: '    <ul style="list-style-type:none; font-size: small;">        <li style="color:white">Subject            <input type="text" id="txtsubject" class="form-control input-s" placeholder="Enter here"/>        </li>        <li style="color:white">Course Number            <select id="selnumber" class="form-control1 select1 select-primary select-block">                <optgroup label="course number">                    <option value="0">is exactly</option>                    <option value="1">greater than</option>                    <option value="2">less or equal</option>                </optgroup>            </select>            <input type="text" id="txtnumber" class="form-control input-s" placeholder="Enter here"/>        </li>        <li>            <a data-toggle="modal" class="hoverable" data-target=".bd-example-modal-sm">advanced option</a>            <button class="btn1 btn-default btn1-wide1" value="search" data-action="storedata">search</button>        </li>    </ul>    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"         aria-hidden="true">        <div class="modal-dialog modal-sm">            <div class="modal-header modal_width modal_background_color">                <p style="text-align:center; margin-bottom:auto"><b>advanced search option</b></p>            </div>            <div class="modal-body modal_width modal_background_color">                <div>                    <ul style="list-style-type:none">                        <li><b style="position:relative; top: 5px" ;>Course Career</b>                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                            <select id="sellevel" class="form-control1 select1 select-primary select-block">                                <optgroup label="course career">                                    <option value="0">undergraduate</option>                                    <option value="1">graduate</option>                                </optgroup>                            </select>                        </li>                        <li>                            <div class="span">                                <label1 class="checkbox1" for="checkbox1">                                    <input style="margin-right: 5px;" type="checkbox" value="checked"                                           id="checkbox1">                                    <b>Show Open Classes Only</b>                                </label1>                            </div>                        </li>                        <li><b>Meeting Start Time</b>                            <select id="selstart" class="form-control1 select1 select-primary select-block">                                <optgroup label="meeting start time">                                    <option value="0">is exactly</option>                                    <option value="1">greater than</option>                                    <option value="2">less than</option>                                </optgroup>                            </select>                            <input type="text" id="txtstarttime" class="form-control input-s"                                   placeholder="Enter here"/>                        </li>                        <li><b>Meeting End Time</b>                            &nbsp&nbsp                            <select id="selend" class="form-control1 select1 select-primary select-block">                                <optgroup label="meeting end time">                                    <option value="0">is exactly</option>                                    <option value="1">greater than</option>                                    <option value="2">less than</option>                                </optgroup>                            </select>                            <input type="text" id="txtendtime" class="form-control input-s"                                   placeholder="Enter here"/>                        </li>                        <li><b>Course Credits</b>                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                            <select id="selcredit" class="form-control1 select1 select-primary select-block">                                <optgroup label="course credit">                                    <option value="0">is exactly</option>                                    <option value="1">greater than</option>                                    <option value="2">less than</option>                                </optgroup>                            </select>                            <input type="text" id="txtcredit" class="form-control input-s"                                   placeholder="Enter here"/>                        </li>                    </ul>                </div>            </div>            <div class="modal-footer modal_width modal_background_color">                <button type="button" class="btn1 btn-default btn1-wide2" data-dismiss="modal">Close</button>                <button type="button" class="btn1 btn-default btn1-wide2">Save changes</button>            </div>        </div>    </div>'
+    };
+    /*config set*/
+    var timeStart = 8;
+    var timeEnd = 21;
+    exports.init = function() {
+        $(".search_sub_box").html(tpl.get(tmpl.main));
+    };
+    /*the combination of needed action function*/
+    var actionList = {
+        start: function(tar) {},
+        storedata: function(tar) {
+            var input_subject = $("#txtsubject").val();
+            var input_select_number = $("#selnumber").val();
+            var input_number = $("#txtnumber").val();
+            var input_select_level = $("#sellevel").val();
+            var input_open = $("#checkbox1:checked").val();
+            var input_select_start = $("#selstart").val();
+            var input_starttime = $("#txtstarttime").val();
+            var input_select_end = $("#selend").val();
+            var input_endtime = $("#txtendtime").val();
+            var input_select_credit = $("#selcredit").val();
+            var input_credit = $("#txtcredit").val();
+            var Obj = {
+                txtsubject: input_subject,
+                txtnumber: input_select_number,
+                selnum: input_number,
+                selllevel: input_select_level,
+                check_box_id1: input_open == undefined ? "0" : "1",
+                txtstarttime: input_starttime,
+                txtendtime: input_endtime
+            };
+            var success = function(data) {
+                // callback
+                sublist.ShowCourse(data);
+            };
+            search.getCourseList(Obj, success);
+            $.ajax({
+                method: "GET",
+                url: "./get_courses_info",
+                data: Obj
+            }).done(success);
+        }
+    };
+    /*bind the button input control event*/
+    var _bindEvent = function() {
+        $main = $(".search_sub_box");
+        $main.off();
+        $main.on("click", "[data-action]", function() {
+            if ($(this).attr("disabled") != "disabled") {
+                var actionName = $(this).data("action");
+                var action = actionList[actionName];
+                var tar = this;
+                if ($.isFunction(action)) action(tar);
+            }
+        });
+    };
+    exports.init = function() {
+        $(".search_sub_box").html(tpl.get(tmpl.main));
+        _bindEvent();
     };
 });
 
@@ -550,10 +627,16 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     };
     exports.init = function() {
         $(".sub_list").html(tpl.get(tmpl.main));
-        ShowCourse();
+        //ShowCourse1();
         _bindEvent();
     };
-    var ShowCourse = function() {
+    exports.ShowCourse = function(data) {
+        DataParse(data);
+        $(".list-block").html(tpl.get(tmpl.course, {
+            CourseList: CourseList
+        }));
+    };
+    var ShowCourse1 = function() {
         DataParse(config);
         $(".list-block").html(tpl.get(tmpl.course, {
             CourseList: CourseList
@@ -580,7 +663,7 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     var SignIn = function(element) {
         /*check single elemnt*/
         var name = element.Course.replace(/\s+/g, "");
-        if (element.Type == "lEC" || element.Type == "SEM" || element.Type == "TUT") {
+        if (element.Type == "LEC" || element.Type == "SEM" || element.Type == "TUT") {
             subList[name].push(element);
         } else if (element.Type == "LAB" || element.Type == "REC") {
             var Section = element.Section.replace(/[0-9]/g, "");
