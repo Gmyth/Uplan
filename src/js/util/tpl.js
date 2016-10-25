@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 	_private.cache = {};
 
 	exports.get = function (str, data, env) {
-		if( !str ){return;} 
+		if( !str ){return;}
 		var fn = !/[^\w\-\.:]/.test(str)
 			? _private.cache[str] = _private.cache[str] || this.get(document.getElementById(str).innerHTML)
 			: function (data, env) {
@@ -19,14 +19,14 @@ define(function(require, exports, module) {
 
 		fn.code = fn.code || "var $parts=[]; $parts.push('"
 			+ str
-			.replace(/\\/g, '\\\\') 
-			.replace(/[\r\t\n]/g, " ") 
-			.split("<%").join("\t") 
+			.replace(/\\/g, '\\\\')
+			.replace(/[\r\t\n]/g, " ")
+			.split("<%").join("\t")
 			.replace(/(^|%>)[^\t]*/g, function(str) { return str.replace(/'/g, "\\'"); })
 			.replace(/\t=(.*?)%>/g, "',$1,'")
-			.split("\t").join("');") 
-			.split("%>").join("$parts.push('") 
-			+ "'); return $parts.join('');"; 
+			.split("\t").join("');")
+			.split("%>").join("$parts.push('")
+			+ "'); return $parts.join('');";
 
 		return data ? fn(data, env) : fn;
 	};

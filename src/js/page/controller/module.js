@@ -29,5 +29,8 @@ define(function(require, exports, module){
         require.async( tabMap["sublist"] , function( index ){
             index.init();
         });
+        require.async( tabMap["search"] , function( index ){
+            index.init();
+        });
     };
 });
