@@ -23,7 +23,7 @@ define(function(require, exports, module){
     /*bind the button input control event*/
     PasswordCheck= function(p1,p2){
         if(p1===p2){
-            $('#password_r_info').html('PASSWORD  CONFIRM &nbsp; &nbsp; &nbsp;<span class="fui-check-circle" style=" color: #2ECC71;"></span>&nbsp;<b class="is_success">PERFECT PASSWORD</b>');
+            $('#password_r_info').html('PASSWORD  CONFIRM &nbsp; &nbsp; &nbsp;<span class="fui-check-circle" style=" color: #2ECC71;"></span>&nbsp;<b class="is_success">MATCHED</b>');
             $('#PASSWORD_R').addClass("is_success");
             $('#PASSWORD_R').removeClass("is_error");
         }else{
@@ -32,7 +32,7 @@ define(function(require, exports, module){
                 $('#PASSWORD_R').removeClass("is_success");
                 $('#PASSWORD_R').removeClass("is_error");
             }else {
-                $('#password_r_info').html('PASSWORD  CONFIRM &nbsp; &nbsp; &nbsp;<span class="fui-cross-circle" style=" color: #e74c3c;"></span>&nbsp;<b class="is_error">DISMATCH</b>');
+                $('#password_r_info').html('PASSWORD  CONFIRM &nbsp; &nbsp; &nbsp;<span class="fui-cross-circle" style=" color: #e74c3c;"></span>&nbsp;<b class="is_error">DISMATCHED</b>');
                 $('#PASSWORD_R').removeClass("is_success");
                 $('#PASSWORD_R').addClass("is_error");
             }
