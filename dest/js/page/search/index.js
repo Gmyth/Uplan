@@ -1,12 +1,13 @@
 /**
  * Created by kaiyu on 9/26/16.
  */
-define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/search", "util/net" ], function(require, exports, module) {
+define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/search", "util/net", "page/sublist/index", "page/sublist/config", "page/flow/index" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var config = require("page/flow/config").data;
     var tpl = require("util/tpl");
     var timeparser = require("util/timeparser");
     var search = require("net/search");
+    var sublist = require("page/sublist/index");
     var tmpl = {
         main: SEARCH.MAIN
     };
@@ -40,11 +41,16 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 txtstarttime: input_starttime,
                 txtendtime: input_endtime
             };
-            var success = function(json) {
-                var data = json;
-                alert("get!");
+            var success = function(data) {
+                // callback
+                sublist.ShowCourse(data);
             };
             search.getCourseList(Obj, success);
+            $.ajax({
+                method: "GET",
+                url: "./get_courses_info",
+                data: Obj
+            }).done(success);
         }
     };
     /*bind the button input control event*/
