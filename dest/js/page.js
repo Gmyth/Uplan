@@ -268,7 +268,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     var search = require("net/search");
     var sublist = require("page/sublist/index");
     var tmpl = {
-        main: '    <ul style="list-style-type:none; font-size: small;">        <li style="color:white">Subject            <input type="text" id="txtsubject" class="form-control input-s" placeholder="Enter here"/>        </li>        <li style="color:white">Course Number            <select id="selnumber" class="form-control1 select1 select-primary select-block">                <optgroup label="course number">                    <option value="0">is exactly</option>                    <option value="1">greater than</option>                    <option value="2">less or equal</option>                </optgroup>            </select>            <input type="text" id="txtnumber" class="form-control input-s" placeholder="Enter here"/>        </li>        <li>            <a data-toggle="modal" class="hoverable" data-target=".bd-example-modal-sm">advanced option</a>            <button class="btn1 btn-default btn1-wide1" value="search" data-action="storedata">search</button>        </li>    </ul>    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"         aria-hidden="true">        <div class="modal-dialog modal-sm">            <div class="modal-header modal_width modal_background_color">                <p style="text-align:center; margin-bottom:auto"><b>advanced search option</b></p>            </div>            <div class="modal-body modal_width modal_background_color">                <div>                    <ul style="list-style-type:none">                        <li><b style="position:relative; top: 5px" ;>Course Career</b>                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                            <select id="sellevel" class="form-control1 select1 select-primary select-block">                                <optgroup label="course career">                                    <option value="0">undergraduate</option>                                    <option value="1">graduate</option>                                </optgroup>                            </select>                        </li>                        <li>                            <div class="span">                                <label1 class="checkbox1" for="checkbox1">                                    <input style="margin-right: 5px;" type="checkbox" value="checked"                                           id="checkbox1">                                    <b>Show Open Classes Only</b>                                </label1>                            </div>                        </li>                        <li><b>Meeting Start Time</b>                            <select id="selstart" class="form-control1 select1 select-primary select-block">                                <optgroup label="meeting start time">                                    <option value="0">is exactly</option>                                    <option value="1">greater than</option>                                    <option value="2">less than</option>                                </optgroup>                            </select>                            <input type="text" id="txtstarttime" class="form-control input-s"                                   placeholder="Enter here"/>                        </li>                        <li><b>Meeting End Time</b>                            &nbsp&nbsp                            <select id="selend" class="form-control1 select1 select-primary select-block">                                <optgroup label="meeting end time">                                    <option value="0">is exactly</option>                                    <option value="1">greater than</option>                                    <option value="2">less than</option>                                </optgroup>                            </select>                            <input type="text" id="txtendtime" class="form-control input-s"                                   placeholder="Enter here"/>                        </li>                        <li><b>Course Credits</b>                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                            <select id="selcredit" class="form-control1 select1 select-primary select-block">                                <optgroup label="course credit">                                    <option value="0">is exactly</option>                                    <option value="1">greater than</option>                                    <option value="2">less than</option>                                </optgroup>                            </select>                            <input type="text" id="txtcredit" class="form-control input-s"                                   placeholder="Enter here"/>                        </li>                    </ul>                </div>            </div>            <div class="modal-footer modal_width modal_background_color">                <button type="button" class="btn1 btn-default btn1-wide2" data-dismiss="modal">Close</button>                <button type="button" class="btn1 btn-default btn1-wide2">Save changes</button>            </div>        </div>    </div>'
+        main: '    <ul style="list-style-type:none; font-size: small;padding-bottom: 20px;">        <li >Subject            <input type="text" id="txtsubject" class="form-control input-s" placeholder="Enter here"/>        </li>        <li >Course Number            <select id="selnumber" class="form-control1 select1 select-primary select-block">                <optgroup label="course number">                    <option value="0">is exactly</option>                    <option value="1">greater than</option>                    <option value="2">less or equal</option>                </optgroup>            </select>            <input type="text" id="txtnumber" class="form-control input-s" placeholder="Enter here"/>        </li>        <li>            <a data-toggle="modal" class="hoverable" data-target=".bd-example-modal-sm">advanced option</a>            <button class="btn1 btn-default btn1-wide1" value="search" data-action="storedata">search</button>        </li>    </ul>    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"         aria-hidden="true">        <div class="modal-dialog modal-sm">            <div class="modal-header modal_width modal_background_color">                <p style="text-align:center; margin-bottom:auto"><b>advanced search option</b></p>            </div>            <div class="modal-body modal_width modal_background_color">                <div>                    <ul style="list-style-type:none">                        <li><b style="position:relative; top: 5px" ;>Course Career</b>                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                            <select id="sellevel" class="form-control1 select1 select-primary select-block">                                <optgroup label="course career">                                    <option value="0">undergraduate</option>                                    <option value="1">graduate</option>                                </optgroup>                            </select>                        </li>                        <li>                            <div class="span">                                <label1 class="checkbox1" for="checkbox1">                                    <input style="margin-right: 5px;" type="checkbox" value="checked"                                           id="checkbox1">                                    <b>Show Open Classes Only</b>                                </label1>                            </div>                        </li>                        <li><b>Meeting Start Time</b>                            <select id="selstart" class="form-control1 select1 select-primary select-block">                                <optgroup label="meeting start time">                                    <option value="0">is exactly</option>                                    <option value="1">greater than</option>                                    <option value="2">less than</option>                                </optgroup>                            </select>                            <input type="text" id="txtstarttime" class="form-control input-s"                                   placeholder="Enter here"/>                        </li>                        <li><b>Meeting End Time</b>                            &nbsp&nbsp                            <select id="selend" class="form-control1 select1 select-primary select-block">                                <optgroup label="meeting end time">                                    <option value="0">is exactly</option>                                    <option value="1">greater than</option>                                    <option value="2">less than</option>                                </optgroup>                            </select>                            <input type="text" id="txtendtime" class="form-control input-s"                                   placeholder="Enter here"/>                        </li>                        <li><b>Course Credits</b>                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp                            <select id="selcredit" class="form-control1 select1 select-primary select-block">                                <optgroup label="course credit">                                    <option value="0">is exactly</option>                                    <option value="1">greater than</option>                                    <option value="2">less than</option>                                </optgroup>                            </select>                            <input type="text" id="txtcredit" class="form-control input-s"                                   placeholder="Enter here"/>                        </li>                    </ul>                </div>            </div>            <div class="modal-footer modal_width modal_background_color">                <button type="button" class="btn1 btn-default btn1-wide2" data-dismiss="modal">Close</button>                <button type="button" class="btn1 btn-default btn1-wide2">Save changes</button>            </div>        </div>    </div>'
     };
     /*config set*/
     var timeStart = 8;
@@ -328,6 +328,135 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     exports.init = function() {
         $(".search_sub_box").html(tpl.get(tmpl.main));
         _bindEvent();
+    };
+});
+
+/**
+ * Created by Haoyu Guo on 2016/10/25.
+ */
+/**
+ * Created by gmyth on 16/9/7.
+ * this part is created for the implement of the sign up page
+ * */
+define("page/signup/index", [ "lib/jquery", "util/tpl" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var tpl = require("util/tpl");
+    var tmpl = {};
+    var p = "";
+    var typingTimer;
+    //timer identifier
+    var doneTypingInterval = 1e3;
+    //time in ms, 5 second for example
+    exports.init = function() {
+        _bindEvent();
+    };
+    /*the combination of needed action function*/
+    var actionList = {};
+    /*bind the button input control event*/
+    PasswordCheck = function(p1, p2) {
+        if (p1 === p2) {
+            $("#password_r_info").html('PASSWORD  CONFIRM &nbsp; &nbsp; &nbsp;<span class="fui-check-circle" style=" color: #2ECC71;"></span>&nbsp;<b class="is_success">MATCHED</b>');
+            $("#PASSWORD_R").addClass("is_success");
+            $("#PASSWORD_R").removeClass("is_error");
+        } else {
+            if (p2 == "" || p2.length < 6) {
+                $("#password_r_info").html('PASSWORD  CONFIRM <b class="info_guide"></b>');
+                $("#PASSWORD_R").removeClass("is_success");
+                $("#PASSWORD_R").removeClass("is_error");
+            } else {
+                $("#password_r_info").html('PASSWORD  CONFIRM &nbsp; &nbsp; &nbsp;<span class="fui-cross-circle" style=" color: #e74c3c;"></span>&nbsp;<b class="is_error">DISMATCHED</b>');
+                $("#PASSWORD_R").removeClass("is_success");
+                $("#PASSWORD_R").addClass("is_error");
+            }
+        }
+    };
+    var _bindEvent = function() {
+        SignIn = $("#SignIn");
+        SignIn.off();
+        SignIn.on("click", "[data-action]", function() {
+            if ($(this).attr("disabled") != "disabled") {
+                var actionName = $(this).data("action");
+                var action = actionList[actionName];
+                var tar = this;
+                if ($.isFunction(action)) action(tar);
+            }
+        });
+        SignIn.on("input", "#username", function() {
+            var pattern = /^(?!_)(?!.*?_$)[A-Za-z0-9_,]+$/;
+            /*No Underscore at first and last*/
+            var temp = $("#username").val();
+            if (pattern.test(temp) && temp.length >= 4) {
+                $("#username_info").html('USERNAME &nbsp; &nbsp; &nbsp;<span class="fui-check-circle" style=" color: #2ECC71;"></span>&nbsp;<b class="is_success">GOOD NAME TO USE</b>');
+                $("#username").addClass("is_success");
+                $("#username").removeClass("is_error");
+            } else {
+                if (temp == "" || temp.length < 4) {
+                    $("#username_info").html('USERNAME <b class="info_guide"></b>');
+                    $("#username").removeClass("is_success");
+                    $("#username").removeClass("is_error");
+                } else {
+                    $("#username_info").html('USERNAME &nbsp; &nbsp; &nbsp;<span class="fui-cross-circle" style=" color: #e74c3c;"></span>&nbsp;<b class="is_error">WRONG FORMAT</b>');
+                    $("#username").removeClass("is_success");
+                    $("#username").addClass("is_error");
+                }
+            }
+        });
+        SignIn.on("input", "#password", function() {
+            var pattern = /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+            /*No Underscore at first and last*/
+            var temp = $("#password").val();
+            p = temp;
+            if ($("#PASSWORD_R").val() != "") {
+                PasswordCheck(p, $("#PASSWORD_R").val());
+            }
+            if (pattern.test(temp) && temp.length >= 6) {
+                $("#password_info").html('PASSWORD &nbsp; &nbsp; &nbsp;<span class="fui-check-circle" style=" color: #2ECC71;"></span>&nbsp;<b class="is_success">PERFECT PASSWORD</b>');
+                $("#password").addClass("is_success");
+                $("#password").removeClass("is_error");
+            } else {
+                if (temp == "" || temp.length < 6) {
+                    $("#password_info").html('PASSWORD <b class="info_guide"></b>');
+                    $("#password").removeClass("is_success");
+                    $("#password").removeClass("is_error");
+                } else {
+                    $("#password_info").html('PASSWORD &nbsp; &nbsp; &nbsp;<span class="fui-cross-circle" style=" color: #e74c3c;"></span>&nbsp;<b class="is_error">WRONG FORMAT</b>');
+                    $("#password").removeClass("is_success");
+                    $("#password").addClass("is_error");
+                }
+            }
+        });
+        SignIn.on("input", "#PASSWORD_R", function() {
+            var pattern = /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+            /*No Underscore at first and last*/
+            var temp = $("#PASSWORD_R").val();
+            PasswordCheck(p, temp);
+        });
+        SignIn.on("input", "#email", function() {
+            var pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            /*No Underscore at first and last*/
+            var temp = $("#email").val();
+            if (temp.length > 0) {
+                clearTimeout(typingTimer);
+                typingTimer = setTimeout(doneTyping, doneTypingInterval);
+                function doneTyping() {
+                    //do something
+                    if (pattern.test(temp)) {
+                        $("#email_info").html('EMAIL &nbsp; &nbsp; &nbsp;<span class="fui-check-circle" style=" color: #2ECC71;"></span>&nbsp;<b class="is_success">THANK YOU</b>');
+                        $("#email").addClass("is_success");
+                        $("#email").removeClass("is_error");
+                    } else {
+                        $("#email_info").html('EMAIL &nbsp; &nbsp; &nbsp;<span class="fui-cross-circle" style=" color: #e74c3c;"></span>&nbsp;<b class="is_error">NOT VALID</b>');
+                        $("#email").removeClass("is_success");
+                        $("#email").addClass("is_error");
+                    }
+                }
+            } else {
+                clearTimeout(typingTimer);
+                $("#email_info").html('EMAIL <b class="info_guide"></b>');
+                $("#email").removeClass("is_success");
+                $("#email").removeClass("is_error");
+            }
+        });
     };
 });
 
@@ -622,12 +751,12 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     var tmpl = {
         main: '    <div class="sublist_main"  style="overflow-y:scroll;height: 98%;margin-top: 1%;">    <div class=" list-block">    </div>    </div>',
         course: '    <% for(var i = 0,item ; item = CourseList[i]; i++){%>    <div>        <div class="sub_main_tag">            &nbsp;<%if(item.open==false){%><a href="#" coursename="<%=item.Course.replace(/\s+/g, \'\')%>" class="dropdown-toggle tag_ready" data-action = "drop_down" style="display:inline-block"><b class="caret" style="margin-left: 0px;"></b></a>              <%}else{%><a href="#" coursename="<%=item.Course.replace(/\s+/g, \'\')%>" class="dropdown-toggle tag_open" data-action = "drop_up" style="display:inline-block"><b class="caret" style="margin-left: 0px;"></b></a><%}%>            &nbsp;<%=item.Course%>&nbsp;&nbsp;<%=item.Title%>&nbsp;            &nbsp;<a href="#" class="del_course_span" data-action = "del_course_span" style="float:right;position: relative;top: 1px;right: 5px;"><span class="fui-cross"></span></a>        </div>        <div class="tag_list">        </div>    </div>    <%}%>',
-        subcourse: '        <% for(var d = 0,it ; it = TagList[d]; d++){%>        <div class="subtag">            <div class="info_block" courseData =\'<%=JSON.stringify(it)%> \'style="float:left;width:90%"  >                <span class="fui-credit-card" style="padding: 5px;color:#dfce8b;"></span>&nbsp;<%=it.Title%>&nbsp;<%=it.Type%>&nbsp;<%=it.Section%>&nbsp;&nbsp;(&nbsp;<%=it.Location%>&nbsp;)                <div style=" border-top: 2px solid #eee;"></div>                <span class="fui-time" style="padding: 5px;color:#efa59d;position: relative;top: 1px;"></span>&nbsp;<%=it.Days%>&nbsp;<%=it.Time%>&nbsp;                &nbsp;<span class="fui-location" style="padding: 5px;color:#edad73;position: relative;top: 1px;border-left: 2px solid #eee;"></span>&nbsp;<%=it.Room%>&nbsp;                &nbsp;<span class="fui-user" style="padding: 5px;color:#27ae60;position: relative;top: 1px;border-left: 2px solid #eee;"></span>&nbsp;<%=it.instructors%>&nbsp;            </div>            <div style="float: right;background-color: rgba(60, 162, 199, 0.4);" >                <a class="checkbox_for_add_course" name="<%=it.Course%>" section = "<%=it.Section%>" data-action="add_course" style="width:60px"><span class="fui-check"></span></a>            </div>        </div>        <%}%>',
-        rec: '    <% for(var d = 0,it ; it = RecList[d]; d++){%>    <div class="subtag">        <div class="info_block" courseData =\'<%=JSON.stringify(it)%> \'style="float:left;width:90%"  >            <span class="fui-credit-card" style="padding: 5px;color:#dfce8b;"></span>&nbsp;<%=it.Title%>&nbsp;<%=it.Type%>&nbsp;<%=it.Section%>&nbsp;&nbsp;(&nbsp;<%=it.Location%>&nbsp;)            <div style=" border-top: 2px solid #eee;"></div>            <span class="fui-time" style="padding: 5px;color:#efa59d;position: relative;top: 1px;"></span>&nbsp;<%=it.Days%>&nbsp;<%=it.Time%>&nbsp;            &nbsp;<span class="fui-location" style="padding: 5px;color:#edad73;position: relative;top: 1px;border-left: 2px solid #eee;"></span>&nbsp;<%=it.Room%>&nbsp;            &nbsp;<span class="fui-user" style="padding: 5px;color:#27ae60;position: relative;top: 1px;border-left: 2px solid #eee;"></span>&nbsp;<%=it.instructors%>&nbsp;        </div>        <div style="float: right;background-color: rgba(60, 162, 199, 0.4);" >            <a class="checkbox_for_add_course" data-action="add_rec" style="width:60px"><span class="fui-check"></span></a>        </div>    </div>    <%}%>'
+        subcourse: '        <% for(var d = 0,it ; it = TagList[d]; d++){%>        <div class="subtag">            <div class="info_block" courseData =\'<%=JSON.stringify(it)%> \'style="float:left;width:90%"  >                <span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>&nbsp;<%=it.Title%>&nbsp;<%=it.Type%>&nbsp;<%=it.Section%>&nbsp;&nbsp;(&nbsp;<%=it.Location%>&nbsp;)                <div style=" border-top: 2px solid #eee;"></div>                <span class="fui-time" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;"></span>&nbsp;<%=it.Days%>&nbsp;<%=it.Time%>&nbsp;                &nbsp;<span class="fui-location" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;border-left: 2px solid #eee;"></span>&nbsp;<%=it.Room%>&nbsp;                &nbsp;<span class="fui-user" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;border-left: 2px solid #eee;"></span>&nbsp;<%=it.instructors%>&nbsp;            </div>            <div style="float: right;background-color: #2980b9;border-top-right-radius: 6px;border-bottom-right-radius: 6px;" >                <a class="checkbox_for_add_course" name="<%=it.Course%>" section = "<%=it.Section%>" data-action="add_course" style="width:60px"><span class="fui-check" style="color:#eff0f2;"></span></a>            </div>        </div>        <%}%>',
+        rec: '    <div class="sub_main_tag">        &nbsp;Select the recitation/lab to finish enroll!    </div>    <% for(var d = 0,it ; it = RecList[d]; d++){%>    <div class="subtag">        <div class="info_block" courseData =\'<%=JSON.stringify(it)%> \'style="float:left;width:90%"  >            <span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>&nbsp;<%=it.Title%>&nbsp;<%=it.Type%>&nbsp;<%=it.Section%>&nbsp;&nbsp;(&nbsp;<%=it.Location%>&nbsp;)            <div style=" border-top: 2px solid #eee;"></div>            <span class="fui-time" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;"></span>&nbsp;<%=it.Days%>&nbsp;<%=it.Time%>&nbsp;            &nbsp;<span class="fui-location" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;border-left: 2px solid #eee;"></span>&nbsp;<%=it.Room%>&nbsp;            &nbsp;<span class="fui-user" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;border-left: 2px solid #eee;"></span>&nbsp;<%=it.instructors%>&nbsp;        </div>        <div style="float: right;background-color: #2980b9;border-top-right-radius: 6px;border-bottom-right-radius: 6px;" >            <a class="checkbox_for_add_course" data-action="add_rec" style="width:60px"><span class="fui-check" style="color:#eff0f2;"></span></a>        </div>    </div>    <%}%>'
     };
     exports.init = function() {
         $(".sub_list").html(tpl.get(tmpl.main));
-        //ShowCourse1();
+        ShowCourse1();
         _bindEvent();
     };
     exports.ShowCourse = function(data) {
@@ -685,7 +814,7 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
         $(".subtag").each(function(index, value) {
             var width = $(this).width();
             $(this).find(".info_block").width(width - 60);
-            var checkbox_width = (56 - $(this).find(".checkbox_for_add_course").width()) / 2;
+            var checkbox_width = (58 - $(this).find(".checkbox_for_add_course").width()) / 2;
             var checkbox_height = ($(this).find(".info_block").height() + 6 - $(this).find(".checkbox_for_add_course").height()) / 2;
             $(this).find(".checkbox_for_add_course").attr("style", "display:block;padding-left:" + checkbox_width + "px;" + "padding-right: " + checkbox_width + "px;" + "padding-top: " + checkbox_height + "px;" + "padding-bottom: " + checkbox_height + "px;");
         });
