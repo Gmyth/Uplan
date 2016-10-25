@@ -59,7 +59,9 @@ module.exports = function (grunt) {
                 }
             }
         },
+=======
 
+>>>>>>> Dylan
         concurrent:{
             tasks: ['nodemon','watch'],
             options:{
