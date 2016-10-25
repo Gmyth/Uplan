@@ -99,7 +99,7 @@ router.get('/',function (req,res) {
     else if(sel_condition == "1" && course_level == "0" && check_open=="1"){
         under_Course.find({"Course": course , "status" : "Open"},function (err,result) {
             var oo =[];
-            if(txt_start_time!='' && txt_end_time!=''){ 
+            if(txt_start_time!='' && txt_end_time!=''){
                 for(var i = 0;i<result.length;i++){
                     var reg = /\d*:*\d\d (PM|AM)/gi;
                     var start = result[i].Time.match(reg)[0];
