@@ -21,10 +21,14 @@ define(function(require, exports, module){
     }
     exports.init = function(){
         $('.sub_list').html(tpl.get(tmpl.main));
-         ShowCourse();
+         ShowCourse1();
         _bindEvent();
     };
-    var ShowCourse = function(){
+    exports.ShowCourse = function(data){
+        DataParse(data);
+        $('.list-block').html(tpl.get(tmpl.course,{"CourseList":CourseList}));
+    }
+    var ShowCourse1 = function(){
         DataParse(config);
         $('.list-block').html(tpl.get(tmpl.course,{"CourseList":CourseList}));
     }

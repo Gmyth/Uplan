@@ -8,6 +8,7 @@ define(function(require, exports, module){
     var tpl = require('util/tpl')
     var timeparser = require('util/timeparser')
     var search = require('net/search')
+    var sublist = require('page/sublist/index')
     var tmpl = {
         main:SEARCH.MAIN,
     }
@@ -46,12 +47,16 @@ define(function(require, exports, module){
                 "txtstarttime": input_starttime,
                 "txtendtime": input_endtime
             }
-            var success = function (json) {
-                var data = json;
-                alert('get!');
+            var success = function(data) {
+                // callback
+                sublist.ShowCourse(data);
             };
             search.getCourseList(Obj,success);
-            // $("mydata").html(input_subject);
+            $.ajax({
+                method: "GET",
+                url: "./get_courses_info",
+                data: Obj
+            }).done(success);
         }
     };
     /*bind the button input control event*/
