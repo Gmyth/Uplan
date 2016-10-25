@@ -4,7 +4,7 @@ var router = express.Router();
 var mongoose =require('mongoose');
 var User = require('../models/user.js');
 /* GET users listing. */
-
+var passport =require('passport');
 //user route
 
 //var xiaoming = new User({name:'Eric1990',password: '1234567', email:'123@hotmail.com'});
@@ -13,9 +13,9 @@ var User = require('../models/user.js');
   //  if (err) // ...
   //      console.log('meow');
 //});
-router.get('/signup',function (req,res) {
-    res.render('signup', {title: 'register page'});
-});
+// router.get('/signup',function (req,res) {
+//     res.render('signup', {title: 'register page'});
+// });
 router.post('/signup',function(req,res,next){
     var _user = req.body.user;
     var name = _user.name;
@@ -49,10 +49,11 @@ router.post('/signup',function(req,res,next){
     //})
 
 
-router.get('/signin', function (req, res) {
+router.get('/signin',chechAuthentication, function (req, res) {
    res.render('signin/:name', {title:'login page'});
  });
-router.post('/signin', function (req, res) {
+
+router.post('/signin', chechAuthentication,function (req, res) {
     var _user = req.body.user;
     var name = _user.name;
     var password = _user.password;
@@ -90,8 +91,22 @@ router.post('/signin', function (req, res) {
 
 });
 
+// router.post('/signin',function (req,res,next) {
+//     passport.authenicate('local',function (err,user,info) {
+//         if(err){
+//             return next(err);
+//         }
+//         if(!user)
+//     })
+// }
 
 
-
+function chechAuthentication(req,res,next) {
+    if(req.isAuthenticated()){
+        next();
+    }   else{
+        res.redirect("/signin");
+    }
+}
 
 module.exports = router;

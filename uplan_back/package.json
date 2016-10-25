@@ -30,6 +30,11 @@
     "grunt": "^1.0.1",
     "grunt-concurrent": "^2.3.1",
     "grunt-contrib-watch": "^1.0.0",
+    "passport": "^0.3.2",
+    "passport-github": "^1.1.0",
+    "passport-google-oauth": "^1.0.0",
+    "passport-google-oauth2": "^0.1.6",
+    "passport-local": "^1.0.0",
     "uglify": "^0.1.5"
   }
 }

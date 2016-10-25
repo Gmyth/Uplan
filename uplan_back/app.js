@@ -6,10 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
+var flash=require('express-flash');
 var mongoStore = require('connect-mongo')(session);
 var routes = require('./routes/index');
 var users = require('./routes/users');
 //var apps = require('./app/app');
+var passport = require('passport');
 var courses = require('./routes/courses');
 var app = express();
 var port = process.env.PORT || 3000;
@@ -73,7 +75,9 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
-
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 // Add headers
 app.use(function (req, res, next) {

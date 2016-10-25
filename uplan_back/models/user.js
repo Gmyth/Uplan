@@ -9,6 +9,11 @@ var mongoose = require('mongoose');
 var bcryptjs = require('bcryptjs');
 var BCRYPT_SALT_LEN = 11;
 
+/**
+ * in the schema of the user, the github string is used to save the usrinfo after
+ * oAuth;
+ * token is used to save the token with different oAuth.
+ */
 
 var UserSchema = new mongoose.Schema({
     name: {
@@ -16,18 +21,25 @@ var UserSchema = new mongoose.Schema({
         type:String
     },
     password: String,
-    email: String
+    email:  { type: String, unique: true }
     ,
+    github:String,
+    tokens:Array,
+    profile:{
+        major:{
+            type:String,
+            default:'undefined'
+        },
+        name: { type: String, default: '' },
+        gender: { type: String, default: '' },
+        picture: { type: String, default: '' }
+    },
     course_taken:[{
       type:mongoose.Schema.Types.ObjectId,
-      ref:'Course'
+      ref:'under_graduate_courses'
     }],
     role:{
-        //0:normal user
-        //1:verified
-        //2:pro user
-        //>5 admin
-        //>50 super admin
+        //0:normal user ; 1:verified; 2:pro user; >5 admin; >50 super admin
         type:Number,
         default:0
     },
@@ -43,6 +55,10 @@ var UserSchema = new mongoose.Schema({
     }
 
 },{collection:'userinfo'});
+
+/**
+ * encrypt the user password
+ */
 UserSchema.pre('save', function (next) {
     var user = this;
     if (this.isNew){
@@ -62,6 +78,10 @@ UserSchema.pre('save', function (next) {
         })
     })
 });
+/**
+ * comparing the password
+ * @type {{comparePassword: mongoose.Schema.methods.comparePassword}}
+ */
 
 UserSchema.methods = {
     comparePassword: function (_password, cb) {
