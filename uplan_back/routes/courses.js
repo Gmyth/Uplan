@@ -98,10 +98,42 @@ router.get('/',function (req,res) {
     //  open undergra exact
     else if(sel_condition == "1" && course_level == "0" && check_open=="1"){
         under_Course.find({"Course": course , "status" : "Open"},function (err,result) {
+            var oo =[];
+            if(txt_start_time!='' && txt_end_time!=''){ 
+                for(var i = 0;i<result.length;i++){
+                    var reg = /\d*:*\d\d (PM|AM)/gi;
+                    var start = result[i].Time.match(reg)[0];
+                    var end =result[i].Time.match(reg)[1];
+                    if(start==txt_start_time&&end==txt_end_time){
+                        oo.push(result[i]);
+                    }
+                }
+            }
+            else if(txt_start_time!='' && txt_end_time==''){
+                for(var i = 0;i<result.length;i++){
+                    var reg = /\d*:*\d\d (PM|AM)/gi;
+                    var start = result[i].Time.match(reg)[0];
+                    if(start==txt_start_time){
+                        oo.push(result[i]);
+                    }
+                }
+            }
+            else if(txt_start_time=='' && txt_end_time!=''){
+                for(var i = 0;i<result.length;i++){
+                    var reg = /\d*:*\d\d (PM|AM)/gi;
+                    var end =result[i].Time.match(reg)[1];
+                    if(send==txt_end_time){
+                        oo.push(result[i]);
+                    }
+                }
+            }
             if(err){
                 console.log(err)
             }
-            res.json(result);
+            if(txt_start_time=='' && txt_end_time==''){
+
+                res.json(result);}
+            else{res.json(oo);}
         })
 
     }
