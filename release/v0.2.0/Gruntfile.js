@@ -41,7 +41,27 @@ module.exports = function (grunt) {
             all: ['public/js/*.js', 'test/**/*.js', 'app/**/*.js']
         },
 
+<<<<<<< HEAD
+        nodemon:{
+            dev:{
+                options:{
+                    file: 'app.js',
+                    args:[],
+                    ignoredFiles:['README.md','node_models/**','.DS_Store'],
+                    watchedExtentions: ['js'],
+                    watchedFolders:['./'],
+                    debug:true,
+                    delayTime:1,
+                    env:{
+                        PORT:3000
+                    },
+                    cwd:__dirname
+                }
+            }
+        },
+=======
 
+>>>>>>> Dylan
         concurrent:{
             tasks: ['nodemon','watch'],
             options:{
