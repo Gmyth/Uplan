@@ -1,0 +1,13 @@
+date: October 18, 2016
+meeting_type: ta # meeting_type can "group", "ta", or "instructor"
+attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
+absent: []
+excused_absences: []
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <haoyuguo>, progress: start working on register page, fix a few bugs  for course list. },
+  {ubit: <kaiyukan>, progress: start working on login page},
+  {ubit: <enzeqian>, progress: start building course searching API, add more spcific search conditions such as "meeting time", "course number greater than" etc.},
+  {ubit: <cwang46>, progress: start building login API, add oAuth functionallity for gmail, facebook, etc},
+  ]
+issues: []
+Notes:  |

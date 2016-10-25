@@ -1,0 +1,13 @@
+date: September 28, 2016
+meeting_type: instructor # meeting_type can "group", "ta", or "instructor"
+attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
+absent: []
+excused_absences: []
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <haoyuguo>, progress: finished the course list, the data can read from a config file and init it to webpage.Once the api setted up, we can finish the course list right away},
+  {ubit: <kaiyukan>, progress: almost finished the redo work on course searchpart, created a simple login webpage},
+  {ubit: <enzeqian>, progress: Finished web scraper and added data into mongod database},
+  {ubit: <cwang46>, progress: Finished api set up for user registration and user signin; add basic functionally to course search },
+  ]
+issues: []
+Notes:  | This meeting is only one day after last ta meeting, so the task progress is still same. We ask some questions to Jesse like user authentication. He gives us some suggestions like using web framework. # Anything covered in the meeting that doesn't fit elsewhere.
