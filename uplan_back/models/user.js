@@ -21,9 +21,10 @@ var UserSchema = new mongoose.Schema({
         type:String
     },
     password: String,
-    email:  { type: String, unique: true }
-    ,
+    email:  { type: String, unique: true },
     github:String,
+    google: String,
+    linkedin: String,
     tokens:Array,
     profile:{
         major:{
@@ -108,7 +109,19 @@ UserSchema.statics = {
     }
 };
 
+/**
+ * helper method for getting user's gravatar
+ * @type {any}
+ */
+UserSchema.methods.gravertar=function (size) {
+    size =200;
+    if(!this.email || !this.name){
+        return 'https://gravatar.com/avatar/?s=${size}&d=retro';
 
+    }
+    const md5 = crypto.createHash('md5').update(this.email).digest('hex');
+    return 'https://gravatar.com/avatar/${md5}?s=${size}&d=retro';
+};
 
 var User = mongoose.model('User', UserSchema);
 

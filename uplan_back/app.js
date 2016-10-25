@@ -98,8 +98,9 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-app.use('/user', users);
+
 app.use('/', routes);
+app.use('/user', users);
 app.use('/get_courses_info',courses);
 
 
