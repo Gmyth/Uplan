@@ -258,6 +258,32 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
 });
 
 /**
+ * Created by kaiyu on 10/25/16.
+ */
+define("page/login/index", [ "lib/jquery", "util/tpl" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var tpl = require("util/tpl");
+    var tmpl = {};
+    var p = "";
+    var typingTimer;
+    //timer identifier
+    var doneTypingInterval = 1e3;
+    //time in ms, 5 second for example
+    exports.init = function() {
+        _bindEvent();
+    };
+    /*the combination of needed action function*/
+    var actionList = {
+        start: function(tar) {},
+        logindata: function(tar) {
+            var login_username = $("#loginusername").val();
+            var login_password = $("#loginpassword").val();
+        }
+    };
+    var _bindEvent = function() {};
+});
+
+/**
  * Created by kaiyu on 9/26/16.
  */
 define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/search", "util/net", "page/sublist/index", "page/sublist/config", "page/flow/index" ], function(require, exports, module) {
