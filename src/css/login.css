@@ -51,7 +51,7 @@ label > input {
 
 .col-submit {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 label > select {
@@ -73,12 +73,16 @@ label > select {
 label > input:focus, label > select:focus {
     opacity: 1;
 }
-@media(min-width: 550px){
-
+@media(min-width: 500px){
     form > div { display: inline-block; }
-    form {width:500px;  margin:auto;}
+    form {width:499px;  margin:auto;}
     .col-submit { display: block; }
-    .col-2 { width: 500px; border-bottom: 1px solid #e4e4e4;}
-    .col-submit button { width: 20%; margin: 0 auto; }
+    .col-2 { width: 400px; border-bottom: 1px solid #e4e4e4;}
+    .col-submit button {margin: 0 auto; }
     .btn-sm {width:40%}
+}
+
+.btn-success1{
+    color: #ffffff;
+    background-color: #4184f3;
 }

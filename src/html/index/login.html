@@ -49,13 +49,16 @@
     <form onsubmit="return false">
         <div class="col-2">
             <label>
+                <laber class="username_icon fui-user" for="username"></laber>
                 <b id="loginusername">USERNAME or EMAIL </b>
                 <input placeholder=" Enter here " id="username" name="name" tabindex="1">
             </label>
+
         </div>
 
         <div class="col-2">
             <label>
+                <laber class="password_icon fui-lock" for="password"></laber>
                 <b id="loginpassword" >PASSWORD </b>
                 <input placeholder=" Enter here " type="password"  id="password" name="password" tabindex="3" maxlength="25">
             </label>
@@ -63,7 +66,11 @@
 
         <div class="col-submit">
             <button class="btn btn-block btn-sm btn-success" data-action="logindata" >Submit</button>
-            <a style = "font-size: small" href="/signin">Do not have an account? Sign up here >> </a>
+            <a style = "font-size: small" href="/password">Lost your password? >> </a>
+        </div>
+
+        <div class="col-submit">
+            <button class="btn btn-block btn-sm btn-success1" data-action="click_google" ><div><laber class="password_icon fui-google-plus" for="password"></laber>&nbspHave Google Account?</div>  </button>
         </div>
     </form>
 </div>
