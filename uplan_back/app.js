@@ -6,12 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
-var flash=require('express-flash');
+var passport = require('./controllers/passport');
+const flash = require('express-flash');
+
+//var flash=require('c-flash');
 var mongoStore = require('connect-mongo')(session);
 var routes = require('./routes/index');
 var users = require('./routes/users');
 //var apps = require('./app/app');
-var passport = require('passport');
+
 var courses = require('./routes/courses');
 var app = express();
 var port = process.env.PORT || 3000;
@@ -59,7 +62,7 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
 //app.use(allowCrossDomain);
-app.use(express.static(path.join(__dirname, 'dest/')));
+//app.use(express.static(path.join(__dirname, 'dest/')));
 
 
 app.use(session({
@@ -78,6 +81,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+//app.use(flash());
 
 // Add headers
 app.use(function (req, res, next) {
@@ -99,8 +103,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/', routes);
-app.use('/user', users);
+//app.use('/', users);
+app.use('/', users);
 app.use('/get_courses_info',courses);
 
 

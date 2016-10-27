@@ -2,7 +2,7 @@
  * Created by dylanwang on 16/10/23.
  */
 var passport = require('passport');
-var LocalStrategy = require('passport-local');
+var LocalStrategy = require('passport-local').Strategy;
 var GitHubStrategy = require('passport-github');
 var GoogleStrategy = require('passport-google-oauth2');
 var secrets = require('./githubsOauth');
@@ -15,11 +15,15 @@ passport.serializeUser(function (user,done) {
     done(null,user.id);
 });
 
-passport.deserializeUser(function (name, done) {
+passport.deserializeUser(function (id, done) {
     User.findById(id,function (err,user) {
-        done(err, user);
-
-        //xzcxzc
+        if(err) {
+            console.error('There was an error accessing the records of' +
+                ' user with id: ' + id);
+            return console.log(err.message);
+        }
+        console.log(id);
+        return done(null, user);
     })
 });
 
@@ -27,40 +31,40 @@ passport.deserializeUser(function (name, done) {
  * use the comparePassword method to verify the login of local usr
  */
 
-passport.use(new LocalStrategy({usernameField:'name',
+passport.use('local',new LocalStrategy({usernameField:'name',
                                 passwordField:'password'
-                }, function (username,password,done) {
+                }, function (name,password,done) {
     //usr = user[name];
+                User.findOne({name:name},function (err, user) {
+                if(err){return done(err);}
+                if(!user){
+                return done(null, false, {msg:'not found'});
+                }
+                    user.comparePassword(password, function(err, isMatch){
+                       if(err){
+                           console.log(err);
+                           return done(err);
+                       }
+                       if(isMatch){
+                           //req.json(user);
+                           console.log(user);
+                           return done(null,user);
+                       }
+                       else{
 
-    User.findOne({name:name}).populate('course_taken').exec(function (err,user) {
-        if(err){
-            console.log(err);
-        }
-        if(!user){
-            return res.redirect('/signup');
-            // if the account is not exsit, return back to the signup page
-        }
-        user.comparePassword(password, function(err, isMatch){
-            if(err){
-                console.log(err);
-            }
-            if(isMatch){
+                           console.log('Password is not matched');
 
-                res.json(user);
-                // if get matched password then save in to memory
 
-            }
-            else{
-                //res.end('<h1>Password is not matched</h1>');
-                console.log('Password is not matched');
-                return done(null.false,{messege:'Password is not matched'});
+                       }
+                    })
 
-            }
 
-        })
+                })
+    }));
 
-    })
-}));
+
+
+
 
 /**
  * Sign in with Google.
@@ -115,3 +119,35 @@ else{
     })
     }
 }));
+
+
+
+// User.findOne({name:name}).populate('course_taken').exec(function (err,user) {
+//     if(err){
+//         console.log(err);
+//     }
+//     if(!user){
+//         return res.redirect('/signup');
+//         // if the account is not exsit, return back to the signup page
+//     }
+//     user.comparePassword(password, function(err, isMatch){
+//         if(err){
+//             console.log(err);
+//         }
+//         if(isMatch){
+//
+//             res.json(user);
+//             // if get matched password then save in to memory
+//
+//         }
+//         else{
+//             //res.end('<h1>Password is not matched</h1>');
+//             console.log('Password is not matched');
+//             return done(null.false,{messege:'Password is not matched'});
+//
+//         }
+//
+//     })
+//
+// })
+module.exports=passport;

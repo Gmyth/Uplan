@@ -21,6 +21,7 @@ var UserSchema = new mongoose.Schema({
         type:String
     },
     password: String,
+    university:String,
     email:  { type: String, unique: true },
     github:String,
     google: String,
@@ -31,7 +32,7 @@ var UserSchema = new mongoose.Schema({
             type:String,
             default:'undefined'
         },
-        name: { type: String, default: '' },
+        truename: { type: String, default: '' },
         gender: { type: String, default: '' },
         picture: { type: String, default: '' }
     },
