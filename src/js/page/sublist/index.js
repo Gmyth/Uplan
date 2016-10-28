@@ -21,7 +21,7 @@ define(function(require, exports, module){
     }
     exports.init = function(){
         $('.sub_list').html(tpl.get(tmpl.main));
-         //ShowCourse1();
+         ShowCourse1();
         _bindEvent();
     };
     exports.ShowCourse = function(data){
@@ -75,7 +75,7 @@ define(function(require, exports, module){
         $('.subtag').each(function(index, value) {
             var width = $(this).width();
             $(this).find('.info_block').width(width-60);
-            var checkbox_width = (56 - $(this).find('.checkbox_for_add_course').width())/2;
+            var checkbox_width = (58 - $(this).find('.checkbox_for_add_course').width())/2;
             var checkbox_height =($(this).find('.info_block').height()+6- $(this).find('.checkbox_for_add_course').height())/2;
             $(this).find('.checkbox_for_add_course').attr("style","display:block;padding-left:"+checkbox_width+"px;"+"padding-right: "+checkbox_width+"px;"+"padding-top: "+checkbox_height+"px;"+"padding-bottom: "+checkbox_height+"px;")
          }

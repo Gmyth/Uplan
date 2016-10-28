@@ -5,28 +5,34 @@
     margin-left: 1%;
 }
 .sub_box{
+    border-radius: 6px;
     margin-left: 63.8%;
     width:35.2%;
 }
 .search_box{
+    border-radius: 6px;
     width: 100%;
-    background-color: #384c61;
+    color: #384c61;
+    background-color: #eff0f2;
 }
 .result_box{
+    border-radius: 6px;
     margin-top: 2%;
     width: 100%;
-    background-color: #384c61;
+    color: #384c61;
+    background-color: #eff0f2;
 }
 
 .main_body{
+    border-radius: 6px;
     height: 60px;
     /*overflow-y: auto;*/
-
 }
 .main_header{
     background-color: #eff0f2;
 }
 .weekly_schedule_header{
+    border-radius: 6px;
     font-size: 0.2em;
     text-align: center;
 }
@@ -39,6 +45,7 @@
 }
 .weekly_schedule {
     overflow: auto;
+    border-radius: 6px;
     background-color: #eff0f2;
     font-size: 0.2em;
     text-align: center;
@@ -72,9 +79,10 @@
     background-color: #f1447e;
 }
 .sub_main_tag{
+    border-radius: 6px;
     padding: 5px;
     margin: 10px;
-    background-color: rgba(60, 199, 135, 0.4);
+    background-color: #384c61;
     width: 96%;
     display: inline-block;
 }
@@ -83,19 +91,32 @@
     font-size: 0.7em;
 }
 .info_block{
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
     margin-bottom: 10px;
     padding: 3px 0px;
-    background-color: rgba(60, 162, 199, 0.4);
+    background-color: #2980b9;
+}
+.rec_block{
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    margin-bottom: 10px;
+    padding: 3px 0px;
+    background-color: #16a085;
 }
 .checkbox_for_add_course{
-    border-left: 3px solid #eee;
+    /*border-left: 3px solid #eee;*/
 }
 .checkbox_for_add_course:hover{
-   background-color: rgba(77, 209, 255, 0.4);
+   background-color: #3498db;
     cursor:pointer;
 }
 .info_block:hover{
-    background-color: rgba(73, 214, 255, 0.4);
+    background-color: #3498db;
+    cursor:pointer;
+}
+.rec_block:hover{
+    background-color: #1abc9c;
     cursor:pointer;
 }
 .subtagTable th,td{
@@ -124,10 +145,14 @@
         background: #ffffff;
 }
 .Uheader{
-    margin-left: 1%;
-    width:98%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     font-size: 18px;
     color:#FFFFFF;
+}
+.sub_Uheader{
+    margin-left: 1%;
+    width:98%;
     margin-top: 5px;
     margin-bottom: 2px;
 }
@@ -166,6 +191,7 @@
 .sub_box {
     display: none;
 }
+
     .main_container {
         width: 90%;
         float: initial;
@@ -175,12 +201,20 @@
 @media screen and (max-device-height: 900px) {
     body {
         font-family: "Lato", Helvetica, Arial, sans-serif;
-        font-size: 1px;
+        font-size: 5px;
         line-height: 1.22222;/*1.722222*/
         color: #34495e;
         background-color: #ffffff;
     }
+
     　　}
+
+@media(min-width: 850px){
+    .bodyback{    -moz-background-size:100% 100%;
+        background-size:100% 100%;
+        background-repeat:no-repeat;
+    }
+}
 html, body{
     height: 100%;
 }
