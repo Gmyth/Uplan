@@ -19,9 +19,12 @@ var TimeSpan = function(input){
     var StartTime = timepattern.exec(str);
     var temp = str.substring(str.indexOf("-") + 1, str.length);
     var EndTime = timepattern.exec(temp);
-    var StartHour = StartTime[1] == "12" ? "0" : StartTime[1];
+    if(StartTime==null||EndTime==null||StartTime.length<1||EndTime.length<1){
+        return [];
+    }
+    var StartHour = StartTime[1] == 12 ? 0 : StartTime[1];
     var Startminutes = StartTime[2];
-    var EndHour = EndTime[1] == "12" ? "0" : EndTime[1];
+    var EndHour = EndTime[1] == 12 ? 0 : EndTime[1];
     var Endminutes = EndTime[2];
     var result=[];
     result[0]=(isMorning(StartTime[0]) ? parseInt(StartHour) : parseInt(StartHour) + 12)*100+parseInt(Startminutes);
