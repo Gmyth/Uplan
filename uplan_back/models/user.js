@@ -6,7 +6,8 @@
  */
 var mongoose = require('mongoose');
 
-var bcryptjs = require('bcryptjs');
+
+var bcryptjs = require('bcrypt-nodejs');
 var BCRYPT_SALT_LEN = 11;
 
 /**
@@ -14,7 +15,6 @@ var BCRYPT_SALT_LEN = 11;
  * oAuth;
  * token is used to save the token with different oAuth.
  */
-
 var UserSchema = new mongoose.Schema({
     name: {
         unique: true,
@@ -23,22 +23,25 @@ var UserSchema = new mongoose.Schema({
     password: String,
     university:String,
     email:  { type: String, unique: true },
-    github:String,
-    google: String,
-    linkedin: String,
-    tokens:Array,
+    google: {
+        id: String,
+        tokens: Array,
+        email: String,
+        name: String,
+    },
     profile:{
         major:{
             type:String,
             default:'undefined'
         },
+        university:String,
         truename: { type: String, default: '' },
         gender: { type: String, default: '' },
         picture: { type: String, default: '' }
     },
     course_taken:[{
-      type:mongoose.Schema.Types.ObjectId,
-      ref:'under_graduate_courses'
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'under_graduate_courses'
     }],
     role:{
         //0:normal user ; 1:verified; 2:pro user; >5 admin; >50 super admin
@@ -56,13 +59,15 @@ var UserSchema = new mongoose.Schema({
         }
     }
 
-},{collection:'userinfo'});
+},{collection:'userinfo_test'});
 
 /**
  * encrypt the user password
  */
 UserSchema.pre('save', function (next) {
     var user = this;
+
+
     if (this.isNew){
         this.meta.CreateAt = this.meta.updateAt = Date.now()
     }
@@ -70,10 +75,11 @@ UserSchema.pre('save', function (next) {
         this.meta.updateAt = Date.now()
     }
 
+    if (!user.isModified('password')) { return next(); }
     bcryptjs.genSalt(BCRYPT_SALT_LEN , function(err, salt){
         if (err) return next(err);
 
-        bcryptjs.hash(user.password, salt, function(err, hash){
+        bcryptjs.hash(user.password, salt, null,function(err, hash){
             if (err) return next(err);
             user.password = hash;
             next()

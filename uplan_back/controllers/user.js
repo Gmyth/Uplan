@@ -18,6 +18,7 @@ exports.showsignup  = function (req,res) {
     }
     res.render('signup', {title: 'register page'});
 };
+
 /**
  * GET /signin
  * Signin page.
@@ -54,9 +55,12 @@ exports.postSignin = function (req,res,next) {
                     return res.redirect('/signin');
                 }
                 req.logIn(user,function(err){
-                    res.json(user);
+                    //res.json(user);
                     if(err){return next(err);}
+
                     req.flash('success',{msg:'success log in'});
+                    console.log( req.sessionID);
+                    res.redirect('/profile/:'+req.sessionID);
 
                 })
             })(req,res,next);
@@ -102,36 +106,31 @@ exports.signout = function (req,res) {
  * POST /signup
  * create a new local account
  */
-exports.postSignup = function(req,res,next){
+exports.postSignup = (req, res, next) => {
 
-    //req.assert('password', 'Password must be at least 4 characters long').len(4);
-    //var _user = req.body.user;
-    //var user =new User();
-    var name = req.body.name;
-    var email= req.body.email;
-    console.log(name);
-    User.findOne({name:req.body.name},  function(err, user) {
-        if (err) {
-            console.log(err)
-        }
+    const user = new User({
+        email: req.body.email,
+        password: req.body.password,
+        name:req.body.name
+    });
 
-        if (user) {
-            return res.redirect('/signin')
+    User.findOne({ name: req.body.name }, (err, existingUser) => {
+        if (err) { return next(err); }
+        if (existingUser) {
+            req.flash('errors', { msg: 'Account with that email address already exists.' });
+            return res.redirect('/signup');
         }
-        else {
-            user = new User();
-            user.name = name;
-            user.email = email;
-            user.password = req.body.password;
-            user.save(function(err, user) {
+        user.save((err) => {
+            if (err) { return next(err); }
+            req.logIn(user, (err) => {
                 if (err) {
-                    console.log(err)
+                    return next(err);
                 }
-                //res.redirect(name);
                 res.json(user);
-            })
-        }
-    })
+
+            });
+        });
+    });
 };
 
 

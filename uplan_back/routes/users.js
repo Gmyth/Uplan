@@ -4,7 +4,7 @@ var router = express.Router();
 var mongoose =require('mongoose');
 var User = require('../models/user.js');
 /* GET users listing. */
-var passport =require('../controllers/passport');
+var passport =require('../config/passport');
 var userController = require('../controllers/user');
 //user route
 

@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "async": "^2.1.2",
-    "bcryptjs": "^2.3.0",
+    "bcrypt-nodejs": "0.0.3",
     "cors": "^2.8.1",
     "crypto": "0.0.3",
     "dyson": "^0.10.0",
