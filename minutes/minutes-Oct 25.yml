@@ -1,0 +1,13 @@
+date: October 25, 2016
+meeting_type: ta # meeting_type can "group", "ta", or "instructor"
+attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
+absent: []
+excused_absences: []
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <haoyuguo>, progress: finished sign up page, doing course taken page},
+  {ubit: <kaiyukan>, progress: main webpage done working on the api connect to our database and other forget password page},
+  {ubit: <enzeqian>, progress: almost done course search API, only remains time greater or less than},
+  {ubit: <cwang46>, progress: remodifying the user structure. Adding more API's to finish register functionallity.},
+  ]
+issues: []
+Notes:  |

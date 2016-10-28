@@ -1,3 +1,4 @@
 tools/
 .idea/
+uplan_back/node_modules
 .idea/workspace.xml

@@ -175,7 +175,7 @@
 @media screen and (max-device-height: 900px) {
     body {
         font-family: "Lato", Helvetica, Arial, sans-serif;
-        font-size: 1px;
+        font-size: 5px;
         line-height: 1.22222;/*1.722222*/
         color: #34495e;
         background-color: #ffffff;
