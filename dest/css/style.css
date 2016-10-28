@@ -206,12 +206,15 @@
         color: #34495e;
         background-color: #ffffff;
     }
+
     　　}
+
+@media(min-width: 850px){
+    .bodyback{    -moz-background-size:100% 100%;
+        background-size:100% 100%;
+        background-repeat:no-repeat;
+    }
+}
 html, body{
     height: 100%;
-}
-.bodyback{
-    -moz-background-size:100% 100%;
-    background-size:100% 100%;
-    background-repeat:no-repeat;
 }
