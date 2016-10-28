@@ -284,6 +284,65 @@ define("page/login/index", [ "lib/jquery", "util/tpl" ], function(require, expor
 });
 
 /**
+ * Created by kaiyu on 10/28/16.
+ */
+define("page/profile/config", [], function(require, exports, module) {
+    exports.data = {
+        Profile: [ {
+            username: "kaiyu",
+            university: "university at buffalo",
+            major: "computer science",
+            gender: "Male",
+            email: "test1@gmail.com",
+            yrs_experience: "Freshman (1 yrs)"
+        }, {
+            username: "chaojie",
+            university: "university at buffalo",
+            major: "computer engineering",
+            gender: "Female",
+            email: "test2@gmail.com",
+            yrs_experience: "Sophomore (2 yrs)"
+        } ]
+    };
+});
+
+/**
+ * Created by kaiyu on 10/28/16.
+ */
+define("page/profile/index", [ "lib/jquery", "page/profile/config", "util/tpl", "util/timeparser", "net/search", "util/net", "page/sublist/index", "page/sublist/config", "page/flow/index" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var config = require("page/profile/config").data;
+    var tpl = require("util/tpl");
+    var timeparser = require("util/timeparser");
+    var search = require("net/search");
+    var sublist = require("page/sublist/index");
+    var tmpl = {
+        main: '    <div id="SignIn" style="margin-top: 5%;">        <form onsubmit="return false">            <div class="col-2">                <label>                    <b>USERNAME <p class="info_guide"></p></b>                    <b><%=Profile.username%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>UNIVERSITY<p class="info_guide"></p></b>                    <b><%=Profile.university%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>MAJOR<p class="info_guide"></p></b>                    <b><%=Profile.major%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>GENDER<p class="info_guide"></p></b>                    <b><%=Profile.gender%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>EMAIL<p class="info_guide"></p></b>                    <b><%=Profile.email%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>YRS EXPERIENCE<p class="info_guide"></p></b>                    <b><%=Profile.yrs_experience%></b>                </label>            </div>        </form>    </div>'
+    };
+    /*config set*/
+    var timeStart = 8;
+    var timeEnd = 21;
+    exports.init = function() {
+        $(".profile").html(tpl.get(tmpl.main, {
+            Profile: config.Profile[1]
+        }));
+    };
+    /*bind the button input control event*/
+    var _bindEvent = function() {
+        $main = $(".profile");
+        $main.off();
+        $main.on("click", "[data-action]", function() {
+            if ($(this).attr("disabled") != "disabled") {
+                var actionName = $(this).data("action");
+                var action = actionList[actionName];
+                var tar = this;
+                if ($.isFunction(action)) action(tar);
+            }
+        });
+    };
+});
+
+/**
  * Created by kaiyu on 9/26/16.
  */
 define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/search", "util/net", "page/sublist/index", "page/sublist/config", "page/flow/index" ], function(require, exports, module) {

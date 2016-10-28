@@ -87,7 +87,7 @@ label > input:focus, label > select:focus {
 @media(min-width: 850px){
 
     form > div { display: inline-block; }
-    form {width:1200px;  margin:auto;}
+    form {width:1000px;  margin:auto;}
     .col-submit { display: block; }
 
     .col-2, .col-3, .col-4 { box-shadow: 1px 1px #e4e4e4; border: none; }

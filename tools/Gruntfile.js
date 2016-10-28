@@ -81,7 +81,7 @@ module.exports = function(grunt){
 		},
 		mocha: {
 			all: {
-			  src: ['test/index.html'],
+			  src: ['test/index.tpl'],
 			  options: {
 			    run: true
 			  }
