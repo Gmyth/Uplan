@@ -1,0 +1,13 @@
+date: October 11, 2016
+meeting_type: ta # meeting_type can "group", "ta", or "instructor"
+attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
+absent: []
+excused_absences: []
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <haoyuguo>, progress: finished Course list fornt end part, write api to connect with back end},
+  {ubit: <kaiyukan>, progress: Add the advanced search button and it can pop up a small window which contains all advance search option.},
+  {ubit: <enzeqian>, progress: Finish Userlogin page,commit to feature-userlogin},
+  {ubit: <cwang46>, progress: Course List back end part finished, basic search function. connect the server with front end web},
+  ]
+issues: []
+Notes:  | The Ta meeting on one day after the due day of sprint 2. Task progress remains same since we just finish sprint 2 and haven't started for sprint 3 yet. Ta talked about the grading rubric about sprint 2. # Anything covered in the meeting that doesn't fit elsewhere.

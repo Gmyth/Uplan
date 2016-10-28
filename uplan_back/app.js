@@ -18,7 +18,7 @@ var cors = require('cors');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/TestDatabase', function (err) {
+mongoose.connect('mongodb://localhost/Class', function (err) {
     if(err){
         console.log('connection fail for mongodb...');
     } else{

@@ -26,7 +26,9 @@ define("net/search", [ "lib/jquery" ], function factory(require, exports, module
             selllevel: Obj.selllevel,
             check_box_id1: Obj.check_box_id1,
             txtstarttime: Obj.txtstarttime,
-            txtendtime: Obj.txtendtime
+            txtendtime: Obj.txtendtime,
+            selstart:Obj.selstart,
+            selend:Obj.selend
         };
         var success = function(json) {
             callback && callback(json);

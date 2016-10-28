@@ -1,0 +1,38 @@
+<!--<b>12312</b>-->
+    <!--<%for(var i=0,item;item = CourseList[i];i++){%>-->
+    <!--<tr>-->
+        <!--<%if(i%2==0){%><td class="weekly_schedule_time_background" rowspan="2"><span ><%=startTime+(i/2)%>:00</span></td><%}%>-->
+        <!--<%if(typeof item[0] == "object" &&){%>-->
+        <!--<%if(item[0].hasOwnProperty('hover')){%>-->
+        <!--<td class="weekly_schedule_line_background_hovered" rowspan=<%=item[0].span%> ></td>-->
+        <!--<%}else{%>-->
+        <!--<%if(item[0].conflict==true){%>-->
+        <!--<td class="weekly_schedule_line_background_conflict" rowspan=<%=item[0].span%> ><span><%=item[0].Course%>  - <%=item[0].Section%><br><%=item[0].Type%><br><%=item[0].Time%><br><%=item[0].Room%></span></td>-->
+        <!--<%}else{%>-->
+        <!--<td class="weekly_schedule_line_background" rowspan=<%=item[0].span%> ><span><%=item[0].Course%>  - <%=item[0].Section%><br><%=item[0].Type%><br><%=item[0].Time%><br><%=item[0].Room%></span></td>-->
+        <!--<%}%>-->
+        <!--<%}%>-->
+        <!--<%}else if(typeof item[0]!= "boolean"&&item[0] != "hover_item"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>-->
+
+        <!--<%if(typeof item[0]== "object"){%> <td class="weekly_schedule_line_background" rowspan=<%=item[0].span%> ><span><%=item[0].Course%>  - <%=item[0].Section%><br><%=item[0].Type%><br><%=item[0].Time%><br><%=item[0].Room%></span></td>-->
+        <!--<%}else if(typeof item[0]!= "boolean"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>-->
+
+        <!--<%if(typeof item[1]== "object"){%> <td class="weekly_schedule_line_background" rowspan=<%=item[1].span%> ><span><%=item[1].Course%>  - <%=item[1].Section%><br><%=item[1].Type%><br><%=item[1].Time%><br><%=item[1].Room%></span></td>-->
+        <!--<%}else if(typeof item[1]!= "boolean"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>-->
+
+        <!--<%if(typeof item[2]== "object"){%> <td class="weekly_schedule_line_background" rowspan=<%=item[2].span%> ><span><%=item[2].Course%>  - <%=item[2].Section%><br><%=item[2].Type%><br><%=item[2].Time%><br><%=item[2].Room%></span></td>-->
+        <!--<%}else if(typeof item[2]!= "boolean"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>-->
+
+        <!--<%if(typeof item[3]== "object"){%> <td class="weekly_schedule_line_background" rowspan=<%=item[3].span%> ><span><%=item[3].Course%>  - <%=item[3].Section%><br><%=item[3].Type%><br><%=item[3].Time%><br><%=item[3].Room%></span></td>-->
+        <!--<%}else if(typeof item[3]!= "boolean"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>-->
+
+        <!--<%if(typeof item[4]== "object"){%> <td class="weekly_schedule_line_background" rowspan=<%=item[4].span%> ><span><%=item[4].Course%>  - <%=item[4].Section%><br><%=item[4].Type%><br><%=item[4].Time%><br><%=item[4].Room%></span></td>-->
+        <!--<%}else if(typeof item[4]!= "boolean"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>-->
+
+        <!--<%if(typeof item[5]== "object"){%> <td class="weekly_schedule_line_background" rowspan=<%=item[5].span%> ><span><%=item[5].Course%>  - <%=item[5].Section%><br><%=item[5].Type%><br><%=item[5].Time%><br><%=item[5].Room%></span></td>-->
+        <!--<%}else if(typeof item[5]!= "boolean"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>-->
+
+        <!--<%if(typeof item[6]== "object"){%> <td class="weekly_schedule_line_background" rowspan=<%=item[6].span%> ><span><%=item[6].Course%>  - <%=item[6].Section%><br><%=item[6].Type%><br><%=item[6].Time%><br><%=item[6].Room%></span></td>-->
+        <!--&lt;!&ndash;<%}else if(typeof item[6]!= "boolean"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>&ndash;&gt;-->
+    <!--</tr>-->
+    <!--<%}%>-->
