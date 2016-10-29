@@ -7,7 +7,7 @@ task_progress: [ # All group members must be included here even if they haven't 
   {ubit: <haoyuguo>, progress: },
   {ubit: <kaiyukan>, progress: user profile page done},
   {ubit: <enzeqian>, progress: course search API done},
-  {ubit: <cwang46>, progress: },
+  {ubit: <cwang46>, progress: reconstruction of user structure done. Oauth logic done.},
   ]
 issues: []
 Notes:  |
