@@ -9,6 +9,7 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
     var timeparser = require("util/timeparser");
     var dataArr = [];
     /*2D array*/
+    var user = "";
     var tmpl = {
         main: FLOW.MAIN,
         body: FLOW.COURSE
@@ -16,7 +17,8 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
     /*config set*/
     var timeStart = 8;
     var timeEnd = 21;
-    exports.init = function() {
+    exports.init = function(username) {
+        user = username;
         $(".main_container").html(tpl.get(tmpl.main));
         var container_height = $(".main_container").height();
         $(".main_body").height(container_height - 60);

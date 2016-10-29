@@ -13,7 +13,7 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
         return hash.substring(1, hash.length);
     };
     //init function to start load js
-    exports.init = function(username, namespace) {
+    exports.init = function(username) {
         // for the tab part may need in future
         // curTab = getTabFromHash();
         // curUser   = username;
@@ -23,7 +23,7 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
         //     index.init();
         // });
         require.async(tabMap["flow"], function(index) {
-            index.init();
+            index.init(username);
         });
         require.async(tabMap["sublist"], function(index) {
             index.init();
