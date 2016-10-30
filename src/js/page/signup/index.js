@@ -9,8 +9,6 @@ define(function(require, exports, module){
     var $ = require('lib/jquery')
     var tpl = require('util/tpl')
     var signup = require('net/signup')
-    var tmpl = {
-    }
     var p ="";
     var typingTimer;                //timer identifier
     var doneTypingInterval = 1000;  //time in ms, 5 second for example
@@ -38,7 +36,6 @@ define(function(require, exports, module){
                 signup.Signup(obj,function () {
                     alert('success');
                 })
-                
             }else{
                 $("#Signup_msg").html('<p class="error_msg"> <span class="fui-cross" style="color: #e63c5f"></span>Please complete the form to continue Sign up!</p>')
             }
