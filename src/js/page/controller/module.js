@@ -37,7 +37,11 @@ define(function(require, exports, module){
             // $.ajax({
             //     method: "GET",
             //     url: "./logout",
-            // }).done(function(){location.href="http://localhost:3000/login.html"});
+            // }).done(function(){
+            // var util = require('util/util');
+            // util.cookie.del("u_Ticket");
+            // location.href="http://localhost:3000/login.html"
+            // });
         })
     };
 });
