@@ -1,29 +1,25 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> common
-define(function(require, exports, module){
+define("util/util", [], function(require, exports, module) {
     var util = {
-        globalError : function(msg){
-            var $wrap = $('<div></div>');
+        globalError: function(msg) {
+            var $wrap = $("<div></div>");
             $wrap.css({
-                position : 'fixed',
-                top : '50%',
-                left : '10%',
-                marginTop : '-50px',
-                width : '80%',
-                height : '100px',
-                textAlign : 'center',
-                fontSize : '24px'
+                position: "fixed",
+                top: "50%",
+                left: "10%",
+                marginTop: "-50px",
+                width: "80%",
+                height: "100px",
+                textAlign: "center",
+                fontSize: "24px"
             });
             $wrap.text(msg);
-            $wrap.appendTo($(document.body).html(''));
+            $wrap.appendTo($(document.body).html(""));
         },
         /**
          * 判断当前页面是否被嵌套
          * @returns {boolean}
          */
-        isEmbed : function(){
+        isEmbed: function() {
             try {
                 return window.self !== window.top;
             } catch (e) {
@@ -39,7 +35,9 @@ define(function(require, exports, module){
          * @param {Number} deep (optional) 默认最大20层
          * @return {Object} merged
          */
-        /*merge : function (o, append, deep *//* = 20 *//*) {
+        /*merge : function (o, append, deep */
+        /* = 20 */
+        /*) {
          var dest, src, n,
          ret = {};
          deep = parseInt(deep, 10);
@@ -69,18 +67,23 @@ define(function(require, exports, module){
          // 如果都是对象，还可进行下一步合并
          if (typeof src === "object") {
          ret[n] = util.merge(dest, src, deep - 1);
-         }*//* else {
+         }*/
+        /* else {
          // primitive -> object 冲突，保持原属性
-         }*//*
-         }*//* else {
+         }*/
+        /*
+         }*/
+        /* else {
          // 其它情况, xxx -> primitive 冲突，保持原属性
-         }*//*
+         }*/
+        /*
          }
          }
          return ret;
          },*/
-
-        /*clone : function (obj, deep *//* = 20 *//*) {
+        /*clone : function (obj, deep */
+        /* = 20 */
+        /*) {
          var o, n, i, len;
          deep = parseInt(deep, 10);
          if (window.isNaN(deep)) {
@@ -110,13 +113,12 @@ define(function(require, exports, module){
          }
          return o;
          },*/
-
-        deepApply : function(dest, src){
+        deepApply: function(dest, src) {
             var p, n;
             /*jshint forin:false*/
-            for(n in src){
+            for (n in src) {
                 p = src[n];
-                if(typeof p === "object" && typeof dest[n] === "object"){
+                if (typeof p === "object" && typeof dest[n] === "object") {
                     util.deepApply(dest[n], p);
                     continue;
                 }
@@ -131,117 +133,77 @@ define(function(require, exports, module){
          * @param {Object} scope
          * @returns {Function} proxyedFunction
          */
-        proxy : function(fn, scope){
-            return function(){
+        proxy: function(fn, scope) {
+            return function() {
                 fn.apply(scope, arguments);
             };
         },
         cookie: {
             get: function(name) {
-                var r = new RegExp("(?:^|;+|\\s+)" + name + "=([^;]*)"),
-                    m = document.cookie.match(r);
+                var r = new RegExp("(?:^|;+|\\s+)" + name + "=([^;]*)"), m = document.cookie.match(r);
                 //console.log("from util:"+m[1]);
-
                 return !m ? "" : m[1];
             },
             set: function(name, value, domain, path, hour) {
-<<<<<<< HEAD
-                name="test";
-                value="dsadsadadadsadasdsa"
-                var path_1 = '/';
-                var domian_1="dev.api.selfconf.barad.isd.com";
-=======
->>>>>>> common
                 var expire;
                 if (hour) {
                     expire = new Date();
-                    expire.setTime(expire.getTime() + 36E5 * hour);
+                    expire.setTime(expire.getTime() + 36e5 * hour);
                 }
-
-<<<<<<< HEAD
-
                 // document.cookie = name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
                 //     (path ? "path=" + path + "; " : "path=/; ") + (domain ? "domain=" + domain + ";" : "domain=" + document.domain + ";");
-                document.cookie = name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
-                    (path_1 ? "path=" + path_1 + "; " : "path=/; ") + (domian_1 ? "domain=" + domian_1 + ";" : "domain=" + document.domain + ";");
-                console.log( name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
-                    (path_1 ? "path=" + path_1 + "; " : "path=/; ") + (domian_1 ? "domain=" + domian_1 + ";" : "domain=" + document.domain + ";"));
-
-=======
-                
-                // document.cookie = name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
-                //     (path ? "path=" + path + "; " : "path=/; ") + (domain ? "domain=" + domain + ";" : "domain=" + document.domain + ";");
-                document.cookie = name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
-                    (path_1 ? "path=" + path_1 + "; " : "path=/; ") + (domian_1 ? "domain=" + domian_1 + ";" : "domain=" + document.domain + ";");     
-                console.log( name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
-                    (path_1 ? "path=" + path_1 + "; " : "path=/; ") + (domian_1 ? "domain=" + domian_1 + ";" : "domain=" + document.domain + ";"));
-                
->>>>>>> common
+                document.cookie = name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") + (path_1 ? "path=" + path_1 + "; " : "path=/; ") + (domian_1 ? "domain=" + domian_1 + ";" : "domain=" + document.domain + ";");
+                console.log(name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") + (path_1 ? "path=" + path_1 + "; " : "path=/; ") + (domian_1 ? "domain=" + domian_1 + ";" : "domain=" + document.domain + ";"));
                 return true;
             },
             del: function(name, domain, path) {
-                document.cookie = name + "=; expires=Mon, 26 Jul 1997 05:00:00 GMT; " +
-                    (path ? "path=" + path + "; " : "path=/; ") +
-                    (domain ? "domain=" + domain + ";" : "domain=" + document.domain + ";");
+                document.cookie = name + "=; expires=Mon, 26 Jul 1997 05:00:00 GMT; " + (path ? "path=" + path + "; " : "path=/; ") + (domain ? "domain=" + domain + ";" : "domain=" + document.domain + ";");
             }
         },
         /**
          * 获取当前用户的uin
          * @returns {Number|string}
          */
-        getUin:function(){
-            return parseInt(this.cookie.get("uin").replace(/\D/g,""),10) || '';
+        getUin: function() {
+            return parseInt(this.cookie.get("uin").replace(/\D/g, ""), 10) || "";
         },
         /**
          * 获取防CSRF串 TODO 要确认云监控的csrf串生成规则与微信云的一致
          * @method getAntiCSRFToken
          * @return {String} 验证串
          */
-        getAntiCSRFToken:function(){
+        getAntiCSRFToken: function() {
             /* jshint bitwise:false */
-            var s_key = this.cookie.get('skey'),
-                hash = 5381;
+            var s_key = this.cookie.get("skey"), hash = 5381;
             if (!s_key) {
-                return '';
+                return "";
             }
             for (var i = 0, len = s_key.length; i < len; ++i) {
                 hash += (hash << 5) + s_key.charCodeAt(i);
             }
-            return hash & 0x7fffffff;
-            /* jshint bitwise:true */
+            return hash & 2147483647;
         },
-        getParam : function(name) {
+        getParam: function(name) {
             name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         },
-        removeParam:function(url ,name){
-            var reg=new RegExp("[\\?&]" + name + "=([^&#]*)","i");
-            return url.replace(reg,"");
+        removeParam: function(url, name) {
+            var reg = new RegExp("[\\?&]" + name + "=([^&#]*)", "i");
+            return url.replace(reg, "");
         },
-
-
-
-        formatDate : (function(){
+        formatDate: function() {
             function pad(number) {
                 var r = String(number);
-                if ( r.length === 1 ) {
-                    r = '0' + r;
+                if (r.length === 1) {
+                    r = "0" + r;
                 }
                 return r;
             }
-
             return function(d, noSecond) {
-                return d.getFullYear()+
-                    '-' + pad( d.getMonth() + 1 )+
-                    '-' + pad( d.getDate() )+
-                    ' ' + pad( d.getHours() )+
-                    ':' + pad( d.getMinutes() )+
-                    (noSecond ? '' : (':' + pad( d.getSeconds() )));
+                return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) + " " + pad(d.getHours()) + ":" + pad(d.getMinutes()) + (noSecond ? "" : ":" + pad(d.getSeconds()));
             };
-        })()
+        }()
     };
     module.exports = util;
 });
-
