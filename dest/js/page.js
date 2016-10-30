@@ -15,7 +15,7 @@ define("page/controller/config", [], function(require, exports, module) {
 /**
  * Created by Haoyu Guo on 2016/9/3.
  */
-define("page/controller/module", [ "page/controller/config", "lib/jquery" ], function(require, exports, module) {
+define("page/controller/module", [ "page/controller/config", "lib/jquery", "page/profile/config", "util/tpl", "util/timeparser", "net/search", "util/net", "page/profile/index", "page/sublist/index" ], function(require, exports, module) {
     var tabMap = require("page/controller/config").map;
     var $ = require("lib/jquery");
     var curTab = "flow";
@@ -45,6 +45,41 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
         require.async(tabMap["search"], function(index) {
             index.init();
         });
+    };
+    /** create for profile */
+    var config = require("page/profile/config").data;
+    var tpl = require("util/tpl");
+    var timeparser = require("util/timeparser");
+    var search = require("net/search");
+    var profile = require("page/profile/index");
+    var tmpl = {
+        main: PROFILE.MAIN
+    };
+    /*config set*/
+    exports.init = function() {
+        $(".profile").html(tpl.get(tmpl.main, {
+            Profile: config.Profile[1]
+        }));
+    };
+    /*bind the button input control event*/
+    var _bindEvent = function() {
+        $main = $(".profile");
+        $main.off();
+        $main.on("click", "[data-action]", function() {
+            if ($(this).attr("disabled") != "disabled") {
+                var actionName = $(this).data("action");
+                var action = actionList[actionName];
+                var tar = this;
+                if ($.isFunction(action)) action(tar);
+            }
+        });
+    };
+    var actionList = {
+        profile: function(tar) {
+            $(".profile").html(tpl.get(tmpl.main, {
+                Profile: config.Profile[1]
+            }));
+        }
     };
 });
 
@@ -260,10 +295,11 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
 /**
  * Created by kaiyu on 10/25/16.
  */
-define("page/login/index", [ "lib/jquery", "util/tpl" ], function(require, exports, module) {
+define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login", "util/net" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var tpl = require("util/tpl");
-    var tmpl = {};
+    var util = require("util/util");
+    var login = require("net/login");
     var p = "";
     var typingTimer;
     //timer identifier
@@ -272,12 +308,31 @@ define("page/login/index", [ "lib/jquery", "util/tpl" ], function(require, expor
     exports.init = function() {
         _bindEvent();
     };
+    var login_check = function() {};
     /*the combination of needed action function*/
     var actionList = {
         start: function(tar) {},
         logindata: function(tar) {
+            var obj = {};
             var login_username = $("#loginusername").val();
+            var pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            /*No Underscore at first and last*/
+            if (pattern.test(login_username)) {
+                obj.email = login_username;
+            } else {
+                obj.username = login_username;
+            }
             var login_password = $("#loginpassword").val();
+            obj.password = login_password;
+            var success = function(data) {
+                if (data.errno == "200") {
+                    util.cookie.set("u_Ticket", data.data.id);
+                    location.href = "localhost:3000/";
+                } else {
+                    alert(data.error);
+                }
+            };
+            login.Login(obj, success);
         }
     };
     var _bindEvent = function() {};

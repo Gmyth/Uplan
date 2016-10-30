@@ -1,10 +1,11 @@
 /**
  * Created by kaiyu on 10/25/16.
  */
-define("page/login/index", [ "lib/jquery", "util/tpl" ], function(require, exports, module) {
+define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login", "util/net" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var tpl = require("util/tpl");
-    var tmpl = {};
+    var util = require("util/util");
+    var login = require("net/login");
     var p = "";
     var typingTimer;
     //timer identifier
@@ -13,12 +14,31 @@ define("page/login/index", [ "lib/jquery", "util/tpl" ], function(require, expor
     exports.init = function() {
         _bindEvent();
     };
+    var login_check = function() {};
     /*the combination of needed action function*/
     var actionList = {
         start: function(tar) {},
         logindata: function(tar) {
+            var obj = {};
             var login_username = $("#loginusername").val();
+            var pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            /*No Underscore at first and last*/
+            if (pattern.test(login_username)) {
+                obj.email = login_username;
+            } else {
+                obj.username = login_username;
+            }
             var login_password = $("#loginpassword").val();
+            obj.password = login_password;
+            var success = function(data) {
+                if (data.errno == "200") {
+                    util.cookie.set("u_Ticket", data.data.id);
+                    location.href = "localhost:3000/";
+                } else {
+                    alert(data.error);
+                }
+            };
+            login.Login(obj, success);
         }
     };
     var _bindEvent = function() {};

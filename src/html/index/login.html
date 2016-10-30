@@ -53,9 +53,7 @@
                 <b id="loginusername">USERNAME or EMAIL </b>
                 <input placeholder=" Enter here " id="username" name="name" tabindex="1">
             </label>
-
         </div>
-
         <div class="col-2">
             <label>
                 <laber class="password_icon fui-lock" for="password"></laber>
@@ -63,18 +61,15 @@
                 <input placeholder=" Enter here " type="password"  id="password" name="password" tabindex="3" maxlength="25">
             </label>
         </div>
-
         <div class="col-submit">
             <button class="btn btn-block btn-sm btn-success" data-action="logindata" >Submit</button>
             <a style = "font-size: small" href="/password">Lost your password? >> </a>
         </div>
-
         <div class="col-submit">
             <button class="btn btn-block btn-sm btn-success1" data-action="click_google" ><div><laber class="password_icon fui-google-plus" for="password"></laber>&nbspHave Google Account?</div>  </button>
         </div>
     </form>
 </div>
-
 <div class="clear"></div>
 </body>
 <script src="./js/sea.js"></script>
@@ -88,7 +83,6 @@
             '$' : 'lib/jquery',
         }
     });
-
     function start () {
         seajs.use(["lib/jquery","page/login/index"], function($,index) {
             index.init();
