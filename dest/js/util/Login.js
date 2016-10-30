@@ -1,4 +1,4 @@
-define("util/Login", [ "lib/jquery", "util/util", "net/pub", "util/net" ], function(require, exports, module) {
+define("util/Login", [ "lib/jquery", "util/util", "net/pub", "util/router", "util/cacheData", "util/net" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var util = require("util/util");
     var currrent_url = "localhost:3000/";

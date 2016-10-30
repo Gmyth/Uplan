@@ -6,7 +6,7 @@
  *	author:v_haoyuguo   
  *	date: 20160607
  */
-define("net/pub", [ "lib/jquery", "util/router", "util/net", "util/security", "util/util" ], function factory(require, exports, module) {
+define("net/pub", [ "lib/jquery", "util/router", "util/uri", "util/cookie", "util/net", "util/cacheData", "util/security", "util/util" ], function factory(require, exports, module) {
     var $ = require("lib/jquery");
     var router = require("util/router");
     var cacheData = require("util/cacheData");
@@ -37,16 +37,17 @@ define("net/pub", [ "lib/jquery", "util/router", "util/net", "util/security", "u
      *	@return
      */
     exports.getLoginInfo = function(callback) {
-        var url = this.parseUrl("/Auth/Login");
-        //var url  = "http://dev.api.join.barad.isd.com/Auth/Login";
-        var ticket = util.cookie.get("ticket");
+        var ticket = util.cookie.get("u_Ticket");
         var data = {
-            oaTicket: ticket
+            u_Ticket: ticket
         };
         var success = function(json) {
             callback && callback(json);
         };
-        var dataType = "json";
-        net.post(url, JSON.stringify(data), success, dataType);
+        $.ajax({
+            method: "GET",
+            url: "./account/profile",
+            data: {}
+        }).done(callback);
     };
 });

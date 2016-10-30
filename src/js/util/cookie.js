@@ -1,6 +1,5 @@
 /**
- * cookie存储封装
- * https://github.com/dcompute/Zepto-Cookie/blob/master/zepto.cookie.js
+ * cookie
  */
 define(function(require, exports, module){
 	var $ = require('lib/jquery');

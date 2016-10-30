@@ -14405,37 +14405,7 @@ $("videojs.util",t.ha);t.ha.mergeOptions=t.ha.Wa;t.addLanguage=t.fd;})();
     t.addLanguage = t.fd;
 })();
 
-/**
- * cookie存储封装
- * https://github.com/dcompute/Zepto-Cookie/blob/master/zepto.cookie.js
- */
-define("util/cookie", [ "lib/jquery" ], function(require, exports, module) {
-    var $ = require("lib/jquery");
-    module.exports = function(key, value, options) {
-        var days, time, result, decode;
-        // A key and value were given. Set cookie.
-        if (arguments.length > 1 && String(value) !== "[object Object]") {
-            // Enforce object
-            options = $.extend({}, options);
-            if (value === null || value === undefined) options.expires = -1;
-            if (typeof options.expires === "number") {
-                days = options.expires * 24 * 60 * 60 * 1e3;
-                time = options.expires = new Date();
-                time.setTime(time.getTime() + days);
-            }
-            value = String(value);
-            return document.cookie = [ encodeURIComponent(key), "=", options.raw ? value : encodeURIComponent(value), options.expires ? "; expires=" + options.expires.toUTCString() : "", options.path ? "; path=" + options.path : "", options.domain ? "; domain=" + options.domain : "", options.secure ? "; secure" : "" ].join("");
-        }
-        // Key and possibly options given, get cookie
-        options = value || {};
-        decode = options.raw ? function(s) {
-            return s;
-        } : decodeURIComponent;
-        return (result = new RegExp("(?:^|; )" + encodeURIComponent(key) + "=([^;]*)").exec(document.cookie)) ? decode(result[1]) : null;
-    };
-});
-
-define("util/Login", [ "lib/jquery", "util/util", "net/pub", "util/net" ], function(require, exports, module) {
+define("util/Login", [ "lib/jquery", "util/util", "net/pub", "util/router", "util/cacheData", "util/net" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var util = require("util/util");
     var currrent_url = "localhost:3000/";
@@ -14496,6 +14466,197 @@ define("util/Login", [ "lib/jquery", "util/util", "net/pub", "util/net" ], funct
         }
     };
     module.exports = Login;
+});
+
+/**
+ * Created with JetBrains PhpStorm.
+ * User: layenlin
+ * Date: 13-12-16
+ * Time: 上午10:39
+ * To change this template use File | Settings | File Templates.
+ */
+define("util/cacheData", [], function(require, exports, module) {
+    var _private = {};
+    _private.sn = "gamecenter_";
+    _private.getName = function(name, category, type) {
+        return "gamecenter_&" + escape(category || "normal") + "&" + escape(name) + (type ? "&" + escape(type) : "");
+    };
+    _private.getLocalStorage = function(name, category) {
+        try {
+            var value = window.localStorage.getItem(_private.getName(name, category));
+            var info = JSON.parse(window.localStorage.getItem(_private.getName(name, category, "info")));
+            value = JSON.parse(value);
+        } catch (e) {
+            return null;
+        }
+        try {
+            window.localStorage.setItem(_private.getName(name, category, "info"), JSON.stringify({
+                time: info && parseInt(info.time) || new Date().getTime(),
+                count: (info && parseInt(info.count) || 0) + 1
+            }));
+        } catch (e) {
+            // 设置出错，清除ls
+            window.localStorage.clear();
+            return null;
+        }
+        return value;
+    };
+    var seed = 0;
+    _private.setLocalStorage = function(name, value, category) {
+        seed++;
+        console.time("setls_" + seed);
+        var json = JSON.stringify(value);
+        try {
+            window.localStorage.setItem(_private.getName(name, category), json);
+            window.localStorage.setItem(_private.getName(name, category, "info"), JSON.stringify({
+                time: new Date().getTime(),
+                count: 0
+            }));
+        } catch (e) {
+            window.localStorage.clear();
+            return false;
+        }
+        console.timeEnd("setls_" + seed);
+        return true;
+    };
+    _private.getLocalStorageTime = function(name, category) {
+        try {
+            var info = JSON.parse(window.localStorage.getItem(_private.getName(name, category, "info")));
+            return info && parseInt(info.time) || 0;
+        } catch (e) {
+            return 0;
+        }
+    };
+    _private.getLocalStorageCount = function(name, category) {
+        try {
+            var info = JSON.parse(window.localStorage.getItem(_private.getName(name, category, "info")));
+            return info && parseInt(info.count) || 0;
+        } catch (e) {
+            return 0;
+        }
+    };
+    _private.memoryCache = {};
+    _private.getMemory = function(name, category) {
+        var data = _private.memoryCache[_private.getName(name, category)];
+        var value = data && data.value;
+        var time = data && data.time;
+        var count = data && data.count;
+        //store.log('store.cacheData getMemory: value[' + value + '] name[' + name + '] category[' + category + '] time[' + time + '] count[' + count + ']');
+        if (typeof data === "undefined") {
+            return null;
+        } else {
+            if (data !== null) {
+                data.count = (parseInt(data.count) || 0) + 1;
+            }
+            return value;
+        }
+    };
+    _private.setMemory = function(name, value, category) {
+        //store.log('store.cacheData setMemory: value[' + JSON.stringify(value) + '] name[' + name + '] category[' + category + ']');
+        _private.memoryCache[_private.getName(name, category)] = {
+            value: value,
+            time: new Date().getTime(),
+            count: 0
+        };
+        return true;
+    };
+    _private.getMemoryTime = function(name, category) {
+        var data = _private.memoryCache[_private.getName(name, category)];
+        return data && parseInt(data.time) || 0;
+    };
+    _private.getMemoryCount = function(name, category) {
+        var data = _private.memoryCache[_private.getName(name, category)];
+        return data && parseInt(data.count) || 0;
+    };
+    exports.get = function(name) {
+        var category = "";
+        switch (this.getCacheMode()) {
+          case "localStorage":
+            return _private.getLocalStorage.call(this, name, category);
+
+          case "memory":
+            return _private.getMemory.call(this, name, category);
+        }
+    };
+    exports.set = function(name, value) {
+        var category = "";
+        switch (this.getCacheMode()) {
+          case "localStorage":
+            return _private.setLocalStorage.call(this, name, value, category);
+
+          case "memory":
+            return _private.setMemory.call(this, name, value, category);
+        }
+    };
+    _private.cacheMode = null;
+    exports.setCacheMode = function(mode) {
+        _private.cacheMode = mode;
+    };
+    exports.getCacheMode = function() {
+        if (_private.cacheMode === null) {
+            if (window.localStorage) {
+                _private.cacheMode = "localStorage";
+            } else {
+                _private.cacheMode = "memory";
+            }
+        }
+        return _private.cacheMode;
+    };
+    exports.isExpire = function(name, maxSecond, maxCount) {
+        var time = 0;
+        var count = 0;
+        var category = "";
+        switch (this.getCacheMode()) {
+          case "localStorage":
+            time = _private.getLocalStorageTime.call(this, name, category);
+            count = _private.getLocalStorageCount.call(this, name, category);
+            break;
+
+          case "memory":
+            time = _private.getLocalStorageTime.call(this, name, category);
+            count = _private.getLocalStorageCount.call(this, name, category);
+            break;
+        }
+        if (Math.abs(new Date().getTime() - time) > maxSecond * 1e3) {
+            //store.log('store.dataCache isExpire: true name[' + name + '] category[' + category + '] maxSecond[' + maxSecond + '] time[' + time + '] now[' + new Date().getTime() + ']');
+            return true;
+        }
+        if (count > maxCount) {
+            //store.log('store.dataCache isExpire: true name[' + name + '] category[' + category + '] maxCount[' + maxCount + '] count[' + count + ']');
+            return true;
+        }
+        //store.log('store.dataCache isExpire: false name[' + name + '] category[' + category + '] maxSecond[' + maxSecond + '] maxCount[' + maxCount + '] time[' + time + '] now[' + new Date().getTime() + '] count[' + count + ']');
+        return false;
+    };
+});
+
+/**
+ * cookie
+ */
+define("util/cookie", [ "lib/jquery" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    module.exports = function(key, value, options) {
+        var days, time, result, decode;
+        // A key and value were given. Set cookie.
+        if (arguments.length > 1 && String(value) !== "[object Object]") {
+            // Enforce object
+            options = $.extend({}, options);
+            if (value === null || value === undefined) options.expires = -1;
+            if (typeof options.expires === "number") {
+                days = options.expires * 24 * 60 * 60 * 1e3;
+                time = options.expires = new Date();
+                time.setTime(time.getTime() + days);
+            }
+            value = String(value);
+            return document.cookie = [ encodeURIComponent(key), "=", options.raw ? value : encodeURIComponent(value), options.expires ? "; expires=" + options.expires.toUTCString() : "", options.path ? "; path=" + options.path : "", options.domain ? "; domain=" + options.domain : "", options.secure ? "; secure" : "" ].join("");
+        }
+        // Key and possibly options given, get cookie
+        options = value || {};
+        decode = options.raw ? function(s) {
+            return s;
+        } : decodeURIComponent;
+        return (result = new RegExp("(?:^|; )" + encodeURIComponent(key) + "=([^;]*)").exec(document.cookie)) ? decode(result[1]) : null;
+    };
 });
 
 /**
@@ -14753,6 +14914,124 @@ define("util/net", [ "lib/jquery", "util/security", "util/cookie", "util/uri" ],
             ping = null;
             delete window[name];
         };
+    };
+});
+
+/**
+ * 路由模块
+ */
+define("util/router", [ "lib/jquery", "util/uri", "util/cookie", "util/net", "util/security" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var uri = require("util/uri");
+    var cookie = require("util/cookie");
+    var net = require("util/net");
+    var pageSrc;
+    var enableSwipe = false;
+    var shareParam;
+    var userId;
+    var packageName;
+    var packageDefer;
+    //设置webview导航栏颜色,产品策略可以接受这种情形：webview顶部先是蓝色，执行到这里逻辑后再变成黑色(ambermu)。
+    /*if(mqq && mqq.ui && mqq.ui.setWebViewBehavior){
+		mqq.ui.setWebViewBehavior({navBgColor:0x15191c});//这里颜色码从重构处获取
+	}*/
+    // 防止其他库的Deferred覆盖到原始的
+    var Deferred = $.proxy($.Deferred, $);
+    /**
+	 * @exports business/开启右滑退出router
+	 */
+    var router = exports;
+    /**
+	 * 页面切换，屏蔽具体实现
+	 * @param {string} route 路由名称
+	 * @param {object} [params] 自定义参数
+	 * @params {boolean} 可选参数，标记该次是否采用新窗口打开 true表示采用新窗口,不传该参数默认为false
+	 */
+    router.redirect = function(route, params, ops) {
+        ops = true;
+        router.canShow(function() {
+            //苹果ios审核期间，所有跳转都干掉
+            common.openUrl({
+                newWindow: typeof ops == "undefined" || ops === false ? false : true,
+                url: router.createUrl(route, params),
+                target: 1,
+                style: 1
+            });
+        });
+    };
+    /**
+     * 首页跳转出去，带上indexShow=1参数，表示已显示过首页，不需要显示返回首页的头
+     */
+    router.indexRedirect = function(route, params, ops) {
+        params = params || {};
+        params.indexShow = 1;
+        this.redirect(route, params, ops);
+    };
+    function getString(params) {
+        return $.param(params).replace(/(?:^|&)[^\=]*\=(?:null|undefined)(?=&|#|$)/g, "");
+    }
+    //获取cookie中的uin
+    router.getCookieUin = function() {
+        var uin = cookie("uin");
+        if (!uin) {
+            return 0;
+        }
+        uin = /^o(\d+)$/.exec(uin);
+        if (uin && (uin = new Number(uin[1]) + 0) > 1e4) {
+            return uin;
+        }
+        return 0;
+    };
+    /**
+     * 获取当前用户QQ号
+     */
+    router.getUin = function() {
+        var defaultParams = $.extend(true, {}, uri.parseQueryString(window.location.search));
+        return defaultParams.uin;
+    };
+    /**
+	 * 获取当前页面的输入参数
+	 * @params {string} [name] 参数名称
+	 * @return {object} 参数
+	 * @example
+	 * getParams() : {a: 0, b: {c: 1}}
+	 * getParams('a') : 0
+	 * getParams('b.c') : 1
+	 */
+    router.getParams = function(name) {
+        var cache = arguments.callee;
+        var params;
+        if (!cache.params) {
+            params = cache.params = uri.parseQueryString(window.location.search);
+        } else {
+            params = cache.params;
+        }
+        if (name) {
+            var nameList = name.split(".");
+            for (var i = 0, iMax = nameList.length; i < iMax; i++) {
+                if (params.hasOwnProperty(nameList[i])) {
+                    params = params[nameList[i]];
+                } else {
+                    var undefined = undefined;
+                    return undefined;
+                }
+            }
+        }
+        return params;
+    };
+    /**
+	*	@method getHashParam 
+	*	@desc   获取hash中的参数
+	*	@param  name string 需要获取的url的参数
+	*	@return string 返回对应的值，有可能为空
+	*/
+    router.getHashParam = function(name) {
+        var r = new RegExp("(\\?|#|&)" + name + "=([^&]*)(&|$)");
+        var m = window.location.hash.match(r);
+        if (!m || m == "") {
+            m = window.location.hash.match(r);
+        }
+        return !m ? "" : m[2];
     };
 });
 

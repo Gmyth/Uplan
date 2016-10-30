@@ -45,6 +45,9 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
         require.async(tabMap["search"], function(index) {
             index.init();
         });
+        $("#logout").click(function() {
+            alert("!");
+        });
     };
 });
 
@@ -247,7 +250,6 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
     /*bind the button input control event*/
     var _bindEvent = function() {
         $main = $(".main_container");
-        $main.off();
         $main.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");
@@ -281,7 +283,7 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
         start: function(tar) {},
         logindata: function(tar) {
             var obj = {};
-            var login_username = $("#loginusername").val();
+            var login_username = $("#username").val();
             var pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
             /*No Underscore at first and last*/
             if (pattern.test(login_username)) {
@@ -289,20 +291,36 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
             } else {
                 obj.username = login_username;
             }
-            var login_password = $("#loginpassword").val();
+            var login_password = $("#password").val();
             obj.password = login_password;
             var success = function(data) {
-                if (data.errno == "200") {
-                    util.cookie.set("u_Ticket", data.data.id);
-                    location.href = "localhost:3000/";
+                if (data.errno == "0") {
+                    util.cookie.set("u_Ticket", data.data);
+                    location.href = "http://localhost:3000/";
                 } else {
                     alert(data.error);
                 }
             };
             login.Login(obj, success);
+        },
+        click_google: function(tar) {
+            $.ajax({
+                method: "GET",
+                url: "./auth/google"
+            }).done(callback);
         }
     };
-    var _bindEvent = function() {};
+    var _bindEvent = function() {
+        $main = $("#login");
+        $main.on("click", "[data-action]", function() {
+            if ($(this).attr("disabled") != "disabled") {
+                var actionName = $(this).data("action");
+                var action = actionList[actionName];
+                var tar = this;
+                if ($.isFunction(action)) action(tar);
+            }
+        });
+    };
 });
 
 /**
@@ -365,7 +383,6 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     /*bind the button input control event*/
     var _bindEvent = function() {
         $main = $(".search_sub_box");
-        $main.off();
         $main.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");
@@ -424,6 +441,12 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
             } else {
                 $("#Signup_msg").html('<p class="error_msg"> <span class="fui-cross" style="color: #e63c5f"></span>Please complete the form to continue Sign up!</p>');
             }
+        },
+        click_google: function(tar) {
+            $.ajax({
+                method: "GET",
+                url: "./auth/google"
+            }).done(callback);
         }
     };
     /*bind the button input control event*/
@@ -449,7 +472,6 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
     };
     var _bindEvent = function() {
         Signup = $("#Signup");
-        Signup.off();
         Signup.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");
@@ -977,7 +999,6 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     /*bind the button input control event*/
     var _bindEvent = function() {
         $sub_list = $(".sub_list");
-        $sub_list.off();
         $sub_list.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");

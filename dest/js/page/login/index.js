@@ -20,7 +20,7 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
         start: function(tar) {},
         logindata: function(tar) {
             var obj = {};
-            var login_username = $("#loginusername").val();
+            var login_username = $("#username").val();
             var pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
             /*No Underscore at first and last*/
             if (pattern.test(login_username)) {
@@ -28,18 +28,34 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
             } else {
                 obj.username = login_username;
             }
-            var login_password = $("#loginpassword").val();
+            var login_password = $("#password").val();
             obj.password = login_password;
             var success = function(data) {
-                if (data.errno == "200") {
-                    util.cookie.set("u_Ticket", data.data.id);
-                    location.href = "localhost:3000/";
+                if (data.errno == "0") {
+                    util.cookie.set("u_Ticket", data.data);
+                    location.href = "http://localhost:3000/";
                 } else {
                     alert(data.error);
                 }
             };
             login.Login(obj, success);
+        },
+        click_google: function(tar) {
+            $.ajax({
+                method: "GET",
+                url: "./auth/google"
+            }).done(callback);
         }
     };
-    var _bindEvent = function() {};
+    var _bindEvent = function() {
+        $main = $("#login");
+        $main.on("click", "[data-action]", function() {
+            if ($(this).attr("disabled") != "disabled") {
+                var actionName = $(this).data("action");
+                var action = actionList[actionName];
+                var tar = this;
+                if ($.isFunction(action)) action(tar);
+            }
+        });
+    };
 });

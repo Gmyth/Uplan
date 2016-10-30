@@ -64,7 +64,6 @@ define(function(require, exports, module){
     /*bind the button input control event*/
     var _bindEvent = function(){
         $main = $(".search_sub_box");
-        $main.off();
         $main.on('click', '[data-action]', function () {
             if($(this).attr("disabled")!="disabled"){
                 var actionName = $(this).data('action');

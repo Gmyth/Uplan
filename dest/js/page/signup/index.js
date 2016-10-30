@@ -41,6 +41,12 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
             } else {
                 $("#Signup_msg").html('<p class="error_msg"> <span class="fui-cross" style="color: #e63c5f"></span>Please complete the form to continue Sign up!</p>');
             }
+        },
+        click_google: function(tar) {
+            $.ajax({
+                method: "GET",
+                url: "./auth/google"
+            }).done(callback);
         }
     };
     /*bind the button input control event*/
@@ -66,7 +72,6 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
     };
     var _bindEvent = function() {
         Signup = $("#Signup");
-        Signup.off();
         Signup.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");

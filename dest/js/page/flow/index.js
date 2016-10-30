@@ -135,7 +135,6 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
     /*bind the button input control event*/
     var _bindEvent = function() {
         $main = $(".main_container");
-        $main.off();
         $main.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");

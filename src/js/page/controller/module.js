@@ -32,5 +32,12 @@ define(function(require, exports, module){
         require.async( tabMap["search"] , function( index ){
             index.init();
         });
+        $('#logout').click(function () {
+            alert('!');
+            // $.ajax({
+            //     method: "GET",
+            //     url: "./logout",
+            // }).done(function(){location.href="http://localhost:3000/login.html"});
+        })
     };
 });
