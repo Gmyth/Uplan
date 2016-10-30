@@ -9,7 +9,6 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
     var $ = require("lib/jquery");
     var tpl = require("util/tpl");
     var signup = require("net/signup");
-    var tmpl = {};
     var p = "";
     var typingTimer;
     //timer identifier
