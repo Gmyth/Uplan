@@ -154,7 +154,6 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     /*bind the button input control event*/
     var _bindEvent = function() {
         $sub_list = $(".sub_list");
-        $sub_list.off();
         $sub_list.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");

@@ -159,7 +159,6 @@ define(function(require, exports, module){
     /*bind the button input control event*/
     var _bindEvent = function(){
         $sub_list = $(".sub_list");
-        $sub_list.off();
         $sub_list.on('click', '[data-action]', function () {
             if($(this).attr("disabled")!="disabled"){
                 var actionName = $(this).data('action');

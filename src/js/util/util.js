@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> common
 define(function(require, exports, module){
     var util = {
         globalError : function(msg){
@@ -142,16 +145,20 @@ define(function(require, exports, module){
                 return !m ? "" : m[1];
             },
             set: function(name, value, domain, path, hour) {
+<<<<<<< HEAD
                 name="test";
                 value="dsadsadadadsadasdsa"
                 var path_1 = '/';
                 var domian_1="dev.api.selfconf.barad.isd.com";
+=======
+>>>>>>> common
                 var expire;
                 if (hour) {
                     expire = new Date();
                     expire.setTime(expire.getTime() + 36E5 * hour);
                 }
 
+<<<<<<< HEAD
 
                 // document.cookie = name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
                 //     (path ? "path=" + path + "; " : "path=/; ") + (domain ? "domain=" + domain + ";" : "domain=" + document.domain + ";");
@@ -160,6 +167,16 @@ define(function(require, exports, module){
                 console.log( name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
                     (path_1 ? "path=" + path_1 + "; " : "path=/; ") + (domian_1 ? "domain=" + domian_1 + ";" : "domain=" + document.domain + ";"));
 
+=======
+                
+                // document.cookie = name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
+                //     (path ? "path=" + path + "; " : "path=/; ") + (domain ? "domain=" + domain + ";" : "domain=" + document.domain + ";");
+                document.cookie = name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
+                    (path_1 ? "path=" + path_1 + "; " : "path=/; ") + (domian_1 ? "domain=" + domian_1 + ";" : "domain=" + document.domain + ";");     
+                console.log( name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
+                    (path_1 ? "path=" + path_1 + "; " : "path=/; ") + (domian_1 ? "domain=" + domian_1 + ";" : "domain=" + document.domain + ";"));
+                
+>>>>>>> common
                 return true;
             },
             del: function(name, domain, path) {

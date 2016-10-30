@@ -40,6 +40,12 @@ define(function(require, exports, module){
                 $("#Signup_msg").html('<p class="error_msg"> <span class="fui-cross" style="color: #e63c5f"></span>Please complete the form to continue Sign up!</p>')
             }
         },
+        'click_google':function(tar){
+            $.ajax({
+                method: "GET",
+                url: "./auth/google",
+            }).done(callback);
+        }
     };
     /*bind the button input control event*/
     PasswordCheck= function(p1,p2){
@@ -64,7 +70,6 @@ define(function(require, exports, module){
     };
     var _bindEvent = function(){
         Signup = $("#Signup");
-        Signup.off();
         Signup.on('click', '[data-action]', function () {
             if($(this).attr("disabled")!="disabled"){
                 var actionName = $(this).data('action');

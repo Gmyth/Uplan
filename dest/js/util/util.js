@@ -145,10 +145,13 @@ define("util/util", [], function(require, exports, module) {
                 return !m ? "" : m[1];
             },
             set: function(name, value, domain, path, hour) {
+<<<<<<< HEAD
                 name = "test";
                 value = "dsadsadadadsadasdsa";
                 var path_1 = "/";
                 var domian_1 = "dev.api.selfconf.barad.isd.com";
+=======
+>>>>>>> common
                 var expire;
                 if (hour) {
                     expire = new Date();
