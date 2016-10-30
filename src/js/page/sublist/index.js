@@ -154,6 +154,7 @@ define(function(require, exports, module){
             var info = $(tar).parent().parent().children().first().attr('courseData');
             var item = JSON.parse(info);
             flow.update(item,true);
+            $('.list-block').html('<div class="sub_main_tag"> &nbsp;Finished! Any other course you want to add? </div>')
         }
     };
     /*bind the button input control event*/
