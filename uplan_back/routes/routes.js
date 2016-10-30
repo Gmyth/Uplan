@@ -11,33 +11,43 @@ var userController = require('../controllers/user');
 //var xiaoming = new User({name:'Eric1990',password: '1234567', email:'123@hotmail.com'});
 
 //xiaoming.save(function (err) {
-  //  if (err) // ...
-  //      console.log('meow');
+//  if (err) // ...
+//      console.log('meow');
 //});
 // router.get('/signup',function (req,res) {
 //  res.render('signup', {title: 'register page'});
 //  });
+router.get('/auth/google',passport.authenticate('google',{scope:'profile email'}));
+router.get('/auth/google/callback', passport.authenticate('google',{
+
+
+    failureRedirect: '/signin'}),(req,res)=>{
+    console.log(req);
+    console.log('111111')
+    console.log(req.session)
+    res.redirect(req.session.returnTo || '/');
+});
 router.get('/signup',userController.showsignup);
 router.post('/signup',userController.postSignup);
-    // passport.authenticate('local-signup', {
-    //     successRedirect : '/profile', // redirect to the secure profile section
-    //         failureRedirect : '/signup', // redirect back to the signup page if there is an error
-    //         failureFlash : true
-    //     // allow flash messages
-    //     }));
-        // if (err) {
-        //     return next(err); // will generate a 500 error
-        // }
-        // if (user) {
-        //     return res.status(409).render('pages/signup', {errMsg: info.errMsg});
-        // }
-        // req.login(user, function (err) {
-        //     if (err) {
-        //         console.error(err);
-        //         return next(err);
-        //     }
-        //     res.json(user);
-        // })
+// passport.authenticate('local-signup', {
+//     successRedirect : '/profile', // redirect to the secure profile section
+//         failureRedirect : '/signup', // redirect back to the signup page if there is an error
+//         failureFlash : true
+//     // allow flash messages
+//     }));
+// if (err) {
+//     return next(err); // will generate a 500 error
+// }
+// if (user) {
+//     return res.status(409).render('pages/signup', {errMsg: info.errMsg});
+// }
+// req.login(user, function (err) {
+//     if (err) {
+//         console.error(err);
+//         return next(err);
+//     }
+//     res.json(user);
+// })
 
 // router.post('/signup',function(req,res,next){
 //     var _user = req.body.user;
@@ -63,13 +73,13 @@ router.post('/signup',userController.postSignup);
 //         }
 //     })
 // });
-   // var newUser = new User(_user);
-    //var user = req.param('user'); //req.param('user)
-    // use findOne method in models. If exists, jump to login page
-   // newUser.save(function(err,post){
-       // if (err) return next(err);
-     //   res.json(post);
-    //})
+// var newUser = new User(_user);
+//var user = req.param('user'); //req.param('user)
+// use findOne method in models. If exists, jump to login page
+// newUser.save(function(err,post){
+// if (err) return next(err);
+//   res.json(post);
+//})
 router.get('/signin',userController.showsignin);
 router.post('/signin',userController.postSignin);
 // router.get('/signin',chechAuthentication, function (req, res) {
@@ -144,3 +154,6 @@ function chechAuthentication(req,res,next) {
 }
 
 module.exports = router;
+/**
+ * Created by dylanwang on 16/10/27.
+ */
