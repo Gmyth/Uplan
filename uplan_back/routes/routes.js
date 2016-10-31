@@ -59,7 +59,7 @@ router.get('/auth/google/callback', passport.authenticate('google',{
     //res.json({"error":"","errno":"200","data":""});
     res.redirect( '/');
 });
-
+//lll
 // passport.authenticate('local-signup', {
 //     successRedirect : '/profile', // redirect to the secure profile section
 //         failureRedirect : '/signup', // redirect back to the signup page if there is an error

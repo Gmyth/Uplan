@@ -67,7 +67,7 @@ exports.postSignin = function (req,res,next) {
                     console.log('111111');
                     //return res.redirect('/signin');
                     res.json({"error":"user not exist.","errno":"1","data":""});
-
+//oo
                 }
 
                 req.logIn(user,function(err){

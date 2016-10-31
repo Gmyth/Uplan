@@ -448,7 +448,7 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
                     YRS_EXPERIENCE: $("#YRS_EXPERIENCE").find("option:selected").attr("yrs")
                 };
                 signup.Signup(obj, function() {
-                    //alert("success");
+                    //pppalert("success");
                     location.href="http://localhost:3000/login.html"
                 });
             } else {

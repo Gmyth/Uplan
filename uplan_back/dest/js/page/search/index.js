@@ -17,7 +17,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     exports.init = function() {
         $(".search_sub_box").html(tpl.get(tmpl.main));
     };
-    /*the combination of needed action function*/
+    /*the comlllbination of needed action function*/
     var actionList = {
         start: function(tar) {},
         storedata: function(tar) {

@@ -38,7 +38,7 @@ var TimeSpan = function(input){
 //var name =req.body.name;
 //res.render('modules/'+name);
 //  res.send('id: ' + req.query.q);
-//});
+//});//
 
 /* form data format
  *txtsubject: course --- string
