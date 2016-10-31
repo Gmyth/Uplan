@@ -8,7 +8,11 @@ var passport = require('../config/passport');
 router.get('/google',passport.authenticate('google',{scope:'profile email'}));
 router.get('/google/callback', passport.authenticate('google',{
 
+<<<<<<< HEAD
     failureRedirect: '/signin'}),(req,res)=>{
+=======
+    failureRedirect: '/signin.html'}),(req,res)=>{
+>>>>>>> feature-oAuth
             console.log(req);
     console.log('111111')
     console.log(req.session)

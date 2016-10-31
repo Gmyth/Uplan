@@ -1,13 +1,13 @@
 /**
  * Created by kaiyu on 9/26/16.
  */
-define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/search" ], function(require, exports, module) {
+define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/search", "util/net", "page/sublist/index", "page/sublist/config", "page/flow/index" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var config = require("page/flow/config").data;
     var tpl = require("util/tpl");
     var timeparser = require("util/timeparser");
     var search = require("net/search");
-    var test = require("widget/page.js");
+    var sublist = require("page/sublist/index");
     var tmpl = {
         main: SEARCH.MAIN
     };
@@ -41,22 +41,28 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 txtstarttime: input_starttime,
                 txtendtime: input_endtime,
                 selstart: parseInt(input_select_start),
+<<<<<<< HEAD
                 selend:parseInt(input_select_end)
             };//sadasda
+=======
+                selend: parseInt(input_select_end)
+            };
+            var success = function(data) {
+                // callback
+                sublist.ShowCourse(data);
+            };
+            search.getCourseList(Obj, success);
+>>>>>>> feature-oAuth
             $.ajax({
                 method: "GET",
                 url: "./get_courses_info",
-                dataType: "jsonp",
-            }).done(function(data) {
-                var flow = require('page/sublist/index');
-                flow.ShowCourse(data);
-            });
+                data: Obj
+            }).done(success);
         }
     };
     /*bind the button input control event*/
     var _bindEvent = function() {
         $main = $(".search_sub_box");
-        $main.off();
         $main.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");
