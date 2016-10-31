@@ -23,13 +23,23 @@
     "utility": "^1.2.0"
   },
   "devDependencies": {
-    "bcryptjs": "^2.3.0",
+    "async": "^2.1.2",
+    "bcrypt-nodejs": "0.0.3",
     "cors": "^2.8.1",
+    "crypto": "0.0.3",
     "dyson": "^0.10.0",
+    "express-flash": "0.0.2",
     "express-session": "^1.14.1",
     "grunt": "^1.0.1",
     "grunt-concurrent": "^2.3.1",
     "grunt-contrib-watch": "^1.0.0",
+    "nodemailer": "^2.6.4",
+    "passport": "^0.3.2",
+    "passport-github": "^1.1.0",
+    "passport-google-oauth": "^1.0.0",
+    "passport-google-oauth2": "^0.1.6",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0",
     "uglify": "^0.1.5"
   }
 }

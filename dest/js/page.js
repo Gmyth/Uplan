@@ -27,7 +27,7 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
         return hash.substring(1, hash.length);
     };
     //init function to start load js
-    exports.init = function(username, namespace) {
+    exports.init = function(username) {
         // for the tab part may need in future
         // curTab = getTabFromHash();
         // curUser   = username;
@@ -37,13 +37,16 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
         //     index.init();
         // });
         require.async(tabMap["flow"], function(index) {
-            index.init();
+            index.init(username);
         });
         require.async(tabMap["sublist"], function(index) {
             index.init();
         });
         require.async(tabMap["search"], function(index) {
             index.init();
+        });
+        $("#logout").click(function() {
+            alert("!");
         });
     };
 });
@@ -121,6 +124,7 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
     var timeparser = require("util/timeparser");
     var dataArr = [];
     /*2D array*/
+    var user = "";
     var tmpl = {
         main: '    <div class="main_header">        <table  class= "weekly_schedule table-bordered table-hover table-responsive" cellspacing="0" cellpadding="2" width="100%" >            <colgroup span="1" width="9%" align="center" valign="middle"></colgroup>            <colgroup span="7" width="13%" align="center" valign="middle"></colgroup>            <thead>            <th>Time</th>            <th>Monday<br>Sep 5</th>            <th>Tuesday<br>Sep 6</th>            <th>Wednesday<br>Sep 7</th>            <th>Thursday<br>Sep 8</th>            <th>Friday<br>Sep 9</th>            <th>Saturday<br>Sep 10</th>            <th>Sunday<br>Sep 11</th>            </thead>            <tbody id="flow_body">            </tbody>        </table>    <!-- End HTML Area -->    </div>',
         body: '    <%for(var i=0,item;item = CourseList[i];i++){%>    <tr>    <%if(i%2==0){%><td class="weekly_schedule_time_background" rowspan="2"><span ><%=startTime+(i/2)%>:00</span></td><%}%>        <%if(typeof item[0] == "object" && item[0]){%>        <%if(item[0].hasOwnProperty("hover")){%>        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[0].span%> ><span><%=item[0].Course%>  - <%=item[0].Section%><br><%=item[0].Type%><br><%=item[0].Time%><br><%=item[0].Room%></span></td>        <%}else{%>        <%if(item[0].hasOwnProperty("conflict")){%>        <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[0].span%> ><span><%=item[0].Course%>  - <%=item[0].Section%><br><%=item[0].Type%><br><%=item[0].Time%><br><%=item[0].Room%></span></td>        <%}else{%>        <td class="weekly_schedule_line_background" rowspan=<%=item[0].span%> ><span><%=item[0].Course%>  - <%=item[0].Section%><br><%=item[0].Type%><br><%=item[0].Time%><br><%=item[0].Room%></span></td>        <%}%>        <%}%>        <%}else if(typeof item[0]!= "boolean"&&item[0] != "hover_item"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>        <%if(typeof item[1] == "object" && item[1]){%>        <%if(item[1].hasOwnProperty("hover")){%>        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[1].span%> ><span><%=item[1].Course%>  - <%=item[1].Section%><br><%=item[1].Type%><br><%=item[1].Time%><br><%=item[1].Room%></span></td>        <%}else{%>        <%if(item[1].hasOwnProperty("conflict")){%>        <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[1].span%> ><span><%=item[1].Course%>  - <%=item[1].Section%><br><%=item[1].Type%><br><%=item[1].Time%><br><%=item[1].Room%></span></td>        <%}else{%>        <td class="weekly_schedule_line_background" rowspan=<%=item[1].span%> ><span><%=item[1].Course%>  - <%=item[1].Section%><br><%=item[1].Type%><br><%=item[1].Time%><br><%=item[1].Room%></span></td>        <%}%>        <%}%>        <%}else if(typeof item[1]!= "boolean"&&item[1] != "hover_item"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>        <%if(typeof item[2] == "object" && item[2]){%>        <%if(item[2].hasOwnProperty("hover")){%>        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[2].span%> ><span><%=item[2].Course%>  - <%=item[2].Section%><br><%=item[2].Type%><br><%=item[2].Time%><br><%=item[2].Room%></span></td>        <%}else{%>        <%if(item[2].hasOwnProperty("conflict")){%>        <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[2].span%> ><span><%=item[2].Course%>  - <%=item[2].Section%><br><%=item[2].Type%><br><%=item[2].Time%><br><%=item[2].Room%></span></td>        <%}else{%>        <td class="weekly_schedule_line_background" rowspan=<%=item[2].span%> ><span><%=item[2].Course%>  - <%=item[2].Section%><br><%=item[2].Type%><br><%=item[2].Time%><br><%=item[2].Room%></span></td>        <%}%>        <%}%>        <%}else if(typeof item[2]!= "boolean"&&item[2] != "hover_item"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>        <%if(typeof item[3] == "object" && item[3]){%>        <%if(item[3].hasOwnProperty("hover")){%>        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[3].span%> ><span><%=item[3].Course%>  - <%=item[3].Section%><br><%=item[3].Type%><br><%=item[3].Time%><br><%=item[3].Room%></span></td>        <%}else{%>        <%if(item[3].hasOwnProperty("conflict")){%>        <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[3].span%> ><span><%=item[3].Course%>  - <%=item[3].Section%><br><%=item[3].Type%><br><%=item[3].Time%><br><%=item[3].Room%></span></td>        <%}else{%>        <td class="weekly_schedule_line_background" rowspan=<%=item[3].span%> ><span><%=item[3].Course%>  - <%=item[3].Section%><br><%=item[3].Type%><br><%=item[3].Time%><br><%=item[3].Room%></span></td>        <%}%>        <%}%>        <%}else if(typeof item[3]!= "boolean"&&item[3] != "hover_item"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>        <%if(typeof item[4] == "object" && item[4]){%>        <%if(item[4].hasOwnProperty("hover")){%>        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[4].span%> ><span><%=item[4].Course%>  - <%=item[4].Section%><br><%=item[4].Type%><br><%=item[4].Time%><br><%=item[4].Room%></span></td>        <%}else{%>        <%if(item[4].hasOwnProperty("conflict")){%>        <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[4].span%> ><span><%=item[4].Course%>  - <%=item[4].Section%><br><%=item[4].Type%><br><%=item[4].Time%><br><%=item[4].Room%></span></td>        <%}else{%>        <td class="weekly_schedule_line_background" rowspan=<%=item[4].span%> ><span><%=item[4].Course%>  - <%=item[4].Section%><br><%=item[4].Type%><br><%=item[4].Time%><br><%=item[4].Room%></span></td>        <%}%>        <%}%>        <%}else if(typeof item[4]!= "boolean"&&item[4] != "hover_item"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>        <%if(typeof item[5] == "object" && item[5]){%>        <%if(item[5].hasOwnProperty("hover")){%>        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[5].span%> ><span><%=item[5].Course%>  - <%=item[5].Section%><br><%=item[5].Type%><br><%=item[5].Time%><br><%=item[5].Room%></span></td>        <%}else{%>        <%if(item[5].hasOwnProperty("conflict")){%>        <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[5].span%> ><span><%=item[5].Course%>  - <%=item[5].Section%><br><%=item[5].Type%><br><%=item[5].Time%><br><%=item[5].Room%></span></td>        <%}else{%>        <td class="weekly_schedule_line_background" rowspan=<%=item[5].span%> ><span><%=item[5].Course%>  - <%=item[5].Section%><br><%=item[5].Type%><br><%=item[5].Time%><br><%=item[5].Room%></span></td>        <%}%>        <%}%>        <%}else if(typeof item[5]!= "boolean"&&item[5] != "hover_item"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>        <%if(typeof item[6] == "object" && item[6]){%>        <%if(item[6].hasOwnProperty("hover")){%>        <td class="weekly_schedule_line_background_hovered" rowspan=<%=item[6].span%> ><span><%=item[6].Course%>  - <%=item[6].Section%><br><%=item[6].Type%><br><%=item[6].Time%><br><%=item[6].Room%></span></td>        <%}else{%>        <%if(item[6].hasOwnProperty("conflict")){%>        <td class="weekly_schedule_line_background_conflict" rowspan=<%=item[6].span%> ><span><%=item[6].Course%>  - <%=item[6].Section%><br><%=item[6].Type%><br><%=item[6].Time%><br><%=item[6].Room%></span></td>        <%}else{%>        <td class="weekly_schedule_line_background" rowspan=<%=item[6].span%> ><span><%=item[6].Course%>  - <%=item[6].Section%><br><%=item[6].Type%><br><%=item[6].Time%><br><%=item[6].Room%></span></td>        <%}%>        <%}%>        <%}else if(typeof item[6]!= "boolean"&&item[6] != "hover_item"){%><td class="weekly_schedule_line">&nbsp;</td><%}%>    </tr>    <%}%>'
@@ -128,7 +132,8 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
     /*config set*/
     var timeStart = 8;
     var timeEnd = 21;
-    exports.init = function() {
+    exports.init = function(username) {
+        user = username;
         $(".main_container").html(tpl.get(tmpl.main));
         var container_height = $(".main_container").height();
         $(".main_body").height(container_height - 60);
@@ -245,7 +250,68 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
     /*bind the button input control event*/
     var _bindEvent = function() {
         $main = $(".main_container");
-        $main.off();
+        $main.on("click", "[data-action]", function() {
+            if ($(this).attr("disabled") != "disabled") {
+                var actionName = $(this).data("action");
+                var action = actionList[actionName];
+                var tar = this;
+                if ($.isFunction(action)) action(tar);
+            }
+        });
+    };
+});
+
+/**
+ * Created by kaiyu on 10/25/16.
+ */
+define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login", "util/net" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var tpl = require("util/tpl");
+    var util = require("util/util");
+    var login = require("net/login");
+    var p = "";
+    var typingTimer;
+    //timer identifier
+    var doneTypingInterval = 1e3;
+    //time in ms, 5 second for example
+    exports.init = function() {
+        _bindEvent();
+    };
+    var login_check = function() {};
+    /*the combination of needed action function*/
+    var actionList = {
+        start: function(tar) {},
+        logindata: function(tar) {
+            var obj = {};
+            var login_username = $("#username").val();
+            var pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            /*No Underscore at first and last*/
+            if (pattern.test(login_username)) {
+                obj.email = login_username;
+            } else {
+                obj.username = login_username;
+            }
+            var login_password = $("#password").val();
+            obj.password = login_password;
+            var success = function(data) {
+                if (data.errno == "0") {
+                    util.cookie.set("u_Ticket", data.data);
+                    location.href = "http://localhost:3000/";
+                } else {
+                    alert(data.error);
+                }
+            };
+            login.Login(obj, success);
+        },
+        click_google: function(tar) {
+            $.ajax({
+                method: "GET",
+                url: "./auth/google"
+            }).done(callback);
+        }
+    };
+    var _bindEvent = function() {
+        $main = $("#login");
         $main.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");
@@ -298,7 +364,9 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 selllevel: input_select_level,
                 check_box_id1: input_open == undefined ? "0" : "1",
                 txtstarttime: input_starttime,
-                txtendtime: input_endtime
+                txtendtime: input_endtime,
+                selstart: parseInt(input_select_start),
+                selend: parseInt(input_select_end)
             };
             var success = function(data) {
                 // callback
@@ -315,7 +383,6 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     /*bind the button input control event*/
     var _bindEvent = function() {
         $main = $(".search_sub_box");
-        $main.off();
         $main.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");
@@ -338,42 +405,73 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
  * Created by gmyth on 16/9/7.
  * this part is created for the implement of the sign up page
  * */
-define("page/signup/index", [ "lib/jquery", "util/tpl" ], function(require, exports, module) {
+define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var tpl = require("util/tpl");
-    var tmpl = {};
+    var signup = require("net/signup");
     var p = "";
     var typingTimer;
     //timer identifier
     var doneTypingInterval = 1e3;
     //time in ms, 5 second for example
+    var username_right = false;
+    var password_right = false;
+    var password_check_right = false;
+    var email_right = false;
     exports.init = function() {
         _bindEvent();
     };
     /*the combination of needed action function*/
-    var actionList = {};
+    var actionList = {
+        confirm_signup: function(tar) {
+            //检查 信息完整
+            if (username_right == true && password_right == true && email_right == true && password_check_right == true) {
+                var obj = {
+                    email: $("#email").val(),
+                    name: $("#username").val(),
+                    password: $("#password").val(),
+                    uni: $("#university").val(),
+                    gender: $("#gender").find("option:selected").val(),
+                    YRS_EXPERIENCE: $("#YRS_EXPERIENCE").find("option:selected").attr("yrs")
+                };
+                signup.Signup(obj, function() {
+                    alert("success");
+                });
+            } else {
+                $("#Signup_msg").html('<p class="error_msg"> <span class="fui-cross" style="color: #e63c5f"></span>Please complete the form to continue Sign up!</p>');
+            }
+        },
+        click_google: function(tar) {
+            $.ajax({
+                method: "GET",
+                url: "./auth/google"
+            }).done(callback);
+        }
+    };
     /*bind the button input control event*/
     PasswordCheck = function(p1, p2) {
         if (p1 === p2) {
             $("#password_r_info").html('PASSWORD  CONFIRM &nbsp; &nbsp; &nbsp;<span class="fui-check-circle" style=" color: #2ECC71;"></span>&nbsp;<b class="is_success">MATCHED</b>');
             $("#PASSWORD_R").addClass("is_success");
             $("#PASSWORD_R").removeClass("is_error");
+            password_check_right = true;
         } else {
             if (p2 == "" || p2.length < 6) {
                 $("#password_r_info").html('PASSWORD  CONFIRM <b class="info_guide"></b>');
                 $("#PASSWORD_R").removeClass("is_success");
                 $("#PASSWORD_R").removeClass("is_error");
+                password_check_right = false;
             } else {
                 $("#password_r_info").html('PASSWORD  CONFIRM &nbsp; &nbsp; &nbsp;<span class="fui-cross-circle" style=" color: #e74c3c;"></span>&nbsp;<b class="is_error">DISMATCHED</b>');
                 $("#PASSWORD_R").removeClass("is_success");
                 $("#PASSWORD_R").addClass("is_error");
+                password_check_right = false;
             }
         }
     };
     var _bindEvent = function() {
-        SignIn = $("#SignIn");
-        SignIn.off();
-        SignIn.on("click", "[data-action]", function() {
+        Signup = $("#Signup");
+        Signup.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");
                 var action = actionList[actionName];
@@ -381,7 +479,7 @@ define("page/signup/index", [ "lib/jquery", "util/tpl" ], function(require, expo
                 if ($.isFunction(action)) action(tar);
             }
         });
-        SignIn.on("input", "#username", function() {
+        Signup.on("input", "#username", function() {
             var pattern = /^(?!_)(?!.*?_$)[A-Za-z0-9_,]+$/;
             /*No Underscore at first and last*/
             var temp = $("#username").val();
@@ -389,9 +487,14 @@ define("page/signup/index", [ "lib/jquery", "util/tpl" ], function(require, expo
                 $("#username_info").html('USERNAME &nbsp; &nbsp; &nbsp;<span class="fui-check-circle" style=" color: #2ECC71;"></span>&nbsp;<b class="is_success">GOOD NAME TO USE</b>');
                 $("#username").addClass("is_success");
                 $("#username").removeClass("is_error");
+                username_right = true;
             } else {
-                if (temp == "" || temp.length < 4) {
+                if (temp == "") {
                     $("#username_info").html('USERNAME <b class="info_guide"></b>');
+                    $("#username").removeClass("is_success");
+                    $("#username").removeClass("is_error");
+                } else if (temp.length < 4) {
+                    $("#username_info").html('USERNAME &nbsp; &nbsp; &nbsp;<span class="fui-cross-circle" style=" color: #e74c3c;"></span>&nbsp;<b class="is_error">TOO SHORT</b>');
                     $("#username").removeClass("is_success");
                     $("#username").removeClass("is_error");
                 } else {
@@ -399,9 +502,10 @@ define("page/signup/index", [ "lib/jquery", "util/tpl" ], function(require, expo
                     $("#username").removeClass("is_success");
                     $("#username").addClass("is_error");
                 }
+                username_right = false;
             }
         });
-        SignIn.on("input", "#password", function() {
+        Signup.on("input", "#password", function() {
             var pattern = /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
             /*No Underscore at first and last*/
             var temp = $("#password").val();
@@ -413,6 +517,7 @@ define("page/signup/index", [ "lib/jquery", "util/tpl" ], function(require, expo
                 $("#password_info").html('PASSWORD &nbsp; &nbsp; &nbsp;<span class="fui-check-circle" style=" color: #2ECC71;"></span>&nbsp;<b class="is_success">PERFECT PASSWORD</b>');
                 $("#password").addClass("is_success");
                 $("#password").removeClass("is_error");
+                password_right = true;
             } else {
                 if (temp == "" || temp.length < 6) {
                     $("#password_info").html('PASSWORD <b class="info_guide"></b>');
@@ -423,15 +528,16 @@ define("page/signup/index", [ "lib/jquery", "util/tpl" ], function(require, expo
                     $("#password").removeClass("is_success");
                     $("#password").addClass("is_error");
                 }
+                password_right = false;
             }
         });
-        SignIn.on("input", "#PASSWORD_R", function() {
+        Signup.on("input", "#PASSWORD_R", function() {
             var pattern = /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
             /*No Underscore at first and last*/
             var temp = $("#PASSWORD_R").val();
             PasswordCheck(p, temp);
         });
-        SignIn.on("input", "#email", function() {
+        Signup.on("input", "#email", function() {
             var pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
             /*No Underscore at first and last*/
             var temp = $("#email").val();
@@ -444,10 +550,12 @@ define("page/signup/index", [ "lib/jquery", "util/tpl" ], function(require, expo
                         $("#email_info").html('EMAIL &nbsp; &nbsp; &nbsp;<span class="fui-check-circle" style=" color: #2ECC71;"></span>&nbsp;<b class="is_success">THANK YOU</b>');
                         $("#email").addClass("is_success");
                         $("#email").removeClass("is_error");
+                        email_right = true;
                     } else {
                         $("#email_info").html('EMAIL &nbsp; &nbsp; &nbsp;<span class="fui-cross-circle" style=" color: #e74c3c;"></span>&nbsp;<b class="is_error">NOT VALID</b>');
                         $("#email").removeClass("is_success");
                         $("#email").addClass("is_error");
+                        email_right = false;
                     }
                 }
             } else {
@@ -455,6 +563,7 @@ define("page/signup/index", [ "lib/jquery", "util/tpl" ], function(require, expo
                 $("#email_info").html('EMAIL <b class="info_guide"></b>');
                 $("#email").removeClass("is_success");
                 $("#email").removeClass("is_error");
+                email_right = false;
             }
         });
     };
@@ -889,7 +998,6 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     /*bind the button input control event*/
     var _bindEvent = function() {
         $sub_list = $(".sub_list");
-        $sub_list.off();
         $sub_list.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");

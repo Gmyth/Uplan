@@ -187,6 +187,17 @@
 .hoverable:hover{
     cursor:pointer;
 }
+.right_nav{
+    line-height: 1.042;
+    height: 53px;
+    font-weight: 700;
+    padding: 17px 21px;
+    cursor: pointer;
+}
+.right_nav:hover{
+    color:#eeeeee;
+    background-color: rgb(60, 90, 109);
+}
 @media screen and (max-device-width: 600px) {
 .sub_box {
     display: none;
@@ -206,12 +217,15 @@
         color: #34495e;
         background-color: #ffffff;
     }
+
     　　}
+
+@media(min-width: 850px){
+    .bodyback{    -moz-background-size:100% 100%;
+        background-size:100% 100%;
+        background-repeat:no-repeat;
+    }
+}
 html, body{
     height: 100%;
-}
-.bodyback{
-    -moz-background-size:100% 100%;
-    background-size:100% 100%;
-    background-repeat:no-repeat;
 }

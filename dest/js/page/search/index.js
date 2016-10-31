@@ -39,7 +39,9 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 selllevel: input_select_level,
                 check_box_id1: input_open == undefined ? "0" : "1",
                 txtstarttime: input_starttime,
-                txtendtime: input_endtime
+                txtendtime: input_endtime,
+                selstart: parseInt(input_select_start),
+                selend: parseInt(input_select_end)
             };
             var success = function(data) {
                 // callback
@@ -56,7 +58,6 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     /*bind the button input control event*/
     var _bindEvent = function() {
         $main = $(".search_sub_box");
-        $main.off();
         $main.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");

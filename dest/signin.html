@@ -42,7 +42,9 @@
         </div><!-- /.navbar-collapse -->
     </nav><!-- /navbar -->
 </div>
-<div id="SignIn" style="margin-top: 5%;">
+<div id = "Signup_msg" >
+</div>
+<div id = "Signup" style="margin-top: 5%;">
     <form onsubmit="return false">
         <div class="col-2">
             <label>
@@ -71,7 +73,7 @@
         <div class="col-3">
             <label>
                 <b>GENDER<p class="info_guide"></p></b>
-                <select tabindex="5">
+                <select tabindex="5" id="gender">
                     <option>Male</option>
                     <option>Female</option>
                     <option>Other</option>
@@ -87,22 +89,23 @@
         <div class="col-3">
             <label>
                 <b>YRS EXPERIENCE<p class="info_guide"></p></b>
-                <select tabindex="7">
-                    <option>Freshman (1 yrs)</option>
-                    <option>Sophomore (2 yrs)</option>
-                    <option>Junior (3 yrs)</option>
-                    <option>Senior (4 yrs)</option>
-                    <option>Graduated </option>
+                <select tabindex="7" id="YRS_EXPERIENCE">
+                    <option yrs= "1" >Freshman (1 yrs)</option>
+                    <option yrs= "2" >Sophomore (2 yrs)</option>
+                    <option yrs= "3" >Junior (3 yrs)</option>
+                    <option yrs= "4" >Senior (4 yrs)</option>
+                    <option yrs= "5" >Graduated </option>
                 </select>
             </label>
         </div>
         <div class="col-submit">
-            <button class="btn btn-block btn-lg btn-success">SIGN IN NOW</button>
-            <a href="/login">Already have a account? Go ahead to log in >></a>
+            <button data-action="confirm_signup" class="btn btn-block btn-lg btn-success">SIGN IN NOW</button>
+            <div class="col-submit">
+                <button class="btn btn-block btn-sm btn-success1" data-action="click_google" ><div><laber class="password_icon fui-google-plus" for="password"></laber>&nbspHave Google Account?</div>  </button>
+            </div>
         </div>
     </form>
 </div>
-
 
 <div class="clear"></div>
 </body>

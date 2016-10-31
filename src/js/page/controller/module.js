@@ -14,7 +14,7 @@ define(function(require, exports, module){
     }
 
     //init function to start load js
-    exports.init = function( username,namespace ){
+    exports.init = function( username ){
         // for the tab part may need in future
         // curTab = getTabFromHash();
         // curUser   = username;
@@ -24,7 +24,7 @@ define(function(require, exports, module){
         //     index.init();
         // });
         require.async( tabMap["flow"] , function( index ){
-            index.init();
+            index.init(username);
         });
         require.async( tabMap["sublist"] , function( index ){
             index.init();
@@ -32,5 +32,12 @@ define(function(require, exports, module){
         require.async( tabMap["search"] , function( index ){
             index.init();
         });
+        $('#logout').click(function () {
+            alert('!');
+            // $.ajax({
+            //     method: "GET",
+            //     url: "./logout",
+            // }).done(function(){location.href="http://localhost:3000/login.html"});
+        })
     };
 });

@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap/css/bootstrap.min.css" >
     <link rel="stylesheet" type="text/css" href="css/flat-ui.css" >
     <link rel="stylesheet" type="text/css" href="css/style.css" >
+    <link rel="stylesheet" type="text/css" href="css/login.css" >
     <link rel="shortcut icon" href="img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=0.5" />
 
@@ -24,40 +25,51 @@
     <![endif]-->
 </head>
 
-<body>
-<div id="login">
+<body class="bodyback" style="background-image:url(img/background-01.jpg );">
+<div class=" demo-row" style="width: 100%">
+    <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="/login">UPlan</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="/login.html">LOG IN<span class="navbar-unread">1</span></a></li>
+                <li><a href="/signin.html">SIGN UP<span class="navbar-unread">1</span></a></li>
+                <li><a href="/forget.html">FORGET PASSWORD?<span class="navbar-unread">1</span></a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav><!-- /navbar -->
 
-    <form name="loginform" id="loginform">
-        <p>
-            <label for="user_login">Username or Email<br />
-                <input type="text" name="log" id="user_login" class="input" value="" size="20" /></label>
-        </p>
-        <p>
-            <label for="user_pass">Password<br />
-                <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" /></label>
-        </p>
-        <p class="submit">
-            <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="Log In" />
-        </p>
-    </form>
-
-    <script type="text/javascript">
-        function wp_attempt_focus(){
-            setTimeout( function(){ try{
-                d = document.getElementById('user_login');
-                d.focus();
-                d.select();
-            } catch(e){}
-            }, 200);
-        }
-
-        wp_attempt_focus();
-        if(typeof wpOnload=='function')wpOnload();
-    </script>
 
 </div>
-
-
+<div id="login" style="margin-top: 5%;">
+    <form onsubmit="return false">
+        <div class="col-2">
+            <label>
+                <laber class="username_icon fui-user" for="username"></laber>
+                <b id="loginusername">USERNAME or EMAIL </b>
+                <input placeholder=" Enter here " id="username" name="name" tabindex="1">
+            </label>
+        </div>
+        <div class="col-2">
+            <label>
+                <laber class="password_icon fui-lock" for="password"></laber>
+                <b id="loginpassword" >PASSWORD </b>
+                <input placeholder=" Enter here " type="password"  id="password" name="password" tabindex="3" maxlength="25">
+            </label>
+        </div>
+        <div class="col-submit">
+            <button class="btn btn-block btn-sm btn-success" data-action="logindata" >Submit</button>
+            <a style = "font-size: small" href="/password">Lost your password? >> </a>
+        </div>
+        <div class="col-submit">
+            <button class="btn btn-block btn-sm btn-success1" data-action="click_google" ><div><laber class="password_icon fui-google-plus" for="password"></laber>&nbspHave Google Account?</div>  </button>
+        </div>
+    </form>
+</div>
 <div class="clear"></div>
 </body>
 <script src="./js/sea.js"></script>
@@ -71,25 +83,8 @@
             '$' : 'lib/jquery',
         }
     });
-
     function start () {
-        seajs.use(["lib/jquery","page/controller/module"], function($,index) {
-//            if(Login.init()){
-//                return;
-//            }
-//            Login.fetchUser(function(data){
-//                ns.getUser(Login.user);
-//                index.init(Login.user);
-//                var uPanel=$("#dropdown_user");
-//                if(data && data["LoginName"]){
-//                    uPanel.find("#imgAvatar").attr("src","http://dayu.oa.com/avatars/"+data["LoginName"]+"/profile.jpg");
-//                    uPanel.find("#username").html(data["LoginName"]+"("+data["ChineseName"]+")");
-//                    uPanel.show();
-//                }
-//            });
-//            $("#logout").click(function(){
-//                Login.logout();
-//            });
+        seajs.use(["lib/jquery","page/login/index"], function($,index) {
             index.init();
         });
     }

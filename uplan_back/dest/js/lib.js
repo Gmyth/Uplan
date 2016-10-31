@@ -14405,9 +14405,233 @@ $("videojs.util",t.ha);t.ha.mergeOptions=t.ha.Wa;t.addLanguage=t.fd;})();
     t.addLanguage = t.fd;
 })();
 
+define("util/Login", [ "lib/jquery", "util/util", "net/pub", "util/router", "util/cacheData", "util/net" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var util = require("util/util");
+    var currrent_url = "http://localhost:3000/";
+    var pub = require("net/pub");
+    var Login = {
+        user: "",
+        init: function() {
+            var url = location.href, oaParam = [ "sessionKey", "length", "loginParam", "u_Ticket" ], needRedirect = 0;
+            //由于跳转需要时间，故需要返回
+            var removeOaParam = function() {
+                var search = location.search;
+                for (var i in oaParam) {
+                    search = util.removeParam(search, oaParam[i]);
+                }
+                location.search = search;
+            };
+            var ticket = util.getParam("u_Ticket");
+            if (ticket) {
+                removeOaParam();
+            } else {
+                ticket = $.cookie("u_Ticket");
+                if (!ticket) {
+                    location.href = currrent_url + "login.html";
+                    needRedirect = 1;
+                }
+            }
+            return needRedirect;
+        },
+        redirect: function() {
+            //location.href="http://localhost:3000/login.html"
+            location.href = currrent_url + "login.html";
+        },
+        param: function() {
+            var u_Ticket = $.cookie("u_Ticket");
+            return {
+                type: "u",
+                u_Ticket: u_Ticket || ""
+            };
+        },
+        logout: function() {
+            var url = location.href;
+            util.cookie.del("u_Ticket");
+            location.href = currrent_url + "login.html";
+        },
+        fetchUser: function(fn) {
+            var me = this;
+            pub.getLoginInfo(function(data) {
+                if (data.errno == "200") {
+                    var temp = data.data;
+                    me.user = temp["username"];
+                    if (typeof fn == "function") {
+                        fn(temp);
+                    }
+                } else {
+                    me.redirect();
+                }
+            });
+        }
+    };
+    module.exports = Login;
+});
+
 /**
- * cookie存储封装
- * https://github.com/dcompute/Zepto-Cookie/blob/master/zepto.cookie.js
+ * Created with JetBrains PhpStorm.
+ * User: layenlin
+ * Date: 13-12-16
+ * Time: 上午10:39
+ * To change this template use File | Settings | File Templates.
+ */
+define("util/cacheData", [], function(require, exports, module) {
+    var _private = {};
+    _private.sn = "gamecenter_";
+    _private.getName = function(name, category, type) {
+        return "gamecenter_&" + escape(category || "normal") + "&" + escape(name) + (type ? "&" + escape(type) : "");
+    };
+    _private.getLocalStorage = function(name, category) {
+        try {
+            var value = window.localStorage.getItem(_private.getName(name, category));
+            var info = JSON.parse(window.localStorage.getItem(_private.getName(name, category, "info")));
+            value = JSON.parse(value);
+        } catch (e) {
+            return null;
+        }
+        try {
+            window.localStorage.setItem(_private.getName(name, category, "info"), JSON.stringify({
+                time: info && parseInt(info.time) || new Date().getTime(),
+                count: (info && parseInt(info.count) || 0) + 1
+            }));
+        } catch (e) {
+            // 设置出错，清除ls
+            window.localStorage.clear();
+            return null;
+        }
+        return value;
+    };
+    var seed = 0;
+    _private.setLocalStorage = function(name, value, category) {
+        seed++;
+        console.time("setls_" + seed);
+        var json = JSON.stringify(value);
+        try {
+            window.localStorage.setItem(_private.getName(name, category), json);
+            window.localStorage.setItem(_private.getName(name, category, "info"), JSON.stringify({
+                time: new Date().getTime(),
+                count: 0
+            }));
+        } catch (e) {
+            window.localStorage.clear();
+            return false;
+        }
+        console.timeEnd("setls_" + seed);
+        return true;
+    };
+    _private.getLocalStorageTime = function(name, category) {
+        try {
+            var info = JSON.parse(window.localStorage.getItem(_private.getName(name, category, "info")));
+            return info && parseInt(info.time) || 0;
+        } catch (e) {
+            return 0;
+        }
+    };
+    _private.getLocalStorageCount = function(name, category) {
+        try {
+            var info = JSON.parse(window.localStorage.getItem(_private.getName(name, category, "info")));
+            return info && parseInt(info.count) || 0;
+        } catch (e) {
+            return 0;
+        }
+    };
+    _private.memoryCache = {};
+    _private.getMemory = function(name, category) {
+        var data = _private.memoryCache[_private.getName(name, category)];
+        var value = data && data.value;
+        var time = data && data.time;
+        var count = data && data.count;
+        //store.log('store.cacheData getMemory: value[' + value + '] name[' + name + '] category[' + category + '] time[' + time + '] count[' + count + ']');
+        if (typeof data === "undefined") {
+            return null;
+        } else {
+            if (data !== null) {
+                data.count = (parseInt(data.count) || 0) + 1;
+            }
+            return value;
+        }
+    };
+    _private.setMemory = function(name, value, category) {
+        //store.log('store.cacheData setMemory: value[' + JSON.stringify(value) + '] name[' + name + '] category[' + category + ']');
+        _private.memoryCache[_private.getName(name, category)] = {
+            value: value,
+            time: new Date().getTime(),
+            count: 0
+        };
+        return true;
+    };
+    _private.getMemoryTime = function(name, category) {
+        var data = _private.memoryCache[_private.getName(name, category)];
+        return data && parseInt(data.time) || 0;
+    };
+    _private.getMemoryCount = function(name, category) {
+        var data = _private.memoryCache[_private.getName(name, category)];
+        return data && parseInt(data.count) || 0;
+    };
+    exports.get = function(name) {
+        var category = "";
+        switch (this.getCacheMode()) {
+          case "localStorage":
+            return _private.getLocalStorage.call(this, name, category);
+
+          case "memory":
+            return _private.getMemory.call(this, name, category);
+        }
+    };
+    exports.set = function(name, value) {
+        var category = "";
+        switch (this.getCacheMode()) {
+          case "localStorage":
+            return _private.setLocalStorage.call(this, name, value, category);
+
+          case "memory":
+            return _private.setMemory.call(this, name, value, category);
+        }
+    };
+    _private.cacheMode = null;
+    exports.setCacheMode = function(mode) {
+        _private.cacheMode = mode;
+    };
+    exports.getCacheMode = function() {
+        if (_private.cacheMode === null) {
+            if (window.localStorage) {
+                _private.cacheMode = "localStorage";
+            } else {
+                _private.cacheMode = "memory";
+            }
+        }
+        return _private.cacheMode;
+    };
+    exports.isExpire = function(name, maxSecond, maxCount) {
+        var time = 0;
+        var count = 0;
+        var category = "";
+        switch (this.getCacheMode()) {
+          case "localStorage":
+            time = _private.getLocalStorageTime.call(this, name, category);
+            count = _private.getLocalStorageCount.call(this, name, category);
+            break;
+
+          case "memory":
+            time = _private.getLocalStorageTime.call(this, name, category);
+            count = _private.getLocalStorageCount.call(this, name, category);
+            break;
+        }
+        if (Math.abs(new Date().getTime() - time) > maxSecond * 1e3) {
+            //store.log('store.dataCache isExpire: true name[' + name + '] category[' + category + '] maxSecond[' + maxSecond + '] time[' + time + '] now[' + new Date().getTime() + ']');
+            return true;
+        }
+        if (count > maxCount) {
+            //store.log('store.dataCache isExpire: true name[' + name + '] category[' + category + '] maxCount[' + maxCount + '] count[' + count + ']');
+            return true;
+        }
+        //store.log('store.dataCache isExpire: false name[' + name + '] category[' + category + '] maxSecond[' + maxSecond + '] maxCount[' + maxCount + '] time[' + time + '] now[' + new Date().getTime() + '] count[' + count + ']');
+        return false;
+    };
+});
+
+/**
+ * cookie
  */
 define("util/cookie", [ "lib/jquery" ], function(require, exports, module) {
     var $ = require("lib/jquery");
@@ -14694,6 +14918,124 @@ define("util/net", [ "lib/jquery", "util/security", "util/cookie", "util/uri" ],
 });
 
 /**
+ * 路由模块
+ */
+define("util/router", [ "lib/jquery", "util/uri", "util/cookie", "util/net", "util/security" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var uri = require("util/uri");
+    var cookie = require("util/cookie");
+    var net = require("util/net");
+    var pageSrc;
+    var enableSwipe = false;
+    var shareParam;
+    var userId;
+    var packageName;
+    var packageDefer;
+    //设置webview导航栏颜色,产品策略可以接受这种情形：webview顶部先是蓝色，执行到这里逻辑后再变成黑色(ambermu)。
+    /*if(mqq && mqq.ui && mqq.ui.setWebViewBehavior){
+		mqq.ui.setWebViewBehavior({navBgColor:0x15191c});//这里颜色码从重构处获取
+	}*/
+    // 防止其他库的Deferred覆盖到原始的
+    var Deferred = $.proxy($.Deferred, $);
+    /**
+	 * @exports business/开启右滑退出router
+	 */
+    var router = exports;
+    /**
+	 * 页面切换，屏蔽具体实现
+	 * @param {string} route 路由名称
+	 * @param {object} [params] 自定义参数
+	 * @params {boolean} 可选参数，标记该次是否采用新窗口打开 true表示采用新窗口,不传该参数默认为false
+	 */
+    router.redirect = function(route, params, ops) {
+        ops = true;
+        router.canShow(function() {
+            //苹果ios审核期间，所有跳转都干掉
+            common.openUrl({
+                newWindow: typeof ops == "undefined" || ops === false ? false : true,
+                url: router.createUrl(route, params),
+                target: 1,
+                style: 1
+            });
+        });
+    };
+    /**
+     * 首页跳转出去，带上indexShow=1参数，表示已显示过首页，不需要显示返回首页的头
+     */
+    router.indexRedirect = function(route, params, ops) {
+        params = params || {};
+        params.indexShow = 1;
+        this.redirect(route, params, ops);
+    };
+    function getString(params) {
+        return $.param(params).replace(/(?:^|&)[^\=]*\=(?:null|undefined)(?=&|#|$)/g, "");
+    }
+    //获取cookie中的uin
+    router.getCookieUin = function() {
+        var uin = cookie("uin");
+        if (!uin) {
+            return 0;
+        }
+        uin = /^o(\d+)$/.exec(uin);
+        if (uin && (uin = new Number(uin[1]) + 0) > 1e4) {
+            return uin;
+        }
+        return 0;
+    };
+    /**
+     * 获取当前用户QQ号
+     */
+    router.getUin = function() {
+        var defaultParams = $.extend(true, {}, uri.parseQueryString(window.location.search));
+        return defaultParams.uin;
+    };
+    /**
+	 * 获取当前页面的输入参数
+	 * @params {string} [name] 参数名称
+	 * @return {object} 参数
+	 * @example
+	 * getParams() : {a: 0, b: {c: 1}}
+	 * getParams('a') : 0
+	 * getParams('b.c') : 1
+	 */
+    router.getParams = function(name) {
+        var cache = arguments.callee;
+        var params;
+        if (!cache.params) {
+            params = cache.params = uri.parseQueryString(window.location.search);
+        } else {
+            params = cache.params;
+        }
+        if (name) {
+            var nameList = name.split(".");
+            for (var i = 0, iMax = nameList.length; i < iMax; i++) {
+                if (params.hasOwnProperty(nameList[i])) {
+                    params = params[nameList[i]];
+                } else {
+                    var undefined = undefined;
+                    return undefined;
+                }
+            }
+        }
+        return params;
+    };
+    /**
+	*	@method getHashParam 
+	*	@desc   获取hash中的参数
+	*	@param  name string 需要获取的url的参数
+	*	@return string 返回对应的值，有可能为空
+	*/
+    router.getHashParam = function(name) {
+        var r = new RegExp("(\\?|#|&)" + name + "=([^&]*)(&|$)");
+        var m = window.location.hash.match(r);
+        if (!m || m == "") {
+            m = window.location.hash.match(r);
+        }
+        return !m ? "" : m[2];
+    };
+});
+
+/**
  * Created with JetBrains PhpStorm.
  * User: layenlin
  * Date: 14-3-6
@@ -14725,6 +15067,7 @@ define("util/security", [ "util/cookie", "lib/jquery", "util/uri" ], function(re
                 var location = uri.parseUrl(options.url);
                 if (!location.hostname || location.hostname.split(".").slice(-2).join(".") == "qq.com") {
                     options.url = location.href + (location.search.indexOf("?") >= 0 ? "&" : "?") + "g_tk=" + that.getCSRFToken();
+
                 }
             }
         };
@@ -15060,6 +15403,214 @@ define("util/uri", [], function(require, exports, module) {
         }
         return parseQueryStringCache[queryString] = array;
     };
+});
+
+define("util/util", [], function(require, exports, module) {
+    var util = {
+        globalError: function(msg) {
+            var $wrap = $("<div></div>");
+            $wrap.css({
+                position: "fixed",
+                top: "50%",
+                left: "10%",
+                marginTop: "-50px",
+                width: "80%",
+                height: "100px",
+                textAlign: "center",
+                fontSize: "24px"
+            });
+            $wrap.text(msg);
+            $wrap.appendTo($(document.body).html(""));
+        },
+        /**
+         * 判断当前页面是否被嵌套
+         * @returns {boolean}
+         */
+        isEmbed: function() {
+            try {
+                return window.self !== window.top;
+            } catch (e) {
+                return true;
+            }
+        },
+        /**
+         * 合并对象(深层对比,但默认不超过20层,避免有循环引用)
+         * 不处理原型中的属性
+         *
+         * @param {Object} o 目标对象
+         * @param {Object} append 要合并的对象
+         * @param {Number} deep (optional) 默认最大20层
+         * @return {Object} merged
+         */
+        /*merge : function (o, append, deep */
+        /* = 20 */
+        /*) {
+         var dest, src, n,
+         ret = {};
+         deep = parseInt(deep, 10);
+         if (window.isNaN(deep)) {
+         deep = 20;
+         }
+         // 尝试深度超过，退出。
+         if (deep <= 0) {
+         //warn("对象深度超出!可能存在循环引用");
+         return null;
+         }
+         // 先复制自身属性到新对象
+         for(n in o){
+         if(o.hasOwnProperty(n)){
+         ret[n] = o[n];
+         }
+         }
+         // 再合并，如果目标是对象，为了防止外部也保持有引用从而造成影响，需进行覆盖
+         for (n in append) {
+         if(append.hasOwnProperty(n)){
+         dest = o[n];
+         src = append[n];
+         if (typeof dest === "undefined") {
+         // 如果没有，复制过来
+         ret[n] = src;
+         } else if (typeof dest === "object") {
+         // 如果都是对象，还可进行下一步合并
+         if (typeof src === "object") {
+         ret[n] = util.merge(dest, src, deep - 1);
+         }*/
+        /* else {
+         // primitive -> object 冲突，保持原属性
+         }*/
+        /*
+         }*/
+        /* else {
+         // 其它情况, xxx -> primitive 冲突，保持原属性
+         }*/
+        /*
+         }
+         }
+         return ret;
+         },*/
+        /*clone : function (obj, deep */
+        /* = 20 */
+        /*) {
+         var o, n, i, len;
+         deep = parseInt(deep, 10);
+         if (window.isNaN(deep)) {
+         deep = 20;
+         }
+         // 尝试深度超过，退出。
+         if (deep <= 0) {
+         //warn("对象深度超出!可能存在循环引用");
+         return null;
+         }
+         if (obj !== null && typeof obj === 'object') {
+         o = {};
+         for (n in obj) {
+         if (obj.hasOwnProperty(n)) {
+         o[n] = util.clone(obj[n], deep - 1);
+         }
+         }
+         } else if ($.isArray(obj)) {
+         o = [];
+         for (i = 0, len = obj.length; i < len; i++) {
+         o.push(util.clone(obj[i], deep - 1));
+         }
+         } else if ($.isString(obj)) {
+         o = obj.slice(0);
+         } else {
+         o = obj;
+         }
+         return o;
+         },*/
+        deepApply: function(dest, src) {
+            var p, n;
+            /*jshint forin:false*/
+            for (n in src) {
+                p = src[n];
+                if (typeof p === "object" && typeof dest[n] === "object") {
+                    util.deepApply(dest[n], p);
+                    continue;
+                }
+                dest[n] = p;
+            }
+            return dest;
+        },
+        /**
+         * 生成绑定作用对象的函数，jQuery的proxy方法用于jQuery事件时会有问题，导致同一函数的不同作用对象在off时会被一起清理。
+         * http://stackoverflow.com/questions/9157101/jquery-unbind-deletes-wrong-handler-created-using-proxy
+         * @param {Function} fn
+         * @param {Object} scope
+         * @returns {Function} proxyedFunction
+         */
+        proxy: function(fn, scope) {
+            return function() {
+                fn.apply(scope, arguments);
+            };
+        },
+        cookie: {
+            get: function(name) {
+                var r = new RegExp("(?:^|;+|\\s+)" + name + "=([^;]*)"), m = document.cookie.match(r);
+                //console.log("from util:"+m[1]);
+                return !m ? "" : m[1];
+            },
+            set: function(name, value, domain, path, hour) {
+                var expire;
+                if (hour) {
+                    expire = new Date();
+                    expire.setTime(expire.getTime() + 36e5 * hour);
+                }
+                document.cookie = name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
+                    (path ? "path=" + path + "; " : "path=/; ") + (domain ? "domain=" + domain + ";" : "domain=" + document.domain + ";");
+                return true;
+            },
+            del: function(name, domain, path) {
+                document.cookie = name + "=; expires=Mon, 26 Jul 1997 05:00:00 GMT; " + (path ? "path=" + path + "; " : "path=/; ") + (domain ? "domain=" + domain + ";" : "domain=" + document.domain + ";");
+            }
+        },
+        /**
+         * 获取当前用户的uin
+         * @returns {Number|string}
+         */
+        getUin: function() {
+            return parseInt(this.cookie.get("uin").replace(/\D/g, ""), 10) || "";
+        },
+        /**
+         * 获取防CSRF串 TODO 要确认云监控的csrf串生成规则与微信云的一致
+         * @method getAntiCSRFToken
+         * @return {String} 验证串
+         */
+        getAntiCSRFToken: function() {
+            /* jshint bitwise:false */
+            var s_key = this.cookie.get("skey"), hash = 5381;
+            if (!s_key) {
+                return "";
+            }
+            for (var i = 0, len = s_key.length; i < len; ++i) {
+                hash += (hash << 5) + s_key.charCodeAt(i);
+            }
+            return hash & 2147483647;
+        },
+        getParam: function(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        },
+        removeParam: function(url, name) {
+            var reg = new RegExp("[\\?&]" + name + "=([^&#]*)", "i");
+            return url.replace(reg, "");
+        },
+        formatDate: function() {
+            function pad(number) {
+                var r = String(number);
+                if (r.length === 1) {
+                    r = "0" + r;
+                }
+                return r;
+            }
+            return function(d, noSecond) {
+                return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) + " " + pad(d.getHours()) + ":" + pad(d.getMinutes()) + (noSecond ? "" : ":" + pad(d.getSeconds()));
+            };
+        }()
+    };
+    module.exports = util;
 });
 
 /*!
@@ -27332,3 +27883,30 @@ the specific language governing permissions and limitations under the Apache Lic
         return this;
     };
 }(this, jQuery);
+
+/**
+ * Created by Haoyu Guo on 2016/10/30.
+ */
+define("util/GoogleLogin", [ "lib/jquery", "util/util" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var util = require("util/util");
+    var currrent_url = "http://localhost:3000/";
+    var Login = {
+        user: "",
+        check: function() {
+            var success = function(data) {
+                if (data.errno = "200") {
+                    if (!$.cookie("u_Ticket")) {
+                        util.cookie.set("u_Ticket", data.data.sessionId);
+                    }
+                }
+            };
+            $.ajax({
+                method: "GET",
+                url: "./account/profile",
+                data: {}
+            }).done(success);
+        }
+    };
+    module.exports = Login;
+});

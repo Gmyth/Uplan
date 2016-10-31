@@ -6,15 +6,22 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
+var passport = require('./config/passport');
+const flash = require('express-flash');
+
+//var flash=require('c-flash');
 var mongoStore = require('connect-mongo')(session);
-var routes = require('./routes/index');
+var routes = require('./routes/routes');
 var users = require('./routes/users');
+//var auth = require('./routes/auth');
 //var apps = require('./app/app');
+
 var courses = require('./routes/courses');
 var app = express();
-var port = process.env.PORT || 3000;
+
 var http =require('http');
 var cors = require('cors');
+var port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
 
@@ -41,7 +48,7 @@ mongoose.connect('mongodb://localhost/Class', function (err) {
 // view engine setup
 app.set('views', path.join(__dirname, 'views/test_pages'));
 app.set('view engine', 'jade');
-
+app.options('*', cors());
 
 
 
@@ -73,13 +80,31 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+//app.use(flash());
 
-
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    next();
+});
+app.use(function(req, res, next) {
+    // After successful login, redirect back to the intended page
+    if (!req.user &&
+        req.path !== '/login' &&
+        req.path !== '/signup' &&
+        !req.path.match(/^\/auth/) &&
+        !req.path.match(/\./)) {
+        req.session.returnTo = req.path;
+    }
+    next();
+});
 // Add headers
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3002');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -94,9 +119,29 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-app.use('/user', users);
+
+//app.use('/', users);
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 app.use('/', routes);
+// app.use('/get_courses_info',courses);
+=======
 app.use('/get_courses_info',courses);
+app.use('/', routes);
+//app.use('/get_courses_info',courses);
+>>>>>>> feature-oAuth
+=======
+app.use('/get_courses_info',courses);
+app.use('/', routes);
+//app.use('/get_courses_info',courses);
+>>>>>>> feature-oAuth
+=======
+app.use('/get_courses_info',courses);
+app.use('/', routes);
+//app.use('/get_courses_info',courses);
+>>>>>>> feature-oAuth
+// app.use('/auth',auth);
 
 
 // catch 404 and forward to error handler

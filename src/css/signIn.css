@@ -81,6 +81,15 @@ label > select {
 .is_error{
     color: #e74c3c;
 }
+.error_msg{
+    padding: 5px;
+    background-color: #e0c2ad;
+    color: #e63c5f;
+    border-radius: 6px;
+    width:90%;
+    margin:auto;
+    border: 1px solid rgb(187, 30, 30);
+}
 label > input:focus, label > select:focus {
     opacity: 1;
 }
@@ -88,6 +97,7 @@ label > input:focus, label > select:focus {
 
     form > div { display: inline-block; }
     form {width:1200px;  margin:auto;}
+    .error_msg{width: 1200px; }
     .col-submit { display: block; }
 
     .col-2, .col-3, .col-4 { box-shadow: 1px 1px #e4e4e4; border: none; }
@@ -96,5 +106,6 @@ label > input:focus, label > select:focus {
     .col-3 { width: 399.3px;}
     .col-4 { width: 299.2px; }
 
-    .col-submit button { width: 30%; margin: 0 auto; }
+    .col-submit button { width: 30%; margin: 0 auto;
+    }
 }

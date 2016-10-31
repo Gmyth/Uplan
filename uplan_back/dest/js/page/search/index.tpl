@@ -1,9 +1,9 @@
 <template name="SEARCH.MAIN">
-    <ul style="list-style-type:none; font-size: small;">
-        <li style="color:white">Subject
+    <ul style="list-style-type:none; font-size: small;padding-bottom: 20px;">
+        <li >Subject
             <input type="text" id="txtsubject" class="form-control input-s" placeholder="Enter here"/>
         </li>
-        <li style="color:white">Course Number
+        <li >Course Number
 
             <select id="selnumber" class="form-control1 select1 select-primary select-block">
                 <optgroup label="course number">
