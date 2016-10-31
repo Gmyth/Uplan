@@ -6,9 +6,9 @@
      *	author: Gmyth
      *	date: 20161008
      */
-define("net/search", [ "lib/jquery" ], function factory(require, exports, module) {
+define("net/search", [ "lib/jquery", "util/net", "util/security" ], function factory(require, exports, module) {
     var $ = require("lib/jquery");
-    // var net = require('util/net');
+    var net = require("util/net");
     /**
          *    @method Course
          *    @desc Search course
@@ -18,7 +18,7 @@ define("net/search", [ "lib/jquery" ], function factory(require, exports, module
          */
     exports.getCourseList = function(Obj, callback) {
         //var url  = pub.parseUrl("/application/add ");
-        var url = "localhost:3002/get_courses_info";
+        var url = "http://localhost:3000/get_courses_info";
         var data = {
             txtsubject: Obj.txtsubject,
             txtnumber: Obj.txtnumber,

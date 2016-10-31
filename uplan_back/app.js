@@ -18,9 +18,10 @@ var users = require('./routes/users');
 
 var courses = require('./routes/courses');
 var app = express();
-var port = process.env.PORT || 3000;
+
 var http =require('http');
 var cors = require('cors');
+var port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
 
@@ -47,7 +48,7 @@ mongoose.connect('mongodb://localhost/TestDatabase', function (err) {
 // view engine setup
 app.set('views', path.join(__dirname, 'views/test_pages'));
 app.set('view engine', 'jade');
-
+app.options('*', cors());
 
 
 
@@ -103,7 +104,7 @@ app.use(function(req, res, next) {
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3002');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -120,8 +121,9 @@ app.use(function (req, res, next) {
 });
 
 //app.use('/', users);
+app.use('/get_courses_info',courses);
 app.use('/', routes);
-// app.use('/get_courses_info',courses);
+//app.use('/get_courses_info',courses);
 // app.use('/auth',auth);
 
 

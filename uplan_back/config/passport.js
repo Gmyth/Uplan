@@ -5,7 +5,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var GitHubStrategy = require('passport-github');
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
-var secrets = require('./../controllers/githubsOauth');
+//var secrets = require('./../controllers/githubsOauth');
 var User = require('../models/user');
 
 /**
@@ -87,10 +87,13 @@ passport.use(new GoogleStrategy({
                     console.log(profile._json.gender);
                     var newUser = new User();
                     newUser.google.id = profile.id;
-                    newUser.google.tokens.push({kind:'google',accessToken:token});
+                    newUser.profile.tokens.push({kind:'google',accessToken:token});
+                    newUser.name = profile.displayName;
+                    newUser.profile.username = profile.displayName;
                     newUser.google.name =  profile.displayName;
                     newUser.profile.gender = newUser.profile.gender ||profile._json.gender;
                     newUser.profile.picture=newUser.profile.picture ||profile._json.image.url;
+                    newUser.email = profile.emails[0].value;
                     newUser.google.email = profile.emails[0].value;
                     newUser.save(function(err) {
                         if (err)
@@ -103,6 +106,19 @@ passport.use(new GoogleStrategy({
     }));
 
 
+
+/**
+ * Authorization Required middleware.
+ */
+exports.isAuthorized = (req, res, next) => {
+    const provider = req.path.split('/').slice(-1)[0];
+
+    if (_.find(req.user.tokens, { kind: provider })) {
+        next();
+    } else {
+        res.redirect(`/auth/${provider}`);
+    }
+};
 // passport.use(new GoogleStrategy({
 //     authorizationURL: 'https://accounts.google.com/o/oauth2/auth',
 //     tokenURL: 'https://accounts.google.com/o/oauth2/token',
