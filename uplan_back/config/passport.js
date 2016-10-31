@@ -7,7 +7,11 @@ var GitHubStrategy = require('passport-github');
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 var secrets = require('./../controllers/githubsOauth');
+=======
+//var secrets = require('./../controllers/githubsOauth');
+>>>>>>> feature-oAuth
 =======
 //var secrets = require('./../controllers/githubsOauth');
 >>>>>>> feature-oAuth
@@ -97,11 +101,14 @@ passport.use(new GoogleStrategy({
                     newUser.google.id = profile.id;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     newUser.google.tokens.push({kind:'google',accessToken:token});
                     newUser.google.name =  profile.displayName;
                     newUser.profile.gender = newUser.profile.gender ||profile._json.gender;
                     newUser.profile.picture=newUser.profile.picture ||profile._json.image.url;
 =======
+=======
+>>>>>>> feature-oAuth
 =======
 >>>>>>> feature-oAuth
                     newUser.profile.tokens.push({kind:'google',accessToken:token});
@@ -112,6 +119,9 @@ passport.use(new GoogleStrategy({
                     newUser.profile.picture=newUser.profile.picture ||profile._json.image.url;
                     newUser.email = profile.emails[0].value;
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
 =======
 >>>>>>> feature-oAuth
@@ -129,7 +139,10 @@ passport.use(new GoogleStrategy({
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> feature-oAuth
 =======
 >>>>>>> feature-oAuth
 
@@ -146,6 +159,9 @@ exports.isAuthorized = (req, res, next) => {
     }
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
 =======
 >>>>>>> feature-oAuth

@@ -8,6 +8,10 @@ var passport =require('../config/passport');
 var userController = require('../controllers/user');
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature-oAuth
 =======
 
 >>>>>>> feature-oAuth
@@ -27,6 +31,7 @@ var userController = require('../controllers/user');
 //  });
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 router.get('/auth/google',passport.authenticate('google',{scope:'profile email'}));
 router.get('/auth/google/callback', passport.authenticate('google',{
 
@@ -40,6 +45,8 @@ router.get('/auth/google/callback', passport.authenticate('google',{
 router.get('/signup',userController.showsignup);
 router.post('/signup',userController.postSignup);
 =======
+=======
+>>>>>>> feature-oAuth
 =======
 >>>>>>> feature-oAuth
 /**
@@ -85,6 +92,9 @@ router.get('/auth/google/callback', passport.authenticate('google',{
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
 =======
 >>>>>>> feature-oAuth
@@ -141,8 +151,13 @@ router.get('/auth/google/callback', passport.authenticate('google',{
 //})
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 router.get('/signin',userController.showsignin);
 router.post('/signin',userController.postSignin);
+=======
+
+
+>>>>>>> feature-oAuth
 =======
 
 
@@ -220,7 +235,11 @@ function chechAuthentication(req,res,next) {
     }   else{
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         res.redirect("/signin");
+=======
+        res.redirect("/signin.html");
+>>>>>>> feature-oAuth
 =======
         res.redirect("/signin.html");
 >>>>>>> feature-oAuth

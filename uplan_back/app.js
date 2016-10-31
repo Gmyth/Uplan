@@ -123,8 +123,14 @@ app.use(function (req, res, next) {
 //app.use('/', users);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 app.use('/', routes);
 // app.use('/get_courses_info',courses);
+=======
+app.use('/get_courses_info',courses);
+app.use('/', routes);
+//app.use('/get_courses_info',courses);
+>>>>>>> feature-oAuth
 =======
 app.use('/get_courses_info',courses);
 app.use('/', routes);

@@ -374,9 +374,12 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 txtendtime: input_endtime,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 selstart: input_select_start,
                 selend:input_select_end
 =======
+=======
+>>>>>>> feature-oAuth
 =======
 >>>>>>> feature-oAuth
                 selstart: parseInt(input_select_start),
@@ -391,6 +394,9 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 // callback
                 sublist.ShowCourse(data);
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
 =======
 >>>>>>> feature-oAuth

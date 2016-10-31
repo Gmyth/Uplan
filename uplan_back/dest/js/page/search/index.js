@@ -43,9 +43,12 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 selstart: parseInt(input_select_start),
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 selend:parseInt(input_select_end)
             };//sadasda
 =======
+=======
+>>>>>>> feature-oAuth
 =======
 >>>>>>> feature-oAuth
                 selend: parseInt(input_select_end)
@@ -56,6 +59,9 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
             };
             search.getCourseList(Obj, success);
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
 =======
 >>>>>>> feature-oAuth

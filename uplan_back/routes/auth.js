@@ -10,7 +10,11 @@ router.get('/google/callback', passport.authenticate('google',{
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     failureRedirect: '/signin'}),(req,res)=>{
+=======
+    failureRedirect: '/signin.html'}),(req,res)=>{
+>>>>>>> feature-oAuth
 =======
     failureRedirect: '/signin.html'}),(req,res)=>{
 >>>>>>> feature-oAuth
