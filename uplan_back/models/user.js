@@ -22,16 +22,22 @@ var UserSchema = new mongoose.Schema({
     },
     password: String,
 <<<<<<< HEAD
+<<<<<<< HEAD
     university:String,
     email:  { type: String, unique: true },
     google: {
         id: String,
         tokens: Array,
 =======
+=======
+>>>>>>> feature-oAuth
     email:  { type: String, unique: true },
 
     google: {
         id: String,
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
         email: String,
         name: String,
@@ -41,6 +47,7 @@ var UserSchema = new mongoose.Schema({
             type:String,
             default:'undefined'
         },
+<<<<<<< HEAD
 <<<<<<< HEAD
         university:String,
         truename: { type: String, default: '' },
@@ -52,6 +59,8 @@ var UserSchema = new mongoose.Schema({
         ref:'under_graduate_courses'
     }],
 =======
+=======
+>>>>>>> feature-oAuth
         yearExperience:String,
         university:String,
         username:String,
@@ -65,6 +74,9 @@ var UserSchema = new mongoose.Schema({
         tokens: Array,
     },
 
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
     role:{
         //0:normal user ; 1:verified; 2:pro user; >5 admin; >50 super admin
@@ -83,7 +95,11 @@ var UserSchema = new mongoose.Schema({
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 },{collection:'userinfo_test'});
+=======
+},{collection:'userinfo_test1'});
+>>>>>>> feature-oAuth
 =======
 },{collection:'userinfo_test1'});
 >>>>>>> feature-oAuth

@@ -42,9 +42,12 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 txtendtime: input_endtime,
                 selstart: parseInt(input_select_start),
 <<<<<<< HEAD
+<<<<<<< HEAD
                 selend:parseInt(input_select_end)
             };//sadasda
 =======
+=======
+>>>>>>> feature-oAuth
                 selend: parseInt(input_select_end)
             };
             var success = function(data) {
@@ -52,6 +55,9 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 sublist.ShowCourse(data);
             };
             search.getCourseList(Obj, success);
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
             $.ajax({
                 method: "GET",

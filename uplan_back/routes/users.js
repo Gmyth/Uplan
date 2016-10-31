@@ -140,7 +140,11 @@ function chechAuthentication(req,res,next) {
         next();
     }   else{
 <<<<<<< HEAD
+<<<<<<< HEAD
         res.redirect("/signin");
+=======
+        res.redirect("/signin.html");
+>>>>>>> feature-oAuth
 =======
         res.redirect("/signin.html");
 >>>>>>> feature-oAuth

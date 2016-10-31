@@ -7,6 +7,10 @@ var User = require('../models/user.js');
 var passport =require('../config/passport');
 var userController = require('../controllers/user');
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature-oAuth
 =======
 
 >>>>>>> feature-oAuth
@@ -22,6 +26,7 @@ var userController = require('../controllers/user');
 //  res.render('signup', {title: 'register page'});
 //  });
 <<<<<<< HEAD
+<<<<<<< HEAD
 router.get('/auth/google',passport.authenticate('google',{scope:'profile email'}));
 router.get('/auth/google/callback', passport.authenticate('google',{
 
@@ -35,6 +40,8 @@ router.get('/auth/google/callback', passport.authenticate('google',{
 router.get('/signup',userController.showsignup);
 router.post('/signup',userController.postSignup);
 =======
+=======
+>>>>>>> feature-oAuth
 /**
  * Primary app routes.
  */
@@ -77,6 +84,9 @@ router.get('/auth/google/callback', passport.authenticate('google',{
     res.redirect( '/');
 });
 
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
 // passport.authenticate('local-signup', {
 //     successRedirect : '/profile', // redirect to the secure profile section
@@ -130,8 +140,13 @@ router.get('/auth/google/callback', passport.authenticate('google',{
 //   res.json(post);
 //})
 <<<<<<< HEAD
+<<<<<<< HEAD
 router.get('/signin',userController.showsignin);
 router.post('/signin',userController.postSignin);
+=======
+
+
+>>>>>>> feature-oAuth
 =======
 
 
@@ -204,7 +219,11 @@ function chechAuthentication(req,res,next) {
         next();
     }   else{
 <<<<<<< HEAD
+<<<<<<< HEAD
         res.redirect("/signin");
+=======
+        res.redirect("/signin.html");
+>>>>>>> feature-oAuth
 =======
         res.redirect("/signin.html");
 >>>>>>> feature-oAuth

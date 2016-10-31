@@ -9,7 +9,11 @@ router.get('/google',passport.authenticate('google',{scope:'profile email'}));
 router.get('/google/callback', passport.authenticate('google',{
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     failureRedirect: '/signin'}),(req,res)=>{
+=======
+    failureRedirect: '/signin.html'}),(req,res)=>{
+>>>>>>> feature-oAuth
 =======
     failureRedirect: '/signin.html'}),(req,res)=>{
 >>>>>>> feature-oAuth

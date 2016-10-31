@@ -30,9 +30,15 @@ var TimeSpan = function(input){
     result[0]=(isMorning(StartTime[0]) ? parseInt(StartHour) : parseInt(StartHour) + 12)*100+parseInt(Startminutes);
     result[1]=(isMorning(EndTime[0]) ? parseInt(EndHour) : parseInt(EndHour) + 12)*100+parseInt(Endminutes);
 
+<<<<<<< HEAD
 
     return result;
 
+=======
+
+    return result;
+
+>>>>>>> feature-oAuth
 }
 //router.get('/', function (req, res) {
 //var name =req.body.name;
@@ -81,6 +87,7 @@ router.get('/',function (req,res) {
     console.log(req.query);
     if(sel_condition == "0" && course_level == "0"){
         under_Course.find({"Course": course},function (err,result) {
+<<<<<<< HEAD
 <<<<<<< HEAD
         var oo =[];
        if(txt_start_time!='' && txt_end_time!=''){ //start and end exactly
@@ -201,6 +208,46 @@ router.get('/',function (req,res) {
 
             }
 
+=======
+            var oo =[];
+            if(txt_start_time!='' && txt_end_time!=''){ //start and end exactly
+                for(var i = 0;i<result.length;i++) {
+                    var start = TimeSpan(result[i].Time)[0];
+                    var end = TimeSpan(result[i].Time)[1];
+                    var inputstart = txt_start_time.replace(':', '');
+                    var inputend = txt_end_time.replace(':', '');
+                    if (start_condition == 0 && end_condition == 0 && start == inputstart && end == inputend) {
+                        oo.push(result[i]);
+                    }
+                    else if (start_condition == 1 && end_condition == 0 && start > inputstart && end == inputend) {
+                        oo.push(result[i]);
+                    }
+                    else if (start_condition == 2 && end_condition == 0 && start < inputstart && end == inputend) {
+                        oo.push(result[i]);
+                    }
+                    else if (start_condition == 0 && end_condition == 1 && start == inputstart && end < inputend) {
+                        oo.push(result[i]);
+                    }
+                    else if (start_condition == 1 && end_condition == 1 && start > inputstart && end > inputend) {
+                        oo.push(result[i]);
+                    }
+                    else if (start_condition == 2 && end_condition == 1 && start < inputstart && end > inputend) {
+                        oo.push(result[i]);
+                    }
+                    else if (start_condition == 0 && end_condition == 2 && start == inputstart && end < inputend) {
+                        oo.push(result[i]);
+                    }
+                    else if (start_condition == 1 && end_condition == 2 && start > inputstart && end < inputend) {
+                        oo.push(result[i]);
+                    }
+                    else if (start_condition == 2 && end_condition == 2 && start < inputstart && end < inputend) {
+                        oo.push(result[i]);
+                    }
+                }
+
+            }
+
+>>>>>>> feature-oAuth
             else if(txt_start_time!='' && txt_end_time==''){
                 for(var i = 0;i<result.length;i++){
                     var start=TimeSpan(result[i].Time)[0];
@@ -241,9 +288,15 @@ router.get('/',function (req,res) {
         })
 
     }
+<<<<<<< HEAD
     // search exactly gra course
     /*else if ( sel_condition == "1" && course_level == "1"){
 =======
+=======
+    //  open undergra exact
+    else if(sel_condition == "0" && course_level == "0" && check_open=="1"){
+        under_Course.find({"Course": course , "status" : "Open"},function (err,result) {
+>>>>>>> feature-oAuth
             var oo =[];
             if(txt_start_time!='' && txt_end_time!=''){ //start and end exactly
                 for(var i = 0;i<result.length;i++) {
@@ -260,7 +313,11 @@ router.get('/',function (req,res) {
                     else if (start_condition == 2 && end_condition == 0 && start < inputstart && end == inputend) {
                         oo.push(result[i]);
                     }
+<<<<<<< HEAD
                     else if (start_condition == 0 && end_condition == 1 && start == inputstart && end < inputend) {
+=======
+                    else if (start_condition == 0 && end_condition == 1 && start == inputstart && end > inputend) {
+>>>>>>> feature-oAuth
                         oo.push(result[i]);
                     }
                     else if (start_condition == 1 && end_condition == 1 && start > inputstart && end > inputend) {
@@ -272,13 +329,18 @@ router.get('/',function (req,res) {
                     else if (start_condition == 0 && end_condition == 2 && start == inputstart && end < inputend) {
                         oo.push(result[i]);
                     }
+<<<<<<< HEAD
                     else if (start_condition == 1 && end_condition == 2 && start > inputstart && end < inputend) {
+=======
+                    else if (start_condition == 1 && end_condition == 2 && start < inputstart && end > inputend) {
+>>>>>>> feature-oAuth
                         oo.push(result[i]);
                     }
                     else if (start_condition == 2 && end_condition == 2 && start < inputstart && end < inputend) {
                         oo.push(result[i]);
                     }
                 }
+<<<<<<< HEAD
 
             }
 >>>>>>> feature-oAuth
@@ -464,6 +526,25 @@ router.get('/',function (req,res) {
                         oo.push(result[i]);
                     }
                 }
+=======
+
+            }
+
+            else if(txt_start_time!='' && txt_end_time==''){
+                for(var i = 0;i<result.length;i++){
+                    var start=TimeSpan(result[i].Time)[0];
+                    var inputstart=txt_start_time.replace(':','');
+                    if(start_condition==0&&start==inputstart){
+                        oo.push(result[i]);
+                    }
+                    else if(start_condition==1&&start>inputstart){
+                        oo.push(result[i]);
+                    }
+                    else if(start_condition==2&&start<inputstart){
+                        oo.push(result[i]);
+                    }
+                }
+>>>>>>> feature-oAuth
             }
             else if(txt_start_time=='' && txt_end_time!=''){
                 for(var i = 0;i<result.length;i++){
@@ -550,6 +631,7 @@ router.get('/',function (req,res) {
                     }
 
                 }
+<<<<<<< HEAD
 
                 else if(txt_start_time!='' && txt_end_time==''){
                     for(var i = 0;i<oo.length;i++){
@@ -566,6 +648,24 @@ router.get('/',function (req,res) {
                         }
                     }
 
+=======
+
+                else if(txt_start_time!='' && txt_end_time==''){
+                    for(var i = 0;i<oo.length;i++){
+                        var start=TimeSpan(oo[i].Time)[0];
+                        var inputstart=txt_start_time.replace(':','');
+                        if(start_condition==0&&start==inputstart){
+                            oo1.push(oo[i]);
+                        }
+                        else if(start_condition==1&&start>inputstart){
+                            oo1.push(oo[i]);
+                        }
+                        else if(start_condition==2&&start<inputstart){
+                            oo1.push(oo[i]);
+                        }
+                    }
+
+>>>>>>> feature-oAuth
                 }
                 else if(txt_start_time=='' && txt_end_time!=''){
                     for(var i = 0;i<oo.length;i++){
@@ -582,18 +682,28 @@ router.get('/',function (req,res) {
                         }
                     }
                 }
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
                 if(err){
                     console.log(err)
                 }
                 if(txt_start_time=='' && txt_end_time==''){
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 =======
 
                     res.json(oo);}
                 else{res.json(oo1);}
 >>>>>>> feature-oAuth
 
+                    res.json(oo);}
+                else{res.json(oo1);}
+>>>>>>> feature-oAuth
+
+<<<<<<< HEAD
                     res.json(oo);}
                 else{res.json(oo1);}
 
@@ -603,6 +713,11 @@ router.get('/',function (req,res) {
 
         })
 =======
+            })
+>>>>>>> feature-oAuth
+=======
+
+
             })
 >>>>>>> feature-oAuth
 
@@ -747,6 +862,7 @@ router.get('/',function (req,res) {
                     }
 
                 }
+<<<<<<< HEAD
 
                 else if(txt_start_time!='' && txt_end_time==''){
                     var inputstart=txt_start_time.replace(':','');
@@ -763,6 +879,24 @@ router.get('/',function (req,res) {
                         }
                     }
 
+=======
+
+                else if(txt_start_time!='' && txt_end_time==''){
+                    var inputstart=txt_start_time.replace(':','');
+                    for(var i = 0;i<oo.length;i++){
+                        var start=TimeSpan(oo[i].Time)[0];
+                        if(start_condition ==0 && start==inputstart){
+                            oo1.push(oo[i]);
+                        }
+                        else if(start_condition ==1 && start>inputstart){
+                            oo1.push(oo[i]);
+                        }
+                        else if(start_condition ==2 && start<inputstart){
+                            oo1.push(oo[i]);
+                        }
+                    }
+
+>>>>>>> feature-oAuth
                 }
                 else if(txt_start_time=='' && txt_end_time!=''){
                     for(var i = 0;i<oo.length;i++){

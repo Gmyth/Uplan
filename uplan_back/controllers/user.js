@@ -6,13 +6,19 @@ var mongoose = require('mongoose');
 var User = require('../models/user.js');
 var passport =require('passport');
 <<<<<<< HEAD
+<<<<<<< HEAD
 var crypto = require('crypto');
 var async = require('async');
 =======
+=======
+>>>>>>> feature-oAuth
 var passportConfig = require('../config/passport');
 var crypto = require('crypto');
 var async = require('async');
 var session = require('express-session');
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
 //sign up
 /**
@@ -22,6 +28,10 @@ var session = require('express-session');
 exports.showsignup  = function (req,res) {
     if (req.user) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature-oAuth
 =======
 
 >>>>>>> feature-oAuth
@@ -32,7 +42,11 @@ exports.showsignup  = function (req,res) {
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * GET /signin
+=======
+ * GET /login
+>>>>>>> feature-oAuth
 =======
  * GET /login
 >>>>>>> feature-oAuth
@@ -41,12 +55,15 @@ exports.showsignup  = function (req,res) {
 
 exports.showsignin = function (req, res) {
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (req.user) {
         return res.redirect('/');
     }
 
     res.render('signin', {title: 'signin page'});
 =======
+=======
+>>>>>>> feature-oAuth
 
     if (req.user) {
         console.log('111111');
@@ -54,13 +71,20 @@ exports.showsignin = function (req, res) {
     }
 
     res.render('/login.html', {title: 'signin page'});
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
 };
 
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * POST /signin
+=======
+ * POST /login
+>>>>>>> feature-oAuth
 =======
  * POST /login
 >>>>>>> feature-oAuth
@@ -77,6 +101,7 @@ exports.postSignin = function (req,res,next) {
             //var errors =req.validationError();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             passport.authenticate('local',function (err,user,info) {
                 if(err){return next(err)}
                 if(!user){
@@ -92,6 +117,8 @@ exports.postSignin = function (req,res,next) {
                     console.log( req.sessionID);
                     res.redirect('/profile/:'+req.sessionID);
 =======
+=======
+>>>>>>> feature-oAuth
     if (req.session.sign) {//检查用户是否已经登录
         console.log(req.session.user);
         console.log(req.session);//打印session的值
@@ -109,6 +136,7 @@ exports.postSignin = function (req,res,next) {
                     res.json({"error":"user not exist.","errno":"1","data":""});
 
                 }
+<<<<<<< HEAD
 
                 req.logIn(user,function(err){
                     //res.json(user);
@@ -273,6 +301,124 @@ exports.postSignup = (req, res, next) => {
     }
 };
 
+=======
+
+                req.logIn(user,function(err){
+                    //res.json(user);
+                    if(err){return next(err);}
+                    req.session.sign = true;
+                    console.log(session());
+                    console.log('first time')
+                    req.flash('success',{msg:'success log in'});
+                    console.log( req.sessionID);
+                    res.json({"error":"","errno":"0","data":req.sessionID});
+                    //res.redirect('/profile/:'+req.sessionID);
+
+                })
+            })(req,res,next);
+
+        // User.findOne({name:name},function (err,user) {
+        //     if(err){
+        //         console.log(err);
+        //     }
+        //     if(!user){
+        //         return res.redirect('/signup');
+        //         // if the account is not exsit, return back to the signin page
+        //     }
+        //     user.comparePassword(password, function(err, isMatch){
+        //         if(err){
+        //             console.log(err);
+        //         }
+        //         if(isMatch){
+        //             req.session.user = user; // if get matched password then save in to memory
+        //             return res.redirect('/');
+        //         }
+        //         else{
+        //             res.end('<h1>Password is not matched</h1>');
+        //             console.log('Password is not matched');
+        //             return res.redirect('/signin');
+        //
+        //         }
+        //
+        //     })
+        //
+        // })
+}};
+/**
+ * GET /logout
+ * Log out.
+ */
+
+exports.signout = function (req,res) {
+    //req.logout();
+    console.log('sign out now...');
+    req.session.sign = false;
+    //delete req.session.passport;
+    var user          = req.user;
+    console.log(req.session);
+    user.google.token = undefined;
+    user.save(function(err) {
+        console.log(user, ' has been successfully logged out.');
+        res.redirect('/');
+    });
+    //res.redirect('/');
+    //res.json({"error":"","errno":"0","data":"successful log out"});
+};
+
+/**
+ * POST /signup
+ * create a new local account
+ */
+exports.postSignup = (req, res, next) => {
+
+    if(req.session.sign) {
+        console.log(req.session.user);
+        console.log(req.session);//打印session的值
+        console.log('has logged in');
+        res.json({"error":"has logged in.","errno":"302","data":""});
+    }
+    else {
+        console.log(req.body);
+        const user = new User({
+            email: req.body.email,
+            password: req.body.password,
+            name: req.body.name,
+            'profile.university': req.body.uni,
+            'profile.yearExperience': req.body.YRS_EXPERIENCE,
+            'profile.username': req.body.name,
+
+        });
+
+        User.findOne({name: req.body.name}, (err, existingUser) => {
+            if (err) {
+                return next(err);
+            }
+            if (existingUser) {
+                //req.flash('errors', {msg: 'Account with that email address already exists.'});
+                return res.json({"error":"user exist","errno":"302","data":""});
+                //return res.redirect('/signup');
+            }
+            user.save((err) => {
+                if (err) {
+                    return next(err);
+                }
+                req.logIn(user, (err) => {
+                    if (err) {
+                        return next(err);
+                    }
+                    //res.json(user);
+                    //success
+                    //res.redirect('/');
+                    var id = req.sessionID
+
+                    res.json({"error":"","errno":"0","data":id});
+                });
+            });
+        });
+    }
+};
+
+>>>>>>> feature-oAuth
 /**
  * POST /account/course
  * Update course information.
@@ -388,6 +534,9 @@ exports.getAccount = (req, res) => {
  * POST /account
  * Profile page. ------change profile info
  */
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
 
 exports.postAccount = (req, res, next) => {

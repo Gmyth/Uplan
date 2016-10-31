@@ -373,9 +373,12 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 txtstarttime: input_starttime,
                 txtendtime: input_endtime,
 <<<<<<< HEAD
+<<<<<<< HEAD
                 selstart: input_select_start,
                 selend:input_select_end
 =======
+=======
+>>>>>>> feature-oAuth
                 selstart: parseInt(input_select_start),
                 selend: parseInt(input_select_end)
             };
@@ -387,6 +390,9 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 console.log('aa');
                 // callback
                 sublist.ShowCourse(data);
+<<<<<<< HEAD
+>>>>>>> feature-oAuth
+=======
 >>>>>>> feature-oAuth
             };
             //search.getCourseList(Obj, success);
