@@ -17,7 +17,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     exports.init = function() {
         $(".search_sub_box").html(tpl.get(tmpl.main));
     };
-    /*the combination of needed action function*/
+    /*the comlllbination of needed action function*/
     var actionList = {
         start: function(tar) {},
         storedata: function(tar) {
@@ -37,20 +37,10 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 txtnumber: input_select_number,
                 selnum: input_number,
                 selllevel: input_select_level,
-                check_box_id1: input_open == undefined,
+                check_box_id1: input_open == undefined ? "0" : "1",
                 txtstarttime: input_starttime,
                 txtendtime: input_endtime,
                 selstart: parseInt(input_select_start),
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                selend:parseInt(input_select_end)
-            };//sadasda
-=======
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
                 selend: parseInt(input_select_end)
             };
             var success = function(data) {
@@ -58,13 +48,6 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 sublist.ShowCourse(data);
             };
             search.getCourseList(Obj, success);
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
             $.ajax({
                 method: "GET",
                 url: "./get_courses_info",

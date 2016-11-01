@@ -25,7 +25,7 @@ var port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/Class', function (err) {
+mongoose.connect('mongodb://localhost/TestDatabase', function (err) {
     if(err){
         console.log('connection fail for mongodb...');
     } else{
@@ -105,7 +105,7 @@ app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
-
+//iiii
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
@@ -121,26 +121,9 @@ app.use(function (req, res, next) {
 });
 
 //app.use('/', users);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-app.use('/', routes);
-// app.use('/get_courses_info',courses);
-=======
 app.use('/get_courses_info',courses);
 app.use('/', routes);
 //app.use('/get_courses_info',courses);
->>>>>>> feature-oAuth
-=======
-app.use('/get_courses_info',courses);
-app.use('/', routes);
-//app.use('/get_courses_info',courses);
->>>>>>> feature-oAuth
-=======
-app.use('/get_courses_info',courses);
-app.use('/', routes);
-//app.use('/get_courses_info',courses);
->>>>>>> feature-oAuth
 // app.use('/auth',auth);
 
 
@@ -191,3 +174,4 @@ if('development' === app.get('env')){
 
 
 app.listen(port);
+
