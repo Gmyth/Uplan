@@ -532,7 +532,23 @@ router.get('/',function (req,res) {
             })
 
     }
+    else if (sel_condition == "1"&& course_level == "0" && check_open=="1"){
+        under_Course.find(
+            {"Course": newrexcourse , "status": "Open"},function (err,result) {
+                var oo = [];
+                var oo1= [];
+                for(var i = 0;i<result.length;i++){
+                    var onlydigit = /\d+/g;
+                    var excute = onlydigit.exec(result[i].Course);
+                    // console.log(result[i].Course);
+                    if(excute[0] < course_number){
+                        oo.push(result[i]);
+                    }
+                }
 
+            })
+
+    }
 
 
 });
