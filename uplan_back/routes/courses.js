@@ -545,7 +545,16 @@ router.get('/',function (req,res) {
                         oo.push(result[i]);
                     }
                 }
+                if(txt_start_time!='' && txt_end_time!=''){
+                    for(var i = 0;i<oo.length;i++) {
+                        var start = TimeSpan(oo[i].Time)[0];
+                        var end = TimeSpan(oo[i].Time)[1];
+                        var inputstart = txt_start_time.replace(':', '');
+                        var inputend = txt_end_time.replace(':', '');
 
+                    }
+
+                }
             })
 
     }
