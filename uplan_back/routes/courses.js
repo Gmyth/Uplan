@@ -551,7 +551,33 @@ router.get('/',function (req,res) {
                         var end = TimeSpan(oo[i].Time)[1];
                         var inputstart = txt_start_time.replace(':', '');
                         var inputend = txt_end_time.replace(':', '');
-
+                        if (start_condition == 0 && end_condition == 0 && start == inputstart && end == inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 1 && end_condition == 0 && start > inputstart && end == inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 2 && end_condition == 0 && start < inputstart && end == inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 0 && end_condition == 1 && start == inputstart && end > inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 1 && end_condition == 1 && start > inputstart && end > inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 2 && end_condition == 1 && start < inputstart && end > inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 0 && end_condition == 2 && start == inputstart && end < inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 1 && end_condition == 2 && start > inputstart && end < inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 2 && end_condition == 2 && start < inputstart && end < inputend) {
+                            oo1.push(oo[i]);
+                        }
                     }
 
                 }
