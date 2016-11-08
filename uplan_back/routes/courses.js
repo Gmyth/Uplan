@@ -532,7 +532,96 @@ router.get('/',function (req,res) {
             })
 
     }
+    else if (sel_condition == "1"&& course_level == "0" && check_open=="1"){
+        under_Course.find(
+            {"Course": newrexcourse , "status": "Open"},function (err,result) {
+                var oo = [];
+                var oo1= [];
+                for(var i = 0;i<result.length;i++){
+                    var onlydigit = /\d+/g;
+                    var excute = onlydigit.exec(result[i].Course);
+                    // console.log(result[i].Course);
+                    if(excute[0] < course_number){
+                        oo.push(result[i]);
+                    }
+                }
+                if(txt_start_time!='' && txt_end_time!=''){
+                    for(var i = 0;i<oo.length;i++) {
+                        var start = TimeSpan(oo[i].Time)[0];
+                        var end = TimeSpan(oo[i].Time)[1];
+                        var inputstart = txt_start_time.replace(':', '');
+                        var inputend = txt_end_time.replace(':', '');
+                        if (start_condition == 0 && end_condition == 0 && start == inputstart && end == inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 1 && end_condition == 0 && start > inputstart && end == inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 2 && end_condition == 0 && start < inputstart && end == inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 0 && end_condition == 1 && start == inputstart && end > inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 1 && end_condition == 1 && start > inputstart && end > inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 2 && end_condition == 1 && start < inputstart && end > inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 0 && end_condition == 2 && start == inputstart && end < inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 1 && end_condition == 2 && start > inputstart && end < inputend) {
+                            oo1.push(oo[i]);
+                        }
+                        else if (start_condition == 2 && end_condition == 2 && start < inputstart && end < inputend) {
+                            oo1.push(oo[i]);
+                        }
+                    }
 
+                }
+                else if(txt_start_time!='' && txt_end_time==''){
+                    var inputstart=txt_start_time.replace(':','');
+                    for(var i = 0;i<oo.length;i++){
+                        var start=TimeSpan(oo[i].Time)[0];
+                        if(start_condition ==0 && start==inputstart){
+                            oo1.push(oo[i]);
+                        }
+                        else if(start_condition ==1 && start>inputstart){
+                            oo1.push(oo[i]);
+                        }
+                        else if(start_condition ==2 && start<inputstart){
+                            oo1.push(oo[i]);
+                        }
+                    }
+
+                }
+                else if(txt_start_time=='' && txt_end_time!=''){
+                    for(var i = 0;i<oo.length;i++){
+                        var end=TimeSpan(oo[i].Time)[1];
+                        var inputend=txt_end_time.replace(':','');
+                        if(end_condition==0&&end==inputend){
+                            oo1.push(oo[i]);
+                        }
+                        else if(end_condition==1&&end>inputend){
+                            oo1.push(oo[i]);
+                        }
+                        else if(end_condition==2&&end<inputend){
+                            oo1.push(oo[i]);
+                        }
+                    }
+                }
+                if(err){
+                    console.log(err)
+                }
+                if(txt_start_time=='' && txt_end_time==''){
+
+                    res.json(oo);}
+                else{res.json(oo1);}
+            })
+
+    }
 
 
 });
