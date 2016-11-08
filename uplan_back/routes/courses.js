@@ -581,6 +581,44 @@ router.get('/',function (req,res) {
                     }
 
                 }
+                else if(txt_start_time!='' && txt_end_time==''){
+                    var inputstart=txt_start_time.replace(':','');
+                    for(var i = 0;i<oo.length;i++){
+                        var start=TimeSpan(oo[i].Time)[0];
+                        if(start_condition ==0 && start==inputstart){
+                            oo1.push(oo[i]);
+                        }
+                        else if(start_condition ==1 && start>inputstart){
+                            oo1.push(oo[i]);
+                        }
+                        else if(start_condition ==2 && start<inputstart){
+                            oo1.push(oo[i]);
+                        }
+                    }
+
+                }
+                else if(txt_start_time=='' && txt_end_time!=''){
+                    for(var i = 0;i<oo.length;i++){
+                        var end=TimeSpan(oo[i].Time)[1];
+                        var inputend=txt_end_time.replace(':','');
+                        if(end_condition==0&&end==inputend){
+                            oo1.push(oo[i]);
+                        }
+                        else if(end_condition==1&&end>inputend){
+                            oo1.push(oo[i]);
+                        }
+                        else if(end_condition==2&&end<inputend){
+                            oo1.push(oo[i]);
+                        }
+                    }
+                }
+                if(err){
+                    console.log(err)
+                }
+                if(txt_start_time=='' && txt_end_time==''){
+
+                    res.json(oo);}
+                else{res.json(oo1);}
             })
 
     }
