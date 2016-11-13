@@ -4,7 +4,7 @@ attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
 absent: []
 excused_absences: []
 task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
-  {ubit: <haoyuguo>, progress: },
+  {ubit: <haoyuguo>, progress: testing login and main page function, debugging search function},
   {ubit: <kaiyukan>, progress: },
   {ubit: <enzeqian>, progress: working on the new scraper, still in progress},
   {ubit: <cwang46>, progress: },
