@@ -12,6 +12,22 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
         hash = !location.hash ? "#metric" : location.hash;
         return hash.substring(1, hash.length);
     };
+    var showMain = function() {
+        $("#welcome_msg").html("");
+        $("#welcome_msg").hide();
+        $("#sub_box").html(' <div class="search_box"> ' + '<div class="Uheader" style="background-color: #34495e"> ' + '<p class ="sub_Uheader"> ' + '<span class="fui-search" style="color:#1abc9c;position: relative;top: 1px;"></span> &nbsp;Course Search &nbsp; </p> </div>' + ' <div class="search_sub_box" ></div></div> ' + '<div class="result_box" style="height: 71%;">' + ' <div class ="Uheader" style=" background-color: #34495e">' + ' <p class="sub_Uheader">' + ' <span class="fui-list-numbered" style="color:#1abc9c;position: relative;top: 1px;"></span> &nbsp;Course List &nbsp; </p> </div>' + ' <div class="sub_list" style="height: 93%;">' + " </div>" + " </div>");
+        require.async(tabMap["flow"], function(index) {
+            index.init(username);
+        });
+        require.async(tabMap["sublist"], function(index) {
+            index.init();
+        });
+        require.async(tabMap["search"], function(index) {
+            index.init();
+        });
+        $("#main_container").fadeIn(1e3);
+        $("#sub_box").fadeIn(1e3);
+    };
     //init function to start load js
     exports.init = function(username) {
         // for the tab part may need in future
@@ -22,17 +38,12 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
         // require.async( target , function( index ){
         //     index.init();
         // });
-        require.async(tabMap["flow"], function(index) {
-            index.init(username);
-        });
-        require.async(tabMap["sublist"], function(index) {
-            index.init();
-        });
-        require.async(tabMap["search"], function(index) {
-            index.init();
-        });
-        $("#logout").click(function() {
-            alert("!");
-        });
+        $("#main_container").hide();
+        $("#sub_box").hide();
+        $("#welcome_msg").hide();
+        $("#welcome_msg").html('<h4 style="color: #FFFFFF; text-align: center">&nbsp;Hello&nbsp;&nbsp;<span style="color: #FFFFFF;">' + username + "</span ></h4>");
+        $("#welcome_msg").fadeIn("slow");
+        $("#welcome_msg").fadeOut(2e3);
+        setTimeout(showMain, 2e3);
     };
 });

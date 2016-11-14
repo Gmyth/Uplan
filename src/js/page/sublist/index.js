@@ -21,7 +21,7 @@ define(function(require, exports, module){
     }
     exports.init = function(){
         $('.sub_list').html(tpl.get(tmpl.main));
-         ShowCourse1();
+         //ShowCourse1();
         _bindEvent();
     };
     exports.ShowCourse = function(data){

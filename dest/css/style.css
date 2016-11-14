@@ -157,18 +157,18 @@
     margin-bottom: 2px;
 }
 .del_course_span{
-    color:#FFFFFF;
+    color:#eff0f2;
 }
 .del_course_span:hover{
-    color:rgb(56, 76, 97);
+    color:#FFFFFF;
     cursor:pointer;
 }
 .tag_open{
     padding: 2px;
-    color:#FFFFFF;
+    color:#eff0f2;
 }
 .tag_open:hover{
-    color:rgb(56, 76, 97);
+    color:#FFFFFF;
     cursor:pointer;
 }
 .tag_ready{

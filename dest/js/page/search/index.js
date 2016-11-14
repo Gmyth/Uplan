@@ -34,8 +34,8 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
             var input_credit = $("#txtcredit").val();
             var Obj = {
                 txtsubject: input_subject,
-                txtnumber: input_select_number,
-                selnum: input_number,
+                txtnumber: input_number,
+                selnum: input_select_number,
                 selllevel: input_select_level,
                 check_box_id1: input_open == undefined ? "0" : "1",
                 txtstarttime: input_starttime,
@@ -47,7 +47,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 // callback
                 sublist.ShowCourse(data);
             };
-            search.getCourseList(Obj, success);
+            //search.getCourseList(Obj,success);
             $.ajax({
                 method: "GET",
                 url: "./get_courses_info",

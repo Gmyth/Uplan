@@ -14405,69 +14405,6 @@ $("videojs.util",t.ha);t.ha.mergeOptions=t.ha.Wa;t.addLanguage=t.fd;})();
     t.addLanguage = t.fd;
 })();
 
-define("util/Login", [ "lib/jquery", "util/util", "net/pub", "util/router", "util/cacheData", "util/net" ], function(require, exports, module) {
-    var $ = require("lib/jquery");
-    var util = require("util/util");
-    var currrent_url = "localhost:3000/";
-    var pub = require("net/pub");
-    var Login = {
-        user: "",
-        init: function() {
-            var url = location.href, oaParam = [ "sessionKey", "length", "loginParam", "ticket" ], needRedirect = 0;
-            //由于跳转需要时间，故需要返回
-            var removeOaParam = function() {
-                var search = location.search;
-                for (var i in oaParam) {
-                    search = util.removeParam(search, oaParam[i]);
-                }
-                location.search = search;
-            };
-            var ticket = util.getParam("ticket");
-            if (ticket) {
-                removeOaParam();
-            } else {
-                ticket = $.cookie("ticket");
-                if (!ticket) {
-                    location.href = currrent_url + "login.html";
-                    needRedirect = 1;
-                }
-            }
-            return needRedirect;
-        },
-        redirect: function() {
-            location.href = currrent_url + "login.html";
-        },
-        param: function() {
-            var u_Ticket = $.cookie("ticket");
-            return {
-                type: "u",
-                u_Ticket: u_Ticket || ""
-            };
-        },
-        logout: function() {
-            var url = location.href;
-            util.cookie.del("ticket");
-            util.cookie.del("login_user");
-            location.href = currrent_url + "login.html";
-        },
-        fetchUser: function(fn) {
-            var me = this;
-            pub.getLoginInfo(function(data) {
-                if (data.errno == 0) {
-                    var temp = data.data;
-                    me.user = temp["username"];
-                    if (typeof fn == "function") {
-                        fn(temp);
-                    }
-                } else {
-                    me.redirect();
-                }
-            });
-        }
-    };
-    module.exports = Login;
-});
-
 /**
  * Created with JetBrains PhpStorm.
  * User: layenlin
@@ -14657,6 +14594,96 @@ define("util/cookie", [ "lib/jquery" ], function(require, exports, module) {
         } : decodeURIComponent;
         return (result = new RegExp("(?:^|; )" + encodeURIComponent(key) + "=([^;]*)").exec(document.cookie)) ? decode(result[1]) : null;
     };
+});
+
+/**
+ * Created by Haoyu Guo on 2016/10/30.
+ */
+define("util/GoogleLogin", [ "lib/jquery", "util/util" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var util = require("util/util");
+    var currrent_url = "http://uplans.info/";
+    var Login = {
+        user: "",
+        check: function() {
+            var success = function(data) {
+                if (data.errno = "200") {
+                    if (!$.cookie("u_Ticket")) {
+                        util.cookie.set("u_Ticket", data.data.sessionId);
+                    }
+                }
+            };
+            $.ajax({
+                method: "GET",
+                url: "./account/profile",
+                data: {}
+            }).done(success);
+        }
+    };
+    module.exports = Login;
+});
+
+define("util/Login", [ "lib/jquery", "util/util", "net/pub", "util/router", "util/cacheData", "util/net" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var util = require("util/util");
+    var currrent_url = "http://uplans.info/";
+    var pub = require("net/pub");
+    var Login = {
+        user: "",
+        init: function() {
+            var url = location.href, oaParam = [ "sessionKey", "length", "loginParam", "u_Ticket" ], needRedirect = 0;
+            //由于跳转需要时间，故需要返回
+            var removeOaParam = function() {
+                var search = location.search;
+                for (var i in oaParam) {
+                    search = util.removeParam(search, oaParam[i]);
+                }
+                location.search = search;
+            };
+            var ticket = util.getParam("u_Ticket");
+            if (ticket) {
+                removeOaParam();
+            } else {
+                ticket = $.cookie("u_Ticket");
+                if (!ticket) {
+                    location.href = currrent_url + "login.html";
+                    needRedirect = 1;
+                }
+            }
+            return needRedirect;
+        },
+        redirect: function() {
+            location.href = currrent_url + "login.html";
+        },
+        param: function() {
+            var u_Ticket = $.cookie("u_Ticket");
+            return {
+                type: "u",
+                u_Ticket: u_Ticket || ""
+            };
+        },
+        logout: function() {
+            var url = location.href;
+            util.cookie.del("u_Ticket");
+            util.cookie.del("login_user");
+            location.href = currrent_url + "login.html";
+        },
+        fetchUser: function(fn) {
+            var me = this;
+            pub.getLoginInfo(function(data) {
+                if (data.errno == "200") {
+                    var temp = data.data.profile;
+                    me.user = temp["username"];
+                    if (typeof fn == "function") {
+                        fn(temp);
+                    }
+                } else {
+                    me.redirect();
+                }
+            });
+        }
+    };
+    module.exports = Login;
 });
 
 /**
@@ -15556,10 +15583,7 @@ define("util/util", [], function(require, exports, module) {
                     expire = new Date();
                     expire.setTime(expire.getTime() + 36e5 * hour);
                 }
-                // document.cookie = name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") +
-                //     (path ? "path=" + path + "; " : "path=/; ") + (domain ? "domain=" + domain + ";" : "domain=" + document.domain + ";");
-                document.cookie = name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") + (path_1 ? "path=" + path_1 + "; " : "path=/; ") + (domian_1 ? "domain=" + domian_1 + ";" : "domain=" + document.domain + ";");
-                console.log(name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") + (path_1 ? "path=" + path_1 + "; " : "path=/; ") + (domian_1 ? "domain=" + domian_1 + ";" : "domain=" + document.domain + ";"));
+                document.cookie = name + "=" + value + "; " + (hour ? "expires=" + expire.toGMTString() + "; " : "") + (path ? "path=" + path + "; " : "path=/; ") + (domain ? "domain=" + domain + ";" : "domain=" + document.domain + ";");
                 return true;
             },
             del: function(name, domain, path) {

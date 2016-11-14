@@ -21,7 +21,7 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     };
     exports.init = function() {
         $(".sub_list").html(tpl.get(tmpl.main));
-        ShowCourse1();
+        //ShowCourse1();
         _bindEvent();
     };
     exports.ShowCourse = function(data) {
