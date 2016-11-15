@@ -4,6 +4,23 @@
     border-radius: 6px;
     margin-left: 1%;
 }
+.modal-header{
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.modal-footer{
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+.function_box{
+    /*padding-top: 1%;*/
+    padding-bottom: 1%;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+    border-radius: 6px;
+    background-color: #eff0f2;
+    margin-top: 1%;
+}
 .sub_box{
     border-radius: 6px;
     margin-left: 63.8%;
@@ -51,7 +68,7 @@
     text-align: center;
     word-wrap:break-word
 }
-.main_container, .table-responsive, .table-bordered  {
+.main_container, .table-fit{
     height: 100%;
 }
 .weekly_schedule th{
@@ -153,8 +170,8 @@
 .sub_Uheader{
     margin-left: 1%;
     width:98%;
-    margin-top: 5px;
-    margin-bottom: 2px;
+    /*margin-top: 5px;*/
+    /*margin-bottom: 2px;*/
 }
 .del_course_span{
     color:#eff0f2;
@@ -170,6 +187,13 @@
 .tag_open:hover{
     color:#FFFFFF;
     cursor:pointer;
+}
+.welcome_msg{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100% !important;
 }
 .tag_ready{
     padding: 2px;
@@ -224,6 +248,13 @@
     .bodyback{    -moz-background-size:100% 100%;
         background-size:100% 100%;
         background-repeat:no-repeat;
+    }
+    .welcome_msg{
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        width: 970px !important;
     }
 }
 html, body{

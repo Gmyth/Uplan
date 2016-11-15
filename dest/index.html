@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=0.7" />
 
-    <title>UPlan</title>
+    <title>UPlan - Beta</title>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
     <script src="./js/vendor/html5shiv.js"></script>
@@ -41,8 +41,11 @@
 
     </nav><!-- /navbar -->
 </div>
-<div id="welcome_msg" style="margin-top: 15%"></div>
-<div  id= "main_container" class="main_container" style="height: 85%;"></div>
+<div id="welcome_msg" class=" welcome_msg" style="margin-top: 15%">
+
+</div>
+<div  id= "main_container" class="main_container" style="height: 85%;">
+</div>
 <div  id= "sub_box" class="sub_box" style="height: 85%;">
     <!--&lt;!&ndash;<div class="search_box" style="height: 29%;">&ndash;&gt;-->
     <!--<div class="search_box">-->
@@ -79,6 +82,7 @@
             '$' : 'lib/jquery',
         }
     });
+
     function start () {
         seajs.use(["lib/jquery","util/GoogleLogin","util/Login","page/controller/module"], function($,GoogleLogin,Login,index) {
             GoogleLogin.check();

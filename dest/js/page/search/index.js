@@ -20,6 +20,9 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     /*the combination of needed action function*/
     var actionList = {
         start: function(tar) {},
+        advanced_window: function(tar) {
+            $("#advanced_window").modal("show");
+        },
         storedata: function(tar) {
             var input_subject = $("#txtsubject").val();
             var input_select_number = $("#selnumber").val();

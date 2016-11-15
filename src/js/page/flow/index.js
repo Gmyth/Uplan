@@ -11,7 +11,8 @@ define(function(require, exports, module){
     var user = "";
     var tmpl = {
         main:FLOW.MAIN,
-        body:FLOW.COURSE
+        body:FLOW.COURSE,
+        selected:FLOW.SELECTED
     }
     /*config set*/
     var timeStart=8;
@@ -116,6 +117,10 @@ define(function(require, exports, module){
                 dataArr.push(tempArr);
             }
             $('#flow_body').html(tpl.get(tmpl.body,{"startTime":timeStart,"CourseList":dataArr}))
+        },
+        "view_selected": function(tar){
+            $('#selected_list').html(tpl.get(tmpl.selected,{"TagList":config}))
+            $('#view_selected').modal('show');
         }
     };
     /*bind the button input control event*/

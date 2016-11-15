@@ -26,6 +26,9 @@ define(function(require, exports, module){
         "start":function(tar){
 
         },
+        "advanced_window" : function (tar){
+            $('#advanced_window').modal('show');
+        },
         "storedata":function(tar){
             var input_subject = $("#txtsubject").val();
             var input_select_number = $("#selnumber").val();

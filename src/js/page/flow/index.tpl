@@ -1,6 +1,6 @@
 <template name="FLOW.MAIN">
-    <div class="main_header">
-        <table  class= "weekly_schedule table-bordered table-hover table-responsive" cellspacing="0" cellpadding="2" width="100%" >
+    <div class="main_header" style="height: 85%;">
+        <table  class= "weekly_schedule table-bordered table-hover table-responsive table-fit" cellspacing="0" cellpadding="2" width="100%" >
             <colgroup span="1" width="9%" align="center" valign="middle"></colgroup>
             <colgroup span="7" width="13%" align="center" valign="middle"></colgroup>
             <thead>
@@ -18,6 +18,38 @@
         </table>
     <!-- End HTML Area -->
     </div>
+        <div class="function_box row">
+            <div class="Uheader" style=" background-color: #34495e">        <p class="sub_Uheader">     <span class="fui-calendar-solid" style="color:#1abc9c;position: relative;top: 1px;"></span> &nbsp;Tool Panel &nbsp; </p> </div>
+            <div class="col-xs-3">
+                <button data-toggle="modal" class="btn btn-block btn-lg btn-primary" data-action="view_selected" >View Selected</button>
+                <div id="view_selected" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div  class="modal-dialog modal-lg" style="background-color: #eff0f2;border-radius: 6px;">
+                        <div class="modal-header" style="background-color: #34495e;">
+                            <a type="button" class="close" data-dismiss="modal" style="padding-top:4px;"><span class="fui-cross" style="color: #eff0f2;"></span></a>
+                            <p style="margin-bottom:auto;color: #eff0f2;"><b>Selected</b></p>
+                        </div>
+                        <div class="modal-body" id="selected_list" style="height: 500px;max-height: 500px;overflow-y: auto;">
+
+                        </div>
+                        <div class="modal-footer modal_background_color">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <a href="#fakelink" class="btn btn-block btn-lg btn-warning" data-action="save_schedule">Save Schedule</a>
+            </div>
+            <div class="col-xs-3">
+                <a href="#fakelink" class="btn btn-block btn-lg btn-inverse" disabled="true">Coming Soon</a>
+            </div>
+            <div class="col-xs-3">
+                <a href="#fakelink" class="btn btn-block btn-lg btn-danger" disabled="true">Coming Soon</a>
+            </div>
+
+        </div>
+
 </template>
 <template name="FLOW.COURSE">
     <%for(var i=0,item;item = CourseList[i];i++){%>
@@ -177,4 +209,34 @@
         </tr>
     </tbody>
     </table>
+</template>
+<template name="FLOW.SELECTED">
+    <% for(var d = 0,it ; it = TagList[d]; d++){%>
+    <table class="table table-bordered table-responsive table-hover">
+        <thead style="background-color: #34495e;color: #ffffff">
+        <tr>
+            <th><span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>Title</th>
+            <th><span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>Type</th>
+            <th><span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>Section</th>
+            <th><span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>Location</th>
+            <th><span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>Days</th>
+            <th><span class="fui-time" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;"></span>Time</th>
+            <th><span class="fui-location" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;"></span>&nbsp;Room</th>
+            <th><span class="fui-user" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;"></span>Instrouctors</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><%=it.Title%></td>
+            <td><%=it.Type%></td>
+            <td><%=it.Section%></td>
+            <td><%=it.Location%></td>
+            <td><%=it.Days%></td>
+            <td><%=it.Time%></td>
+            <td><%=it.Room%></td>
+            <td><%=it.instructors%></td>
+        </tr>
+        </tbody>
+        </table>
+    <%}%>
 </template>

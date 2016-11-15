@@ -12,7 +12,8 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
     var user = "";
     var tmpl = {
         main: FLOW.MAIN,
-        body: FLOW.COURSE
+        body: FLOW.COURSE,
+        selected: FLOW.SELECTED
     };
     /*config set*/
     var timeStart = 8;
@@ -130,6 +131,12 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
                 startTime: timeStart,
                 CourseList: dataArr
             }));
+        },
+        view_selected: function(tar) {
+            $("#selected_list").html(tpl.get(tmpl.selected, {
+                TagList: config
+            }));
+            $("#view_selected").modal("show");
         }
     };
     /*bind the button input control event*/
