@@ -83,6 +83,16 @@ define("page/controller/module", [ "page/controller/config", "util/tpl", "lib/jq
             weekday: thisDay,
             username: username
         }));
+        $("#logout").click(function() {
+            $.ajax({
+                method:"GET",
+                url:"./logout"
+            }).done(function(){
+                var util= require("util/util");
+                util.cookie.del("u_Ticket");
+                location.href="http://uplans.info/login.html"
+            });
+        });
         _bindEvent();
         $("#welcome_msg").fadeIn("slow");
     };
@@ -360,10 +370,7 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
             login.Login(obj, success);
         },
         click_google: function(tar) {
-            $.ajax({
-                method: "GET",
-                url: "./auth/google"
-            }).done(callback);
+                location.href="http://uplans.info/auth/google"
         }
     };
     var _bindEvent = function() {
@@ -501,10 +508,7 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
             }
         },
         click_google: function(tar) {
-            $.ajax({
-                method: "GET",
-                url: "./auth/google"
-            }).done(callback);
+                location.href="http://uplans.info/auth/google"
         }
     };
     /*bind the button input control event*/
