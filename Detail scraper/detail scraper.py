@@ -26,3 +26,27 @@ for each in course_url:
     url_list.append(kk)
 
 print len(url_list)
+##########################第二层爬虫
+Class = []
+Course = []
+Course_url=[]
+Title = []
+Section = []
+Type = []
+Days = []
+Time = []
+Room = []
+Location = []
+instructors = []
+status = []
+Course_Description=[]
+On_line_Resources=[]
+Other_Courses_Taught_By=[]
+
+#################################################解析每个字段##########################
+for i in range(0,len(url_list)):
+    print "Collecting the "+str(i)+'th page'
+    # time.sleep(3)
+    html2=session.get(url_list[i],headers=head).content
+    selector=etree.HTML(html2)
+    Class_1 = selector.xpath('/html/body/table[4]/tr/td[1]')
