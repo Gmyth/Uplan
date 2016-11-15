@@ -50,3 +50,18 @@ for i in range(0,len(url_list)):
     html2=session.get(url_list[i],headers=head).content
     selector=etree.HTML(html2)
     Class_1 = selector.xpath('/html/body/table[4]/tr/td[1]')
+
+    for each in Class_1[3:len(Class_1)]:
+        print each.xpath('string(.)').strip().replace('\t', '')
+        Class.append(each.xpath('string(.)').strip().replace('\t', ''))
+        if "Class" in Class:
+            Class.remove("Class")
+
+    print len(Class)
+    Course_1 = selector.xpath('/html/body/table[4]/tr/td[2]')
+    for each in Course_1[1:len(Course_1)]:
+        print each.xpath('string(.)').strip().replace('\t','')
+        Course.append(each.xpath('string(.)').strip().replace('\t', ''))
+        if "Course" in Course:
+            Course.remove("Course")
+    print len(Course)
