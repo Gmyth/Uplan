@@ -24,7 +24,7 @@ var undergra_CourseSchema = new Schema({
         type:String
     }
 },{
-    collection:'Classdata'
+    collection:'under_graduate_courses'
 });
 undergra_CourseSchema.statics = {
     fetch: function(cb) {

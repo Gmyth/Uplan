@@ -72,7 +72,7 @@ passport.use('local',new LocalStrategy({usernameField:'name',
 passport.use(new GoogleStrategy({
         clientID: '39457571589-j69mjrhv5o9grcilig0n0i2aore6itds.apps.googleusercontent.com',
         clientSecret: 'gykhVbeQwSI8iJXl7JTm_Jh5',
-        callbackURL: 'http://localhost:3000/auth/google/callback',
+        callbackURL: 'http://ec2-52-55-80-101.compute-1.amazonaws.com:3000/auth/google/callback',
     },
     function(req, token, refreshToken, profile, done) {
         process.nextTick(function() {

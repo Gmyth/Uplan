@@ -76,7 +76,7 @@ exports.postSignin = function (req,res,next) {
                     req.session.sign = true;
                     console.log(session());
                     console.log('first time')
-                    req.flash('success',{msg:'success log in'});
+                    //req.flash('success',{msg:'success log in'});
                     console.log( req.sessionID);
                     res.json({"error":"","errno":"0","data":req.sessionID});
                     //res.redirect('/profile/:'+req.sessionID);

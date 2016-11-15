@@ -14408,7 +14408,7 @@ $("videojs.util",t.ha);t.ha.mergeOptions=t.ha.Wa;t.addLanguage=t.fd;})();
 define("util/Login", [ "lib/jquery", "util/util", "net/pub", "util/router", "util/cacheData", "util/net" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var util = require("util/util");
-    var currrent_url = "http://localhost:3000/";
+    var currrent_url = "http://uplans.info/";
     var pub = require("net/pub");
     var Login = {
         user: "",
@@ -27890,7 +27890,7 @@ the specific language governing permissions and limitations under the Apache Lic
 define("util/GoogleLogin", [ "lib/jquery", "util/util" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var util = require("util/util");
-    var currrent_url = "http://localhost:3000/";
+    var currrent_url = "http://uplans.info/";
     var Login = {
         user: "",
         check: function() {

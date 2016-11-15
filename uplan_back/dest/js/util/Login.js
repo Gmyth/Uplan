@@ -1,7 +1,7 @@
 define("util/Login", [ "lib/jquery", "util/util", "net/pub", "util/router", "util/cacheData", "util/net" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var util = require("util/util");
-    var currrent_url = "http://localhost:3000/";
+    var currrent_url = "http://uplans.info/";
     var pub = require("net/pub");
     var Login = {
         user: "",
