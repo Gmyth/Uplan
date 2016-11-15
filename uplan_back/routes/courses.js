@@ -153,9 +153,21 @@ router.get('/',function (req,res) {
                 console.log(err)
             }
             if(txt_start_time=='' && txt_end_time==''){
-
-                res.json(result);}
-            else{res.json(oo);}
+                if(result.length>50){
+                    res.json(["ripi"]);
+                }
+                else{
+                    res.json(result);
+                }
+            }
+                else{
+                if(result.length>50){
+                    res.json(["ripi"]);
+                }
+                else{
+                    res.json(oo);
+                }
+                }
         })
 
     }
@@ -234,9 +246,21 @@ router.get('/',function (req,res) {
                 console.log(err)
             }
             if(txt_start_time=='' && txt_end_time==''){
-
-                res.json(result);}
-            else{res.json(oo);}
+                if(result.length>50){
+                    res.json(["ripi"]);
+                }
+                else{
+                    res.json(result);
+                }
+            }
+            else{
+                if(result.length>50){
+                    res.json(["ripi"]);
+                }
+                else{
+                    res.json(oo);
+                }
+            }
         })
 
     }
@@ -336,9 +360,21 @@ router.get('/',function (req,res) {
                     console.log(err)
                 }
                 if(txt_start_time=='' && txt_end_time==''){
-
-                    res.json(oo);}
-                else{res.json(oo1);}
+                    if(result.length>50){
+                        res.json(["ripi"]);
+                    }
+                    else{
+                        res.json(oo);
+                    }
+                }
+                else{
+                    if(result.length>50){
+                        res.json(["ripi"]);
+                    }
+                    else{
+                        res.json(oo1);
+                    }
+                }
 
 
 
@@ -431,9 +467,21 @@ router.get('/',function (req,res) {
                     console.log(err)
                 }
                 if(txt_start_time=='' && txt_end_time==''){
-
-                    res.json(oo);}
-                else{res.json(oo1);}
+                    if(result.length>50){
+                        res.json(["ripi"]);
+                    }
+                    else{
+                        res.json(oo);
+                    }
+                }
+                else{
+                    if(result.length>50){
+                        res.json(["ripi"]);
+                    }
+                    else{
+                        res.json(oo1);
+                    }
+                }
             })
 
     }
@@ -522,9 +570,21 @@ router.get('/',function (req,res) {
                     console.log(err)
                 }
                 if(txt_start_time=='' && txt_end_time==''){
-
-                    res.json(oo);}
-                else{res.json(oo1);}
+                    if(result.length>50){
+                        res.json(["ripi"]);
+                    }
+                    else{
+                        res.json(oo);
+                    }
+                }
+                else{
+                    if(result.length>50){
+                        res.json(["ripi"]);
+                    }
+                    else{
+                        res.json(oo1);
+                    }
+                }
 
 
 
@@ -616,9 +676,21 @@ router.get('/',function (req,res) {
                     console.log(err)
                 }
                 if(txt_start_time=='' && txt_end_time==''){
-
-                    res.json(oo);}
-                else{res.json(oo1);}
+                    if(result.length>50){
+                        res.json(["ripi"]);
+                    }
+                    else{
+                        res.json(oo);
+                    }
+                }
+                else{
+                    if(result.length>50){
+                        res.json(["ripi"]);
+                    }
+                    else{
+                        res.json(oo1);
+                    }
+                }
             })
 
     }
