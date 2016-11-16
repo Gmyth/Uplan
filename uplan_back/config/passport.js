@@ -5,19 +5,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var GitHubStrategy = require('passport-github');
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-var secrets = require('./../controllers/githubsOauth');
-=======
 //var secrets = require('./../controllers/githubsOauth');
->>>>>>> feature-oAuth
-=======
-//var secrets = require('./../controllers/githubsOauth');
->>>>>>> feature-oAuth
-=======
-//var secrets = require('./../controllers/githubsOauth');
->>>>>>> feature-oAuth
 var User = require('../models/user');
 
 /**
@@ -84,7 +72,7 @@ passport.use('local',new LocalStrategy({usernameField:'name',
 passport.use(new GoogleStrategy({
         clientID: '39457571589-j69mjrhv5o9grcilig0n0i2aore6itds.apps.googleusercontent.com',
         clientSecret: 'gykhVbeQwSI8iJXl7JTm_Jh5',
-        callbackURL: 'http://localhost:3000/auth/google/callback',
+        callbackURL: 'uplans.info/auth/google/callback',
     },
     function(req, token, refreshToken, profile, done) {
         process.nextTick(function() {
@@ -99,18 +87,6 @@ passport.use(new GoogleStrategy({
                     console.log(profile._json.gender);
                     var newUser = new User();
                     newUser.google.id = profile.id;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    newUser.google.tokens.push({kind:'google',accessToken:token});
-                    newUser.google.name =  profile.displayName;
-                    newUser.profile.gender = newUser.profile.gender ||profile._json.gender;
-                    newUser.profile.picture=newUser.profile.picture ||profile._json.image.url;
-=======
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
                     newUser.profile.tokens.push({kind:'google',accessToken:token});
                     newUser.name = profile.displayName;
                     newUser.profile.username = profile.displayName;
@@ -118,13 +94,6 @@ passport.use(new GoogleStrategy({
                     newUser.profile.gender = newUser.profile.gender ||profile._json.gender;
                     newUser.profile.picture=newUser.profile.picture ||profile._json.image.url;
                     newUser.email = profile.emails[0].value;
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
                     newUser.google.email = profile.emails[0].value;
                     newUser.save(function(err) {
                         if (err)
@@ -136,15 +105,7 @@ passport.use(new GoogleStrategy({
         });
     }));
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
+//ppp
 
 /**
  * Authorization Required middleware.
@@ -158,13 +119,6 @@ exports.isAuthorized = (req, res, next) => {
         res.redirect(`/auth/${provider}`);
     }
 };
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
 // passport.use(new GoogleStrategy({
 //     authorizationURL: 'https://accounts.google.com/o/oauth2/auth',
 //     tokenURL: 'https://accounts.google.com/o/oauth2/token',

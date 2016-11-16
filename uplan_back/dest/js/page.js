@@ -52,7 +52,7 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
             }).done(function(){
                 var util= require("util/util");
                 util.cookie.del("u_Ticket");
-                location.href="http://localhost:3000/login.html"
+                location.href="http://uplans.info/login.html"
             });
         });
     };
@@ -303,7 +303,7 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
             var data_obj = function(data) {
                 if (data.errno == "0") {
                     util.cookie.set("u_Ticket", data.data);
-                    location.href = "http://localhost:3000/";
+                    location.href = "http://uplans.info/";
                 } else {
                     alert(data.error);
                 }
@@ -311,8 +311,7 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
             login.Login(obj, data_obj);
         },
         'click_google': function(tar) {
-                location.href="http://localhost:3000/auth/google"
-
+                location.href="http://uplans.info/auth/google"
         }
     };
     var _bindEvent = function() {
@@ -372,16 +371,6 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 check_box_id1: input_open == undefined ? "0" : "1",
                 txtstarttime: input_starttime,
                 txtendtime: input_endtime,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                selstart: input_select_start,
-                selend:input_select_end
-=======
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
                 selstart: parseInt(input_select_start),
                 selend: parseInt(input_select_end)
             };
@@ -393,13 +382,6 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 console.log('aa');
                 // callback
                 sublist.ShowCourse(data);
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
             };
             //search.getCourseList(Obj, success);
             $.ajax({
@@ -465,15 +447,15 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
                     YRS_EXPERIENCE: $("#YRS_EXPERIENCE").find("option:selected").attr("yrs")
                 };
                 signup.Signup(obj, function() {
-                    //alert("success");
-                    location.href="http://localhost:3000/login.html"
+                    //pppalert("success");
+                    location.href="http://uplans.info/login.html"
                 });
             } else {
                 $("#Signup_msg").html('<p class="error_msg"> <span class="fui-cross" style="color: #e63c5f"></span>Please complete the form to continue Sign up!</p>');
             }
         },
         click_google: function(tar) {
-            location.href="http://localhost:3000/auth/google"
+            location.href="http://uplans.info/auth/google"
         }
     };
     /*bind the button input control event*/
