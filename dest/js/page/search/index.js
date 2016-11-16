@@ -24,7 +24,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
             $("#advanced_window").modal("show");
         },
         storedata: function(tar) {
-            var input_subject = $("#txtsubject").val();
+            var input_subject = $("#txtsubject").val().toLowerCase();
             var input_select_number = $("#selnumber").val();
             var input_number = $("#txtnumber").val();
             var input_select_level = $("#sellevel").val();

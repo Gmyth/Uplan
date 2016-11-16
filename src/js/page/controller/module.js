@@ -66,6 +66,16 @@ define(function(require, exports, module){
         thisDay=myDays[thisDay];
         $('#welcome_msg').hide();
         $('#welcome_msg').html(tpl.get(tmpl.main,{"weekday":thisDay,"username":username}));
+        $("#logout").click(function() {
+            $.ajax({
+                method:"GET",
+                url:"./logout"
+            }).done(function(){
+                var util= require("util/util");
+                util.cookie.del("u_Ticket");
+                location.href="http://uplans.info/login.html"
+            });
+        });
         _bindEvent();
         $('#welcome_msg').fadeIn('slow');
     };

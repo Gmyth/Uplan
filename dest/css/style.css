@@ -96,10 +96,18 @@
     background-color: #f1447e;
 }
 .sub_main_tag{
+     border-radius: 6px;
+     padding: 5px;
+     margin: 10px;
+     background-color: #384c61;
+     width: 96%;
+     display: inline-block;
+ }
+.sub_success_tag{
     border-radius: 6px;
     padding: 5px;
     margin: 10px;
-    background-color: #384c61;
+    background-color: #36b241;
     width: 96%;
     display: inline-block;
 }
@@ -255,6 +263,13 @@
         margin-right: auto;
         margin-left: auto;
         width: 970px !important;
+    }
+    .sub_success{
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        width: 400px !important;
     }
 }
 html, body{

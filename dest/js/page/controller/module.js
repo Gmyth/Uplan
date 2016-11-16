@@ -1,7 +1,7 @@
 /**
  * Created by Haoyu Guo on 2016/9/3.
  */
-define("page/controller/module", [ "page/controller/config", "util/tpl", "lib/jquery", "widget/bootstrap" ], function(require, exports, module) {
+define("page/controller/module", [ "page/controller/config", "util/tpl", "lib/jquery", "widget/bootstrap", "util/util" ], function(require, exports, module) {
     var tabMap = require("page/controller/config").map;
     var tpl = require("util/tpl");
     var $ = require("lib/jquery");
@@ -68,6 +68,16 @@ define("page/controller/module", [ "page/controller/config", "util/tpl", "lib/jq
             weekday: thisDay,
             username: username
         }));
+        $("#logout").click(function() {
+            $.ajax({
+                method: "GET",
+                url: "./logout"
+            }).done(function() {
+                var util = require("util/util");
+                util.cookie.del("u_Ticket");
+                location.href = "http://uplans.info/login.html";
+            });
+        });
         _bindEvent();
         $("#welcome_msg").fadeIn("slow");
     };

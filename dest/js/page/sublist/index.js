@@ -10,6 +10,7 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     var flow = require("page/flow/index");
     var timeStart = 8;
     var timeEnd = 21;
+    var hoverTimer;
     var CourseList = [];
     var subList = {};
     var sectionList = {};
@@ -25,10 +26,16 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
         _bindEvent();
     };
     exports.ShowCourse = function(data) {
+        subList = {};
+        sectionList = {};
         DataParse(data);
-        $(".list-block").html(tpl.get(tmpl.course, {
-            CourseList: CourseList
-        }));
+        if (CourseList.length == 0) {
+            $(".list-block").html('<div class="sub_success" style="margin-top: 15%"><div style="text-align: center"><img src="img/icons/svg/loop.svg" alt="Infinity-Loop"></div> <h5 style="color: #34495e; text-align: center"> Sorry, there is no course matched with your requirement </h5><hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;"><p style="color: #34495e; text-align: center"> Please double check the title of the course</p></div>');
+        } else {
+            $(".list-block").html(tpl.get(tmpl.course, {
+                CourseList: CourseList
+            }));
+        }
     };
     var ShowCourse1 = function() {
         DataParse(config);
@@ -109,10 +116,17 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
             Resize();
             Resize();
             $(".info_block").hover(function() {
+                clearTimeout(hoverTimer);
                 var item = JSON.parse($(this).attr("courseData"));
-                flow.update(item, false);
+                var delay = function() {
+                    flow.update(item, false);
+                };
+                hoverTimer = setTimeout(delay, 250);
             }, function() {
-                flow.update();
+                var delay = function() {
+                    flow.update();
+                };
+                setTimeout(delay, 250);
             });
         },
         drop_up: function(tar) {
@@ -131,24 +145,39 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
             $(tar).parent().html(courseinfo);
         },
         add_course: function(tar) {
-            var info = $(tar).parent().parent().children().first().attr("courseData");
-            var item = JSON.parse(info);
-            var coursename = $(tar).attr("name").replace(/\s+/g, "");
-            var section = $(tar).attr("section");
-            if (sectionList[coursename] != null) {
-                var list = sectionList[coursename][section];
+            $(".list-block").fadeOut(500);
+            var fadeLate = function() {
+                var info = $(tar).parent().parent().children().first().attr("courseData");
+                var item = JSON.parse(info);
+                var coursename = $(tar).attr("name").replace(/\s+/g, "");
+                var section = $(tar).attr("section");
+                if (sectionList[coursename] != null) {
+                    if (section == "000") {
+                        var list = sectionList[coursename]["R"];
+                    } else {
+                        var list = sectionList[coursename][section];
+                    }
+                }
                 $(".list-block").html(tpl.get(tmpl.rec, {
                     RecList: list
                 }));
-                Resize();
-                Resize();
-            }
-            flow.update(item, true);
+                $(".list-block").fadeIn(500);
+                setTimeout(flow.update(item, true), 500);
+            };
+            setTimeout(fadeLate, 1e3);
+            setTimeout(Resize, 1e3);
+            setTimeout(Resize, 1e3);
         },
         add_rec: function(tar) {
-            var info = $(tar).parent().parent().children().first().attr("courseData");
-            var item = JSON.parse(info);
-            flow.update(item, true);
+            $(".list-block").fadeOut(500);
+            var fadeLate = function() {
+                var info = $(tar).parent().parent().children().first().attr("courseData");
+                var item = JSON.parse(info);
+                flow.update(item, true);
+                $(".list-block").html('<div class="sub_success" style="margin-top: 15%"><div style="text-align: center"><img src="img/icons/svg/retina.svg" alt="Retina"></div> <h5 style="color: #34495e; text-align: center"> Course already added into your course list</h5><hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;"><p style="color: #34495e; text-align: center"> Start new search to add more course</p></div>');
+                $(".list-block").fadeIn(500);
+            };
+            setTimeout(fadeLate, 1e3);
         }
     };
     /*bind the button input control event*/

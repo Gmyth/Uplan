@@ -16,7 +16,7 @@ define("page/controller/config", [], function(require, exports, module) {
 /**
  * Created by Haoyu Guo on 2016/9/3.
  */
-define("page/controller/module", [ "page/controller/config", "util/tpl", "lib/jquery", "widget/bootstrap" ], function(require, exports, module) {
+define("page/controller/module", [ "page/controller/config", "util/tpl", "lib/jquery", "widget/bootstrap", "util/util" ], function(require, exports, module) {
     var tabMap = require("page/controller/config").map;
     var tpl = require("util/tpl");
     var $ = require("lib/jquery");
@@ -85,12 +85,12 @@ define("page/controller/module", [ "page/controller/config", "util/tpl", "lib/jq
         }));
         $("#logout").click(function() {
             $.ajax({
-                method:"GET",
-                url:"./logout"
-            }).done(function(){
-                var util= require("util/util");
+                method: "GET",
+                url: "./logout"
+            }).done(function() {
+                var util = require("util/util");
                 util.cookie.del("u_Ticket");
-                location.href="http://uplans.info/login.html"
+                location.href = "http://uplans.info/login.html";
             });
         });
         _bindEvent();
@@ -193,17 +193,12 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
     var timeEnd = 21;
     exports.init = function(username) {
         user = username;
+        showList();
         $(".main_container").html(tpl.get(tmpl.main));
         var container_height = $(".main_container").height();
         $(".main_body").height(container_height - 60);
         $(".main_body").css("max-height", container_height - 60);
         // $('#flow_body').html(tpl.get(tmpl.test,{'startTime':timeStart,'CourseList':dataArr}));
-        FillFlow();
-        /*Data already added in global dadaArr*/
-        $("#flow_body").html(tpl.get(tmpl.body, {
-            startTime: timeStart,
-            CourseList: dataArr
-        }));
         _bindEvent();
     };
     exports.update = function(item, ADD) {
@@ -254,6 +249,25 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
                 CourseList: dataArr
             }));
         }
+    };
+    var showList = function() {
+        var success = function(data) {
+            if (data.errno = "200") {
+                config = data.data.profile.course_taken;
+                FillFlow();
+                $("#flow_body").html(tpl.get(tmpl.body, {
+                    startTime: timeStart,
+                    CourseList: dataArr
+                }));
+            } else {
+                alert(data.error);
+            }
+        };
+        $.ajax({
+            method: "GET",
+            url: "./account/profile",
+            data: {}
+        }).done(success);
     };
     var windowHeight = function() {
         var de = document.documentElement;
@@ -370,7 +384,7 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
             login.Login(obj, success);
         },
         click_google: function(tar) {
-                location.href="http://uplans.info/auth/google"
+            location.href = "http://uplans.info/auth/google";
         }
     };
     var _bindEvent = function() {
@@ -412,7 +426,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
             $("#advanced_window").modal("show");
         },
         storedata: function(tar) {
-            var input_subject = $("#txtsubject").val();
+            var input_subject = $("#txtsubject").val().toLowerCase();
             var input_select_number = $("#selnumber").val();
             var input_number = $("#txtnumber").val();
             var input_select_level = $("#sellevel").val();
@@ -508,7 +522,7 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
             }
         },
         click_google: function(tar) {
-                location.href="http://uplans.info/auth/google"
+            location.href = "http://uplans.info/auth/google";
         }
     };
     /*bind the button input control event*/
@@ -917,6 +931,7 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     var flow = require("page/flow/index");
     var timeStart = 8;
     var timeEnd = 21;
+    var hoverTimer;
     var CourseList = [];
     var subList = {};
     var sectionList = {};
@@ -932,10 +947,16 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
         _bindEvent();
     };
     exports.ShowCourse = function(data) {
+        subList = {};
+        sectionList = {};
         DataParse(data);
-        $(".list-block").html(tpl.get(tmpl.course, {
-            CourseList: CourseList
-        }));
+        if (CourseList.length == 0) {
+            $(".list-block").html('<div class="sub_success" style="margin-top: 15%"><div style="text-align: center"><img src="img/icons/svg/loop.svg" alt="Infinity-Loop"></div> <h5 style="color: #34495e; text-align: center"> Sorry, there is no course matched with your requirement </h5><hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;"><p style="color: #34495e; text-align: center"> Please double check the title of the course</p></div>');
+        } else {
+            $(".list-block").html(tpl.get(tmpl.course, {
+                CourseList: CourseList
+            }));
+        }
     };
     var ShowCourse1 = function() {
         DataParse(config);
@@ -1016,10 +1037,17 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
             Resize();
             Resize();
             $(".info_block").hover(function() {
+                clearTimeout(hoverTimer);
                 var item = JSON.parse($(this).attr("courseData"));
-                flow.update(item, false);
+                var delay = function() {
+                    flow.update(item, false);
+                };
+                hoverTimer = setTimeout(delay, 250);
             }, function() {
-                flow.update();
+                var delay = function() {
+                    flow.update();
+                };
+                setTimeout(delay, 250);
             });
         },
         drop_up: function(tar) {
@@ -1038,24 +1066,39 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
             $(tar).parent().html(courseinfo);
         },
         add_course: function(tar) {
-            var info = $(tar).parent().parent().children().first().attr("courseData");
-            var item = JSON.parse(info);
-            var coursename = $(tar).attr("name").replace(/\s+/g, "");
-            var section = $(tar).attr("section");
-            if (sectionList[coursename] != null) {
-                var list = sectionList[coursename][section];
+            $(".list-block").fadeOut(500);
+            var fadeLate = function() {
+                var info = $(tar).parent().parent().children().first().attr("courseData");
+                var item = JSON.parse(info);
+                var coursename = $(tar).attr("name").replace(/\s+/g, "");
+                var section = $(tar).attr("section");
+                if (sectionList[coursename] != null) {
+                    if (section == "000") {
+                        var list = sectionList[coursename]["R"];
+                    } else {
+                        var list = sectionList[coursename][section];
+                    }
+                }
                 $(".list-block").html(tpl.get(tmpl.rec, {
                     RecList: list
                 }));
-                Resize();
-                Resize();
-            }
-            flow.update(item, true);
+                $(".list-block").fadeIn(500);
+                setTimeout(flow.update(item, true), 500);
+            };
+            setTimeout(fadeLate, 1e3);
+            setTimeout(Resize, 1e3);
+            setTimeout(Resize, 1e3);
         },
         add_rec: function(tar) {
-            var info = $(tar).parent().parent().children().first().attr("courseData");
-            var item = JSON.parse(info);
-            flow.update(item, true);
+            $(".list-block").fadeOut(500);
+            var fadeLate = function() {
+                var info = $(tar).parent().parent().children().first().attr("courseData");
+                var item = JSON.parse(info);
+                flow.update(item, true);
+                $(".list-block").html('<div class="sub_success" style="margin-top: 15%"><div style="text-align: center"><img src="img/icons/svg/retina.svg" alt="Retina"></div> <h5 style="color: #34495e; text-align: center"> Course already added into your course list</h5><hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;"><p style="color: #34495e; text-align: center"> Start new search to add more course</p></div>');
+                $(".list-block").fadeIn(500);
+            };
+            setTimeout(fadeLate, 1e3);
         }
     };
     /*bind the button input control event*/

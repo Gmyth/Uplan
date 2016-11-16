@@ -41,10 +41,7 @@ define(function(require, exports, module){
             }
         },
         'click_google':function(tar){
-            $.ajax({
-                method: "GET",
-                url: "./auth/google",
-            }).done(callback);
+            location.href="http://uplans.info/auth/google"
         }
     };
     /*bind the button input control event*/
