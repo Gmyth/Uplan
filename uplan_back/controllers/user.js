@@ -5,27 +5,10 @@ var express =  require('express');
 var mongoose = require('mongoose');
 var User = require('../models/user.js');
 var passport =require('passport');
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-var crypto = require('crypto');
-var async = require('async');
-=======
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
 var passportConfig = require('../config/passport');
 var crypto = require('crypto');
 var async = require('async');
 var session = require('express-session');
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
 //sign up
 /**
  * GET /signup
@@ -33,54 +16,18 @@ var session = require('express-session');
  */
 exports.showsignup  = function (req,res) {
     if (req.user) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> feature-oAuth
-=======
-
->>>>>>> feature-oAuth
-=======
-
->>>>>>> feature-oAuth
         return res.redirect('/');
     }
     res.render('signup', {title: 'register page'});
 };
 
 /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
- * GET /signin
-=======
  * GET /login
->>>>>>> feature-oAuth
-=======
- * GET /login
->>>>>>> feature-oAuth
-=======
- * GET /login
->>>>>>> feature-oAuth
  * Signin page.
  */
 
 exports.showsignin = function (req, res) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    if (req.user) {
-        return res.redirect('/');
-    }
-
-    res.render('signin', {title: 'signin page'});
-=======
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
 
     if (req.user) {
         console.log('111111');
@@ -88,30 +35,11 @@ exports.showsignin = function (req, res) {
     }
 
     res.render('/login.html', {title: 'signin page'});
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
 };
 
 
 /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
- * POST /signin
-=======
  * POST /login
->>>>>>> feature-oAuth
-=======
- * POST /login
->>>>>>> feature-oAuth
-=======
- * POST /login
->>>>>>> feature-oAuth
  * Sign in using email/name and password.
  */
 exports.postSignin = function (req,res,next) {
@@ -124,26 +52,6 @@ exports.postSignin = function (req,res,next) {
             var password = req.body.password;
             //var errors =req.validationError();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            passport.authenticate('local',function (err,user,info) {
-                if(err){return next(err)}
-                if(!user){
-                    req.flash('errors',info);
-                    console.log('111111');
-                    return res.redirect('/signin');
-                }
-                req.logIn(user,function(err){
-                    //res.json(user);
-                    if(err){return next(err);}
-
-                    req.flash('success',{msg:'success log in'});
-                    console.log( req.sessionID);
-                    res.redirect('/profile/:'+req.sessionID);
-=======
-=======
->>>>>>> feature-oAuth
     if (req.session.sign) {//检查用户是否已经登录
         console.log(req.session.user);
         console.log(req.session);//打印session的值
@@ -159,9 +67,8 @@ exports.postSignin = function (req,res,next) {
                     console.log('111111');
                     //return res.redirect('/signin');
                     res.json({"error":"user not exist.","errno":"1","data":""});
-
+//oo
                 }
-<<<<<<< HEAD
 
                 req.logIn(user,function(err){
                     //res.json(user);
@@ -169,172 +76,7 @@ exports.postSignin = function (req,res,next) {
                     req.session.sign = true;
                     console.log(session());
                     console.log('first time')
-                    req.flash('success',{msg:'success log in'});
-                    console.log( req.sessionID);
-                    res.json({"error":"","errno":"0","data":req.sessionID});
-                    //res.redirect('/profile/:'+req.sessionID);
->>>>>>> feature-oAuth
-
-                })
-            })(req,res,next);
-
-        // User.findOne({name:name},function (err,user) {
-        //     if(err){
-        //         console.log(err);
-        //     }
-        //     if(!user){
-        //         return res.redirect('/signup');
-        //         // if the account is not exsit, return back to the signin page
-        //     }
-        //     user.comparePassword(password, function(err, isMatch){
-        //         if(err){
-        //             console.log(err);
-        //         }
-        //         if(isMatch){
-        //             req.session.user = user; // if get matched password then save in to memory
-        //             return res.redirect('/');
-        //         }
-        //         else{
-        //             res.end('<h1>Password is not matched</h1>');
-        //             console.log('Password is not matched');
-        //             return res.redirect('/signin');
-        //
-        //         }
-        //
-        //     })
-        //
-        // })
-<<<<<<< HEAD
-=======
-}};
-/**
- * GET /logout
- * Log out.
- */
-
-exports.signout = function (req,res) {
-    //req.logout();
-    console.log('sign out now...');
-    req.session.sign = false;
-    //delete req.session.passport;
-    var user          = req.user;
-    console.log(req.session);
-    user.google.token = undefined;
-    user.save(function(err) {
-        console.log(user, ' has been successfully logged out.');
-        res.redirect('/');
-    });
-    //res.redirect('/');
-    //res.json({"error":"","errno":"0","data":"successful log out"});
->>>>>>> feature-oAuth
-};
-/**
- * GET /logout
- * Log out.
- */
-
-<<<<<<< HEAD
-exports.signout = function (req,res) {
-    req.logout();
-    res.redirect('/');
-};
-
-/**
- * POST /signup
- * create a new local account
- */
-exports.postSignup = (req, res, next) => {
-
-    const user = new User({
-        email: req.body.email,
-        password: req.body.password,
-        name:req.body.name
-    });
-
-    User.findOne({ name: req.body.name }, (err, existingUser) => {
-        if (err) { return next(err); }
-        if (existingUser) {
-            req.flash('errors', { msg: 'Account with that email address already exists.' });
-            return res.redirect('/signup');
-        }
-        user.save((err) => {
-            if (err) { return next(err); }
-            req.logIn(user, (err) => {
-                if (err) {
-                    return next(err);
-                }
-                res.json(user);
-
-            });
-        });
-    });
-};
-
-
-// logout
-=======
-/**
- * POST /signup
- * create a new local account
- */
-exports.postSignup = (req, res, next) => {
-
-    if(req.session.sign) {
-        console.log(req.session.user);
-        console.log(req.session);//打印session的值
-        console.log('has logged in');
-        res.json({"error":"has logged in.","errno":"302","data":""});
-    }
-    else {
-        console.log(req.body);
-        const user = new User({
-            email: req.body.email,
-            password: req.body.password,
-            name: req.body.name,
-            'profile.university': req.body.uni,
-            'profile.yearExperience': req.body.YRS_EXPERIENCE,
-            'profile.username': req.body.name,
-
-        });
-
-        User.findOne({name: req.body.name}, (err, existingUser) => {
-            if (err) {
-                return next(err);
-            }
-            if (existingUser) {
-                //req.flash('errors', {msg: 'Account with that email address already exists.'});
-                return res.json({"error":"user exist","errno":"302","data":""});
-                //return res.redirect('/signup');
-            }
-            user.save((err) => {
-                if (err) {
-                    return next(err);
-                }
-                req.logIn(user, (err) => {
-                    if (err) {
-                        return next(err);
-                    }
-                    //res.json(user);
-                    //success
-                    //res.redirect('/');
-                    var id = req.sessionID
-
-                    res.json({"error":"","errno":"0","data":id});
-                });
-            });
-        });
-    }
-};
-
-=======
-
-                req.logIn(user,function(err){
-                    //res.json(user);
-                    if(err){return next(err);}
-                    req.session.sign = true;
-                    console.log(session());
-                    console.log('first time')
-                    req.flash('success',{msg:'success log in'});
+                    //req.flash('success',{msg:'success log in'});
                     console.log( req.sessionID);
                     res.json({"error":"","errno":"0","data":req.sessionID});
                     //res.redirect('/profile/:'+req.sessionID);
@@ -414,7 +156,7 @@ exports.postSignup = (req, res, next) => {
 
         });
 
-        User.findOne({name: req.body.name}, (err, existingUser) => {
+        User.findOne({name: req.body.name}, function(err, existingUser) {
             if (err) {
                 return next(err);
             }
@@ -443,142 +185,6 @@ exports.postSignup = (req, res, next) => {
     }
 };
 
->>>>>>> feature-oAuth
-=======
-    if (req.session.sign) {//检查用户是否已经登录
-        console.log(req.session.user);
-        console.log(req.session);//打印session的值
-        console.log('has logged in')
-        //res.redirect('/profile/:'+req.sessionID);
-        res.json({"error":"has logged in.","errno":"302","data":""});
-    }else{
-
-            passport.authenticate('local',function (err,user,info) {
-                if(err){return next(err)}
-                if(!user){
-                    //req.flash('errors',info);
-                    console.log('111111');
-                    //return res.redirect('/signin');
-                    res.json({"error":"user not exist.","errno":"1","data":""});
-
-                }
-
-                req.logIn(user,function(err){
-                    //res.json(user);
-                    if(err){return next(err);}
-                    req.session.sign = true;
-                    console.log(session());
-                    console.log('first time')
-                    req.flash('success',{msg:'success log in'});
-                    console.log( req.sessionID);
-                    res.json({"error":"","errno":"0","data":req.sessionID});
-                    //res.redirect('/profile/:'+req.sessionID);
-
-                })
-            })(req,res,next);
-
-        // User.findOne({name:name},function (err,user) {
-        //     if(err){
-        //         console.log(err);
-        //     }
-        //     if(!user){
-        //         return res.redirect('/signup');
-        //         // if the account is not exsit, return back to the signin page
-        //     }
-        //     user.comparePassword(password, function(err, isMatch){
-        //         if(err){
-        //             console.log(err);
-        //         }
-        //         if(isMatch){
-        //             req.session.user = user; // if get matched password then save in to memory
-        //             return res.redirect('/');
-        //         }
-        //         else{
-        //             res.end('<h1>Password is not matched</h1>');
-        //             console.log('Password is not matched');
-        //             return res.redirect('/signin');
-        //
-        //         }
-        //
-        //     })
-        //
-        // })
-}};
-/**
- * GET /logout
- * Log out.
- */
-
-exports.signout = function (req,res) {
-    //req.logout();
-    console.log('sign out now...');
-    req.session.sign = false;
-    //delete req.session.passport;
-    var user          = req.user;
-    console.log(req.session);
-    user.google.token = undefined;
-    user.save(function(err) {
-        console.log(user, ' has been successfully logged out.');
-        res.redirect('/');
-    });
-    //res.redirect('/');
-    //res.json({"error":"","errno":"0","data":"successful log out"});
-};
-
-/**
- * POST /signup
- * create a new local account
- */
-exports.postSignup = (req, res, next) => {
-
-    if(req.session.sign) {
-        console.log(req.session.user);
-        console.log(req.session);//打印session的值
-        console.log('has logged in');
-        res.json({"error":"has logged in.","errno":"302","data":""});
-    }
-    else {
-        console.log(req.body);
-        const user = new User({
-            email: req.body.email,
-            password: req.body.password,
-            name: req.body.name,
-            'profile.university': req.body.uni,
-            'profile.yearExperience': req.body.YRS_EXPERIENCE,
-            'profile.username': req.body.name,
-
-        });
-
-        User.findOne({name: req.body.name}, (err, existingUser) => {
-            if (err) {
-                return next(err);
-            }
-            if (existingUser) {
-                //req.flash('errors', {msg: 'Account with that email address already exists.'});
-                return res.json({"error":"user exist","errno":"302","data":""});
-                //return res.redirect('/signup');
-            }
-            user.save((err) => {
-                if (err) {
-                    return next(err);
-                }
-                req.logIn(user, (err) => {
-                    if (err) {
-                        return next(err);
-                    }
-                    //res.json(user);
-                    //success
-                    //res.redirect('/');
-                    var id = req.sessionID
-
-                    res.json({"error":"","errno":"0","data":id});
-                });
-            });
-        });
-    }
-};
-
->>>>>>> feature-oAuth
 /**
  * POST /account/course
  * Update course information.
@@ -609,7 +215,7 @@ exports.postUpdateProfile = (req, res, next) => {
     //     req.flash('errors', errors);
     //     return res.redirect('/account');
     // }
-    passportConfig.isAuthorized();
+    //passportConfig.isAuthorized();
     User.findById(req.user.id, (err, user) => {
         if (err) { return next(err); }
         //dont need to change email now
@@ -617,12 +223,14 @@ exports.postUpdateProfile = (req, res, next) => {
         user.profile.username = req.body.name || '';
         user.profile.gender = req.body.gender || '';
         user.profile.university = req.body.university;
-        user.profile.yearExperience = req.body.yr_experience;
+        user.profile.yearExperience = req.body.YRS_EXPERIENCE;
         user.profile.major = req.body.major;
         //user.profile.truename = req.body.firstname + req.body.lastname|| '';
         //user.profile.location = req.body.location || '';
         //user.profile.website = req.body.website || '';
-        user.save((err) => {
+        user.update({'_id':user._id},{profile: true},function(err) {
+
+
             if (err) {
                 if (err.code === 11000) {
                     //req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
@@ -632,7 +240,7 @@ exports.postUpdateProfile = (req, res, next) => {
                 return next(err);
             }
             //req.flash('success', { msg: 'Profile information has been updated.' });
-            res.json({"error":"","errno":"200","data":""});
+            res.json({"error":"","errno":"200","data":user.profile,"sessionId":req.sessionID});
         });
     });
 };
@@ -691,27 +299,42 @@ exports.getAccount = (req, res) => {
 };
 
 /**
- * POST /account
- * Profile page. ------change profile info
+ * POST /account/course_taken
+ * course_taken page. ------change course_taken
  */
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
-
-exports.postAccount = (req, res, next) => {
 
 
 
+exports.course_taken = function (req, res) {
+    if(req.session.sign){
+        console.log(req);
+        userid = req.session.passport.user;
+        console.log(res.sessionID);
+        User.findById(req.user.id, (err, user) => {
+            if (err) { return next(err); }
+            user.profile.course_taken = req.body.course_taken;
+            user.update({'_id':user._id},{profile: true},function(err) {
 
 
+                if (err) {
+                    if (err.code === 11000) {
+                        //req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
+                        //return res.redirect('/account');
+                        res.json({"error":"The email address you have entered is already associated with an account.","errno":"302","data":""});
+                    }
+                    return next(err);
+                }
+                //req.flash('success', { msg: 'Profile information has been updated.' });
+                res.json({"error":"","errno":"200","data":user.profile,"sessionId":req.sessionID});
+            });
+        })
+    }
+    else{
+        req.flash("please login first.");
+    }
 
 
-
-}
+};
 
 // logout
 

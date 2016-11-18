@@ -6,18 +6,7 @@ var User = require('../models/user.js');
 /* GET users listing. */
 var passport =require('../config/passport');
 var userController = require('../controllers/user');
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> feature-oAuth
-=======
-
->>>>>>> feature-oAuth
-=======
-
->>>>>>> feature-oAuth
+var courseController = require('../controllers/courses')
 //user route
 
 //var xiaoming = new User({name:'Eric1990',password: '1234567', email:'123@hotmail.com'});
@@ -29,26 +18,6 @@ var userController = require('../controllers/user');
 // router.get('/signup',function (req,res) {
 //  res.render('signup', {title: 'register page'});
 //  });
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-router.get('/auth/google',passport.authenticate('google',{scope:'profile email'}));
-router.get('/auth/google/callback', passport.authenticate('google',{
-
-
-    failureRedirect: '/signin'}),(req,res)=>{
-    console.log(req);
-    console.log('111111')
-    console.log(req.session)
-    res.redirect(req.session.returnTo || '/');
-});
-router.get('/signup',userController.showsignup);
-router.post('/signup',userController.postSignup);
-=======
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
 /**
  * Primary app routes.
  */
@@ -70,6 +39,21 @@ router.get('/logout',userController.signout);
 router.get('/account/profile',userController.getAccount);
 router.post('/account/profile', userController.postUpdateProfile);
 
+router.post('/account/course_taken', userController.course_taken);
+
+router.get('/account/getcoursedetail', courseController.getcoursedetail);
+
+router.get('/account/getcomments',commentController.getcomments);
+router.post('/account/addcomments,', commentController.postcomment);
+
+router.get('/account/avatar',userController.getAvatar);
+router.post('/account/avatar', userController.postAvatar);
+
+
+
+
+
+
 
 
 
@@ -88,16 +72,9 @@ router.get('/auth/google/callback', passport.authenticate('google',{
     console.log(res.user);
 
     //res.json({"error":"","errno":"200","data":""});
-    res.redirect( '/');
+    res.redirect( '/')
 });
-
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
+//lll
 // passport.authenticate('local-signup', {
 //     successRedirect : '/profile', // redirect to the secure profile section
 //         failureRedirect : '/signup', // redirect back to the signup page if there is an error
@@ -149,23 +126,8 @@ router.get('/auth/google/callback', passport.authenticate('google',{
 // if (err) return next(err);
 //   res.json(post);
 //})
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-router.get('/signin',userController.showsignin);
-router.post('/signin',userController.postSignin);
-=======
 
 
->>>>>>> feature-oAuth
-=======
-
-
->>>>>>> feature-oAuth
-=======
-
-
->>>>>>> feature-oAuth
 // router.get('/signin',chechAuthentication, function (req, res) {
 //    res.render('signin/:name', {title:'login page'});
 //  });
@@ -233,19 +195,7 @@ function chechAuthentication(req,res,next) {
     if(req.isAuthenticated()){
         next();
     }   else{
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        res.redirect("/signin");
-=======
         res.redirect("/signin.html");
->>>>>>> feature-oAuth
-=======
-        res.redirect("/signin.html");
->>>>>>> feature-oAuth
-=======
-        res.redirect("/signin.html");
->>>>>>> feature-oAuth
     }
 }
 

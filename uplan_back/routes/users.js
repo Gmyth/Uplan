@@ -16,7 +16,7 @@ var userController = require('../controllers/user');
 //});
 // router.get('/signup',function (req,res) {
 //  res.render('signup', {title: 'register page'});
-//  });
+//  });//ll
 router.get('/signup',userController.showsignup);
 router.post('/signup',userController.postSignup);
     // passport.authenticate('local-signup', {
@@ -139,19 +139,7 @@ function chechAuthentication(req,res,next) {
     if(req.isAuthenticated()){
         next();
     }   else{
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        res.redirect("/signin");
-=======
         res.redirect("/signin.html");
->>>>>>> feature-oAuth
-=======
-        res.redirect("/signin.html");
->>>>>>> feature-oAuth
-=======
-        res.redirect("/signin.html");
->>>>>>> feature-oAuth
     }
 }
 

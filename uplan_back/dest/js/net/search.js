@@ -18,7 +18,7 @@ define("net/search", [ "lib/jquery", "util/net", "util/security" ], function fac
          */
     exports.getCourseList = function(Obj, callback) {
         //var url  = pub.parseUrl("/application/add ");
-        var url = "http://localhost:3000/get_courses_info";
+        var url = "http://uplans.info/get_courses_info";
         var data = {
             txtsubject: Obj.txtsubject,
             txtnumber: Obj.txtnumber,
@@ -26,9 +26,7 @@ define("net/search", [ "lib/jquery", "util/net", "util/security" ], function fac
             selllevel: Obj.selllevel,
             check_box_id1: Obj.check_box_id1,
             txtstarttime: Obj.txtstarttime,
-            txtendtime: Obj.txtendtime,
-            selstart:Obj.selstart,
-            selend:Obj.selend
+            txtendtime: Obj.txtendtime
         };
         var success = function(json) {
             callback && callback(json);
