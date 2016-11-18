@@ -32,7 +32,7 @@
 
                         </div>
                         <div class="modal-footer modal_background_color">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" data-action="save_course">Save changes</button>
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -223,10 +223,11 @@
             <th><span class="fui-time" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;"></span>Time</th>
             <th><span class="fui-location" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;"></span>&nbsp;Room</th>
             <th><span class="fui-user" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;"></span>Instrouctors</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr course_info=<%=it._id%>>
             <td><%=it.Title%></td>
             <td><%=it.Type%></td>
             <td><%=it.Section%></td>
@@ -235,6 +236,7 @@
             <td><%=it.Time%></td>
             <td><%=it.Room%></td>
             <td><%=it.instructors%></td>
+            <td><a data-action="del_course" style="padding: 10px;font-size: 20px;"><span class="fui-trash" ></span></a></td>
         </tr>
         </tbody>
         </table>

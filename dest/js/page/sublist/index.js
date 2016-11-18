@@ -2,7 +2,7 @@
  * Created by gmyth on 16/9/7.
  * this part is created for the implement of the Search list
  * */
-define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", "util/timeparser", "page/flow/index", "page/flow/config" ], function(require, exports, module) {
+define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", "util/timeparser", "page/flow/index", "page/flow/config", "net/flow" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var config = require("page/sublist/config").data.Course;
     var tpl = require("util/tpl");

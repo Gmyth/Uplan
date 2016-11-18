@@ -2,14 +2,16 @@
  * Created by gmyth on 16/9/7.
  * this part is created for the implement of the Schedule module
  * */
-define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser" ], function(require, exports, module) {
+define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/flow", "util/router", "util/cacheData", "util/net", "util/util" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var config = require("page/flow/config").data.Course;
     var tpl = require("util/tpl");
     var timeparser = require("util/timeparser");
+    var flow = require("net/flow");
     var dataArr = [];
     /*2D array*/
     var user = "";
+    var tempArr_del = [];
     var tmpl = {
         main: FLOW.MAIN,
         body: FLOW.COURSE,
@@ -149,10 +151,36 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
             }));
         },
         view_selected: function(tar) {
+            tempArr_del = config.slice();
             $("#selected_list").html(tpl.get(tmpl.selected, {
                 TagList: config
             }));
             $("#view_selected").modal("show");
+        },
+        save_course: function(tar) {
+            config = tempArr_del;
+            for (var i = 0; i < config.length; i++) {
+                temparr.push(config[i]._id);
+            }
+            var success = function(data) {
+                if (data.errno = "200") {
+                    alert("success");
+                } else {
+                    alert(data.eror);
+                }
+            };
+            flow.saveCourse(temparr, success);
+        },
+        del_course: function(tar) {
+            var id_del = $(tar).parent().parent().attr("course_info");
+            for (var i = 0; i < tempArr_del.length; i++) {
+                if (tempArr_del[i]._id == id_del) {
+                    tempArr_del = tempArr_del.slice(i, 1);
+                }
+            }
+            $("#selected_list").html(tpl.get(tmpl.selected, {
+                TagList: tempArr_del
+            }));
         }
     };
     /*bind the button input control event*/

@@ -7,8 +7,10 @@ define(function(require, exports, module){
     var config = require('page/flow/config').data.Course;
     var tpl = require('util/tpl')
     var timeparser = require('util/timeparser')
+    var flow = require('net/flow')
     var dataArr=[];/*2D array*/
     var user = "";
+    var tempArr_del=[];
     var tmpl = {
         main:FLOW.MAIN,
         body:FLOW.COURSE,
@@ -136,9 +138,35 @@ define(function(require, exports, module){
             $('#flow_body').html(tpl.get(tmpl.body,{"startTime":timeStart,"CourseList":dataArr}))
         },
         "view_selected": function(tar){
+            tempArr_del = config.slice();
             $('#selected_list').html(tpl.get(tmpl.selected,{"TagList":config}))
             $('#view_selected').modal('show');
+        },
+        "save_course" : function (tar){
+            config = tempArr_del;
+            for(var i = 0 ; i<config.length;i++){
+                temparr.push(config[i]._id);
+            }
+            var success = function(data){
+                if (data.errno = "200"){
+                    alert('success')
+                }
+                else{
+                    alert(data.eror)
+                }
+            }
+            flow.saveCourse(temparr,success);
+        },
+        "del_course":function(tar){
+           var id_del = $(tar).parent().parent().attr('course_info');
+            for(var i = 0;i <tempArr_del.length;i++){
+                if(tempArr_del[i]._id ==id_del){
+                    tempArr_del = tempArr_del.slice(i,1);
+                }
+            }
+            $('#selected_list').html(tpl.get(tmpl.selected,{"TagList":tempArr_del}))
         }
+
     };
     /*bind the button input control event*/
     var _bindEvent = function(){
