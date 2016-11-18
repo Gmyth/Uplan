@@ -14,6 +14,7 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     var CourseList = [];
     var subList = {};
     var sectionList = {};
+    var defaultSection = "";
     var tmpl = {
         main: SUBLIST.MAIN,
         course: SUBLIST.COURSE,
@@ -63,11 +64,13 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     };
     var SignIn = function(element) {
         /*check single elemnt*/
+        defaultSection = "";
         var name = element.Course.replace(/\s+/g, "");
         if (element.Type == "LEC" || element.Type == "SEM" || element.Type == "TUT") {
             subList[name].push(element);
         } else if (element.Type == "LAB" || element.Type == "REC") {
             var Section = element.Section.replace(/[0-9]/g, "");
+            defaultSection = Section;
             if (sectionList[name] == null) {
                 sectionList[name] = {};
                 sectionList[name][Section] = [];
@@ -145,39 +148,35 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
             $(tar).parent().html(courseinfo);
         },
         add_course: function(tar) {
-            $(".list-block").fadeOut(500);
-            var fadeLate = function() {
-                var info = $(tar).parent().parent().children().first().attr("courseData");
-                var item = JSON.parse(info);
-                var coursename = $(tar).attr("name").replace(/\s+/g, "");
-                var section = $(tar).attr("section");
-                if (sectionList[coursename] != null) {
-                    if (section == "000") {
-                        var list = sectionList[coursename]["R"];
-                    } else {
-                        var list = sectionList[coursename][section];
-                    }
+            $(".list-block").fadeOut(125);
+            // var fadeLate = function() {
+            var info = $(tar).parent().parent().children().first().attr("courseData");
+            var item = JSON.parse(info);
+            var coursename = $(tar).attr("name").replace(/\s+/g, "");
+            var section = $(tar).attr("section");
+            if (sectionList[coursename] != null) {
+                if (section == "000") {
+                    var list = sectionList[coursename][defaultSection];
+                } else {
+                    var list = sectionList[coursename][section];
                 }
-                $(".list-block").html(tpl.get(tmpl.rec, {
-                    RecList: list
-                }));
-                $(".list-block").fadeIn(500);
-                setTimeout(flow.update(item, true), 500);
-            };
-            setTimeout(fadeLate, 1e3);
-            setTimeout(Resize, 1e3);
-            setTimeout(Resize, 1e3);
+            }
+            $(".list-block").html(tpl.get(tmpl.rec, {
+                RecList: list
+            }));
+            $(".list-block").fadeIn(125);
+            setTimeout(flow.update(item, true), 125);
+            Resize();
+            Resize();
         },
         add_rec: function(tar) {
-            $(".list-block").fadeOut(500);
-            var fadeLate = function() {
-                var info = $(tar).parent().parent().children().first().attr("courseData");
-                var item = JSON.parse(info);
-                flow.update(item, true);
-                $(".list-block").html('<div class="sub_success" style="margin-top: 15%"><div style="text-align: center"><img src="img/icons/svg/retina.svg" alt="Retina"></div> <h5 style="color: #34495e; text-align: center"> Course already added into your course list</h5><hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;"><p style="color: #34495e; text-align: center"> Start new search to add more course</p></div>');
-                $(".list-block").fadeIn(500);
-            };
-            setTimeout(fadeLate, 1e3);
+            $(".list-block").fadeOut(125);
+            // var fadeLate = function() {
+            var info = $(tar).parent().parent().children().first().attr("courseData");
+            var item = JSON.parse(info);
+            flow.update(item, true);
+            $(".list-block").html('<div class="sub_success" style="margin-top: 15%"><div style="text-align: center"><img src="img/icons/svg/retina.svg" alt="Retina"></div> <h5 style="color: #34495e; text-align: center"> Course already added into your course list</h5><hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;"><p style="color: #34495e; text-align: center"> Start new search to add more course</p></div>');
+            $(".list-block").fadeIn(125);
         }
     };
     /*bind the button input control event*/

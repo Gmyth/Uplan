@@ -15152,8 +15152,11 @@ define("util/timeparser", [], function(require, exports, module) {
     var SpanCount = function(timebag) {
         var hourspan = timebag.end.hour - timebag.start.hour;
         var minspan = timebag.end.minute - timebag.start.minute;
-        if (hourspan == 0 && minspan == 50) {
-            return 2;
+        if (minspan == 50) {
+            return hourspan * 2 + 2;
+        }
+        if (minspan == 20) {
+            return hourspan * 2 + 1;
         } else if (minspan < 0) {
             return hourspan * 2 - 1;
         } else {

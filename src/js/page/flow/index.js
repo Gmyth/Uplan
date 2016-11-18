@@ -18,6 +18,7 @@ define(function(require, exports, module){
     var timeStart=8;
     var timeEnd=21;
     exports.init = function(username){
+        var dataArr=[]
         user=username;
         showList();
         $('.main_container').html(tpl.get(tmpl.main));
@@ -71,6 +72,7 @@ define(function(require, exports, module){
         }
     }
     var showList = function(){
+        config=[];
         var success = function(data) {
             if (data.errno = "200") {
                 config = data.data.profile.course_taken;
