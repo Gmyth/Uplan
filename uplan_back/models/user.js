@@ -40,8 +40,13 @@ var UserSchema = new mongoose.Schema({
         gender: { type: String, default: '' },
         picture: { type: String, default: '' },
         course_taken:[{
+
             type:mongoose.Schema.Types.ObjectId,
-            ref:'under_graduate_courses'
+            ref:'under_gra'
+        }],
+        course_taking:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'under_gra'
         }],
         tokens: Array,
     },

@@ -3,7 +3,7 @@
  */
 var express =  require('express');
 var mongoose = require('mongoose');
-var Course = require('../models/course_detail.js');
+var Course = require('../models/course_details.js');
 
 
 
