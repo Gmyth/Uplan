@@ -20,13 +20,13 @@ define(function(require, exports, module){
     var timeStart=8;
     var timeEnd=21;
     exports.init = function(username){
-        var dataArr=[]
+        var dataArr=[];
         user=username;
-        showList();
         $('.main_container').html(tpl.get(tmpl.main));
         var container_height = $('.main_container').height();
         $('.main_body').height(container_height-60);
         $('.main_body').css("max-height",container_height-60);
+        showList();
         // $('#flow_body').html(tpl.get(tmpl.test,{'startTime':timeStart,'CourseList':dataArr}));
         _bindEvent();
     };
@@ -77,12 +77,16 @@ define(function(require, exports, module){
         config=[];
         var success = function(data) {
             if (data.errno = "200") {
-                config = data.data.profile.course_taken;
+                config = data.data.profile.course_taking;
+                if(!config){
+                    config=[];
+                }
                 FillFlow();
                 $('#flow_body').html(tpl.get(tmpl.body,{'startTime':timeStart,'CourseList':dataArr}))
             }else{
                 alert(data.error);
             }
+
         };
         $.ajax({
             method: "GET",
@@ -104,7 +108,17 @@ define(function(require, exports, module){
             dataArr.push(tempArr);
         }
         if(NewC){
-            config.push(NewC);
+            var same = false;
+            for(var i=0;i<config.length;i++){
+                if(config[i].Course == NewC.Course && config[i].Type == NewC.Type){
+                    config[i] = NewC;
+                    same = true;
+                    break;
+                }
+            }
+            if(same == false) {
+                config.push(NewC);
+            }
         }
         for(var i=0;i<config.length;i++){
             var item = config[i];
@@ -143,25 +157,44 @@ define(function(require, exports, module){
             $('#view_selected').modal('show');
         },
         "save_course" : function (tar){
-            config = tempArr_del;
+            config = tempArr_del
+            var temp_dataArr=[];
             for(var i = 0 ; i<config.length;i++){
-                temparr.push(config[i]._id);
+                temp_dataArr.push(config[i]._id);
             }
             var success = function(data){
                 if (data.errno = "200"){
-                    alert('success')
+                    showList();
+                    $('#save_schedule').modal('show');
                 }
                 else{
                     alert(data.eror)
                 }
             }
-            flow.saveCourse(temparr,success);
+            flow.saveCourse(temp_dataArr,success);
         },
+        "save_schedule" : function (tar){
+            var temp_dataArr=[];
+            for(var i = 0 ; i<config.length;i++){
+                temp_dataArr.push(config[i]._id);
+            }
+            var success = function(data){
+                if (data.errno = "200"){
+                    showList();
+                    $('#save_schedule').modal('show');
+                }
+                else{
+                    alert(data.eror)
+                }
+            }
+            flow.saveCourse(temp_dataArr,success);
+        },
+
         "del_course":function(tar){
            var id_del = $(tar).parent().parent().attr('course_info');
             for(var i = 0;i <tempArr_del.length;i++){
                 if(tempArr_del[i]._id ==id_del){
-                    tempArr_del = tempArr_del.slice(i,1);
+                    tempArr_del.splice(i,1);
                 }
             }
             $('#selected_list').html(tpl.get(tmpl.selected,{"TagList":tempArr_del}))

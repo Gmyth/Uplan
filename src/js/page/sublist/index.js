@@ -171,6 +171,20 @@ define(function(require, exports, module){
                 }
                 $('.list-block').html(tpl.get(tmpl.rec, {"RecList": list}));
                 $('.list-block').fadeIn(125);
+                $(".info_block").hover(function () {
+                    clearTimeout(hoverTimer);
+                    var item = JSON.parse($(this).attr("courseData"));
+                    var delay = function(){
+                        flow.update(item,false);
+                    }
+                    hoverTimer = setTimeout(delay, 250);
+                }, function () {
+                    var delay = function(){
+                        flow.update();
+                    }
+                    setTimeout(delay, 250);
+                     }
+                )
                 setTimeout(flow.update(item, true), 125);
                 Resize();
                 Resize();
