@@ -4,6 +4,13 @@
     border-radius: 6px;
     margin-left: 1%;
 }
+.detail_link{
+    color: #ffffff;
+}
+.detail_link:hover{
+    color: #f9ffdb;
+    cursor:pointer;
+}
 .modal-header{
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
@@ -135,6 +142,12 @@
 .checkbox_for_add_course:hover{
    background-color: #3498db;
     cursor:pointer;
+    border-radius: 6px;
+}
+.checkbox_for_add_rec:hover{
+    background-color: #1abc9c;
+    cursor:pointer;
+    border-radius: 6px;
 }
 .info_block:hover{
     background-color: #3498db;
@@ -271,6 +284,16 @@
         margin-left: auto;
         width: 400px !important;
     }
+}
+@media(min-width: 100px){
+
+    form > div { display: inline-block; }
+    form {width:100%;  margin:auto;}
+    .col-1,.col-2, .col-3, .col-4 {border: none; }
+    .col-1 { width: 100% }
+    .col-2 { width: 50% }
+    .col-3 { width: 33%;}
+    .col-4 { width: 25%; }
 }
 html, body{
     height: 100%;

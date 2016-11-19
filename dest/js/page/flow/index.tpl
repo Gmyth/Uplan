@@ -40,6 +40,26 @@
             </div>
             <div class="col-xs-3">
                 <a href="#fakelink" class="btn btn-block btn-lg btn-warning" data-action="save_schedule">Save Schedule</a>
+                <div id="save_schedule" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div  class="modal-dialog" style="background-color: #eff0f2;border-radius: 6px;">
+                        <div class="modal-header" style="background-color: #34495e;">
+                            <a type="button" class="close" data-dismiss="modal" style="padding-top:4px;"><span class="fui-cross" style="color: #eff0f2;"></span></a>
+                            <p style="margin-bottom:auto;color: #eff0f2;"><b>Success</b></p>
+                        </div>
+                        <div class="modal-body"  style="height: 300px;max-height: 300px;overflow-y: auto;">
+                            <div class="sub_success"><div style="text-align: center">
+                                <img src="img/icons/svg/retina.svg" alt="Retina">
+                            </div>
+                                <h5 style="color: #34495e; text-align: center"> Your schedule was successfully saved! </h5>
+                                <hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;">
+                                <p style="color: #34495e; text-align: center"> A satisfied course schedule is the first step to succeed </p>
+                            </div>
+                        </div>
+                        <div class="modal-footer modal_background_color">
+                            <button type="button" class="btn btn-primary btn-block" data-dismiss="modal" >OK</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-xs-3">
                 <a href="#fakelink" class="btn btn-block btn-lg btn-inverse" disabled="true">Coming Soon</a>
@@ -212,7 +232,7 @@
 </template>
 <template name="FLOW.SELECTED">
     <% for(var d = 0,it ; it = TagList[d]; d++){%>
-    <table class="table table-bordered table-responsive table-hover">
+    <table class="table table-bordered table-responsive table-hover table-condensed">
         <thead style="background-color: #34495e;color: #ffffff">
         <tr>
             <th><span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>Title</th>
@@ -236,7 +256,7 @@
             <td><%=it.Time%></td>
             <td><%=it.Room%></td>
             <td><%=it.instructors%></td>
-            <td><a data-action="del_course" style="padding: 10px;font-size: 20px;"><span class="fui-trash" ></span></a></td>
+            <td><a data-action="del_course" style=" cursor:pointer;padding: 10px;font-size: 20px;"><span class="fui-trash" ></span></a></td>
         </tr>
         </tbody>
         </table>

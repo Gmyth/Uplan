@@ -19,7 +19,8 @@ define(function(require, exports, module){
         main:SUBLIST.MAIN,
         course:SUBLIST.COURSE,
         subcourse:SUBLIST.SUBCOURSE,
-        rec:SUBLIST.RECITATION
+        rec:SUBLIST.RECITATION,
+        detail:SUBLIST.DETAIL
     }
     exports.init = function(){
         $('.sub_list').html(tpl.get(tmpl.main));
@@ -158,7 +159,7 @@ define(function(require, exports, module){
         "add_course":function(tar){
             $('.list-block').fadeOut(125);
             // var fadeLate = function() {
-                var info = $(tar).parent().parent().children().first().attr('courseData');
+                var info = $(tar).parent().parent().children().first().children().first().attr('courseData');
                 var item = JSON.parse(info);
                 var coursename = $(tar).attr('name').replace(/\s+/g, '');
                 var section = $(tar).attr('section');
@@ -203,8 +204,12 @@ define(function(require, exports, module){
                 $('.list-block').fadeIn(125);
             // }
             // setTimeout(fadeLate, 1000);
+        },
+        "show_details":function(tar){
+            var course_data = JSON.parse($(tar).children().eq(0).attr("courseData"));
+            $('#detail_box').html(tpl.get(tmpl.detail,{"it":require('page/sublist/config').data.Course[0]}))
+            $('#course_detail').modal('show');
         }
-
     };
     /*bind the button input control event*/
     var _bindEvent = function(){

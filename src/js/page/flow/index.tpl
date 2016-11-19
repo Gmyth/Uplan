@@ -44,7 +44,7 @@
                     <div  class="modal-dialog" style="background-color: #eff0f2;border-radius: 6px;">
                         <div class="modal-header" style="background-color: #34495e;">
                             <a type="button" class="close" data-dismiss="modal" style="padding-top:4px;"><span class="fui-cross" style="color: #eff0f2;"></span></a>
-                            <p style="margin-bottom:auto;color: #eff0f2;"><b>Selected</b></p>
+                            <p style="margin-bottom:auto;color: #eff0f2;"><b>Success</b></p>
                         </div>
                         <div class="modal-body"  style="height: 300px;max-height: 300px;overflow-y: auto;">
                             <div class="sub_success"><div style="text-align: center">
@@ -52,12 +52,11 @@
                             </div>
                                 <h5 style="color: #34495e; text-align: center"> Your schedule was successfully saved! </h5>
                                 <hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;">
-                                <p style="color: #34495e; text-align: center"> One satisfied course schedule is the first step to success </p>
+                                <p style="color: #34495e; text-align: center"> A satisfied course schedule is the first step to succeed </p>
                             </div>
                         </div>
                         <div class="modal-footer modal_background_color">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" >OK</button>
-                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary btn-block" data-dismiss="modal" >OK</button>
                         </div>
                     </div>
                 </div>
@@ -257,7 +256,7 @@
             <td><%=it.Time%></td>
             <td><%=it.Room%></td>
             <td><%=it.instructors%></td>
-            <td><a data-action="del_course" style="padding: 10px;font-size: 20px;"><span class="fui-trash" ></span></a></td>
+            <td><a data-action="del_course" style=" cursor:pointer;padding: 10px;font-size: 20px;"><span class="fui-trash" ></span></a></td>
         </tr>
         </tbody>
         </table>

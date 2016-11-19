@@ -19,7 +19,8 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
         main: SUBLIST.MAIN,
         course: SUBLIST.COURSE,
         subcourse: SUBLIST.SUBCOURSE,
-        rec: SUBLIST.RECITATION
+        rec: SUBLIST.RECITATION,
+        detail: SUBLIST.DETAIL
     };
     exports.init = function() {
         $(".sub_list").html(tpl.get(tmpl.main));
@@ -150,7 +151,7 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
         add_course: function(tar) {
             $(".list-block").fadeOut(125);
             // var fadeLate = function() {
-            var info = $(tar).parent().parent().children().first().attr("courseData");
+            var info = $(tar).parent().parent().children().first().children().first().attr("courseData");
             var item = JSON.parse(info);
             var coursename = $(tar).attr("name").replace(/\s+/g, "");
             var section = $(tar).attr("section");
@@ -165,6 +166,19 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
                 RecList: list
             }));
             $(".list-block").fadeIn(125);
+            $(".info_block").hover(function() {
+                clearTimeout(hoverTimer);
+                var item = JSON.parse($(this).attr("courseData"));
+                var delay = function() {
+                    flow.update(item, false);
+                };
+                hoverTimer = setTimeout(delay, 250);
+            }, function() {
+                var delay = function() {
+                    flow.update();
+                };
+                setTimeout(delay, 250);
+            });
             setTimeout(flow.update(item, true), 125);
             Resize();
             Resize();
@@ -177,6 +191,13 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
             flow.update(item, true);
             $(".list-block").html('<div class="sub_success" style="margin-top: 15%"><div style="text-align: center"><img src="img/icons/svg/retina.svg" alt="Retina"></div> <h5 style="color: #34495e; text-align: center"> Course already added into your course list</h5><hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;"><p style="color: #34495e; text-align: center"> Start new search to add more course</p></div>');
             $(".list-block").fadeIn(125);
+        },
+        show_details: function(tar) {
+            var course_data = JSON.parse($(tar).children().eq(0).attr("courseData"));
+            $("#detail_box").html(tpl.get(tmpl.detail, {
+                it: require("page/sublist/config").data.Course[0]
+            }));
+            $("#course_detail").modal("show");
         }
     };
     /*bind the button input control event*/
