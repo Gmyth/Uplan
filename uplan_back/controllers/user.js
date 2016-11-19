@@ -232,7 +232,9 @@ exports.postUpdateProfile = (req, res, next) => {
         //user.profile.truename = req.body.firstname + req.body.lastname|| '';
         //user.profile.location = req.body.location || '';
         //user.profile.website = req.body.website || '';
-        user.update({$set:{user}},function(err) {
+        user.update({$set:{"profile.username":req.body.name || '', "profile.gender":req.body.gender || ''
+            ,"profile.university":req.body.university,"profile.yearExperience":req.body.YRS_EXPERIENCE,
+        "profile.major":req.body.major}},function(err) {
 
 
             if (err) {
@@ -317,7 +319,7 @@ exports.course_taken = function (req, res) {
         User.findById(req.user.id, (err, user) => {
             if (err) { return next(err); }
             user.profile.course_taken = req.body.oldcourse;
-            user.update({$set:{user}},function(err) {
+            user.update({$set:{"profile.course_taken":req.body.oldcourse}},function(err) {
 
 
                 if (err) {
@@ -354,7 +356,7 @@ exports.course_taking = function (req, res) {
         User.findById(req.user.id, (err, user) => {
             if (err) { return next(err); }
             user.profile.course_taking = req.body.newcourse;
-            user.update({$set:{user}},function(err) {
+            user.update({$set:{"profile.course_taking":req.body.newcourse}},function(err) {
 
 
                 if (err) {
