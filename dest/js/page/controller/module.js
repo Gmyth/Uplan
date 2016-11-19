@@ -31,6 +31,9 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
         require.async(tabMap["search"], function(index) {
             index.init();
         });
+        require.async(tabMap["profile"], function(index) {
+            index.init();
+        });
         $("#logout").click(function() {
             alert("!");
         });

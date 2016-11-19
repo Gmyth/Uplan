@@ -23,10 +23,10 @@ var userController = require('../controllers/user');
  */
 //
 // router.get('/', function(request, response) {
-//     //var readFile = "/dest/index.html";
+//     //var readFile = "/dest/index.tpl";
 //     //var fileContents = fs.readFileSync(readFile);
 //
-//     response.sendFile('index.html');
+//     response.sendFile('index.tpl');
 // });
 router.get('/login',userController.showsignin);
 router.post('/login',userController.postSignin);

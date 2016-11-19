@@ -32,6 +32,9 @@ define(function(require, exports, module){
         require.async( tabMap["search"] , function( index ){
             index.init();
         });
+        require.async( tabMap["profile"] , function( index ){
+            index.init();
+        });
         $('#logout').click(function () {
             alert('!');
             // $.ajax({

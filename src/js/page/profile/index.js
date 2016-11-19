@@ -12,9 +12,9 @@ define(function(require, exports, module){
     //var module_1 = require('page/controller/module');
     var profile = require('page/profile/index');
 
-    // var tmpl = {
-    //     main:PROFILE.MAIN
-    // }
+    var tmpl = {
+        main:PROFILE.FIRST
+    }
     /*config set*/
     exports.init= function(){
         _bindEvent();

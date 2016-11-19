@@ -5,7 +5,8 @@
 define(function(require, exports, module){
     exports.data = {
         Profile:
-        {       "username":"kaiyu",
+        {
+            "username":"kaiyu",
             "university":"university at buffalo",
             "major":"computer science",
             "gender":"Male",

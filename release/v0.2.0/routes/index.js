@@ -5,7 +5,7 @@ var router = express.Router();
 
 
 router.get('/', function(request, response) {
-  //var readFile = "/dest/index.html";
+  //var readFile = "/dest/index.tpl";
   //var fileContents = fs.readFileSync(readFile);
 
   response.sendFile('index.html');
