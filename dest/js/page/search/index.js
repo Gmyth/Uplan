@@ -1,7 +1,7 @@
 /**
  * Created by kaiyu on 9/26/16.
  */
-define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/search", "util/net", "page/sublist/index", "page/sublist/config", "page/flow/index" ], function(require, exports, module) {
+define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/search", "util/net", "page/sublist/index", "page/sublist/config", "page/flow/index", "net/sublist" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var config = require("page/flow/config").data;
     var tpl = require("util/tpl");
@@ -20,8 +20,11 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     /*the combination of needed action function*/
     var actionList = {
         start: function(tar) {},
+        advanced_window: function(tar) {
+            $("#advanced_window").modal("show");
+        },
         storedata: function(tar) {
-            var input_subject = $("#txtsubject").val();
+            var input_subject = $("#txtsubject").val().toLowerCase();
             var input_select_number = $("#selnumber").val();
             var input_number = $("#txtnumber").val();
             var input_select_level = $("#sellevel").val();
@@ -34,8 +37,8 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
             var input_credit = $("#txtcredit").val();
             var Obj = {
                 txtsubject: input_subject,
-                txtnumber: input_select_number,
-                selnum: input_number,
+                txtnumber: input_number,
+                selnum: input_select_number,
                 selllevel: input_select_level,
                 check_box_id1: input_open == undefined ? "0" : "1",
                 txtstarttime: input_starttime,
@@ -47,7 +50,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 // callback
                 sublist.ShowCourse(data);
             };
-            search.getCourseList(Obj, success);
+            //search.getCourseList(Obj,success);
             $.ajax({
                 method: "GET",
                 url: "./get_courses_info",

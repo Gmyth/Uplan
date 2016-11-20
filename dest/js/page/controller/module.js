@@ -1,16 +1,60 @@
 /**
  * Created by Haoyu Guo on 2016/9/3.
  */
-define("page/controller/module", [ "page/controller/config", "lib/jquery" ], function(require, exports, module) {
+define("page/controller/module", [ "page/controller/config", "util/tpl", "lib/jquery", "widget/bootstrap", "util/util" ], function(require, exports, module) {
     var tabMap = require("page/controller/config").map;
+    var tpl = require("util/tpl");
     var $ = require("lib/jquery");
+    var bootstrap = require("widget/bootstrap");
     var curTab = "flow";
+    var curUser = "";
     /*从url获取tab信息*/
-    var getTabFromHash = function() {
-        var tempurl = location.hash;
-        var hash;
-        hash = !location.hash ? "#metric" : location.hash;
-        return hash.substring(1, hash.length);
+    var tmpl = {
+        main: MODULE.WELCOME,
+        subbox: MODULE.SUBBOX
+    };
+    var myDays = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ];
+    var showMain = function() {
+        $("#welcome_msg").html("");
+        $("#welcome_msg").hide();
+        $("#sub_box").html(tpl.get(tmpl.subbox));
+        require.async(tabMap["flow"], function(index) {
+            index.init(curUser);
+        });
+        require.async(tabMap["sublist"], function(index) {
+            index.init(curUser);
+        });
+        require.async(tabMap["search"], function(index) {
+            index.init(curUser);
+        });
+        $("#main_container").fadeIn(1e3);
+        $("#sub_box").fadeIn(1e3);
+    };
+    var showProfile = function() {
+        $("#main_container").hide();
+        $("#sub_box").hide();
+        $("#welcome_msg").html("");
+        $("#welcome_msg").hide();
+        require.async(tabMap["profile"], function(index) {
+            index.init(curUser);
+        });
+        $("#profile").fadeIn(1e3);
+    };
+    var actionList = {
+        profile_open: function(tar) {
+            // wait for kaiyukang profile
+            $("#welcome_msg").fadeOut(1e3);
+            //showProfile();
+            setTimeout(showProfile, 1e3);
+        },
+        schedule_page: function(tar) {
+            $("#welcome_msg").fadeOut(1e3);
+            setTimeout(showMain, 1e3);
+        },
+        profile: function(tar) {
+            updateProfile();
+            _bindEvent();
+        }
     };
     //init function to start load js
     exports.init = function(username) {
@@ -22,17 +66,49 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
         // require.async( target , function( index ){
         //     index.init();
         // });
-        require.async(tabMap["flow"], function(index) {
-            index.init(username);
-        });
-        require.async(tabMap["sublist"], function(index) {
-            index.init();
-        });
-        require.async(tabMap["search"], function(index) {
-            index.init();
-        });
+        curUser = username;
+        $("#main_container").hide();
+        $("#sub_box").hide();
+        $("#profile").hide();
+        var today = new Date();
+        var thisDay = today.getDay();
+        thisDay = myDays[thisDay];
+        $("#welcome_msg").hide();
+        $("#welcome_msg").html(tpl.get(tmpl.main, {
+            weekday: thisDay,
+            username: username
+        }));
         $("#logout").click(function() {
-            alert("!");
+            $.ajax({
+                method: "GET",
+                url: "./logout"
+            }).done(function() {
+                var util = require("util/util");
+                util.cookie.del("u_Ticket");
+                location.href = "http://uplans.info/login.html";
+            });
+        });
+        _bindEvent();
+        $("#welcome_msg").fadeIn("slow");
+    };
+    var _bindEvent = function() {
+        $main = $("#welcome_msg");
+        $demo_row = $("#header");
+        $main.on("click", "[data-action]", function() {
+            if ($(this).attr("disabled") != "disabled") {
+                var actionName = $(this).data("action");
+                var action = actionList[actionName];
+                var tar = this;
+                if ($.isFunction(action)) action(tar);
+            }
+        });
+        $demo_row.on("click", "[data-action]", function() {
+            if ($(this).attr("disabled") != "disabled") {
+                var actionName = $(this).data("action");
+                var action = actionList[actionName];
+                var tar = this;
+                if ($.isFunction(action)) action(tar);
+            }
         });
     };
 });
