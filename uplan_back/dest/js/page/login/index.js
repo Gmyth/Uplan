@@ -33,7 +33,8 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
             var success = function(data) {
                 if (data.errno == "0") {
                     util.cookie.set("u_Ticket", data.data);
-                    location.href = "http://uplans.info:3000/";
+                    //location.href="http://uplans.info/debug"
+                    location.href = "http://uplans.info/";
                 } else {
                     alert(data.error);
                 }
@@ -41,10 +42,7 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
             login.Login(obj, success);
         },
         click_google: function(tar) {
-            $.ajax({
-                method: "GET",
-                url: "./auth/google"
-            }).done(callback);
+            location.href = "http://uplans.info/auth/google";
         }
     };
     var _bindEvent = function() {
