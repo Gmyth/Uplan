@@ -16,6 +16,7 @@ var Comment_schemma = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Course_detail',autopopulate: true
     },
+    //what is going on
     comments:String,
     meta:{
         CreateAt:{
