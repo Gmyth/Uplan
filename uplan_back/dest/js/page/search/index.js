@@ -1,13 +1,13 @@
 /**
  * Created by kaiyu on 9/26/16.
  */
-define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/search" ], function(require, exports, module) {
+define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/timeparser", "net/search", "util/net", "page/sublist/index", "page/sublist/config", "page/flow/index" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var config = require("page/flow/config").data;
     var tpl = require("util/tpl");
     var timeparser = require("util/timeparser");
     var search = require("net/search");
-    var test = require("widget/page.js");
+    var sublist = require("page/sublist/index");
     var tmpl = {
         main: SEARCH.MAIN
     };
@@ -17,7 +17,7 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
     exports.init = function() {
         $(".search_sub_box").html(tpl.get(tmpl.main));
     };
-    /*the combination of needed action function*/
+    /*the comlllbination of needed action function*/
     var actionList = {
         start: function(tar) {},
         storedata: function(tar) {
@@ -37,26 +37,27 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 txtnumber: input_select_number,
                 selnum: input_number,
                 selllevel: input_select_level,
-                check_box_id1: input_open == undefined,
+                check_box_id1: input_open == undefined ? "0" : "1",
                 txtstarttime: input_starttime,
                 txtendtime: input_endtime,
                 selstart: parseInt(input_select_start),
-                selend:parseInt(input_select_end)
-            };//sadasda
+                selend: parseInt(input_select_end)
+            };
+            var success = function(data) {
+                // callback
+                sublist.ShowCourse(data);
+            };
+            search.getCourseList(Obj, success);
             $.ajax({
                 method: "GET",
                 url: "./get_courses_info",
-                dataType: "jsonp",
-            }).done(function(data) {
-                var flow = require('page/sublist/index');
-                flow.ShowCourse(data);
-            });
+                data: Obj
+            }).done(success);
         }
     };
     /*bind the button input control event*/
     var _bindEvent = function() {
         $main = $(".search_sub_box");
-        $main.off();
         $main.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");

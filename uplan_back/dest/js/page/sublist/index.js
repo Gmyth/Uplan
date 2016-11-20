@@ -21,10 +21,16 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     };
     exports.init = function() {
         $(".sub_list").html(tpl.get(tmpl.main));
-        ShowCourse();
+        ShowCourse1();
         _bindEvent();
     };
-    var ShowCourse = function() {
+    exports.ShowCourse = function(data) {
+        DataParse(data);
+        $(".list-block").html(tpl.get(tmpl.course, {
+            CourseList: CourseList
+        }));
+    };
+    var ShowCourse1 = function() {
         DataParse(config);
         $(".list-block").html(tpl.get(tmpl.course, {
             CourseList: CourseList
@@ -51,7 +57,7 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     var SignIn = function(element) {
         /*check single elemnt*/
         var name = element.Course.replace(/\s+/g, "");
-        if (element.Type == "lEC" || element.Type == "SEM" || element.Type == "TUT") {
+        if (element.Type == "LEC" || element.Type == "SEM" || element.Type == "TUT") {
             subList[name].push(element);
         } else if (element.Type == "LAB" || element.Type == "REC") {
             var Section = element.Section.replace(/[0-9]/g, "");
@@ -73,7 +79,7 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
         $(".subtag").each(function(index, value) {
             var width = $(this).width();
             $(this).find(".info_block").width(width - 60);
-            var checkbox_width = (56 - $(this).find(".checkbox_for_add_course").width()) / 2;
+            var checkbox_width = (58 - $(this).find(".checkbox_for_add_course").width()) / 2;
             var checkbox_height = ($(this).find(".info_block").height() + 6 - $(this).find(".checkbox_for_add_course").height()) / 2;
             $(this).find(".checkbox_for_add_course").attr("style", "display:block;padding-left:" + checkbox_width + "px;" + "padding-right: " + checkbox_width + "px;" + "padding-top: " + checkbox_height + "px;" + "padding-bottom: " + checkbox_height + "px;");
         });
@@ -148,7 +154,6 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     /*bind the button input control event*/
     var _bindEvent = function() {
         $sub_list = $(".sub_list");
-        $sub_list.off();
         $sub_list.on("click", "[data-action]", function() {
             if ($(this).attr("disabled") != "disabled") {
                 var actionName = $(this).data("action");
