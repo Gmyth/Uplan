@@ -33,6 +33,7 @@ var UserSchema = new mongoose.Schema({
             type:String,
             default:'undefined'
         },
+        email:String,
         yearExperience:String,
         university:String,
         username:String,
@@ -68,9 +69,7 @@ var UserSchema = new mongoose.Schema({
     }
 
 },{collection:'userinfo_test1'});
-
 UserSchema.plugin(autopopulate);
-
 /**
  * encrypt the user password
  */

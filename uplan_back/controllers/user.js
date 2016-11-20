@@ -9,9 +9,7 @@ var passportConfig = require('../config/passport');
 var crypto = require('crypto');
 var async = require('async');
 var session = require('express-session');
-
 var Course = require('../models/undergra_courses');
-
 //sign up
 /**
  * GET /signup
@@ -153,14 +151,12 @@ exports.postSignup = (req, res, next) => {
             email: req.body.email,
             password: req.body.password,
             name: req.body.name,
-            'profile.university': req.body.uni,
-            'profile.yearExperience': req.body.YRS_EXPERIENCE,
-            'profile.username': req.body.name,
             'profile.university': req.body.university,
             'profile.yearExperience': req.body.YRS_EXPERIENCE,
             'profile.username': req.body.name,
             'profile.gender':req.body.gender,
-
+            'profile.email':req.body.email,
+            'profile.major':req.body.major,
         });
 
         User.findOne({name: req.body.name}, function(err, existingUser) {
@@ -227,7 +223,7 @@ exports.postUpdateProfile = (req, res, next) => {
         if (err) { return next(err); }
         //dont need to change email now
         // /user.email = req.body.email || '';
-        user.profile.username = req.body.name || '';
+        //user.profile.username = req.body.name || '';
         user.profile.gender = req.body.gender || '';
         user.profile.university = req.body.university;
         user.profile.yearExperience = req.body.YRS_EXPERIENCE;
