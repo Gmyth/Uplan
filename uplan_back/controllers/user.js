@@ -414,7 +414,7 @@ exports.adminRequired = function (req,res,next) {
     }
     next();
 };
-
+//test//git error so recommit test
 //
 // function returnMessage(error, errno, data) {
 //     var massege = {error:'',errno:'',data:''};

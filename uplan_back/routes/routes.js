@@ -246,7 +246,7 @@ function chechAuthentication(req,res,next) {
         res.redirect("/signin.html");
     }
 }
-
+//git error so recommit test
 module.exports = router;
 /**
  * Created by dylanwang on 16/10/27.

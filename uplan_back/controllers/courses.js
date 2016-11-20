@@ -11,7 +11,7 @@ var User = require('../models/user')
 /*
 return courses by searching course number
  */
-//111
+//111//git error so recommit test
 exports.list = function (req, res, callback) {
   db.get().collection('cse_courses',function (err,collection) {
       if(err){
