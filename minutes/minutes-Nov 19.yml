@@ -7,7 +7,7 @@ task_progress: [ # All group members must be included here even if they haven't 
   {ubit: <haoyuguo>,progress:finishing course detail modal, debugging course search box },
   {ubit: <kaiyukan>, progress:finished user profile page, find password page and its functionalty},
   {ubit: <enzeqian>,progress:finished scraper, but have trouble on scraping other_course_taught_by },
-  {ubit: <cwang46>, progress: },
+  {ubit: <cwang46>, progress:finished course detail backend logic, comments backend logic and profile changing logic. },
   ]
 issues: []
 Notes:  |
