@@ -5,9 +5,9 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 var ObjectId = Schema.Types.ObjectId
 
-var undergra_CourseSchema = new Schema({
+var detail_CourseSchema = new Schema({
     status:String,
-    Room:String,
+    Course_Description:String,
     Title:String,
     Section:String,
     instructors:String,
@@ -23,17 +23,24 @@ var undergra_CourseSchema = new Schema({
         unique: true,
         type:String
     },
-    Credits:String,
-    Enrollment_Capacity: String,
-    Enrollment_Total:String,
-    Seats_Available:String,
-    Dates:String,
-    Chained_Courses:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'undergra_course_detail_2017spring'
-    },
-    Course_Description:String,
-    Other_Courses_Taught_By
+    Comments:{    type:mongoose.Schema.Types.ObjectId,
+        ref:'Comments'},
+    Other_Courses_Taught_By:String,
+    On_line_Resources:String
+    //Other_Courses_Taught_By
 },{
-    collection:'undergra_course_detail_2017spring'
+    collection:'course_detail'
 });
+
+detail_CourseSchema.statics = {
+
+    findById: function (id, cb) {
+        return this
+            .findOne({_id:id})
+            .exec(cb)
+    }
+};
+
+var Course_detail = mongoose.model('Course_detail', detail_CourseSchema);
+
+module.exports = Course_detail;
