@@ -34,40 +34,5 @@ define(function(require, exports, module){
         });
     };
 
-    /** create for profile */
-
-    var config = require('page/profile/config').data;
-    var tpl = require('util/tpl');
-    var timeparser = require('util/timeparser');
-    var search = require('net/search');
-    var profile = require('page/profile/index');
-    var tmpl = {
-        main:PROFILE.MAIN,
-    }
-    /*config set*/
-    exports.init = function(){
-        $('.profile').html(tpl.get(tmpl.main,{"Profile":config.Profile[1]}));
-    };
-
-    /*bind the button input control event*/
-    var _bindEvent = function(){
-        $main = $(".profile");
-        $main.off();
-        $main.on('click', '[data-action]', function () {
-            if($(this).attr("disabled")!="disabled"){
-                var actionName = $(this).data('action');
-                var action = actionList[actionName];
-                var tar = this;
-                if ($.isFunction(action)) action(tar);
-            }
-        })
-    };
-
-    var actionList={
-        "profile":function(tar){
-            $('.profile').html(tpl.get(tmpl.main,{"Profile":config.Profile[1]}));
-        },
-
-    }
 
 });

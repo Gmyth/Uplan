@@ -15,7 +15,7 @@ define("page/controller/config", [], function(require, exports, module) {
 /**
  * Created by Haoyu Guo on 2016/9/3.
  */
-define("page/controller/module", [ "page/controller/config", "lib/jquery", "page/profile/config", "util/tpl", "util/timeparser", "net/search", "util/net", "page/profile/index", "page/sublist/index" ], function(require, exports, module) {
+define("page/controller/module", [ "page/controller/config", "lib/jquery" ], function(require, exports, module) {
     var tabMap = require("page/controller/config").map;
     var $ = require("lib/jquery");
     var curTab = "flow";
@@ -45,41 +45,6 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery", "page
         require.async(tabMap["search"], function(index) {
             index.init();
         });
-    };
-    /** create for profile */
-    var config = require("page/profile/config").data;
-    var tpl = require("util/tpl");
-    var timeparser = require("util/timeparser");
-    var search = require("net/search");
-    var profile = require("page/profile/index");
-    var tmpl = {
-        main: PROFILE.MAIN
-    };
-    /*config set*/
-    exports.init = function() {
-        $(".profile").html(tpl.get(tmpl.main, {
-            Profile: config.Profile[1]
-        }));
-    };
-    /*bind the button input control event*/
-    var _bindEvent = function() {
-        $main = $(".profile");
-        $main.off();
-        $main.on("click", "[data-action]", function() {
-            if ($(this).attr("disabled") != "disabled") {
-                var actionName = $(this).data("action");
-                var action = actionList[actionName];
-                var tar = this;
-                if ($.isFunction(action)) action(tar);
-            }
-        });
-    };
-    var actionList = {
-        profile: function(tar) {
-            $(".profile").html(tpl.get(tmpl.main, {
-                Profile: config.Profile[1]
-            }));
-        }
     };
 });
 
@@ -339,6 +304,66 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
 });
 
 /**
+ * Created by kaiyu on 10/25/16.
+ */
+define("page/password/index", [ "lib/jquery", "util/tpl" ], function(require, exports, module) {
+    var $ = require("lib/jquery");
+    var tpl = require("util/tpl");
+    var tmpl = {};
+    var p = "";
+    var typingTimer;
+    //timer identifier
+    var doneTypingInterval = 1e3;
+    //time in ms, 5 second for example
+    exports.init = function() {
+        _bindEvent();
+    };
+    /*the combination of needed action function*/
+    var actionList = {
+        submit_email: function(tar) {
+            var find_email = $("#email").val();
+        }
+    };
+    /*bind the button input control event*/
+    var _bindEvent = function() {
+        $password = $("#password");
+        $password.on("click", "[data-action]", function() {
+            if ($(this).attr("disabled") != "disabled") {
+                var actionName = $(this).data("action");
+                var action = actionList[actionName];
+                var tar = this;
+                if ($.isFunction(action)) action(tar);
+            }
+        }), $password.on("input", "#email", function() {
+            var pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            /*No Underscore at first and last*/
+            var temp = $("#email").val();
+            if (temp.length > 0) {
+                clearTimeout(typingTimer);
+                typingTimer = setTimeout(doneTyping, doneTypingInterval);
+                function doneTyping() {
+                    //do something
+                    if (pattern.test(temp)) {
+                        $("#email_info").html('EMAIL &nbsp; &nbsp; &nbsp;<span class="fui-check-circle" style=" color: #2ECC71;"></span>&nbsp;<b class="is_success">THANK YOU</b>');
+                        $("#email").addClass("is_success");
+                        $("#email").removeClass("is_error");
+                    } else {
+                        $("#email_info").html('EMAIL &nbsp; &nbsp; &nbsp;<span class="fui-cross-circle" style=" color: #e74c3c;"></span>&nbsp;<b class="is_error">NOT VALID</b>');
+                        $("#email").removeClass("is_success");
+                        $("#email").addClass("is_error");
+                    }
+                }
+            } else {
+                clearTimeout(typingTimer);
+                $("#email_info").html('EMAIL <b class="info_guide"></b>');
+                $("#email").removeClass("is_success");
+                $("#email").removeClass("is_error");
+            }
+        });
+    };
+});
+
+/**
  * Created by kaiyu on 10/28/16.
  */
 define("page/profile/config", [], function(require, exports, module) {
@@ -371,8 +396,13 @@ define("page/profile/index", [ "lib/jquery", "page/profile/config", "util/tpl", 
     var timeparser = require("util/timeparser");
     var search = require("net/search");
     var sublist = require("page/sublist/index");
+    var typingTimer;
+    //timer identifier
+    var doneTypingInterval = 1e3;
+    //time in ms, 5 second for example
     var tmpl = {
-        main: '    <div id="SignIn" style="margin-top: 5%;">        <form onsubmit="return false">            <div class="col-2">                <label>                    <b>USERNAME <p class="info_guide"></p></b>                    <b><%=Profile.username%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>UNIVERSITY<p class="info_guide"></p></b>                    <b><%=Profile.university%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>MAJOR<p class="info_guide"></p></b>                    <b><%=Profile.major%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>GENDER<p class="info_guide"></p></b>                    <b><%=Profile.gender%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>EMAIL<p class="info_guide"></p></b>                    <b><%=Profile.email%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>YRS EXPERIENCE<p class="info_guide"></p></b>                    <b><%=Profile.yrs_experience%></b>                </label>            </div>        </form>    </div>'
+        main: '    <div id="SignIn" style="margin-top: 5%;">        <form onsubmit="return false">            <div class="col-2">                <label>                    <b>USERNAME <p class="info_guide"></p></b>                    <b><%=Profile.username%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>UNIVERSITY<p class="info_guide"></p></b>                    <b><%=Profile.university%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>MAJOR<p class="info_guide"></p></b>                    <b><%=Profile.major%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>GENDER<p class="info_guide"></p></b>                    <b><%=Profile.gender%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>EMAIL<p class="info_guide"></p></b>                    <b><%=Profile.email%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>YRS EXPERIENCE<p class="info_guide"></p></b>                    <b><%=Profile.yrs_experience%></b>                </label>            </div>            <div class="col-submit" id="change">                <button class="btn btn-block btn-lg btn-success" data-action="profile_edit" >Change your profile</button>            </div>        </form>    </div>',
+        change: '    <div id="SignIn1" style="margin-top: 5%;">        <form onsubmit="return false">            <div class="col-2">                <label>                    <b>USERNAME <p class="info_guide"></p></b>                    <b><%=Profile.username%></b>                </label>            </div>            <div class="col-2">                <label>                    <b>UNIVERSITY<p class="info_guide"></p></b>                    <input placeholder="enter your university" id="university" name="university" tabindex="2">                </label>            </div>            <div class="col-2">                <label>                    <b>MAJOR<p class="info_guide"></p></b>                    <input placeholder="enter your major" id="major" name="major" tabindex="6">                </label>            </div>            <div class="col-2">                <label>                    <b>GENDER<p class="info_guide"></p></b>                    <select tabindex="5" id="gender">                        <option value="0">Male</option>                        <option value="1">Female</option>                        <option value="2">Other</option>                    </select>                </label>            </div>            <div class="col-2">                <label>                    <b id="email_info">EMAIL<p class="info_guide"></p></b>                    <input placeholder="enter your email" id="email" name="email" tabindex="6">                </label>            </div>            <div class="col-2">                <label>                    <b>YRS EXPERIENCE<p class="info_guide"></p></b>                    <select tabindex="7" id="yrs_experience">                        <option value="0" id="0">Freshman (1 yrs)</option>                        <option value="1">Sophomore (2 yrs)</option>                        <option value="2">Junior (3 yrs)</option>                        <option value="3">Senior (4 yrs)</option>                        <option value="4">Graduated </option>                    </select>                </label>            </div>            <div class="col-submit" id="save" data-action="save_change">                <button class="btn btn-block btn-lg btn-success">Save my change</button>            </div>        </form>    </div>'
     };
     /*config set*/
     var timeStart = 8;
@@ -381,6 +411,7 @@ define("page/profile/index", [ "lib/jquery", "page/profile/config", "util/tpl", 
         $(".profile").html(tpl.get(tmpl.main, {
             Profile: config.Profile[1]
         }));
+        _bindEvent();
     };
     /*bind the button input control event*/
     var _bindEvent = function() {
@@ -393,7 +424,74 @@ define("page/profile/index", [ "lib/jquery", "page/profile/config", "util/tpl", 
                 var tar = this;
                 if ($.isFunction(action)) action(tar);
             }
+        }), $main.on("input", "#email", function() {
+            var pattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+            /*No Underscore at first and last*/
+            var temp = $("#email").val();
+            if (temp.length > 0) {
+                clearTimeout(typingTimer);
+                typingTimer = setTimeout(doneTyping, doneTypingInterval);
+                function doneTyping() {
+                    //do something
+                    if (pattern.test(temp)) {
+                        $("#email_info").html('EMAIL &nbsp; &nbsp; &nbsp;<span class="fui-check-circle" style=" color: #2ECC71;"></span>&nbsp;<b class="is_success">THANK YOU</b>');
+                        $("#email").addClass("is_success");
+                        $("#email").removeClass("is_error");
+                    } else {
+                        $("#email_info").html('EMAIL &nbsp; &nbsp; &nbsp;<span class="fui-cross-circle" style=" color: #e74c3c;"></span>&nbsp;<b class="is_error">NOT VALID</b>');
+                        $("#email").removeClass("is_success");
+                        $("#email").addClass("is_error");
+                    }
+                }
+            } else {
+                clearTimeout(typingTimer);
+                $("#email_info").html('EMAIL <b class="info_guide"></b>');
+                $("#email").removeClass("is_success");
+                $("#email").removeClass("is_error");
+            }
         });
+    };
+    var actionList = {
+        start: function(tar) {},
+        save_change: function(tar) {
+            var input_university = $("#university").val();
+            var input_major = $("#major").val();
+            var input_gender = $("#gender").val();
+            var input_email = $("#email").val();
+            var input_yrs_experience = $("#yrs_experience").val();
+        },
+        profile_edit: function(tar) {
+            $(".profile").html(tpl.get(tmpl.change, {
+                Profile: config.Profile[1]
+            }));
+            $("#university").val(config.Profile[1].university);
+            $("#major").val(config.Profile[1].major);
+            $("#email").val(config.Profile[1].email);
+            // $("#yrs_experience").val(config.Profile[1].yrs_experience);
+            if (config.Profile[1].yrs_experience == "Freshman (1 yrs)") {
+                $("#yrs_experience").find("option[value='0']").prop("selected", true);
+            } else if (config.Profile[1].yrs_experience == "Sophomore (2 yrs)") {
+                $("#yrs_experience").find("option[value='1']").prop("selected", true);
+            } else if (config.Profile[1].yrs_experience == "Junior (3 yrs)") {
+                $("#yrs_experience").find("option[value='2']").prop("selected", true);
+            } else if (config.Profile[1].yrs_experience == "Senior (4 yrs)") {
+                $("#yrs_experience").find("option[value='3']").prop("selected", true);
+            } else {
+                $("#yrs_experience").find("option[value='4']").prop("selected", true);
+            }
+            if (config.Profile[1].gender == "Male") {
+                $("#gender").find("option[value='0']").prop("selected", true);
+            } else if (config.Profile[1].gender == "Female") {
+                $("#gender").find("option[value='1']").prop("selected", true);
+            } else {
+                $("#gender").find("option[value='2']").prop("selected", true);
+            }
+        },
+        profile: function(tar) {
+            $(".profile").html(tpl.get(tmpl.main, {
+                Profile: config.Profile[1]
+            }));
+        }
     };
 });
 
