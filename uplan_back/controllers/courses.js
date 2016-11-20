@@ -3,7 +3,7 @@
  */
 var express =  require('express');
 var mongoose = require('mongoose');
-var Course = require('../models/undergra_courses.js');
+var Course = require('../models/course_details.js');
 
 
 
@@ -31,6 +31,25 @@ exports.list = function (req, res, callback) {
 
   })
 
+};
+
+/** get course detail method
+ *  GET method
+ *
+ */
+exports.getcoursedetail = function (req, res, callback) {
+     var course_name = req.query.course_name;
+    var section = req.query.section;
+    Course.find({"Section": section,"Course":course_name},function (err, result) {
+            if(err){
+                console.log(err);
+            }
+            if(!result){
+                res.json({"error":"no such course not exist","errno":"400","data":""});
+            }
+
+            res.json({"error":"Success","errno":"200","data":result});
+    })
 };
 
 //router.get('/courses_search/:name', function (req, res) {

@@ -9,6 +9,9 @@ var passportConfig = require('../config/passport');
 var crypto = require('crypto');
 var async = require('async');
 var session = require('express-session');
+
+var Course = require('../models/undergra_courses');
+
 //sign up
 /**
  * GET /signup
@@ -153,6 +156,10 @@ exports.postSignup = (req, res, next) => {
             'profile.university': req.body.uni,
             'profile.yearExperience': req.body.YRS_EXPERIENCE,
             'profile.username': req.body.name,
+            'profile.university': req.body.university,
+            'profile.yearExperience': req.body.YRS_EXPERIENCE,
+            'profile.username': req.body.name,
+            'profile.gender':req.body.gender,
 
         });
 
@@ -215,7 +222,7 @@ exports.postUpdateProfile = (req, res, next) => {
     //     req.flash('errors', errors);
     //     return res.redirect('/account');
     // }
-    passportConfig.isAuthorized();
+    //passportConfig.isAuthorized();
     User.findById(req.user.id, (err, user) => {
         if (err) { return next(err); }
         //dont need to change email now
@@ -223,12 +230,18 @@ exports.postUpdateProfile = (req, res, next) => {
         user.profile.username = req.body.name || '';
         user.profile.gender = req.body.gender || '';
         user.profile.university = req.body.university;
-        user.profile.yearExperience = req.body.yr_experience;
+        user.profile.yearExperience = req.body.YRS_EXPERIENCE;
         user.profile.major = req.body.major;
+        // user.profile.course_taken = req.body.oldcourse;
+        // user.profile.course_taking = req.body.newcourse;
         //user.profile.truename = req.body.firstname + req.body.lastname|| '';
         //user.profile.location = req.body.location || '';
         //user.profile.website = req.body.website || '';
-        user.save((err) => {
+        user.update({$set:{"profile.username":req.body.name || '', "profile.gender":req.body.gender || ''
+            ,"profile.university":req.body.university,"profile.yearExperience":req.body.YRS_EXPERIENCE,
+        "profile.major":req.body.major}},function(err) {
+
+
             if (err) {
                 if (err.code === 11000) {
                     //req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
@@ -238,7 +251,7 @@ exports.postUpdateProfile = (req, res, next) => {
                 return next(err);
             }
             //req.flash('success', { msg: 'Profile information has been updated.' });
-            res.json({"error":"","errno":"200","data":""});
+            res.json({"error":"","errno":"200","data":user.profile,"sessionId":req.sessionID});
         });
     });
 };
@@ -273,7 +286,7 @@ exports.getAccount = (req, res) => {
     console.log(req);
         userid = req.session.passport.user;
         console.log(res.sessionID);
-    User.findOne({_id:userid}).populate('course_taken').exec(function (err,user) {
+    User.findOne({_id:userid}).populate('profile.course_taking').populate('profile.course_taken').exec(function (err,user) {
         if(err){
             console.log(err);
         }
@@ -297,20 +310,80 @@ exports.getAccount = (req, res) => {
 };
 
 /**
- * POST /account
- * Profile page. ------change profile info
+ * POST /account/course_taken
+ * course_taken page. ------change course_taken
  */
 
-exports.postAccount = (req, res, next) => {
 
 
+exports.course_taken = function (req, res) {
+    if(req.session.sign){
+        console.log(req);
+        userid = req.session.passport.user;
+        console.log(res.sessionID);
+        User.findById(req.user.id, (err, user) => {
+            if (err) { return next(err); }
+            user.profile.course_taken = req.body.oldcourse;
+            user.update({$set:{"profile.course_taken":req.body.oldcourse}},function(err) {
 
 
+                if (err) {
+                    if (err.code === 11000) {
+                        //req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
+                        //return res.redirect('/account');
+                        res.json({"error":"The email address you have entered is already associated with an account.","errno":"302","data":""});
+                    }
+                    return next(err);
+                }
+                //req.flash('success', { msg: 'Profile information has been updated.' });
+                res.json({"error":"","errno":"200","data":user.profile,"sessionId":req.sessionID});
+            });
+        })
+
+    }
+    else{
+        req.flash("please login first.");
+    }
 
 
+};
+
+/**
+ * POST /account/course_taking
+ * course_taken page. ------change course_taken
+ */
+
+exports.course_taking = function (req, res) {
+    if(req.session.sign){
+        console.log(req);
+        userid = req.session.passport.user;
+        console.log(res.sessionID);
+        User.findById(req.user.id, (err, user) => {
+            if (err) { return next(err); }
+            user.profile.course_taking = req.body.newcourse;
+            user.update({$set:{"profile.course_taking":req.body.newcourse}},function(err) {
 
 
-}
+                if (err) {
+                    if (err.code === 11000) {
+                        //req.flash('errors', { msg: 'The email address you have entered is already associated with an account.' });
+                        //return res.redirect('/account');
+                        res.json({"error":"The email address you have entered is already associated with an account.","errno":"302","data":""});
+                    }
+                    return next(err);
+                }
+                //req.flash('success', { msg: 'Profile information has been updated.' });
+                res.json({"error":"","errno":"200","data":user.profile,"sessionId":req.sessionID});
+            });
+        })
+
+    }
+    else{
+        req.flash("please login first.");
+    }
+
+
+};
 
 // logout
 
