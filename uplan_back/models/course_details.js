@@ -45,3 +45,5 @@ var Course_detail = mongoose.model('Course_detail', detail_CourseSchema);
 
 module.exports = Course_detail;
 
+//test
+

@@ -44,7 +44,7 @@ require('./models/undergra_courses');
 //     next();
 // };
 
-
+//git error so recommit test
 // view engine setup
 app.set('views', path.join(__dirname, 'views/test_pages'));
 app.set('view engine', 'jade');

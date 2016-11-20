@@ -63,7 +63,7 @@ var TimeSpan = function(input){
 //     })
 // });
 
-
+//git error so recommit test
 router.get('/',function (req,res) {
     var courses_name = req.query.txtsubject;
     var course_number =req.query.txtnumber;

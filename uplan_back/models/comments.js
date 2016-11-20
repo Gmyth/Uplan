@@ -26,7 +26,7 @@ var Comment_schemma = new mongoose.Schema({
         updateAt:{
             type: Date,
             default:Date.now()
-        } },
+        } },//test
         // replies:{
         //     type: mongoose.Schema.Types.ObjectId,
         //     ref:'Comments',
