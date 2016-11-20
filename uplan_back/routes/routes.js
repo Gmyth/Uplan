@@ -6,11 +6,7 @@ var User = require('../models/user.js');
 /* GET users listing. */
 var passport =require('../config/passport');
 var userController = require('../controllers/user');
-var courseController = require('../controllers/courses')
-<<<<<<< HEAD
-=======
 
->>>>>>> feature-comments(backend)
 //user route
 
 //var xiaoming = new User({name:'Eric1990',password: '1234567', email:'123@hotmail.com'});
@@ -39,81 +35,9 @@ router.get('/signup',userController.showsignup);
 router.post('/signup',userController.postSignup);
 
 router.get('/logout',userController.signout);
-/**
- * get profile info. including course info
- * 发包样式: 无
- */
 
 router.get('/account/profile',userController.getAccount);
-/**
- * get course taken list and change
- * 发包样式:body 字段名:firstname, lastname, gender, YRS_EXPERIENCE, university
- */
-
 router.post('/account/profile', userController.postUpdateProfile);
-
-/**
- * change course taken list  这是修改/添加上过的课的接口
- * 发包样式:body  变量名 : oldcourse  ===》  把所有用户选的课的id以一个数组的形式封装请求给我
- */
-
-router.post('/account/course_taken', userController.course_taken);
-/**
- * change course taking list 这是修改/添加准备要上的课的接口
- * 发包样式:body  变量名 : newcourse  ===》  把所有用户选的课的id以一个数组的形式封装请求给我
- */
-
-router.post('/account/course_taking',userController.course_taking);
-
-/**
-<<<<<<< HEAD
- * get course taking list  (building)
- */
-
-router.get('/account/getcoursedetail', courseController.getcoursedetail);
-
-//router.get('/account/getcomments',commentController.getcomments);
-//router.post('/account/addcomments,', commentController.postcomment);
-=======
- * get course detail
- *
- *param: course_name  -->AAS 270LEC
- *section: MOR
- *
- */
-
-router.get('/account/getcoursedetail', courseController.getcoursedetail);
-//
-// router.get('/account/getcomments',commentController.getcomments);
-
-
-/** get comment of course detail method
- * param:  ---- 》course_id :  582f66811df1030480b94662
- *  GET method
- *
- */
-router.get('/account/getcomments', courseController.getcoursedetailComment);
-
-/** created comment of course detail method
- * body:     user_id   ===> 58168988bbeb8b14691a2486
- *           class_id  ===> 582f66811df1030480b94667 ( from class_detail)
- *           name      ===> chaojie (user's name)
- *           comments  ===> whatever he/she type
- *  POST method
- *
- */
-
-
-router.post('/account/addcomments', courseController.postcoursecomment);
->>>>>>> feature-comments(backend)
-
-//router.get('/account/avatar',userController.getAvatar);
-//router.post('/account/avatar', userController.postAvatar);
-
-
-
-
-
 
 
 
@@ -187,10 +111,7 @@ router.get('/auth/google/callback', passport.authenticate('google',{
 // if (err) return next(err);
 //   res.json(post);
 //})
-<<<<<<< HEAD
-=======
 
->>>>>>> feature-comments(backend)
 
 // router.get('/signin',chechAuthentication, function (req, res) {
 //    res.render('signin/:name', {title:'login page'});

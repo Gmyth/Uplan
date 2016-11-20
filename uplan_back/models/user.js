@@ -6,7 +6,7 @@
  */
 var mongoose = require('mongoose');
 
-var autopopulate = require('mongoose-autopopulate');
+
 var bcryptjs = require('bcrypt-nodejs');
 var BCRYPT_SALT_LEN = 11;
 
@@ -33,7 +33,6 @@ var UserSchema = new mongoose.Schema({
             type:String,
             default:'undefined'
         },
-        email:String,
         yearExperience:String,
         university:String,
         username:String,
@@ -41,13 +40,8 @@ var UserSchema = new mongoose.Schema({
         gender: { type: String, default: '' },
         picture: { type: String, default: '' },
         course_taken:[{
-
             type:mongoose.Schema.Types.ObjectId,
-            ref:'under_gra',autopopulate: true
-        }],
-        course_taking:[{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'under_gra',autopopulate: true
+            ref:'under_graduate_courses'
         }],
         tokens: Array,
     },
@@ -69,7 +63,7 @@ var UserSchema = new mongoose.Schema({
     }
 
 },{collection:'userinfo_test1'});
-UserSchema.plugin(autopopulate);
+
 /**
  * encrypt the user password
  */
