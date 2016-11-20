@@ -5,26 +5,25 @@
     <script>
         _timePoints = [new Date()];
     </script>
-    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="telephone=no"/>
     <meta http-equiv="x-dns-prefetch-control" content="on">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap/css/bootstrap.min.css" >
-    <link rel="stylesheet" type="text/css" href="css/flat-ui.css" >
-    <link rel="stylesheet" type="text/css" href="css/style.css" >
-    <link rel="stylesheet" type="text/css" href="css/login.css" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/flat-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/profile.css">
     <link rel="shortcut icon" href="img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.5"/>
 
-    <title>Find my password</title>
+    <title>profile</title>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
     <script src="./js/vendor/html5shiv.js"></script>
     <script src="./js/vendor/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body class="bodyback" style="background-image:url(img/background-01.jpg );">
 <div class=" demo-row" style="width: 100%">
     <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
@@ -42,24 +41,9 @@
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav><!-- /navbar -->
-
-
 </div>
-<div id="password" style="margin-top: 5%;">
-    <form onsubmit="return false">
-        <div class="col-2">
-            <label>
-                <b id="email_info">EMAIL ADDRESS</b>
-                <input placeholder=" Enter your email address here " id="email" name="email" tabindex="1">
-            </label>
-        </div>
 
-        <div class="col-submit">
-            <button class="btn btn-block btn-sm btn-success" data-action="submit_email" >Submit</button>
-            <a style = "font-size: small" href="/signin">Already have an account? Log in here >> </a>
-        </div>
-    </form>
-</div>
+<div class = "profile" style="margin-top: 5%;"></div>
 
 <div class="clear"></div>
 </body>
@@ -70,13 +54,13 @@
 <script src="./js/page.js"></script>
 <script type="text/javascript">
     seajs.config({
-        alias : {
-            '$' : 'lib/jquery',
+        alias: {
+            '$': 'lib/jquery',
         }
     });
 
-    function start () {
-        seajs.use(["lib/jquery","page/password/index"], function($,index) {
+    function start() {
+        seajs.use(["lib/jquery", "page/profile/index"], function ($, index) {
             index.init();
         });
     }
