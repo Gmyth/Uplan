@@ -31,7 +31,7 @@ define(function(require, exports, module){
                     password:$('#password').val(),
                     uni: $('#university').val(),
                     gender:$('#gender').find('option:selected').val(),
-                    YRS_EXPERIENCE: $('#YRS_EXPERIENCE').find('option:selected').attr('yrs')
+                    YRS_EXPERIENCE: $('#YRS_EXPERIENCE').find('option:selected').attr('yrs'),
                 };
                 signup.Signup(obj,function () {
                     alert('success');
@@ -41,10 +41,7 @@ define(function(require, exports, module){
             }
         },
         'click_google':function(tar){
-            $.ajax({
-                method: "GET",
-                url: "./auth/google",
-            }).done(callback);
+            location.href="http://uplans.info/auth/google"
         }
     };
     /*bind the button input control event*/

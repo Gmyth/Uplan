@@ -1,23 +1,75 @@
 <template name="FLOW.MAIN">
-    <div class="main_header">
-        <table  class= "weekly_schedule table-bordered table-hover table-responsive" cellspacing="0" cellpadding="2" width="100%" >
+    <div class="main_header" style="height: 85%;">
+        <table  class= "weekly_schedule table-bordered table-hover table-responsive table-fit" cellspacing="0" cellpadding="2" width="100%" >
             <colgroup span="1" width="9%" align="center" valign="middle"></colgroup>
             <colgroup span="7" width="13%" align="center" valign="middle"></colgroup>
             <thead>
             <th>Time</th>
-            <th>Monday<br>Sep 5</th>
-            <th>Tuesday<br>Sep 6</th>
-            <th>Wednesday<br>Sep 7</th>
-            <th>Thursday<br>Sep 8</th>
-            <th>Friday<br>Sep 9</th>
-            <th>Saturday<br>Sep 10</th>
-            <th>Sunday<br>Sep 11</th>
+            <th>Monday<br><%=Week[0]%></th>
+            <th>Tuesday<br><%=Week[1]%></th>
+            <th>Wednesday<br><%=Week[2]%></th>
+            <th>Thursday<br><%=Week[3]%></th>
+            <th>Friday<br><%=Week[4]%></th>
+            <th>Saturday<br><%=Week[5]%></th>
+            <th>Sunday<br><%=Week[6]%></th>
             </thead>
             <tbody id="flow_body">
             </tbody>
         </table>
     <!-- End HTML Area -->
     </div>
+        <div class="function_box row">
+            <div class="Uheader" style=" background-color: #34495e">        <p class="sub_Uheader">     <span class="fui-calendar-solid" style="color:#1abc9c;position: relative;top: 1px;"></span> &nbsp;Tool Panel &nbsp; </p> </div>
+            <div class="col-xs-3">
+                <button data-toggle="modal" class="btn btn-block btn-lg btn-primary" data-action="view_selected" >View Selected</button>
+                <div id="view_selected" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div  class="modal-dialog modal-lg" style="background-color: #eff0f2;border-radius: 6px;">
+                        <div class="modal-header" style="background-color: #34495e;">
+                            <a type="button" class="close" data-dismiss="modal" style="padding-top:4px;"><span class="fui-cross" style="color: #eff0f2;"></span></a>
+                            <p style="margin-bottom:auto;color: #eff0f2;"><b>Selected</b></p>
+                        </div>
+                        <div class="modal-body" id="selected_list" style="height: 500px;max-height: 500px;overflow-y: auto;">
+
+                        </div>
+                        <div class="modal-footer modal_background_color">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" data-action="save_course">Save changes</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <a href="#fakelink" class="btn btn-block btn-lg btn-warning" data-action="save_schedule">Save Schedule</a>
+                <div id="save_schedule" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div  class="modal-dialog" style="background-color: #eff0f2;border-radius: 6px;">
+                        <div class="modal-header" style="background-color: #34495e;">
+                            <a type="button" class="close" data-dismiss="modal" style="padding-top:4px;"><span class="fui-cross" style="color: #eff0f2;"></span></a>
+                            <p style="margin-bottom:auto;color: #eff0f2;"><b>Success</b></p>
+                        </div>
+                        <div class="modal-body"  style="height: 300px;max-height: 300px;overflow-y: auto;">
+                            <div class="sub_success"><div style="text-align: center">
+                                <img src="img/icons/svg/retina.svg" alt="Retina">
+                            </div>
+                                <h5 style="color: #34495e; text-align: center"> Your schedule was successfully saved! </h5>
+                                <hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;">
+                                <p style="color: #34495e; text-align: center"> A satisfied course schedule is the first step to succeed </p>
+                            </div>
+                        </div>
+                        <div class="modal-footer modal_background_color">
+                            <button type="button" class="btn btn-primary btn-block" data-dismiss="modal" >OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <a href="#fakelink" class="btn btn-block btn-lg btn-inverse" disabled="true">Coming Soon</a>
+            </div>
+            <div class="col-xs-3">
+                <a href="#fakelink" class="btn btn-block btn-lg btn-danger" disabled="true">Coming Soon</a>
+            </div>
+
+        </div>
+
 </template>
 <template name="FLOW.COURSE">
     <%for(var i=0,item;item = CourseList[i];i++){%>
@@ -177,4 +229,36 @@
         </tr>
     </tbody>
     </table>
+</template>
+<template name="FLOW.SELECTED">
+    <% for(var d = 0,it ; it = TagList[d]; d++){%>
+    <table class="table table-bordered table-responsive table-hover table-condensed">
+        <thead style="background-color: #34495e;color: #ffffff">
+        <tr>
+            <th><span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>Title</th>
+            <th><span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>Type</th>
+            <th><span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>Section</th>
+            <th><span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>Location</th>
+            <th><span class="fui-credit-card" style="padding: 5px;color:#eff0f2;"></span>Days</th>
+            <th><span class="fui-time" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;"></span>Time</th>
+            <th><span class="fui-location" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;"></span>&nbsp;Room</th>
+            <th><span class="fui-user" style="padding: 5px;color:#eff0f2;position: relative;top: 1px;"></span>Instrouctors</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr course_info=<%=it._id%>>
+            <td><%=it.Title%></td>
+            <td><%=it.Type%></td>
+            <td><%=it.Section%></td>
+            <td><%=it.Location%></td>
+            <td><%=it.Days%></td>
+            <td><%=it.Time%></td>
+            <td><%=it.Room%></td>
+            <td><%=it.instructors%></td>
+            <td><a data-action="del_course" style=" cursor:pointer;padding: 10px;font-size: 20px;"><span class="fui-trash" ></span></a></td>
+        </tr>
+        </tbody>
+        </table>
+    <%}%>
 </template>

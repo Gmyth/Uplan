@@ -23,7 +23,7 @@ define(function factory( require, exports, module) {
             "email": SignUp_Obj.email,
             "password" : SignUp_Obj.password,
             "name": SignUp_Obj.name,
-            "uni": SignUp_Obj.uni,
+            "university": SignUp_Obj.uni,
             "gender": SignUp_Obj.gender,
             "YRS_EXPERIENCE": SignUp_Obj.YRS_EXPERIENCE,
         }

@@ -1,7 +1,7 @@
 define("util/Login", [ "lib/jquery", "util/util", "net/pub", "util/router", "util/cacheData", "util/net" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var util = require("util/util");
-    var currrent_url = "http://localhost:3000/";
+    var currrent_url = "http://uplans.info/";
     var pub = require("net/pub");
     var Login = {
         user: "",
@@ -40,13 +40,14 @@ define("util/Login", [ "lib/jquery", "util/util", "net/pub", "util/router", "uti
         logout: function() {
             var url = location.href;
             util.cookie.del("u_Ticket");
+            util.cookie.del("login_user");
             location.href = currrent_url + "login.html";
         },
         fetchUser: function(fn) {
             var me = this;
             pub.getLoginInfo(function(data) {
                 if (data.errno == "200") {
-                    var temp = data.data;
+                    var temp = data.data.profile;
                     me.user = temp["username"];
                     if (typeof fn == "function") {
                         fn(temp);
