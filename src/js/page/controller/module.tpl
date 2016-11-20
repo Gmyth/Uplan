@@ -4,10 +4,10 @@
     <hr style="width: 50%; margin: auto;">
     <div class="row demo-row" style="margin-top: 10px;">
         <div class="col-xs-3" style="margin-left: 25%;">
-            <a href="#fakelink" class="btn btn-block btn-lg btn-primary" data-action="profile_open">Edit profile</a>
+            <a href="javascript:void(0)" class="btn btn-block btn-lg btn-primary" data-action="profile_open">Edit profile</a>
         </div>
         <div class="col-xs-3">
-            <a href="#fakelink" class="btn btn-block btn-lg btn-info" data-action="schedule_page">Build schedule</a>
+            <a href="javascript:void(0)" class="btn btn-block btn-lg btn-info" data-action="schedule_page">Build schedule</a>
         </div>
     </div>
 </template>

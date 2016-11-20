@@ -5,13 +5,13 @@
             <colgroup span="7" width="13%" align="center" valign="middle"></colgroup>
             <thead>
             <th>Time</th>
-            <th>Monday<br>Sep 5</th>
-            <th>Tuesday<br>Sep 6</th>
-            <th>Wednesday<br>Sep 7</th>
-            <th>Thursday<br>Sep 8</th>
-            <th>Friday<br>Sep 9</th>
-            <th>Saturday<br>Sep 10</th>
-            <th>Sunday<br>Sep 11</th>
+            <th>Monday<br><%=Week[0]%></th>
+            <th>Tuesday<br><%=Week[1]%></th>
+            <th>Wednesday<br><%=Week[2]%></th>
+            <th>Thursday<br><%=Week[3]%></th>
+            <th>Friday<br><%=Week[4]%></th>
+            <th>Saturday<br><%=Week[5]%></th>
+            <th>Sunday<br><%=Week[6]%></th>
             </thead>
             <tbody id="flow_body">
             </tbody>

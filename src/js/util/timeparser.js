@@ -62,6 +62,46 @@ define(function(require, exports, module) {
             if(minspan == 0){return hourspan * 2;}
         }
     }
+
+    exports.getMonday = function(d) {
+        d = new Date(d);
+        var day = d.getDay(),
+            diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+        return new Date(d.setDate(diff));
+    }
+
+    exports.getTuesday = function(d) {
+        d = new Date(d);
+        var day = d.getDay(),
+            diff = d.getDate() - day + (day == 0 ? -5:2); // adjust when day is sunday
+        return new Date(d.setDate(diff));
+    }
+
+    exports.getWednesday = function(d) {
+        d = new Date(d);
+        var day = d.getDay(),
+            diff = d.getDate() - day + (day == 0 ? -4:3); // adjust when day is sunday
+        return new Date(d.setDate(diff));
+    }
+
+    exports.getThursday = function(d) {
+        d = new Date(d);
+        var day = d.getDay(),
+            diff = d.getDate() - day + (day == 0 ? -3:4); // adjust when day is sunday
+        return new Date(d.setDate(diff));
+    }
+    exports.getFriday = function(d) {
+        d = new Date(d);
+        var day = d.getDay(),
+            diff = d.getDate() - day + (day == 0 ? -2:5); // adjust when day is sunday
+        return new Date(d.setDate(diff));
+    }
+    exports.getSaturday= function(d) {
+        d = new Date(d);
+        var day = d.getDay(),
+            diff = d.getDate() - day + (day == 0 ? -1:6); // adjust when day is sunday
+        return new Date(d.setDate(diff));
+    }
     var isMorning  = function(time){
         var timepattern = /(\d{1,2}):(\d{2})(AM)/;/*regular expression to find correct time format*/
         return timepattern.test(time);

@@ -2,28 +2,33 @@
  * Created by gmyth on 16/9/7.
  * this part is created for the implement of the Search list
  * */
-define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", "util/timeparser", "page/flow/index", "page/flow/config", "net/flow" ], function(require, exports, module) {
+define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", "util/timeparser", "page/flow/index", "page/flow/config", "net/flow", "net/sublist", "util/router", "util/cacheData", "util/net", "util/util" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var config = require("page/sublist/config").data.Course;
     var tpl = require("util/tpl");
     var timeparser = require("util/timeparser");
     var flow = require("page/flow/index");
+    var sublist = require("net/sublist");
     var timeStart = 8;
     var timeEnd = 21;
     var hoverTimer;
     var CourseList = [];
     var subList = {};
+    var username = "";
     var sectionList = {};
     var defaultSection = "";
+    var curDetail = {};
     var tmpl = {
         main: SUBLIST.MAIN,
         course: SUBLIST.COURSE,
         subcourse: SUBLIST.SUBCOURSE,
         rec: SUBLIST.RECITATION,
-        detail: SUBLIST.DETAIL
+        detail: SUBLIST.DETAIL,
+        comment: SUBLIST.COMMENT
     };
-    exports.init = function() {
+    exports.init = function(user) {
         $(".sub_list").html(tpl.get(tmpl.main));
+        username = user;
         //ShowCourse1();
         _bindEvent();
     };
@@ -86,14 +91,65 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
             }
         }
     };
-    var Resize = function() {
-        $(".subtag").each(function(index, value) {
-            var width = $(this).width();
-            $(this).find(".info_block").width(width - 60);
-            var checkbox_width = (58 - $(this).find(".checkbox_for_add_course").width()) / 2;
-            var checkbox_height = ($(this).find(".info_block").height() + 6 - $(this).find(".checkbox_for_add_course").height()) / 2;
-            $(this).find(".checkbox_for_add_course").attr("style", "display:block;padding-left:" + checkbox_width + "px;" + "padding-right: " + checkbox_width + "px;" + "padding-top: " + checkbox_height + "px;" + "padding-bottom: " + checkbox_height + "px;");
-        });
+    var Resize = function(rec) {
+        if (!rec) {
+            $(".subtag").each(function(index, value) {
+                var width = $(this).width();
+                $(this).find(".info_block").width(width - 60);
+                var checkbox_width = (58 - $(this).find(".checkbox_for_add_course").width()) / 2;
+                var checkbox_height = ($(this).find(".info_block").height() + 6 - $(this).find(".checkbox_for_add_course").height()) / 2;
+                $(this).find(".checkbox_for_add_course").attr("style", "display:block;padding-left:" + checkbox_width + "px;" + "padding-right: " + checkbox_width + "px;" + "padding-top: " + checkbox_height + "px;" + "padding-bottom: " + checkbox_height + "px;");
+            });
+        } else {
+            $(".subtag").each(function(index, value) {
+                var width = $(this).width();
+                $(this).find(".rec_block").width(width - 60);
+                var checkbox_width = (58 - $(this).find(".checkbox_for_add_rec").width()) / 2;
+                var checkbox_height = ($(this).find(".rec_block").height() + 6 - $(this).find(".checkbox_for_add_rec").height()) / 2;
+                $(this).find(".checkbox_for_add_rec").attr("style", "display:block;padding-left:" + checkbox_width + "px;" + "padding-right: " + checkbox_width + "px;" + "padding-top: " + checkbox_height + "px;" + "padding-bottom: " + checkbox_height + "px;");
+            });
+        }
+    };
+    var showDetail = function(tar) {
+        curDetail = {};
+        var course_data = JSON.parse($(tar).children().eq(0).attr("courseData"));
+        var success = function(data) {
+            if (data.errno = "200") {
+                var test = data.data[0];
+                curDetail = test;
+                $("#detail_box").html(tpl.get(tmpl.detail, {
+                    it: test
+                }));
+                $("#course_detail").modal("show");
+            } else {
+                alert(data.error);
+            }
+        };
+        sublist.getCourseDetail(course_data, success);
+    };
+    var showComments = function(tar) {
+        if (!$("#comment_list").html() || $("#comment_list").html() == " ") {
+            var success = function(data) {
+                if (data.errno = "200") {
+                    var DataList = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        var obj = {};
+                        obj.updateAt = data.data[i].meta.updateAt.toString().slice(0, 10).split(" ");
+                        obj.comments = data.data[i].comments;
+                        obj.username = data.data[i].username;
+                        DataList.push(obj);
+                    }
+                    $("#comment_list").html(tpl.get(tmpl.comment, {
+                        CommentList: DataList
+                    }));
+                } else {
+                    alert(data.error);
+                }
+            };
+            sublist.getComment(curDetail, success);
+        } else {
+            $("#comment_list").html("");
+        }
     };
     /*the combination of needed action function*/
     var actionList = {
@@ -166,7 +222,10 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
                 RecList: list
             }));
             $(".list-block").fadeIn(125);
-            $(".info_block").hover(function() {
+            Resize(true);
+            Resize(true);
+            setTimeout(flow.update(item, true), 125);
+            $(".rec_block").hover(function() {
                 clearTimeout(hoverTimer);
                 var item = JSON.parse($(this).attr("courseData"));
                 var delay = function() {
@@ -179,9 +238,6 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
                 };
                 setTimeout(delay, 250);
             });
-            setTimeout(flow.update(item, true), 125);
-            Resize();
-            Resize();
         },
         add_rec: function(tar) {
             $(".list-block").fadeOut(125);
@@ -193,11 +249,35 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
             $(".list-block").fadeIn(125);
         },
         show_details: function(tar) {
-            var course_data = JSON.parse($(tar).children().eq(0).attr("courseData"));
-            $("#detail_box").html(tpl.get(tmpl.detail, {
-                it: require("page/sublist/config").data.Course[0]
-            }));
+            showDetail(tar);
+        },
+        open_student_comments: function(tar) {
+            showComments(tar);
+        },
+        comments_window: function(tar) {
+            $("#course_detail").modal("hide");
+            $("#comment_modal").modal("show");
+        },
+        close_comment: function(tar) {
             $("#course_detail").modal("show");
+        },
+        submit_comment: function(tar) {
+            //add new comment for course
+            var comments = $("#comment_Textarea").val();
+            var obj = {
+                _id: curDetail._id,
+                name: username,
+                comments: comments
+            };
+            var success = function(data) {
+                if (data.errno = "200") {
+                    $("#course_detail").modal("show");
+                    showComments();
+                } else {
+                    alert(data.error);
+                }
+            };
+            sublist.addComment(obj, success);
         }
     };
     /*bind the button input control event*/
@@ -213,6 +293,7 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
         });
         $(window).resize(function() {
             Resize();
+            Resize(true);
         });
     };
 });

@@ -11,6 +11,7 @@ define(function(require, exports, module){
     var dataArr=[];/*2D array*/
     var user = "";
     var tempArr_del=[];
+    var result = [];
     var tmpl = {
         main:FLOW.MAIN,
         body:FLOW.COURSE,
@@ -22,7 +23,13 @@ define(function(require, exports, module){
     exports.init = function(username){
         var dataArr=[];
         user=username;
-        $('.main_container').html(tpl.get(tmpl.main));
+        weekparse(timeparser.getMonday(new Date()));
+        weekparse(timeparser.getTuesday(new Date()));
+        weekparse(timeparser.getWednesday(new Date()));
+        weekparse(timeparser.getThursday(new Date()));
+        weekparse(timeparser.getFriday(new Date()));
+        weekparse(timeparser.getSaturday(new Date()));
+        $('.main_container').html(tpl.get(tmpl.main,{"Week":result}));
         var container_height = $('.main_container').height();
         $('.main_body').height(container_height-60);
         $('.main_body').css("max-height",container_height-60);
@@ -72,6 +79,11 @@ define(function(require, exports, module){
             }
             $('#flow_body').html(tpl.get(tmpl.body,{"startTime":timeStart,"CourseList":dataArr}));
         }
+    }
+    var weekparse = function(data){
+        var date = data; // Mon Nov 08 2010
+        var dateArr  = date.toString().slice(0, 10).split(' ');
+        result.push(dateArr[1]+" "+dateArr[2]);
     }
     var showList = function(){
         config=[];

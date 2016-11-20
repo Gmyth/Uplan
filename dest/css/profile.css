@@ -1,13 +1,14 @@
-form {
+.profile-form {
     display: block;
     margin: 30px;
     overflow: hidden;
     background: #fff;
     border: 1px solid #e4e4e4;
     border-radius: 5px;
+    font-size: 0;
 }
 
-form > div > label {
+.profile-form > div > label {
     display: block;
     padding: 20px 20px 10px;
     vertical-align: top;
@@ -17,17 +18,15 @@ form > div > label {
     color: #939393;
     cursor: pointer;
 }
-form > div.switch > label {
+.profile-form > div.switch > label {
     padding: 16px 20px 13px;
 }
 
-.col-2 { width: 599px }
-
-.col-3, .col-4 {
+.col-2, .col-3, .col-4 {
     border-bottom: 1px solid #e4e4e4;
 }
 
-form > div > .col-4 {
+.profile-form > div > .col-4 {
     height: 86px;
 }
 
@@ -51,7 +50,7 @@ label > input {
 
 .col-submit {
     text-align: center;
-    padding: 10px;
+    padding: 20px;
 }
 
 label > select {
@@ -69,21 +68,33 @@ label > select {
     opacity: .4;
     transition: all linear .3s;
 }
-
+.Home_tag{
+    margin: 48%;
+    font-size: 29px;
+    color: #fff;
+    padding: 25px;
+    cursor:pointer;
+}
+.is_success{
+    color: #2ECC71;
+}
+.is_error{
+    color: #e74c3c;
+}
 label > input:focus, label > select:focus {
     opacity: 1;
 }
-@media(min-width: 500px){
-    form > div { display: inline-block; }
-    form {width:499px;  margin:auto;}
+@media(min-width: 850px){
+
+    .profile-form > div { display: inline-block; }
+    .profile-form {width:1200px;  margin:auto;}
     .col-submit { display: block; }
-    .col-2 { width: 400px; border-bottom: 1px solid #e4e4e4;}
-    .col-submit button {margin: 0 auto; }
-    .btn-sm {width:40%}
-}
 
-.btn-success1{
-    color: #ffffff;
-    background-color: #4184f3;
-}
+    .col-2, .col-3, .col-4 { box-shadow: 1px 1px #e4e4e4; border: none; }
 
+    .col-2 { width: 599px }
+    .col-3 { width: 399.3px;}
+    .col-4 { width: 299.2px; }
+
+    .col-submit button { width: 30%; margin: 0 auto; }
+}

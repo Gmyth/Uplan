@@ -1,6 +1,6 @@
 /**
  *	config.js
- *	author：liamhuang
+ *	author：haoyuguo
  *	date：20150720
  *
  **/

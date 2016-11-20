@@ -58,6 +58,47 @@ define("net/login", [ "lib/jquery", "util/net", "util/security" ], function fact
     };
 });
 
+define("net/profile", [ "lib/jquery", "util/router", "util/uri", "util/cookie", "util/net", "util/cacheData", "util/security", "util/util" ], function factory(require, exports, module) {
+    var $ = require("lib/jquery");
+    var router = require("util/router");
+    var cacheData = require("util/cacheData");
+    var net = require("util/net");
+    var util = require("util/util");
+    /**
+     *	@method getProfile
+     *	@desc 查询详细信息
+     *	@param callback function 回调函数
+     *	@return
+     */
+    exports.getProfile = function(callback) {
+        $.ajax({
+            method: "GET",
+            url: "./account/profile",
+            data: {}
+        }).done(callback);
+    };
+    /**
+     *	@method editProfile
+     *	@desc 详细信息
+     *	@param callback function 回调函数
+     *	@return
+     */
+    exports.editProfile = function(obj, callback) {
+        var Obj = {
+            name: obj.username,
+            university: obj.university,
+            gender: obj.gender,
+            YRS_EXPERIENCE: obj.YRS_EXPERIENCE,
+            major: obj.major
+        };
+        $.ajax({
+            method: "POST",
+            url: "./account/profile",
+            data: Obj
+        }).done(callback);
+    };
+});
+
 /**
  * 公共模块
  */
@@ -174,7 +215,7 @@ define("net/signup", [ "lib/jquery", "util/net", "util/security" ], function fac
             email: SignUp_Obj.email,
             password: SignUp_Obj.password,
             name: SignUp_Obj.name,
-            uni: SignUp_Obj.uni,
+            university: SignUp_Obj.uni,
             gender: SignUp_Obj.gender,
             YRS_EXPERIENCE: SignUp_Obj.YRS_EXPERIENCE
         };
@@ -183,5 +224,73 @@ define("net/signup", [ "lib/jquery", "util/net", "util/security" ], function fac
             url: "./signup",
             data: Obj
         }).done(callback);
+    };
+});
+
+define("net/sublist", [ "lib/jquery", "util/router", "util/uri", "util/cookie", "util/net", "util/cacheData", "util/security", "util/util" ], function factory(require, exports, module) {
+    var $ = require("lib/jquery");
+    var router = require("util/router");
+    var cacheData = require("util/cacheData");
+    var net = require("util/net");
+    var util = require("util/util");
+    /**
+     *	@method getCourseDetail
+     *	@desc 查询详细信息
+     *	@param callback function 回调函数
+     *	@return
+     */
+    exports.getCourseDetail = function(obj, callback) {
+        var data = {
+            course_name: obj.Course,
+            section: obj.Section
+        };
+        var success = function(json) {
+            callback && callback(json);
+        };
+        $.ajax({
+            method: "GET",
+            url: "./account/getcoursedetail",
+            data: data
+        }).done(success);
+    };
+    /**
+     *	@method getComment
+     *	@desc 查询回复
+     *	@param callback function 回调函数
+     *	@return
+     */
+    exports.getComment = function(obj, callback) {
+        var data = {
+            course_id: obj._id
+        };
+        var success = function(json) {
+            callback && callback(json);
+        };
+        $.ajax({
+            method: "GET",
+            url: "./account/getcomments",
+            data: data
+        }).done(success);
+    };
+    /**
+     *	@method addComment
+     *	@desc 增加回复
+     *	@param callback function 回调函数
+     *	@return
+     */
+    exports.addComment = function(obj, callback) {
+        var data = {
+            class_id: obj._id,
+            name: obj.name,
+            comments: obj.comments
+        };
+        var success = function(json) {
+            callback && callback(json);
+        };
+        $.ajax({
+            method: "POST",
+            url: "./account/addcomments",
+            data: data
+        }).done(success);
     };
 });
