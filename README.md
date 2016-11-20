@@ -2,4 +2,4 @@
 CSE442 FALL 2016
 
 Prototype:
-v0.2.0:  ../release/v0.2.0
+v0.3.0:  ../release/v0.3.0

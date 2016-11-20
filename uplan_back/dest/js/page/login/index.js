@@ -33,7 +33,7 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
             var success = function(data) {
                 if (data.errno == "0") {
                     util.cookie.set("u_Ticket", data.data);
-                    location.href = "http://localhost:3000/";
+                    location.href = "http://uplans.info:3000/";
                 } else {
                     alert(data.error);
                 }

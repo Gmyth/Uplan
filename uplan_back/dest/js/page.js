@@ -1,7 +1,7 @@
 /**
- *  config.js
- *  author：liamhuang
- *  date：20150720
+ *	config.js
+ *	author：liamhuang
+ *	date：20150720
  *
  **/
 define("page/controller/config", [], function(require, exports, module) {
@@ -52,7 +52,7 @@ define("page/controller/module", [ "page/controller/config", "lib/jquery" ], fun
             }).done(function(){
                 var util= require("util/util");
                 util.cookie.del("u_Ticket");
-                location.href="http://localhost:3000/login.html"
+                location.href="http://uplans.info/login.html"
             });
         });
     };
@@ -303,7 +303,7 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
             var data_obj = function(data) {
                 if (data.errno == "0") {
                     util.cookie.set("u_Ticket", data.data);
-                    location.href = "http://localhost:3000/";
+                    location.href = "http://uplans.info/";
                 } else {
                     alert(data.error);
                 }
@@ -311,7 +311,7 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
             login.Login(obj, data_obj);
         },
         'click_google': function(tar) {
-                location.href="http://localhost:3000/auth/google"
+                location.href="http://uplans.info/auth/google"
 
         }
     };
@@ -449,14 +449,14 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
                 };
                 signup.Signup(obj, function() {
                     //pppalert("success");
-                    location.href="http://localhost:3000/login.html"
+                    location.href="http://uplans.info/login.html"
                 });
             } else {
                 $("#Signup_msg").html('<p class="error_msg"> <span class="fui-cross" style="color: #e63c5f"></span>Please complete the form to continue Sign up!</p>');
             }
         },
         click_google: function(tar) {
-            location.href="http://localhost:3000/auth/google"
+            location.href="http://uplans.info/auth/google"
         }
     };
     /*bind the button input control event*/
