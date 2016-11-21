@@ -75,7 +75,7 @@ router.post('/signin',userController.postSignin);
 // router.get('/signin',chechAuthentication, function (req, res) {
 //    res.render('signin/:name', {title:'login page'});
 //  });
-
+//git error so recommit test
 // router.post('/signin', chechAuthentication,function (req, res) {
 //     var _user = req.body.user;
 //     var name = _user.name;

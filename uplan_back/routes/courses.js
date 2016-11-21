@@ -62,7 +62,7 @@ var TimeSpan = function(input){
 //         res.json(result);
 //     })
 // });
-
+//git error so recommit test
 //git error so recommit test
 router.get('/',function (req,res) {
     var courses_name = req.query.txtsubject;
@@ -153,21 +153,9 @@ router.get('/',function (req,res) {
                 console.log(err)
             }
             if(txt_start_time=='' && txt_end_time==''){
-                if(result.length>50){
-                    res.json(["ripi"]);
-                }
-                else{
-                    res.json(result);
-                }
-            }
-                else{
-                if(result.length>50){
-                    res.json(["ripi"]);
-                }
-                else{
-                    res.json(oo);
-                }
-                }
+
+                res.json(result);}
+            else{res.json(oo);}
         })
 
     }
@@ -246,21 +234,9 @@ router.get('/',function (req,res) {
                 console.log(err)
             }
             if(txt_start_time=='' && txt_end_time==''){
-                if(result.length>50){
-                    res.json(["ripi"]);
-                }
-                else{
-                    res.json(result);
-                }
-            }
-            else{
-                if(result.length>50){
-                    res.json(["ripi"]);
-                }
-                else{
-                    res.json(oo);
-                }
-            }
+
+                res.json(result);}
+            else{res.json(oo);}
         })
 
     }
@@ -360,6 +336,7 @@ router.get('/',function (req,res) {
                     console.log(err)
                 }
                 if(txt_start_time=='' && txt_end_time==''){
+
                     if(result.length>50){
                         res.json(["ripi"]);
                     }
@@ -467,6 +444,7 @@ router.get('/',function (req,res) {
                     console.log(err)
                 }
                 if(txt_start_time=='' && txt_end_time==''){
+<<<<<<< HEAD
                     if(result.length>50){
                         res.json(["ripi"]);
                     }
@@ -482,6 +460,11 @@ router.get('/',function (req,res) {
                         res.json(oo1);
                     }
                 }
+=======
+
+                    res.json(oo);}
+                else{res.json(oo1);}
+>>>>>>> dylansprint4
             })
 
     }
@@ -570,25 +553,12 @@ router.get('/',function (req,res) {
                     console.log(err)
                 }
                 if(txt_start_time=='' && txt_end_time==''){
-                    if(result.length>50){
-                        res.json(["ripi"]);
-                    }
-                    else{
-                        res.json(oo);
-                    }
-                }
-                else{
-                    if(result.length>50){
-                        res.json(["ripi"]);
-                    }
-                    else{
-                        res.json(oo1);
-                    }
-                }
+
+                    res.json(oo);}
+                else{res.json(oo1);}
 
 
-
-
+<<<<<<< HEAD
             })
 
     }
@@ -655,45 +625,14 @@ router.get('/',function (req,res) {
                             oo1.push(oo[i]);
                         }
                     }
+=======
 
-                }
-                else if(txt_start_time=='' && txt_end_time!=''){
-                    for(var i = 0;i<oo.length;i++){
-                        var end=TimeSpan(oo[i].Time)[1];
-                        var inputend=txt_end_time.replace(':','');
-                        if(end_condition==0&&end==inputend){
-                            oo1.push(oo[i]);
-                        }
-                        else if(end_condition==1&&end>inputend){
-                            oo1.push(oo[i]);
-                        }
-                        else if(end_condition==2&&end<inputend){
-                            oo1.push(oo[i]);
-                        }
-                    }
-                }
-                if(err){
-                    console.log(err)
-                }
-                if(txt_start_time=='' && txt_end_time==''){
-                    if(result.length>50){
-                        res.json(["ripi"]);
-                    }
-                    else{
-                        res.json(oo);
-                    }
-                }
-                else{
-                    if(result.length>50){
-                        res.json(["ripi"]);
-                    }
-                    else{
-                        res.json(oo1);
-                    }
-                }
+>>>>>>> dylansprint4
+
             })
 
     }
+
 
 
 });

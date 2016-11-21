@@ -26,8 +26,13 @@
       <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/user.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="412">
               <caret line="326" column="89" selection-start-line="326" selection-start-column="89" selection-end-line="326" selection-end-column="89" />
+=======
+            <state relative-caret-position="423">
+              <caret line="425" column="28" selection-start-line="425" selection-start-column="28" selection-end-line="425" selection-end-column="28" />
+>>>>>>> dylansprint4
               <folding />
             </state>
           </provider>
@@ -36,45 +41,76 @@
       <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/routes.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="352">
               <caret line="49" column="58" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
               <folding>
                 <marker date="1479420974000" expanded="true" signature="1928:1961" ph="{...}" />
               </folding>
+=======
+            <state relative-caret-position="360">
+              <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
+              <folding />
+>>>>>>> dylansprint4
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="passport.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/passport.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1170">
               <caret line="78" column="75" selection-start-line="78" selection-start-column="75" selection-end-line="78" selection-end-column="75" />
+=======
+      <file leaf-file-name="Gruntfile.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="371">
+              <caret line="44" column="36" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+>>>>>>> dylansprint4
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="www" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/www">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-848">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+      <file leaf-file-name="passport.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/passport.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="108" column="28" selection-start-line="108" selection-start-column="28" selection-end-line="108" selection-end-column="28" />
+>>>>>>> dylansprint4
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="courses.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/courses.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="202">
               <caret line="37" column="2" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="2" />
+=======
+      <file leaf-file-name="gradua_courses.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/gradua_courses.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="397">
+              <caret line="70" column="28" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
+>>>>>>> dylansprint4
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="comments.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/comments.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -83,6 +119,14 @@
               <folding>
                 <element signature="e#0#44#0" expanded="false" />
               </folding>
+=======
+      <file leaf-file-name="www" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/www">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="78" column="28" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
+              <folding />
+>>>>>>> dylansprint4
             </state>
           </provider>
         </entry>
@@ -90,38 +134,70 @@
       <file leaf-file-name="course_taken.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/course_taken.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="270">
               <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+=======
+            <state relative-caret-position="285">
+              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+>>>>>>> dylansprint4
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="undergra_courses.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/undergra_courses.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
               <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+=======
+      <file leaf-file-name="courses.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/courses.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+>>>>>>> dylansprint4
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/user.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
               <caret line="64" column="14" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="30" />
               <folding />
+=======
+      <file leaf-file-name="course_details.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/course_details.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="348">
+              <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#44#0" expanded="false" />
+              </folding>
+>>>>>>> dylansprint4
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="course_details.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/course_details.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="5" selection-end-column="36" />
+=======
+      <file leaf-file-name="comments.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/comments.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+>>>>>>> dylansprint4
               <folding>
                 <element signature="e#0#44#0" expanded="false" />
               </folding>
@@ -141,22 +217,27 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/schemas/user.js" />
         <option value="$PROJECT_DIR$/controllers/index.js" />
         <option value="$PROJECT_DIR$/views/test_pages/userlist.jade" />
         <option value="$PROJECT_DIR$/routes/app.js" />
         <option value="$PROJECT_DIR$/schema/user.js" />
         <option value="$PROJECT_DIR$/app/app.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/models/course_taken.js" />
         <option value="$PROJECT_DIR$/routes/course_taken.js" />
+=======
+>>>>>>> dylansprint4
         <option value="$PROJECT_DIR$/views/include/hearder.jade" />
         <option value="$PROJECT_DIR$/views/layout.jade" />
         <option value="$PROJECT_DIR$/views/test_pages/signin.jade" />
         <option value="$PROJECT_DIR$/models/courses.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/models/gradua_courses.js" />
         <option value="$PROJECT_DIR$/models/undergra_courses.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/Gruntfile.js" />
+=======
+>>>>>>> dylansprint4
         <option value="$PROJECT_DIR$/controllers/githubsOauth.js" />
         <option value="$PROJECT_DIR$/node_modules/passport/node_modules/passport-strategy/package.json" />
         <option value="$PROJECT_DIR$/views/test_pages/index.jade" />
@@ -175,11 +256,14 @@
         <option value="$PROJECT_DIR$/dest/index.html" />
         <option value="$PROJECT_DIR$/dest/signin.html" />
         <option value="$PROJECT_DIR$/dest/js/page/search/index.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/models/user.js" />
         <option value="$PROJECT_DIR$/routes/auth.js" />
         <option value="$PROJECT_DIR$/routes/courses.js" />
         <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/app.js" />
+=======
+>>>>>>> dylansprint4
         <option value="$PROJECT_DIR$/dest/js/business.js" />
         <option value="$PROJECT_DIR$/dest/js/lib.js" />
         <option value="$PROJECT_DIR$/dest/js/net/search.js" />
@@ -188,10 +272,32 @@
         <option value="$PROJECT_DIR$/controllers/courses.js" />
         <option value="$PROJECT_DIR$/models/course_details.js" />
         <option value="$PROJECT_DIR$/dest/js/page.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/config/passport.js" />
         <option value="$PROJECT_DIR$/routes/routes.js" />
         <option value="$PROJECT_DIR$/controllers/user.js" />
         <option value="$PROJECT_DIR$/models/comments.js" />
+=======
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/routes/routes.js" />
+        <option value="$PROJECT_DIR$/routes/users.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/routes/courses.js" />
+        <option value="$PROJECT_DIR$/routes/course_taken.js" />
+        <option value="$PROJECT_DIR$/routes/auth.js" />
+        <option value="$PROJECT_DIR$/models/user.js" />
+        <option value="$PROJECT_DIR$/models/undergra_courses.js" />
+        <option value="$PROJECT_DIR$/models/gradua_courses.js" />
+        <option value="$PROJECT_DIR$/models/course_taken.js" />
+        <option value="$PROJECT_DIR$/models/course_details.js" />
+        <option value="$PROJECT_DIR$/models/comments.js" />
+        <option value="$PROJECT_DIR$/controllers/user.js" />
+        <option value="$PROJECT_DIR$/controllers/courses.js" />
+        <option value="$PROJECT_DIR$/config/passport.js" />
+        <option value="$PROJECT_DIR$/bin/www" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/Gruntfile.js" />
+>>>>>>> dylansprint4
       </list>
     </option>
   </component>
@@ -443,12 +549,20 @@
       <workItem from="1478636667172" duration="729000" />
       <workItem from="1478927049192" duration="1796000" />
       <workItem from="1479008089742" duration="2800000" />
+<<<<<<< HEAD
       <workItem from="1479182289933" duration="11858000" />
+=======
+      <workItem from="1479182289933" duration="58166000" />
+>>>>>>> dylansprint4
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="256371000" />
+=======
+    <option name="totallyTimeSpent" value="302679000" />
+>>>>>>> dylansprint4
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -496,7 +610,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+<<<<<<< HEAD
       <option name="time" value="11" />
+=======
+      <option name="time" value="15" />
+>>>>>>> dylansprint4
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -738,6 +856,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -755,15 +874,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.js">
+=======
+    <entry file="file://$PROJECT_DIR$/dest/js/business.js">
+>>>>>>> dylansprint4
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="146">
+          <caret line="107" column="26" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dest/js/page.js">
+    <entry file="file://$PROJECT_DIR$/dest/js/sea.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="300">
           <caret line="939" column="6" selection-start-line="939" selection-start-column="6" selection-end-line="939" selection-end-column="6" />
           <folding>
@@ -858,65 +981,295 @@
             <marker date="1479244114000" expanded="true" signature="55030:55081" ph="..." />
             <marker date="1479244114000" expanded="true" signature="56126:56132" ph=" " />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dest/js/business.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="107" column="26" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dest/js/sea.js">
-      <provider selected="true" editor-type-id="text-editor">
+=======
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+>>>>>>> dylansprint4
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/auth.js">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+        <state relative-caret-position="348">
+          <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dest/js/page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="835" column="6" selection-start-line="826" selection-start-column="14" selection-end-line="835" selection-end-column="6" />
+          <folding>
+            <marker date="1479683497000" expanded="true" signature="807:841" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="849:855" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="867:873" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="874:880" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="880:886" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="899:914" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="956:990" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="1042:1067" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="1106:1123" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="1162:1179" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="1583:1608" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="1694:1736" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="1746:1752" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="1766:1772" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="1868:1880" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="1915:1941" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="2025:2067" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="2077:2083" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="2095:2101" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="2146:2158" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="33757:33763" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="33764:33770" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="33771:33777" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="33815:33831" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="33840:33846" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="34088:34094" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="34095:34101" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="34102:34108" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="34146:34162" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="34171:34177" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="36116:36131" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="37846:37860" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="38076:38091" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="40231:40245" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="42021:42027" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="42028:42034" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="42035:42041" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="42079:42095" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="42104:42110" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="42352:42358" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="42359:42365" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="42366:42372" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="42410:42426" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="42435:42441" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="55088:55102" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="55472:55478" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="55479:55485" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="55486:55492" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="55530:55546" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="55555:55561" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="56147:56153" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="56154:56160" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="56161:56167" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="56205:56221" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="56230:56236" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="57184:57190" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="57191:57197" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="57198:57204" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="57242:57258" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="57267:57273" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="57832:57838" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="57839:57845" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="57846:57852" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="57890:57906" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="57915:57921" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="58160:58166" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="58167:58173" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="58174:58180" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="58218:58234" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="58243:58249" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="58956:58962" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="58963:58969" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="58970:58976" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="59014:59030" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="59039:59045" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="59602:59608" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="59609:59615" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="59616:59622" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="59660:59676" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="59685:59691" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="60753:60759" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="60760:60766" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="60767:60773" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="60811:60827" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="60836:60842" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="61128:61134" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="61135:61141" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="61142:61148" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="61186:61202" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="61211:61217" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="71916:71961" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="76899:76905" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77110:77130" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="77183:77210" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="77219:77225" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77238:77244" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77256:77262" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77277:77283" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77283:77289" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77290:77296" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77312:77318" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77343:77371" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="77421:77476" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="77485:77491" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77503:77509" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77521:77527" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77539:77545" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77579:77662" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="77671:77677" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77689:77695" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77707:77713" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77743:77826" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="77835:77841" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77860:77866" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="77900:78000" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="78076:78086" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="78119:78133" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="78216:78305" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="78343:78369" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="78461:78503" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="78529:78535" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="78552:78558" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="78614:78716" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="78763:78830" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="78880:78893" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="78997:79003" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79016:79022" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79037:79050" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="79065:79071" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79083:79089" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79104:79110" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79220:79226" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79235:79241" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79256:79269" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="79397:79403" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79408:79414" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79429:79442" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="79566:79572" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79577:79583" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79598:79611" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="79735:79741" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79746:79752" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79767:79780" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="79904:79910" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79921:79927" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="79942:79955" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="80086:80092" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="80115:80121" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="80135:80148" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="80311:80414" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="80452:80478" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="80570:80612" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="80638:80644" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="80663:80669" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="80725:80826" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="80873:80918" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="80968:80981" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="81013:81061" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="81162:81265" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="81303:81329" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="81373:81391" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="81448:81490" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="81516:81522" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="81540:81546" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="81621:81633" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="81667:81680" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="81748:81849" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="81896:81941" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="82009:82022" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="82933:82948" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="82962:82980" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="83054:83088" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="83163:83219" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="83231:83265" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="89091:89097" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="89279:89296" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="89311:89317" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="89345:89351" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="89351:89357" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="89384:89390" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="89395:89401" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="89476:89527" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="90777:90783" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="90968:90985" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="91000:91006" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="91034:91040" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="91040:91046" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="91073:91079" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="91084:91090" ph=" " />
+            <marker date="1479683497000" expanded="true" signature="91165:91216" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="93157:93172" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="93186:93204" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="93273:93307" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="93368:93424" ph="..." />
+            <marker date="1479683497000" expanded="true" signature="93436:93470" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="249" column="1" selection-start-line="249" selection-start-column="1" selection-end-line="249" selection-end-column="1" />
+          <folding>
+            <marker date="1479687030000" expanded="true" signature="3003:3036" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/routes/course_taken.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="28" />
+>>>>>>> dylansprint4
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-150">
           <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+=======
+        <state relative-caret-position="180">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+>>>>>>> dylansprint4
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/bin/www">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-848">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/routes/courses.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="6" />
+>>>>>>> dylansprint4
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/config/passport.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1170">
           <caret line="78" column="75" selection-start-line="78" selection-start-column="75" selection-end-line="78" selection-end-column="75" />
+=======
+    <entry file="file://$PROJECT_DIR$/routes/course_taken.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+>>>>>>> dylansprint4
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/routes/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -924,59 +1277,156 @@
           <folding>
             <marker date="1479420974000" expanded="true" signature="1928:1961" ph="{...}" />
           </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/routes/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+          <folding />
+>>>>>>> dylansprint4
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/course_details.js">
+    <entry file="file://$PROJECT_DIR$/routes/api.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="15">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="5" selection-end-column="36" />
           <folding>
             <element signature="e#0#44#0" expanded="false" />
           </folding>
+=======
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+>>>>>>> dylansprint4
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/course_taken.js">
+    <entry file="file://$PROJECT_DIR$/models/user.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="270">
           <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+=======
+        <state relative-caret-position="225">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/undergra_courses.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/gradua_courses.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="70" column="28" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
+>>>>>>> dylansprint4
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/course_taken.js">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="345">
           <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+=======
+        <state relative-caret-position="285">
+          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/course_details.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/comments.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="326" column="89" selection-start-line="326" selection-start-column="89" selection-end-line="326" selection-end-column="89" />
+        <state relative-caret-position="423">
+          <caret line="425" column="28" selection-start-line="425" selection-start-column="28" selection-end-line="425" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/courses.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="37" column="2" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="2" />
+        <state relative-caret-position="210">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+>>>>>>> dylansprint4
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/controllers/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="326" column="89" selection-start-line="326" selection-start-column="89" selection-end-line="326" selection-end-column="89" />
+=======
+    <entry file="file://$PROJECT_DIR$/config/passport.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="108" column="28" selection-start-line="108" selection-start-column="28" selection-end-line="108" selection-end-column="28" />
+>>>>>>> dylansprint4
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/controllers/courses.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="37" column="2" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="2" />
+=======
+    <entry file="file://$PROJECT_DIR$/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="78" column="28" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
+>>>>>>> dylansprint4
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/models/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="64" column="14" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="30" />
+=======
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
+>>>>>>> dylansprint4
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/models/comments.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -984,6 +1434,13 @@
           <folding>
             <element signature="e#0#44#0" expanded="false" />
           </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="44" column="36" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+          <folding />
+>>>>>>> dylansprint4
         </state>
       </provider>
     </entry>

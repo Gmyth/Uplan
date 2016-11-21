@@ -42,6 +42,8 @@ detail_CourseSchema.statics = {
 };
 //test
 var Course_detail = mongoose.model('Course_detail', detail_CourseSchema);
-
+//git error so recommit test
 module.exports = Course_detail;
 
+//test
+>>>>>>> dylansprint4

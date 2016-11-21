@@ -10,7 +10,7 @@ router.get('/', function(request, response) {
 
   response.sendFile('index.html');
 });
-
+//git error so recommit test
 // router.get('/signup',function (req,res) {
 //   res.render('signup', {title: 'register page'});
 // });
