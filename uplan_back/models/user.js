@@ -22,7 +22,7 @@ var UserSchema = new mongoose.Schema({
     },
     password: String,
     email:  { type: String, unique: true },
-//ll
+//ll//git error so recommit test
     google: {
         id: String,
         email: String,

@@ -26,6 +26,7 @@ var undergra_CourseSchema = new Schema({
 },{
     collection:'Classdata'
 });
+//git error so recommit test
 undergra_CourseSchema.statics = {
     fetch: function(cb) {
         return this

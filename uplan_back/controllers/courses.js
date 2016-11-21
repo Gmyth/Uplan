@@ -11,6 +11,7 @@ var Course = require('../models/undergra_courses.js');
 /*
 return courses by searching course number
  */
+//111//git error so recommit test
 exports.list = function (req, res, callback) {
   db.get().collection('cse_courses',function (err,collection) {
       if(err){

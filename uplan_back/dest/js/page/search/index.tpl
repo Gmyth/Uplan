@@ -17,13 +17,12 @@
         </li>
 
         <li>
-            <a data-toggle="modal" class="hoverable" data-target=".bd-example-modal-sm">advanced option</a>
+            <a data-toggle="modal" class="hoverable" data-action="advanced_window">advanced option</a>
             <button class="btn1 btn-default btn1-wide1" value="search" data-action="storedata">search</button>
         </li>
     </ul>
 
-    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-         aria-hidden="true">
+    <div class="modal fade bd-example-modal-sm" id="advanced_window" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-header modal_width modal_background_color">
                 <p style="text-align:center; margin-bottom:auto"><b>advanced search option</b></p>

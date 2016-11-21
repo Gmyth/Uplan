@@ -42,10 +42,7 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
             }
         },
         click_google: function(tar) {
-            $.ajax({
-                method: "GET",
-                url: "./auth/google"
-            }).done(callback);
+            location.href = "http://uplans.info/auth/google";
         }
     };
     /*bind the button input control event*/
