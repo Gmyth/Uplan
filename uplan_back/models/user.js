@@ -15,6 +15,7 @@ var BCRYPT_SALT_LEN = 11;
  * oAuth;
  * token is used to save the token with different oAuth.
  */
+//git error so recommit test
 var UserSchema = new mongoose.Schema({
     name: {
         unique: true,

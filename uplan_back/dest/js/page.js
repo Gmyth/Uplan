@@ -477,7 +477,6 @@ define("page/login/index", [ "lib/jquery", "util/tpl", "util/util", "net/login",
             };
             login.Login(obj, success);
         },
-
         click_google: function(tar) {
             location.href = "http://uplans.info/auth/google";
         }
