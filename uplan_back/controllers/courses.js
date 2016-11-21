@@ -80,6 +80,7 @@ exports.getcoursedetailComment = function (req, res, callback) {
  *  POST method
  *  --- change or create new comment
  */
+ //test
 
 exports.postcoursecomment = function (req, res, callback) {
     console.log("11111111");
