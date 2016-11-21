@@ -1,0 +1,13 @@
+date: Nov 8, 2016
+meeting_type: ta # meeting_type can "group", "ta", or "instructor"
+attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
+absent: []
+excused_absences: []
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <haoyuguo>, progress: debugging course search web page display, working on redesigning result box too.},
+  {ubit: <kaiyukan>, progress: working on user profile page},
+  {ubit: <enzeqian>, progress: finished debugging course search logic, start ub course details page scraper},
+  {ubit: <cwang46>, progress: testing and uploading current files to server; building remote test environment for group members },
+  ]
+issues: []
+Notes:  |

@@ -1,7 +1,7 @@
 /**
- *	config.js
- *	author：liamhuang
- *	date：20150720
+ *  config.js
+ *  author：liamhuang
+ *  date：20150720
  *
  **/
 define("page/controller/config", [], function(require, exports, module) {
@@ -372,16 +372,6 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 check_box_id1: input_open == undefined ? "0" : "1",
                 txtstarttime: input_starttime,
                 txtendtime: input_endtime,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                selstart: input_select_start,
-                selend:input_select_end
-=======
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
                 selstart: parseInt(input_select_start),
                 selend: parseInt(input_select_end)
             };
@@ -393,13 +383,6 @@ define("page/search/index", [ "lib/jquery", "page/flow/config", "util/tpl", "uti
                 console.log('aa');
                 // callback
                 sublist.ShowCourse(data);
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
-=======
->>>>>>> feature-oAuth
             };
             //search.getCourseList(Obj, success);
             $.ajax({
@@ -465,7 +448,7 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
                     YRS_EXPERIENCE: $("#YRS_EXPERIENCE").find("option:selected").attr("yrs")
                 };
                 signup.Signup(obj, function() {
-                    //alert("success");
+                    //pppalert("success");
                     location.href="http://localhost:3000/login.html"
                 });
             } else {

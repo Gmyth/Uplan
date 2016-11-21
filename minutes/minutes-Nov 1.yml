@@ -1,0 +1,13 @@
+date: Nov 1, 2016
+meeting_type: ta # meeting_type can "group", "ta", or "instructor"
+attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
+absent: []
+excused_absences: []
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <haoyuguo>, progress: show our sprint3 to TA and discuss about what should we do in sprint 4},
+  {ubit: <kaiyukan>, progress: show our sprint3 to TA and discuss about what should we do in sprint 4},
+  {ubit: <enzeqian>, progress: show our sprint3 to TA and discuss about what should we do in sprint 4},
+  {ubit: <cwang46>, progress: show our sprint3 to TA and discuss about what should we do in sprint 4},
+  ]
+issues: []
+Notes:  |

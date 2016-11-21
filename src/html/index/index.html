@@ -89,11 +89,11 @@
             Login.fetchUser(function(data){
                 index.init(Login.user);
                 //var uPanel=$("#username");
-                if(data && data["name"]){
+                //if(data && data["name"]){
                     //uPanel.find("#imgAvatar").attr("src","http://dayu.oa.com/avatars/"+data["LoginName"]+"/profile.jpg");
-                    $("#username").html(data["LoginName"]);//+"("+data["ChineseName"]+")"
+                    $("#username").html(Login.user);//+"("+data["ChineseName"]+")"
                     //uPanel.show();
-                }
+                //}
             });
             index.init();
         });

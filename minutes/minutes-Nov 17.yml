@@ -1,0 +1,13 @@
+date: Nov 17, 2016
+meeting_type: group # meeting_type can "group", "ta", or "instructor"
+attendance: [<haoyuguo>, <kaiyukan>, <enzeqian>, <cwang46>]
+absent: []
+excused_absences: []
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+  {ubit: <haoyuguo>, progress:  debugging searc area. redesigned search result box},
+  {ubit: <kaiyukan>, progress: still fixing issue},
+  {ubit: <enzeqian>, progress: scraper done, going to final debugging before sprint4},
+  {ubit: <cwang46>, progress: building and testing api for saving course for users. Building comment functionality.},
+  ]
+issues: []
+Notes:  |

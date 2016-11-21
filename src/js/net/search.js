@@ -19,7 +19,7 @@
          */
         exports.getCourseList = function (Obj, callback) {
             //var url  = pub.parseUrl("/application/add ");
-            var url = "localhost:3002/get_courses_info";
+            var url = "localhost:3000/get_courses_info";
             var data = {
                 "txtsubject": Obj.txtsubject,
                 "txtnumber" : Obj.txtnumber,
