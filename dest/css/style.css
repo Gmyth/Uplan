@@ -220,9 +220,10 @@
     color:#eff0f2;
 }
 .del_course_span:hover{
-    color:#FFFFFF;
+    color: rgb(56, 76, 97);
     cursor:pointer;
 }
+
 .tag_open{
     padding: 2px;
     color:#eff0f2;
