@@ -10,7 +10,7 @@
             <div class="col-2">
                 <label>
                     <b>UNIVERSITY<p class="info_guide"></p></b>
-                    <b><%if(Profile.university){%><%=Profile.university%><%}else{%>No email!<%}%></b>
+                    <b><%if(Profile.university){%><%=Profile.university%><%}else{%>No University!<%}%></b>
                 </label>
             </div>
             <div class="col-2">

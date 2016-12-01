@@ -35,8 +35,8 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     exports.ShowCourse = function(data) {
         subList = {};
         sectionList = {};
-        DataParse(data);
-        if (CourseList.length == 0) {
+        var sig = DataParse(data);
+        if (CourseList.length == 0 || sig == false) {
             $(".list-block").html('<div class="sub_success" style="margin-top: 15%"><div style="text-align: center"><img src="img/icons/svg/loop.svg" alt="Infinity-Loop"></div> <h5 style="color: #34495e; text-align: center"> Sorry, there is no course matched with your requirement </h5><hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;"><p style="color: #34495e; text-align: center"> Please double check the title of the course</p></div>');
         } else {
             $(".list-block").html(tpl.get(tmpl.course, {
@@ -52,10 +52,11 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
     };
     var DataParse = function(data) {
         CourseList = [];
+        var haveCourse = false;
         for (var i = 0; i < data.length; i++) {
             var item = data[i];
             if (!subList.hasOwnProperty(item.Course.replace(/\s+/g, ""))) {
-                /*onl have this course in database*/
+                /*only have this course in database*/
                 var it = {
                     Course: item.Course,
                     Title: item.Title,
@@ -65,16 +66,23 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
                 subList[item.Course.replace(/\s+/g, "")] = [];
                 CourseList.push(it);
             }
-            SignIn(item);
+            if (haveCourse == false) {
+                haveCourse = SignIn(item);
+            } else {
+                SignIn(item);
+            }
         }
+        return haveCourse;
     };
     var SignIn = function(element) {
         /*check single elemnt*/
         defaultSection = "";
+        var Signal = false;
         var name = element.Course.replace(/\s+/g, "");
-        if (element.Type == "LEC" || element.Type == "SEM" || element.Type == "TUT") {
+        if (element.Type == "LAB" || element.Type == "LEC" || element.Type == "SEM" || element.Type == "TUT") {
             subList[name].push(element);
-        } else if (element.Type == "LAB" || element.Type == "REC") {
+            Signal = true;
+        } else if (element.Type == "REC") {
             var Section = element.Section.replace(/[0-9]/g, "");
             defaultSection = Section;
             if (sectionList[name] == null) {
@@ -90,6 +98,7 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
                 }
             }
         }
+        return Signal;
     };
     var Resize = function(rec) {
         if (!rec) {
@@ -218,6 +227,9 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
                     var list = sectionList[coursename][section];
                 }
             }
+            if (section != "000" && section.length > 1) {
+                $(".list-block").html('<div class="sub_success" style="margin-top: 15%"><div style="text-align: center"><img src="img/icons/svg/retina.svg" alt="Retina"></div> <h5 style="color: #34495e; text-align: center"> Course already added into your course list</h5><hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;"><p style="color: #34495e; text-align: center"> Start new search to add more course</p></div>');
+            }
             $(".list-block").html(tpl.get(tmpl.rec, {
                 RecList: list
             }));
@@ -278,6 +290,9 @@ define("page/sublist/index", [ "lib/jquery", "page/sublist/config", "util/tpl", 
                 }
             };
             sublist.addComment(obj, success);
+        },
+        del_course_span: function(tar) {
+            $(tar).parent().parent().html("");
         }
     };
     /*bind the button input control event*/

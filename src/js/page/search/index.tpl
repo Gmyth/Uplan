@@ -21,13 +21,13 @@
             <button class="btn1 btn-default btn1-wide1" value="search" data-action="storedata">search</button>
         </li>
     </ul>
-
-    <div class="modal fade bd-example-modal-sm" id="advanced_window" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-header modal_width modal_background_color">
-                <p style="text-align:center; margin-bottom:auto"><b>advanced search option</b></p>
+        <div id="advanced_window" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="background-color: #eff0f2;border-radius: 6px;">
+            <div class="modal-header" style="background-color: #34495e;">
+                <a type="button" class="close" data-dismiss="modal" style="padding-top:4px;"><span class="fui-cross" style="color: #eff0f2;"></span></a>
+                <p style="margin-bottom:auto;color: #eff0f2;"><b>Advanced search option</b></p>
             </div>
-            <div class="modal-body modal_width modal_background_color">
+            <div class="modal-body">
                 <div>
                     <ul style="list-style-type:none">
                         <li><b style="position:relative; top: 5px" ;>Course Career</b>
@@ -92,10 +92,9 @@
                     </ul>
                 </div>
             </div>
-            <div class="modal-footer modal_width modal_background_color">
-
-                <button type="button" class="btn1 btn-default btn1-wide2" data-dismiss="modal">Close</button>
-                <button type="button" class="btn1 btn-default btn1-wide2">Save changes</button>
+            <div class="modal-footer modal_background_color">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
