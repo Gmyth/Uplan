@@ -1,4 +1,5 @@
 <template name="MODULE.WELCOME">
+    <img src="img/favicon.png" alt="Retina">
     <h5 style="color: #FFFFFF; text-align: center">Happy &nbsp;<%=weekday%>&nbsp;,&nbsp;&nbsp;<span style="color: #FFFFFF;"><%=username%></span ></h5>
     <p style="color: #FFFFFF; text-align: center"> What are we going to do today?</p>
     <hr style="width: 50%; margin: auto;">
