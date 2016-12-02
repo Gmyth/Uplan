@@ -35,7 +35,7 @@ define(function(require, exports, module){
                     YRS_EXPERIENCE: $('#YRS_EXPERIENCE').find('option:selected').attr('yrs'),
                 };
                 signup.Signup(obj,function (data) {
-                    if(data.errno="0"){
+                    if(data.errno=="0"){
                         $('#Sign_up_succ').modal('show');
                     }else{
                         alert(data.error);
