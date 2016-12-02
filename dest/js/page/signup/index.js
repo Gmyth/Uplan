@@ -5,10 +5,11 @@
  * Created by gmyth on 16/9/7.
  * this part is created for the implement of the sign up page
  * */
-define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net" ], function(require, exports, module) {
+define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net", "widget/bootstrap" ], function(require, exports, module) {
     var $ = require("lib/jquery");
     var tpl = require("util/tpl");
     var signup = require("net/signup");
+    var bootstrap = require("widget/bootstrap");
     var p = "";
     var typingTimer;
     //timer identifier
@@ -34,11 +35,15 @@ define("page/signup/index", [ "lib/jquery", "util/tpl", "net/signup", "util/net"
                     gender: $("#gender").find("option:selected").val(),
                     YRS_EXPERIENCE: $("#YRS_EXPERIENCE").find("option:selected").attr("yrs")
                 };
-                signup.Signup(obj, function() {
-                    alert("success");
+                signup.Signup(obj, function(data) {
+                    if (data.errno = "0") {
+                        $("#Sign_up_succ").modal("show");
+                    } else {
+                        alert(data.error);
+                    }
                 });
             } else {
-                $("#Signup_msg").html('<p class="error_msg"> <span class="fui-cross" style="color: #e63c5f"></span>Please complete the form to continue Sign up!</p>');
+                $("#Signup_msg").html('<p class="error_msg"> <span class="fui-cross" style="color: #e63c5f"></span>&nbsp;Please complete the form to continue Sign up!</p>');
             }
         },
         click_google: function(tar) {

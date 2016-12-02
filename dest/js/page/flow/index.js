@@ -30,6 +30,7 @@ define("page/flow/index", [ "lib/jquery", "page/flow/config", "util/tpl", "util/
         weekparse(timeparser.getThursday(new Date()));
         weekparse(timeparser.getFriday(new Date()));
         weekparse(timeparser.getSaturday(new Date()));
+        weekparse(timeparser.getSunday(new Date()));
         $(".main_container").html(tpl.get(tmpl.main, {
             Week: result
         }));

@@ -28,7 +28,7 @@
                             <a type="button" class="close" data-dismiss="modal" style="padding-top:4px;"><span class="fui-cross" style="color: #eff0f2;"></span></a>
                             <p style="margin-bottom:auto;color: #eff0f2;"><b>Selected</b></p>
                         </div>
-                        <div class="modal-body" id="selected_list" style="height: 500px;max-height: 500px;overflow-y: auto;">
+                        <div class="modal-body responsive-font" id="selected_list" style="height: 500px;max-height: 500px;overflow-y: auto;">
 
                         </div>
                         <div class="modal-footer modal_background_color">

@@ -90,22 +90,31 @@ label > select {
     margin:auto;
     border: 1px solid rgb(187, 30, 30);
 }
+
+.bodyback{
+    background-repeat:no-repeat;
+}
 label > input:focus, label > select:focus {
     opacity: 1;
 }
 @media(min-width: 850px){
-
     form > div { display: inline-block; }
-    form {width:1200px;  margin:auto;}
-    .error_msg{width: 1200px; }
+    form {width:90%;  margin:auto;}
+    .error_msg{width: 90%; }
     .col-submit { display: block; }
 
     .col-2, .col-3, .col-4 { box-shadow: 1px 1px #e4e4e4; border: none; }
 
-    .col-2 { width: 599px }
-    .col-3 { width: 399.3px;}
-    .col-4 { width: 299.2px; }
+    .col-2 { width: 50%; }
+    .col-3 { width: 33.3333333%;}
+    .col-4 { width: 25%; }
 
     .col-submit button { width: 30%; margin: 0 auto;
+    }
+}
+@media(min-width: 1790px) {
+    .bodyback {
+        background-size:100% 100%;
+        background-repeat: no-repeat;
     }
 }

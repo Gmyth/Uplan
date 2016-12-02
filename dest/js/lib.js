@@ -15204,6 +15204,12 @@ define("util/timeparser", [], function(require, exports, module) {
         // adjust when day is sunday
         return new Date(d.setDate(diff));
     };
+    exports.getSunday = function(d) {
+        d = new Date(d);
+        var day = d.getDay(), diff = d.getDate() - day + (day == 0 ? 0 : 7);
+        // adjust when day is sunday
+        return new Date(d.setDate(diff));
+    };
     var isMorning = function(time) {
         var timepattern = /(\d{1,2}):(\d{2})(AM)/;
         /*regular expression to find correct time format*/

@@ -69,7 +69,7 @@
 </template>
 <template name="SUBLIST.RECITATION">
     <div class="sub_main_tag">
-        &nbsp;Select the recitation/lab to finish enroll!
+        &nbsp;Select the recitation/lab to finish enrollment!
     </div>
     <% for(var d = 0,it ; it = RecList[d]; d++){%>
     <div class="subtag">

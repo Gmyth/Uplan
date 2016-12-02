@@ -12,7 +12,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap/css/bootstrap.min.css" >
     <link rel="stylesheet" type="text/css" href="css/flat-ui.css" >
-    <link rel="stylesheet" type="text/css" href="css/style.css" >
     <link rel="stylesheet" type="text/css" href="css/signIn.css" >
     <link rel="shortcut icon" href="img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=0.5" />
@@ -37,7 +36,7 @@
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="/login.html">LOG IN<span class="navbar-unread">1</span></a></li>
                 <li><a href="/signin.html">SIGN UP<span class="navbar-unread">1</span></a></li>
-                <li><a href="/forget.html">FORGET PASSWORD?<span class="navbar-unread">1</span></a></li>
+                <li><a href="/password.html">FORGET PASSWORD?<span class="navbar-unread">1</span></a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav><!-- /navbar -->
@@ -99,14 +98,34 @@
             </label>
         </div>
         <div class="col-submit">
-            <button data-action="confirm_signup" class="btn btn-block btn-lg btn-success">SIGN IN NOW</button>
+            <button data-action="confirm_signup" class="btn btn-block btn-lg btn-success">SIGN UP NOW</button>
+            <div id="Sign_up_succ" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div  class="modal-dialog" style="background-color: #eff0f2;border-radius: 6px;">
+                    <div class="modal-header" style="background-color: #34495e;">
+                        <a type="button" class="close" data-dismiss="modal" style="padding-top:4px;"><span class="fui-cross" style="color: #eff0f2;"></span></a>
+                        <p style="margin-bottom:auto;color: #eff0f2;"><b>Success</b></p>
+                    </div>
+                    <div class="modal-body"  style="height: 300px;max-height: 300px;overflow-y: auto;">
+                        <div class="sub_success"><div style="text-align: center">
+                            <img src="img/icons/svg/retina.svg" alt="Retina">
+                        </div>
+                            <h5 style="color: #34495e; text-align: center"> Enjoy your journey</h5>
+                            <hr style="width: 100%; margin: auto;border-top: 1px solid #34495e;">
+                            <p style="color: #34495e; text-align: center"> Your account was successfully created! </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer modal_background_color">
+                        <button type="button" class="btn btn-primary btn-block" data-dismiss="modal" >OK</button>
+                    </div>
+                </div>
+            </div>
             <div class="col-submit">
                 <button class="btn btn-block btn-sm btn-success1" data-action="click_google" ><div><laber class="password_icon fui-google-plus" for="password"></laber>&nbspHave Google Account?</div>  </button>
             </div>
         </div>
     </form>
-</div>
 
+</div>
 <div class="clear"></div>
 </body>
 <script src="./js/sea.js"></script>

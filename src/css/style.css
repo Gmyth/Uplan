@@ -92,7 +92,7 @@
     text-align: center;
     word-wrap:break-word
 }
-.modal-body {
+.responsive-font {
     font-size: 1px;
 }
 .weekly_schedule_line_background{
@@ -321,6 +321,7 @@
         width: 400px !important;
     }
 }
+
 @media(min-width: 100px){
 
     form > div { display: inline-block; }

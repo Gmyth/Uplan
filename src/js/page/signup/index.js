@@ -8,7 +8,8 @@
 define(function(require, exports, module){
     var $ = require('lib/jquery')
     var tpl = require('util/tpl')
-    var signup = require('net/signup')
+    var signup = require('net/signup');
+    var bootstrap = require("widget/bootstrap");
     var p ="";
     var typingTimer;                //timer identifier
     var doneTypingInterval = 1000;  //time in ms, 5 second for example
@@ -33,11 +34,16 @@ define(function(require, exports, module){
                     gender:$('#gender').find('option:selected').val(),
                     YRS_EXPERIENCE: $('#YRS_EXPERIENCE').find('option:selected').attr('yrs'),
                 };
-                signup.Signup(obj,function () {
-                    alert('success');
-                })
+                signup.Signup(obj,function (data) {
+                    if(data.errno="0"){
+                        $('#Sign_up_succ').modal('show');
+                    }else{
+                        alert(data.error);
+                    }
+                });
+
             }else{
-                $("#Signup_msg").html('<p class="error_msg"> <span class="fui-cross" style="color: #e63c5f"></span>Please complete the form to continue Sign up!</p>')
+                $("#Signup_msg").html('<p class="error_msg"> <span class="fui-cross" style="color: #e63c5f"></span>&nbsp;Please complete the form to continue Sign up!</p>')
             }
         },
         'click_google':function(tar){

@@ -29,6 +29,7 @@ define(function(require, exports, module){
         weekparse(timeparser.getThursday(new Date()));
         weekparse(timeparser.getFriday(new Date()));
         weekparse(timeparser.getSaturday(new Date()));
+        weekparse(timeparser.getSunday(new Date()));
         $('.main_container').html(tpl.get(tmpl.main,{"Week":result}));
         var container_height = $('.main_container').height();
         $('.main_body').height(container_height-60);
