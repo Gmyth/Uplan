@@ -270,6 +270,11 @@
     color:#eeeeee;
     background-color: rgb(60, 90, 109);
 }
+.de_script{
+    margin:20px;
+    text-align: justify;
+    font-weight: 600;
+}
 @media screen and (max-device-width: 600px) {
 .sub_box {
     margin-left: 5%;
