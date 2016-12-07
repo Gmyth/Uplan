@@ -1,0 +1,10 @@
+.bodyback{
+    background-repeat:no-repeat;
+}
+@media(max-height: 1338px){
+    .bodyback{
+        -moz-background-size:100% 100%;
+        background-size:100% 1500px;
+        background-repeat:no-repeat;
+    }
+}
